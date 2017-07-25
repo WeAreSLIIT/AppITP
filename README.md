@@ -4,14 +4,13 @@ ITP Project of SLIIT
 2016 Intake Weekend Batch 2nd Year ITP Project
 ==============================================
 Web-Based Inventory Management System 
-with Web Servise
+With RESTful Web Servise
 
 BackEnd Technologies (API)
 ---------------------
 * Asp.NET WEB.API Core (C#)
 * Entitiy Framework
 * MSSQL Database
-
 
 FrontEnd Technologies
 ---------------------
