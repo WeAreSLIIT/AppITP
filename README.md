@@ -23,7 +23,7 @@ FrontEnd Technologies
 TEAM MEMEBERS
 ==============
 
-* IT16158764	  Basnayake M.C.S.B.	    chathurangabasnayake@outlook.com
+* IT16158764	Basnayake M.C.S.B.	    chathurangabasnayake@outlook.com
 * IT16160330    Amarasinghe U.P.A.S.D	  samithdilsh@gmail.com
 * IT16154490    Rodrigo U.S.D	          dilee1st.1995@gmail.com
 * IT16423534    Bimali Y.M.Y.	          b.yapabmmv@gmail.com
