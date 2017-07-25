@@ -17,7 +17,7 @@ FrontEnd Technologies
 * HTML5 & CSS3
 * Twitter Boostrap & Jquery 
 * JavaScript 
-* AngularJS CSS3 
+* AngularJS
 
 
 TEAM MEMEBERS
