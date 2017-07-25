@@ -4,7 +4,7 @@ ITP Project of SLIIT
 2016 Intake Weekend Batch 2nd Year ITP Project
 ==============================================
 Web-Based Inventory Management System 
-with Web Servise
+With RESTful Web Servise
 
 BackEnd Technologies (API)
 ---------------------
@@ -12,13 +12,12 @@ BackEnd Technologies (API)
 * Entitiy Framework
 * MSSQL Database
 
-
 FrontEnd Technologies
 ---------------------
 * HTML5 & CSS3
 * Twitter Boostrap & Jquery 
 * JavaScript 
-* AngularJS CSS3 
+* AngularJS
 
 
 TEAM MEMEBERS
