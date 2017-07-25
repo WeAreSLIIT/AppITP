@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "task-HTMLPage1",
+      "appliesTo": "DemoUI/Testing UI/Bassa/HTMLPage1.html",
+      "type": "command"
+    }
+  ]
+}
