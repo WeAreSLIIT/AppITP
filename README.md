@@ -13,7 +13,7 @@ BackEnd Technologies (API)
 * MSSQL Database
 
 FrontEnd Technologies
----------------------
+--------------------
 * HTML5 & CSS3
 * Twitter Boostrap & Jquery 
 * JavaScript 
