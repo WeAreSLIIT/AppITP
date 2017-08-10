@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace APIHoster.Controller
 {
+   //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
         // GET api/user
+        
         public IEnumerable<Object> Get()
         {
             Console.WriteLine("{0} -> Get() Method Called.", DateTime.Now.ToString(@"h\:mm:ss tt"));
