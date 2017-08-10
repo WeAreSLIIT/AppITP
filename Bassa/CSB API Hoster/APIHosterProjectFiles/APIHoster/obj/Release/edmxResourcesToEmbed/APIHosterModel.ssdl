@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="APIHosterModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=&quot;D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\bin\Debug\database.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="APIHosterModelStoreContainer">
+    <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
