@@ -1,6 +1,9 @@
 ﻿using Owin;
 using System.Web.Http;
 
+//fix cors
+using System.Web.Http.Cors;
+
 namespace APIHoster
 {
     class Startup
@@ -8,6 +11,11 @@ namespace APIHoster
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
+
+            //fix for cors
+            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

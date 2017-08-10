@@ -29,3 +29,7 @@ D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\bin\Release\System
 D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\bin\Release\System.Web.Http.Owin.xml
 D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\obj\Release\APIHoster.exe
 D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\obj\Release\APIHoster.pdb
+D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\bin\Release\System.Web.Cors.dll
+D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\bin\Release\System.Web.Http.Cors.dll
+D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\bin\Release\System.Web.Http.Cors.xml
+D:\chath\OneDrive\Documents\Visual Studio\APIHoster\APIHoster\obj\Release\APIHoster.csprojResolveAssemblyReference.cache

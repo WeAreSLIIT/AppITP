@@ -6,6 +6,7 @@ namespace APIHoster
     class Program
     {
         public object SQLiteConnection { get; private set; }
+        public static int port = 5556;
 
         static void Main(string[] args)
         {
@@ -15,11 +16,9 @@ namespace APIHoster
             
             Console.WriteLine("Please wait. Web Service is Starting...");
 
-            int port = 5556;
             int tries = 0;
             AppStart:
             
-
             try
             {
                 using (WebApp.Start<Startup>("http://localhost:" + port.ToString()))
