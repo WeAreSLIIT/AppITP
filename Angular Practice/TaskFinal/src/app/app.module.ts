@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Http,HttpModule,Headers } from "@angular/http";
+import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
@@ -18,7 +19,8 @@ import { UserService } from "./services/user.service";
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

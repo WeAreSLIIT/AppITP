@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../services/user.service";
+import { Observable } from "rxjs/Observable";
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-users-table',
@@ -12,10 +14,22 @@ export class UsersTableComponent implements OnInit {
   constructor( private userService:UserService) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(data => {
-      console.log(data);
-      this.users = data;
+    Observable.interval(5000).subscribe(x => {
+        this.userService.getUsers().subscribe(data => {
+        this.users = data;
     });
+    });
+ 
+  }
+
+  onClickDelete(index){
+    this.userService.deleteUser(this.users[index].Id).subscribe(data=>{
+      console.log(data);
+    });
+  }
+
+  onClickEdit(id){
+    //To Be Developed!
   }
 
 }
