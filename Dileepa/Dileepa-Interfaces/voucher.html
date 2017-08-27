@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Inventory Management System | </title>
+    <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Inventory Management System</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -43,7 +43,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-               <!--  <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <!-- <img src="images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -61,33 +61,34 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="">Dashboard</a></li>
-
+                      <li><a href="index.html">Dashboard</a></li>
+                      <!-- <li><a href="index2.html">Dashboard2</a></li>
+                      <li><a href="index3.html">Dashboard3</a></li> -->
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i>Stocks<span class="fa fa-chevron-down"></span></a>
+                  <li><a href="voucher.html"><i class="fa fa-gift"></i> Gift Voucher <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="newStock.html">Add new stocks</a></li>
-                      <li><a>Transfer Stock<span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                          <li><a href="transInStock.html">Trans-in Stock</a></li>
-                          <li><a href="transOutStock.html">Trans-out Stock</a></li>
-                        </ul>
-                      </li>       
-                      <li><a>Return Stock<span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                          <li><a href="returnToSupplier.html">Returns to Supplier</a></li>
-                          <li><a href="returnFromCustomer.html">Returns from customer</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="wastageStock.html">Wastage stock</a></li>
-                      <li><a href="GRN.html">New GRN</a></li>
-                      <li><a href="recount.html">Stock Recount</a></li>
-                      <li><a href="deleteStock.html">Delete Stocks</a></li>
+                      <li><a href="create_voucher.html">Create Gift Voucher</a></li>
+                      <li><a href="issue_voucherhtml">Issue Gift Voucher</a></li>
+                      <li><a href="redeem_voucher.html">Redeem Gift Voucher</a></li>
                     </ul>
-                  </li>
+
+                    <li><a><i class="fa fa-usd"></i> Discount <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="discount_type.html">Dicount Types</a></li>
+                          <li><a href="discount_shedule.html">Dicount Shedule</a></li>
+                      </ul>
+                    </li> 
+
+                    <li><a><i class="fa fa-tags"></i>Promotion<span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="promotion_type.html">Promotion Types</a></li>
+                          <li><a href="promotion_shedule.html">Promotion Shedule</a></li>
+                      </ul>
+                  
                 </ul>
               </div>
+             
 
             </div>
             <!-- /sidebar menu -->
@@ -210,129 +211,19 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="col-md-12" >
 
-            <h1>Return Stock</h1>
-            <form action="" id="returnStock" data-parsley-validate class="form-horizontal form-label-left" >
-
-
-              <div class="col-md-6" >
-                <table class="table">
-                  <tr >
-                    <td><label  for="stockNumber">Stock Number</label></td>
-                    <td><input type="text" id="stockNumber" required="required"  ></td>
-                  </tr>
-
-                  <tr>
-                    <td><label for="poNum">Purchase Order</label></td>
-                    <td><input type="text" id="poNum" required="required"></td>
-                  </tr>
-
-
-                  <tr>
-                    <td><label  for="supplier">Supplier</label></td>
-                    <td><input type="text" id="supplier" required="required"></td>
-                  </tr>
-
-
-                  <tr>
-                    <td><label  for="itemCode">Item Code</label></td>
-                    <td><input type="text" id="itemCode" required="required"> </td>
-                  </tr>
-
-
-                  <tr>
-                   <td><label  for="itemName">Item Name</label></td>
-                   <td><input type="text" id="itemName" required="required"></td>
-                 </tr>
-
-                 <tr>
-                   <td><label for="probDesc">Cause of return</label></td>
-                   <td>
-                    <select class="col-md-6" name="causeOfReturn" id="causeOfReturn">
-                      <option value="QI failed">QI failed</option>
-                      <option value="Different Content">Different content</option>
-                      <option value="Damaged packages">Damaged Packages</option> 
-                      <option value="Other">Other(Specify below)</option>
-                    </select>
-                  </td>
-                </tr>
-
-                <tr>
-                 <td><label  for="probDesc">Description</label></td>
-                 <td><textarea class="col-sm-8"></textarea></td>
-               </tr>
-               <tr>
-                <td><label for="avQty">Available Qty</label></td>               
-                <td><input type="Number" id="avQty" required="required"></td>
-              </tr>
-
-
-              <tr>
-                <td><label for="packSize">Pack Size</label></td>
-
-                <td><input type="text" id="packSize" required="required" ></td>
-              </tr>
-
-
-              <tr>
-                <td><label for="wholeSaleValue">Whole sale value</label></td>
-
-                <td><input type="text" id="wholeSaleValue" required="required"></td>
-              </tr>
-            
-              <tr>
-              <td>
-              <button type="button" class="btn btn-md">
-              <a data-toggle="tooltip" data-placement="bottom" title="Generate invoice">
-                <span class="glyphicon glyphicon-list-alt"><strong>  Generate invoice</strong></span>
-              </a>
-              </button>
-              </td>
-              <td>
-                <button type="button" class="btn btn-md">
-              <a data-toggle="tooltip" data-placement="bottom" title="Save">
-                <span class="glyphicon glyphicon-list-alt"><strong> Save</strong></span>
-              </a>
-              </button>
-              </td>
-              </tr>
-            </table>
-          </div>
-        </form>
         </div>
-        <div class="col-md-offset-6" style="border: solid;" >
           
-        
-            <button class="btn btn-md" type="button">
-              <a data-toggle="tooltip" data-placement="bottom" title="Print">
-                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-              </a>
-            </button>
-            <button class="btn btn-md" type="button">
-              <a data-toggle="tooltip" data-placement="bottom" title="Send as attachment">
-                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-              </a>
-            </button>
-            <button type="button" class="btn btn-md">
-              <a data-toggle="tooltip" data-placement="bottom" title="Download PDF">
-                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-              </a>
-            </button>
-         
-        </div>
-      </div>
-        <!-- /page content -->
 
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Inventory Management System
+           Inventory Management System by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
-      
+      </div>
     </div>
 
     <!-- jQuery -->

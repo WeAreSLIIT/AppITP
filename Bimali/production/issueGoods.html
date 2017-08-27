@@ -43,7 +43,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-               <!--  <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <!-- <img src="images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -80,16 +80,16 @@
                           <li><a href="returnFromCustomer.html">Returns from customer</a></li>
                         </ul>
                       </li>
-                      <li><a href="wastageStock.html">Wastage stock</a></li>
-                      <li><a href="GRN.html">New GRN</a></li>
-                      <li><a href="recount.html">Stock Recount</a></li>
-                      <li><a href="deleteStock.html">Delete Stocks</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+                        <li><a href="wastageStock.html">Wastage stock</a></li>
+                        <li><a href="GRN.html">New GRN</a></li>
+                        <li><a href="reCount.html">Stock Recount</a></li>
+                        <li><a href="deleteStock.html">Delete Stocks</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
 
-            </div>
+              </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -210,129 +210,48 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="col-md-12" >
+          <h1>Issue Goods</h1>
+          <form action="" id="transOutStock" data-parsley-validate class="form-horizontal form-label-left clearfix" style="width: 100%;">
+            <div class="form-group"> 
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stockNumber">Stock Id</label><input type="text" id="stockId" required="required" class=" col-sm-6 ">
+            </div>
 
-            <h1>Return Stock</h1>
-            <form action="" id="returnStock" data-parsley-validate class="form-horizontal form-label-left" >
-
-
-              <div class="col-md-6" >
-                <table class="table">
-                  <tr >
-                    <td><label  for="stockNumber">Stock Number</label></td>
-                    <td><input type="text" id="stockNumber" required="required"  ></td>
-                  </tr>
-
-                  <tr>
-                    <td><label for="poNum">Purchase Order</label></td>
-                    <td><input type="text" id="poNum" required="required"></td>
-                  </tr>
-
-
-                  <tr>
-                    <td><label  for="supplier">Supplier</label></td>
-                    <td><input type="text" id="supplier" required="required"></td>
-                  </tr>
-
-
-                  <tr>
-                    <td><label  for="itemCode">Item Code</label></td>
-                    <td><input type="text" id="itemCode" required="required"> </td>
-                  </tr>
-
-
-                  <tr>
-                   <td><label  for="itemName">Item Name</label></td>
-                   <td><input type="text" id="itemName" required="required"></td>
-                 </tr>
-
-                 <tr>
-                   <td><label for="probDesc">Cause of return</label></td>
-                   <td>
-                    <select class="col-md-6" name="causeOfReturn" id="causeOfReturn">
-                      <option value="QI failed">QI failed</option>
-                      <option value="Different Content">Different content</option>
-                      <option value="Damaged packages">Damaged Packages</option> 
-                      <option value="Other">Other(Specify below)</option>
-                    </select>
-                  </td>
-                </tr>
-
-                <tr>
-                 <td><label  for="probDesc">Description</label></td>
-                 <td><textarea class="col-sm-8"></textarea></td>
-               </tr>
-               <tr>
-                <td><label for="avQty">Available Qty</label></td>               
-                <td><input type="Number" id="avQty" required="required"></td>
-              </tr>
-
-
-              <tr>
-                <td><label for="packSize">Pack Size</label></td>
-
-                <td><input type="text" id="packSize" required="required" ></td>
-              </tr>
-
-
-              <tr>
-                <td><label for="wholeSaleValue">Whole sale value</label></td>
-
-                <td><input type="text" id="wholeSaleValue" required="required"></td>
-              </tr>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Issuedd">Issued For</label>
+                <select  name="issuedFor" id="issuedFor" class="col-sm-6">
+                  <option value="Market">Market</option>
+                  <option value="opt1">Opt1</option> 
+                  <option value="opt2">Opt2</option>
+                </select>
+            </div>
             
-              <tr>
-              <td>
-              <button type="button" class="btn btn-md">
-              <a data-toggle="tooltip" data-placement="bottom" title="Generate invoice">
-                <span class="glyphicon glyphicon-list-alt"><strong>  Generate invoice</strong></span>
-              </a>
-              </button>
-              </td>
-              <td>
-                <button type="button" class="btn btn-md">
-              <a data-toggle="tooltip" data-placement="bottom" title="Save">
-                <span class="glyphicon glyphicon-list-alt"><strong> Save</strong></span>
-              </a>
-              </button>
-              </td>
-              </tr>
-            </table>
+            <div class="form-group"> 
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="expiryDate">Expiry date</label><input type="date" id="expiryDate" required="required" class="col-sm-6">
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sentQuantity"> Quantity</label><input type="Number" id="sentQuantity" required="required" class="col-sm-6">
+            </div>
+            
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2">
+                <button class="btn btn-primary" type="button">Cancel</button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button type="submit" class="btn btn-success">Save</button>
+              </div>
+          </form>
+
           </div>
-        </form>
-        </div>
-        <div class="col-md-offset-6" style="border: solid;" >
-          
-        
-            <button class="btn btn-md" type="button">
-              <a data-toggle="tooltip" data-placement="bottom" title="Print">
-                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-              </a>
-            </button>
-            <button class="btn btn-md" type="button">
-              <a data-toggle="tooltip" data-placement="bottom" title="Send as attachment">
-                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-              </a>
-            </button>
-            <button type="button" class="btn btn-md">
-              <a data-toggle="tooltip" data-placement="bottom" title="Download PDF">
-                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-              </a>
-            </button>
-         
-        </div>
-      </div>
         <!-- /page content -->
 
         <!-- footer content -->
         <footer>
-          <div class="pull-right">
+          <div class="pull-right" >
             Inventory Management System
           </div>
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
-      
+      </div>
     </div>
 
     <!-- jQuery -->
