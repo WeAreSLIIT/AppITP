@@ -54,6 +54,7 @@
     <Compile Include="Model\Converter\ConvertBtnClassToString.cs" />
     <Compile Include="Model\Converter\ConvertButtonImageVisibility.cs" />
     <Compile Include="Model\Converter\ConverteLengthToGridLength.cs" />
+    <Compile Include="Model\Enums\EnumsNeeded.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

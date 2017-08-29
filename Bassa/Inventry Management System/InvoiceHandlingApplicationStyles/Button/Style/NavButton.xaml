@@ -26,6 +26,11 @@
         <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource LeftNav-Button-Default-Normal-Border}}"/>
         <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource LeftNav-Button-Default-Normal-Font}}"/>
 
+        <!--<Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Foreground" Value="White"/>-->
+        <Setter Property="Opacity" Value="1"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type custom:NavButton}">
@@ -39,34 +44,6 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-
-                        <!-- Active -->
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsEnabled" Value="True"/>
-                                <Condition Property="IsActive" Value="True"/>
-                            </MultiTrigger.Conditions>
-
-                            <MultiTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource LeftNav-Button-Default-Active}" Duration="0:0:0.25"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource LeftNav-Button-Default-Hover-Border}" Duration="0:0:0.25"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource LeftNav-Button-Default-Hover-Font}" Duration="0:0:0.25"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </MultiTrigger.EnterActions>
-
-                            <MultiTrigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </MultiTrigger.ExitActions>
-                        </MultiTrigger>
 
                         <!-- Mouse Over -->
                         <MultiTrigger>
@@ -214,6 +191,41 @@
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>
 
+                        <!-- Active -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsActive" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="Black" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Black" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="Black" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+
+                        <!--<Trigger Property="IsActive" Value="True">
+                            <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource LeftNav-Button-Default-Active}}"/>
+                            <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource LeftNav-Button-Default-Active-Border}}"/>
+                            <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource LeftNav-Button-Default-Active-Font}}"/>
+                        </Trigger>-->
+                        
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource LeftNav-Button-Default-Disabled}}"/>

@@ -13,7 +13,7 @@ namespace InvoiceHandlingApplicationStyles.Model.Controls
     {
         static NavButton()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(NavButton), new FrameworkPropertyMetadata(typeof(NavButton)));
+            //DefaultStyleKeyProperty.OverrideMetadata(typeof(NavButton), new FrameworkPropertyMetadata(typeof(NavButton)));
         }
 
         public static readonly DependencyProperty ImageProperty =
@@ -26,12 +26,13 @@ namespace InvoiceHandlingApplicationStyles.Model.Controls
         }
 
         public static readonly DependencyProperty IsActiveProperty =
-            DependencyProperty.Register("IsActive", typeof(bool), typeof(NavButton), new PropertyMetadata(null));
+            DependencyProperty.Register("IsActive", typeof(Boolean), typeof(NavButton), new PropertyMetadata(false));
 
-        public bool IsActive
+        public Boolean IsActive
         {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, (bool)value); }
+            get { return (Boolean)GetValue(IsActiveProperty); }
+            set { SetValue(IsActiveProperty, (Boolean)value); }
         }
+
     }
 }

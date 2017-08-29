@@ -25,6 +25,10 @@ namespace InvoiceHandlingApplication
         {
             InitializeComponent();
         }
-        
+
+        private void navButton_Click(object sender, RoutedEventArgs e)
+        {
+            navButton.IsActive = !navButton.IsActive;
+        }
     }
 }
