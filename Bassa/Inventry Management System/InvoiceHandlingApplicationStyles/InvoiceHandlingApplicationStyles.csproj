@@ -47,11 +47,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Controls\InvoiceItemContent.cs" />
     <Compile Include="Model\Controls\NavButton.cs" />
     <Compile Include="Model\Controls\ImageSingleContent.cs" />
     <Compile Include="Model\Converter\ConvertButtonTextblockVisibility.cs" />
     <Compile Include="Model\Converter\ConvertColorToSolidBrush.cs" />
-    <Compile Include="Model\Converter\ConvertBtnClassToString.cs" />
     <Compile Include="Model\Converter\ConvertButtonImageVisibility.cs" />
     <Compile Include="Model\Converter\ConverteLengthToGridLength.cs" />
     <Compile Include="Model\Enums\EnumsNeeded.cs" />

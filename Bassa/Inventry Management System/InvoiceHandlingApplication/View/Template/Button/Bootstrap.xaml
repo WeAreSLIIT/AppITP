@@ -1,14 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:InvoiceHandlingApplicationStyles.Button.Style"
-                    xmlns:converter="clr-namespace:InvoiceHandlingApplicationStyles.Model.Converter">
+                    xmlns:local="clr-namespace:InvoiceHandlingApplication.View.Template.Button">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/InvoiceHandlingApplicationStyles;component/Button/ButtonColor.xaml"/>
-        <ResourceDictionary Source="BaseButton.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/InvoiceHandlingApplication;component/View/Color/Colors.xaml"/>
+        <ResourceDictionary Source="Base.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
-    <converter:ConvertColorToSolidBrush x:Key="ConvertColorToSolidBrush"/>
 
     <!-- Button Default -->
     <Style x:Key="btn-default" TargetType="Button" BasedOn="{StaticResource btn}">
@@ -170,7 +167,7 @@
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Cursor" Value="No"/>
-                            
+
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -198,7 +195,7 @@
 
     <!-- Button Primary -->
     <Style x:Key="btn-primary" TargetType="Button" BasedOn="{StaticResource btn}">
-        
+
         <Setter Property="Background" Value="{StaticResource Primary-Button-Normal-SolidColorBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource Primary-Button-Normal-Border-SolidColorBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource Primary-Button-Normal-Font-SolidColorBrush}"/>
@@ -541,7 +538,7 @@
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Cursor" Value="No"/>
-                            
+
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -566,7 +563,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!-- Button Success -->
     <Style x:Key="btn-success" TargetType="Button" BasedOn="{StaticResource btn}">
 
@@ -727,7 +724,7 @@
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Cursor" Value="No"/>
-                            
+
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -913,7 +910,7 @@
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Cursor" Value="No"/>
-                            
+
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -1099,7 +1096,7 @@
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Cursor" Value="No"/>
-                            
+
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>

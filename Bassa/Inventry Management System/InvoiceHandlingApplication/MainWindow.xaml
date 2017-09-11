@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:InvoiceHandlingApplication"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:custom="clr-namespace:InvoiceHandlingApplicationStyles.Model.Controls;assembly=InvoiceHandlingApplicationStyles"
+        xmlns:custom="clr-namespace:InvoiceHandlingApplication.View.Controler"
         mc:Ignorable="d"
-        Title="Inventry Management System (Limited Functionality)" Height="600" Width="800" MinHeight="600" MinWidth="800"  WindowState="Maximized">
+                      
+        Title="Inventry Management System (Limited Functionality)" Height="600" Width="900" MinHeight="600" MinWidth="900"  WindowState="Maximized"
+        BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1">
 
     <Window.Resources>
         <!-- System Icon And Name Tray -->
@@ -19,8 +21,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MaxWidth="300"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="85*" MaxWidth="350"/>
+            <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
 
 
@@ -33,9 +35,9 @@
 
                 <StackPanel>
                     <!-- Navigation Buttons -->
-                    <custom:NavButton x:Name="navButton" Style="{StaticResource btn-nav-default}" Content="Invoices" Height="55" Image="Images/White/Bill.png" Margin="0, 10"/>
-                    <custom:NavButton x:Name="navButton2" Style="{StaticResource btn-nav-default}" Content="Customer" Height="55" Image="Images/White/Customer.png" Margin="0, 10"/>
-                    <custom:NavButton x:Name="navButton3" Style="{StaticResource btn-nav-default}" Content="Products" Height="55" Image="Images/White/Product.png" Margin="0, 10"/>
+                    <custom:NavigationButton x:Name="navButton" Style="{StaticResource btn-nav-default}" Content="Invoices" Height="55" Image="Images/White/Bill.png" Margin="0, 10" IsActive="True"/>
+                    <custom:NavigationButton x:Name="navButton2" Style="{StaticResource btn-nav-default}" Content="Customer" Height="55" Image="Images/White/Customer.png" Margin="0, 10"/>
+                    <custom:NavigationButton x:Name="navButton3" Style="{StaticResource btn-nav-default}" Content="Products" Height="55" Image="Images/White/Product.png" Margin="0, 10"/>
                 </StackPanel>
             </StackPanel>
 
@@ -46,13 +48,13 @@
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <custom:NavButton x:Name="Settings" Style="{StaticResource btn-nav-default}" Image="Images/White/Settings.png" Height="50" Width="60" Padding="0"/>
+                    <custom:NavigationButton x:Name="Settings" Style="{StaticResource btn-nav-default}" Image="Images/White/Settings.png" Height="50" Width="60" Padding="0"/>
                 </StackPanel>
             </DockPanel>
         </DockPanel>
 
 
-        <Grid Grid.Column="1" Background="#F7F7F7">
+        <Grid Grid.Column="1" Background="{StaticResource Content-Background-SolidColorBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="{StaticResource TopNav-Height-GridLength}"/>
                 <RowDefinition Height="*"/>
@@ -63,95 +65,23 @@
                     <Button  Content="Username" Width="200" Height="{StaticResource TopNav-Height-Double}" Style="{StaticResource btn-default}"/>
                 </StackPanel>
             </StackPanel>
-            
-            <Grid Grid.Row="1" Background="{StaticResource Content-Background-SolidColorBrush}" Margin="5">
+
+            <Grid Grid.Row="1" Background="Transparent" Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="100*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock Grid.ColumnSpan="3" Grid.Row="0" FontSize="24" FontWeight="Bold" Text="Invoice Bill" Margin="0 0 0 10"/>
-                
-                <DockPanel Grid.Column="1" Grid.Row="1">
-                    <StackPanel DockPanel.Dock="Top">
 
-                        <Grid Margin="0 0 0 10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition MinWidth="100" Width="4*"/>
-                                <ColumnDefinition MinWidth="75" Width="3*"/>
-                                <ColumnDefinition MinWidth="100" Width="4*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0" FontSize="16" FontWeight="Bold">Product</TextBlock>
-                            <TextBlock Grid.Column="1" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Price</TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Quantity</TextBlock>
-                            <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right">Amount</TextBlock>
-                        </Grid>
-
-                        <Grid Margin="0 0 0 10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition MinWidth="100" Width="4*"/>
-                                <ColumnDefinition MinWidth="75" Width="3*"/>
-                                <ColumnDefinition MinWidth="100" Width="4*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0">
-                                <TextBlock FontSize="16" TextTrimming="CharacterEllipsis">Elephant House - Ice Cream - 500L (-30.00 Discount)</TextBlock>
-
-                                <DockPanel>
-                                    <TextBlock DockPanel.Dock="Left" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis" VerticalAlignment="Center">Product #123</TextBlock>
-
-                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
-                                        <Button Style="{StaticResource btn-warning}" Content="Edit" Height="30" Width="60" Padding="5" Margin="0 0 5 0"/>
-                                        <Button Style="{StaticResource btn-danger}" Content="Remove" Height="30" Width="60" Padding="5"/>
-                                    </StackPanel>
-                                </DockPanel>
-                            </StackPanel>
-
-                            <TextBlock Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center">330.00 <LineBreak/>(-30.00)</TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center">10</TextBlock>
-                            <TextBlock Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right">3000.00</TextBlock>
-
-                        </Grid>
-
-                        <Grid Margin="0 0 0 10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition MinWidth="100" Width="4*"/>
-                                <ColumnDefinition MinWidth="75" Width="3*"/>
-                                <ColumnDefinition MinWidth="100" Width="4*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0">
-                                <TextBlock FontSize="16" TextTrimming="CharacterEllipsis">Munchee - Cream Cracker - Mid</TextBlock>
-
-                                <DockPanel>
-                                    <TextBlock DockPanel.Dock="Left" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis" VerticalAlignment="Center">Product #456</TextBlock>
-
-                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
-                                        <Button Style="{StaticResource btn-warning}" Content="Edit" Height="30" Width="60" Padding="5" Margin="0 0 5 0"/>
-                                        <Button Style="{StaticResource btn-danger}" Content="Remove" Height="30" Width="60" Padding="5"/>
-                                    </StackPanel>
-                                </DockPanel>
-                            </StackPanel>
-
-                            <TextBlock Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center">100.00</TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center">5</TextBlock>
-                            <TextBlock Grid.Column="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right">500.00</TextBlock>
-
-                        </Grid>
-
-                    </StackPanel>
-
-                    <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="False">
+                    <StackPanel DockPanel.Dock="Bottom">
                         <Grid Margin="0 20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="200"/>
@@ -206,7 +136,7 @@
 
                                 <TextBlock Grid.Column="0" Text="Payment Type" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                                 <TextBox Grid.Column="1" FontSize="16" Padding="5"/>
-                                <Button Grid.Column="2" Style="{StaticResource btn-primary}" Content="Add" Margin="5 0 0 0"/>
+                                <Button Grid.Column="2" Style="{StaticResource btn-info}" Content="Add" Margin="5 0 0 0" IsEnabled="False"/>
                             </Grid>
                         </StackPanel>
 
@@ -220,7 +150,7 @@
 
                                 <TextBlock Grid.Column="0" Text="Product Search" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                                 <TextBox Grid.Column="1" FontSize="16" Padding="5"/>
-                                <Button Grid.Column="2" Style="{StaticResource btn-primary}" Content="Search" Margin="5 0 0 0"/>
+                                <Button Grid.Column="2" Style="{StaticResource btn-info}" Content="Search" Margin="5 0 0 0"/>
                             </Grid>
                         </StackPanel>
 
@@ -234,10 +164,104 @@
 
                                 <TextBlock Grid.Column="0" Text="Customer Search" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                                 <TextBox Grid.Column="1" FontSize="16" Padding="5"/>
-                                <Button Grid.Column="2" Style="{StaticResource btn-primary}" Content="Search" Margin="5 0 0 0"/>
+                                <Button Grid.Column="2" Style="{StaticResource btn-danger}" Content="Search" Margin="5 0 0 0"/>
                             </Grid>
                         </StackPanel>
                     </StackPanel>
+
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Margin="0 0 0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" MaxWidth="30" MinWidth="20"/>
+                                <ColumnDefinition Width="200*"/>
+                                <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                                <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                                <ColumnDefinition MinWidth="75" Width="75*" MaxWidth="150"/>
+                                <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="1" FontSize="16" FontWeight="Bold">Product</TextBlock>
+                            <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Price</TextBlock>
+                            <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Discount</TextBlock>
+                            <TextBlock Grid.Column="4" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Quantity</TextBlock>
+                            <TextBlock Grid.Column="5" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" Padding="0 0 10 0">Amount</TextBlock>
+                        </Grid>
+                        <ListBox Grid.Row="1" Background="Transparent" 
+                                 ScrollViewer.CanContentScroll="False" 
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                 Padding="0" Margin="0">
+
+                            <ListBox.Resources>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Padding" Value="0 3"/>
+                                    <Setter Property="Margin" Value="0"/>
+
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                                        Background="{TemplateBinding Background}"
+                                                        Padding="{TemplateBinding Padding}">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                </Border>
+
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.Resources>
+
+                            <ListBoxItem>
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" MaxWidth="30" MinWidth="20"/>
+                                            <ColumnDefinition Width="200*"/>
+                                            <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                                            <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                                            <ColumnDefinition MinWidth="75" Width="75*" MaxWidth="150"/>
+                                            <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid>
+                                            <Button Style="{StaticResource btn-danger}" Content="X" Padding="0"/>
+                                        </Grid>
+
+                                        <StackPanel Grid.Column="1" Margin="5,4,0,5" VerticalAlignment="Center" Height="42">
+                                            <TextBlock FontSize="16" TextTrimming="CharacterEllipsis">Munchee - Cream Cracker - Mid</TextBlock>
+                                            <TextBlock DockPanel.Dock="Left" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis" VerticalAlignment="Center">Product #456</TextBlock>
+                                        </StackPanel>
+
+                                        <TextBlock Grid.Column="2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Height="21" Margin="24,15,28,15" Width="48">100.00</TextBlock>
+
+                                        <StackPanel Grid.Column="3">
+                                            <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Height="21" Margin="26,15" Width="48">100.00</TextBlock>
+
+                                        </StackPanel>
+
+                                        <Grid Grid.Column="4" Margin="10">
+                                            <TextBox FontSize="16" VerticalAlignment="Center" MinWidth="50" MaxWidth="125" TextAlignment="Center">51</TextBox>
+                                        </Grid>
+
+                                        <TextBlock Grid.Column="5" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Height="21" Margin="0,15" Width="55">5000.00</TextBlock>
+
+                                    </Grid>
+
+                                </StackPanel>
+                            </ListBoxItem>
+                        </ListBox>
+
+                    </Grid>
+
+
                 </DockPanel>
             </Grid>
         </Grid>

@@ -61,6 +61,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\Controler\Button\NavigationButton.cs" />
+    <Compile Include="View\Controler\Content\ImageSingleContent.cs" />
+    <Compile Include="View\Controler\Content\InvoiceItemContent.cs" />
+    <Compile Include="View\Converter\ButtonImageVisibility.cs" />
+    <Compile Include="View\Converter\ButtonTextblockVisibility.cs" />
+    <Compile Include="View\Converter\ColorToSolidBrush.cs" />
+    <Compile Include="View\Converter\LengthToGridlength.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +80,54 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Color\Background\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Color\Button\Bootstrap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Color\Button\Navigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Color\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Color\Font\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Template\Content\Navigation\LoggedUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Template\Content\Navigation\SystemTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Template\Button\Base.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Template\Button\Bootstrap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Template\Button\Navigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Template\Templates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -105,13 +160,6 @@
     <Folder Include="Images\Black\" />
     <Folder Include="Model\" />
     <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\InvoiceHandlingApplicationStyles\InvoiceHandlingApplicationStyles.csproj">
-      <Project>{0c4f4776-94fd-4023-99c2-363097d9d516}</Project>
-      <Name>InvoiceHandlingApplicationStyles</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icon.png" />
