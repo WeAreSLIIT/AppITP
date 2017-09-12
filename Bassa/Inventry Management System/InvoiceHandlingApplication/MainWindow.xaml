@@ -9,7 +9,7 @@
         xmlns:custom="clr-namespace:InvoiceHandlingApplication.View.Controler"
         mc:Ignorable="d"
                       
-        Title="Inventry Management System (Limited Functionality)" Height="600" Width="900" MinHeight="600" MinWidth="900"  WindowState="Maximized"
+        Title="Inventry Management System (Limited Functionality)" Height="700" Width="900" MinHeight="700" MinWidth="900"  WindowState="Maximized"
         BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1">
 
     <Window.Resources>
@@ -58,6 +58,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="{StaticResource TopNav-Height-GridLength}"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Background="{StaticResource TopNav-Background-SolidColorBrush}">
@@ -264,6 +265,15 @@
 
                 </DockPanel>
             </Grid>
+
+            <StatusBar Grid.Row="2" Background="{StaticResource LeftNav-Background-SolidColorBrush}" Foreground="{StaticResource LeftNav-Background-Font-SolidColorBrush}" Padding="5 0">
+                <StatusBarItem>
+                    <TextBlock>Status : Disconnected</TextBlock>
+                </StatusBarItem>
+                <StatusBarItem HorizontalAlignment="Right">
+                    <ProgressBar IsIndeterminate="True" Width="150"/>
+                </StatusBarItem>
+            </StatusBar>
         </Grid>
     </Grid>
 </Controls:MetroWindow>
