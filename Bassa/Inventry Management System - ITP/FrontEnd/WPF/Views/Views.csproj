@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B0D857E-341F-4EB8-B1CE-92C5BB0821C1}</ProjectGuid>
+    <ProjectGuid>{41411D4F-3125-47B5-9792-9A12609DDD8D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>InvoiceHandlingApplication</RootNamespace>
-    <AssemblyName>InvoiceHandlingApplication</AssemblyName>
+    <RootNamespace>Views</RootNamespace>
+    <AssemblyName>Views</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -34,13 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <HintPath>..\..\..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\..\..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -61,15 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\TimeManager.cs" />
-    <Compile Include="Style\Controler\Button\NavigationButton.cs" />
-    <Compile Include="Style\Controler\Content\ImageSingleContent.cs" />
-    <Compile Include="Style\Controler\Content\InvoiceItemContent.cs" />
-    <Compile Include="Style\Converter\ButtonImageVisibility.cs" />
-    <Compile Include="Style\Converter\ButtonTextblockVisibility.cs" />
-    <Compile Include="Style\Converter\ColorToSolidBrush.cs" />
-    <Compile Include="Style\Converter\LengthToGridlength.cs" />
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -77,58 +76,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Style\Color\Background\MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Color\Button\Bootstrap.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Color\Button\Navigation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Color\Colors.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Color\Font\MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Template\Content\Navigation\LoggedUser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Template\Content\Navigation\SystemTitle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Template\Button\Base.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Template\Button\Bootstrap.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Template\Button\Navigation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Template\Templates.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\Styles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -158,26 +109,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\AppPage\" />
-    <Folder Include="View\Images\Black\" />
+    <ProjectReference Include="..\Styles\Styles.csproj">
+      <Project>{846d869c-f41e-4dad-8296-99b84723f72a}</Project>
+      <Name>Styles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{01ded400-640d-4f47-ab43-58542f66d146}</Project>
+      <Name>ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Images\icon.png" />
+    <Resource Include="Resources\Images\def-user.jpg" />
+    <Resource Include="Resources\Images\icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="View\Images\userPic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\Images\def-user.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\Images\White\Bill.png" />
-    <Resource Include="View\Images\White\DefaultUserPic.png" />
-    <Resource Include="View\Images\White\Message.png" />
-    <Resource Include="View\Images\White\Product.png" />
-    <Resource Include="View\Images\White\Customer.png" />
-    <Resource Include="View\Images\White\Settings.png" />
+    <Resource Include="Resources\Images\Nav\Bill.png" />
+    <Resource Include="Resources\Images\Nav\Customer.png" />
+    <Resource Include="Resources\Images\Nav\DefaultUserPic.png" />
+    <Resource Include="Resources\Images\Nav\Message.png" />
+    <Resource Include="Resources\Images\Nav\Product.png" />
+    <Resource Include="Resources\Images\Nav\Settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
