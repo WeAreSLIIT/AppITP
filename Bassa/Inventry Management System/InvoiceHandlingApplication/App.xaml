@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:InvoiceHandlingApplication"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             StartupUri="MainWindow.xaml">
+             StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- CSB ResourceDictionary -->
-                <ResourceDictionary Source="/InvoiceHandlingApplicationStyles;component/Theme.xaml"/>
+                <ResourceDictionary Source="Style/Styles.xaml"/>
+                
+                <!--<ResourceDictionary Source="/InvoiceHandlingApplicationStyles;component/Theme.xaml"/>-->
 
                 <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
@@ -24,6 +26,9 @@
             <!-- Top Nav Height -->
             <sys:Double x:Key="TopNav-Height-Double">50</sys:Double>
             <GridLength x:Key="TopNav-Height-GridLength">50</GridLength>
+
+            <!-- System Icon And Name Tray -->
+            <sys:Double x:Key="LeftNav-SystemIcon-Height-Double">70</sys:Double>
         </ResourceDictionary>
 
     </Application.Resources>

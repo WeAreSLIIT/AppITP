@@ -12,10 +12,10 @@
 
     <!-- Button Default -->
     <Style x:Key="btn-default" TargetType="Button" BasedOn="{StaticResource btn}">
-        
-        <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Default-Button-Normal}}" />
-        <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Default-Button-Normal-Border}}"/>
-        <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Default-Button-Normal-Font}}"/>
+
+        <Setter Property="Background" Value="{StaticResource Default-Button-Normal-SolidColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Default-Button-Normal-Border-SolidColorBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource Default-Button-Normal-Font-SolidColorBrush}"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -169,9 +169,26 @@
 
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Default-Button-Disabled}}"/>
-                            <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Default-Button-Disabled-Border}}"/>
-                            <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Default-Button-Disabled-Font}}"/>
+                            <Setter Property="Cursor" Value="No"/>
+                            
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Default-Button-Disabled}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Default-Button-Disabled-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Default-Button-Disabled-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -182,9 +199,9 @@
     <!-- Button Primary -->
     <Style x:Key="btn-primary" TargetType="Button" BasedOn="{StaticResource btn}">
         
-        <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Primary-Button-Normal}}" />
-        <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Primary-Button-Normal-Border}}"/>
-        <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Primary-Button-Normal-Font}}"/>
+        <Setter Property="Background" Value="{StaticResource Primary-Button-Normal-SolidColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Primary-Button-Normal-Border-SolidColorBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource Primary-Button-Normal-Font-SolidColorBrush}"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -338,9 +355,25 @@
 
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Primary-Button-Disabled}}"/>
-                            <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Primary-Button-Disabled-Border}}"/>
-                            <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Primary-Button-Disabled-Font}}"/>
+                            <Setter Property="Cursor" Value="No"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Primary-Button-Disabled}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Primary-Button-Disabled-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Primary-Button-Disabled-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -348,12 +381,198 @@
         </Setter>
     </Style>
 
+    <!-- Button Info -->
+    <Style x:Key="btn-info" TargetType="Button" BasedOn="{StaticResource btn}">
+
+        <Setter Property="Background" Value="{StaticResource Info-Button-Normal-SolidColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Info-Button-Normal-Border-SolidColorBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource Info-Button-Normal-Font-SolidColorBrush}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}" CornerRadius="2">
+                        <ContentPresenter Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Mouse Over -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Hover}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Hover-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Hover-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <!-- Mouse Pressed -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Pressed}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Pressed-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Pressed-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <!-- Keyboard Focused -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Focus}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Focus-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Focus-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <!-- Keyboard Focused + Hover-->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Info-Button-FocusHover}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Info-Button-FocusHover-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Info-Button-FocusHover-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <!-- If Default Button -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsDefaulted" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Focus}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Focus-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Focus-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <!-- Disabled -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Cursor" Value="No"/>
+                            
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Disabled}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Disabled-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Info-Button-Disabled-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!-- Button Success -->
     <Style x:Key="btn-success" TargetType="Button" BasedOn="{StaticResource btn}">
 
-        <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Success-Button-Normal}}" />
-        <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Success-Button-Normal-Border}}"/>
-        <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Success-Button-Normal-Font}}"/>
+        <Setter Property="Background" Value="{StaticResource Success-Button-Normal-SolidColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Success-Button-Normal-Border-SolidColorBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource Success-Button-Normal-Font-SolidColorBrush}"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -507,9 +726,26 @@
 
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Success-Button-Disabled}}"/>
-                            <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Success-Button-Disabled-Border}}"/>
-                            <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Success-Button-Disabled-Font}}"/>
+                            <Setter Property="Cursor" Value="No"/>
+                            
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Success-Button-Disabled}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Success-Button-Disabled-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Success-Button-Disabled-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -520,9 +756,9 @@
     <!-- Button Danger -->
     <Style x:Key="btn-danger" TargetType="Button" BasedOn="{StaticResource btn}">
 
-        <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Danger-Button-Normal}}" />
-        <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Danger-Button-Normal-Border}}"/>
-        <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Danger-Button-Normal-Font}}"/>
+        <Setter Property="Background" Value="{StaticResource Danger-Button-Normal-SolidColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Danger-Button-Normal-Border-SolidColorBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource Danger-Button-Normal-Font-SolidColorBrush}"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -676,9 +912,26 @@
 
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Danger-Button-Disabled}}"/>
-                            <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Danger-Button-Disabled-Border}}"/>
-                            <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Danger-Button-Disabled-Font}}"/>
+                            <Setter Property="Cursor" Value="No"/>
+                            
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Danger-Button-Disabled}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Danger-Button-Disabled-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Danger-Button-Disabled-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -689,9 +942,9 @@
     <!-- Button Warning -->
     <Style x:Key="btn-warning" TargetType="Button" BasedOn="{StaticResource btn}">
 
-        <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Warning-Button-Normal}}" />
-        <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Warning-Button-Normal-Border}}"/>
-        <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Warning-Button-Normal-Font}}"/>
+        <Setter Property="Background" Value="{StaticResource Warning-Button-Normal-SolidColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Warning-Button-Normal-Border-SolidColorBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource Warning-Button-Normal-Font-SolidColorBrush}"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -845,9 +1098,26 @@
 
                         <!-- Disabled -->
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Warning-Button-Disabled}}"/>
-                            <Setter Property="BorderBrush" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Warning-Button-Disabled-Border}}"/>
-                            <Setter Property="Foreground" Value="{Binding Converter={StaticResource ConvertColorToSolidBrush}, ConverterParameter={StaticResource Warning-Button-Disabled-Font}}"/>
+                            <Setter Property="Cursor" Value="No"/>
+                            
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" To="{StaticResource Warning-Button-Disabled}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="{StaticResource Warning-Button-Disabled-Border}" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" To="{StaticResource Warning-Button-Disabled-Font}" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -61,7 +61,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Model\TimeManager.cs" />
+    <Compile Include="Style\Controler\Button\NavigationButton.cs" />
+    <Compile Include="Style\Controler\Content\ImageSingleContent.cs" />
+    <Compile Include="Style\Controler\Content\InvoiceItemContent.cs" />
+    <Compile Include="Style\Converter\ButtonImageVisibility.cs" />
+    <Compile Include="Style\Converter\ButtonTextblockVisibility.cs" />
+    <Compile Include="Style\Converter\ColorToSolidBrush.cs" />
+    <Compile Include="Style\Converter\LengthToGridlength.cs" />
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -69,10 +77,58 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Style\Color\Background\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Color\Button\Bootstrap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Color\Button\Navigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Color\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Color\Font\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Template\Content\Navigation\LoggedUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Template\Content\Navigation\SystemTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Template\Button\Base.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Template\Button\Bootstrap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Template\Button\Navigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Template\Templates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -102,33 +158,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\Black\" />
-    <Folder Include="Model\" />
     <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
+    <Folder Include="View\AppPage\" />
+    <Folder Include="View\Images\Black\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InvoiceHandlingApplicationStyles\InvoiceHandlingApplicationStyles.csproj">
-      <Project>{0c4f4776-94fd-4023-99c2-363097d9d516}</Project>
-      <Name>InvoiceHandlingApplicationStyles</Name>
-    </ProjectReference>
+    <Resource Include="View\Images\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\icon.png" />
+    <Resource Include="View\Images\userPic.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\userPic.jpg" />
+    <Resource Include="View\Images\def-user.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\def-user.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\White\Bill.png" />
-    <Resource Include="Images\White\DefaultUserPic.png" />
-    <Resource Include="Images\White\Message.png" />
-    <Resource Include="Images\White\Product.png" />
-    <Resource Include="Images\White\Customer.png" />
-    <Resource Include="Images\White\Settings.png" />
+    <Resource Include="View\Images\White\Bill.png" />
+    <Resource Include="View\Images\White\DefaultUserPic.png" />
+    <Resource Include="View\Images\White\Message.png" />
+    <Resource Include="View\Images\White\Product.png" />
+    <Resource Include="View\Images\White\Customer.png" />
+    <Resource Include="View\Images\White\Settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
