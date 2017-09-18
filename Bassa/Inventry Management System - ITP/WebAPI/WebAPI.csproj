@@ -98,6 +98,7 @@
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\Resources\InvoiceProductResource.cs" />
     <Compile Include="Controllers\Resources\InvoiceResource.cs" />
+    <Compile Include="Controllers\Resources\ProductResoure.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
