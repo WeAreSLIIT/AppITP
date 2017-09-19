@@ -7,7 +7,7 @@ namespace DataAccess.Core.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        TEntity Get(int Id);
+        TEntity Get(long Id);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Search(Expression<Func<TEntity, bool>> Predicate);
 

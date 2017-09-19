@@ -18,7 +18,7 @@ namespace DataAccess.Persistence.EntityConfigurations
                     .HasColumnAnnotation("InvoicePublicID", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             //Foreign Key
             HasRequired(i => i.IssuedBy).WithMany(e => e.IssuedInvoices)
-                .HasForeignKey(i => i.EmployeeID).WillCascadeOnDelete(false);
+                .HasForeignKey(i => i.IssuedByID).WillCascadeOnDelete(false);
             //Optional InvoiceCustomer attribute
             //HasOptional(op => op.InvoiceCustomer).WithOptionalPrincipal(p => p.Invoice);
         }

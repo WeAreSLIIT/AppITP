@@ -20,21 +20,22 @@ namespace DataAccess.Persistence
         public IProductRepository Products { get; private set; }
         public IPaymentMethodRepository PaymentMethods { get; private set; }
 
-        public UnitOfWork(InventryMangementSystemDbContext Context)
+        //public UnitOfWork(InventryMangementSystemDbContext Context)
+        public UnitOfWork()
         {
-            this._context = Context;
+            this._context = new InventryMangementSystemDbContext();
 
-            Customers = new CustomerRepository(Context);
-            Discounts = new DiscountRepository(Context);
-            Employees = new EmployeeRepository(Context);
-            InvoiceCustomers = new InvoiceCustomerRepository(Context);
-            InvoiceDealDiscounts = new InvoiceDealDiscountRepository(Context);
-            InvoiceDeals = new InvoiceDealRepository(Context);
-            InvoiceEmployeeDiscounts = new InvoiceEmployeeDiscountRepository(Context);
-            InvoiceProducts = new InvoiceProductRepository(Context);
-            Invoices = new InvoiceRepository(Context);
-            Products = new ProductRepository(Context);
-            PaymentMethods = new PaymentMethodRepository(Context);
+            Customers = new CustomerRepository(this._context);
+            Discounts = new DiscountRepository(this._context);
+            Employees = new EmployeeRepository(this._context);
+            InvoiceCustomers = new InvoiceCustomerRepository(this._context);
+            InvoiceDealDiscounts = new InvoiceDealDiscountRepository(this._context);
+            InvoiceDeals = new InvoiceDealRepository(this._context);
+            InvoiceEmployeeDiscounts = new InvoiceEmployeeDiscountRepository(this._context);
+            InvoiceProducts = new InvoiceProductRepository(this._context);
+            Invoices = new InvoiceRepository(this._context);
+            Products = new ProductRepository(this._context);
+            PaymentMethods = new PaymentMethodRepository(this._context);
 
         }
 
