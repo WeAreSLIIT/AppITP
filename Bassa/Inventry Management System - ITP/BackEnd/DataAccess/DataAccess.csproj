@@ -76,6 +76,14 @@
     <Compile Include="Migrations\201709162345288_InvoicePartInitialModelBeta.Designer.cs">
       <DependentUpon>201709162345288_InvoicePartInitialModelBeta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709181626326_InvoiceClassChanged.cs" />
+    <Compile Include="Migrations\201709181626326_InvoiceClassChanged.Designer.cs">
+      <DependentUpon>201709181626326_InvoiceClassChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709190021110_ClassesChanged.cs" />
+    <Compile Include="Migrations\201709190021110_ClassesChanged.Designer.cs">
+      <DependentUpon>201709190021110_ClassesChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\EntityConfigurations\InvoiceConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\InvoiceCustomerConfiguration.cs" />
@@ -107,6 +115,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709162345288_InvoicePartInitialModelBeta.resx">
       <DependentUpon>201709162345288_InvoicePartInitialModelBeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709181626326_InvoiceClassChanged.resx">
+      <DependentUpon>201709181626326_InvoiceClassChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709190021110_ClassesChanged.resx">
+      <DependentUpon>201709190021110_ClassesChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

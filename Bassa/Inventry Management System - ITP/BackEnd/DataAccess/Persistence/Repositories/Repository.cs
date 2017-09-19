@@ -19,7 +19,7 @@ namespace DataAccess.Persistence.Repositories
         }
 
         //Get Methods
-        public TEntity Get(int Id)
+        public TEntity Get(long Id)
         {
             return this._entity.Find(Id);
         }

@@ -96,7 +96,10 @@
     <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\Resources\InvoiceDealDiscountResource.cs" />
+    <Compile Include="Controllers\Resources\InvoiceDealResource.cs" />
     <Compile Include="Controllers\Resources\InvoiceProductResource.cs" />
+    <Compile Include="Controllers\Resources\InvoiceProductsResource.cs" />
     <Compile Include="Controllers\Resources\InvoiceResource.cs" />
     <Compile Include="Controllers\Resources\ProductResoure.cs" />
     <Compile Include="Global.asax.cs">

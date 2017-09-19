@@ -12,7 +12,7 @@ namespace DataAccess.Core.Domain
         public float Payed { get; set; }
         public float Balance { get; set; }
         
-        public long EmployeeID { get; set; } 
+        public long IssuedByID { get; set; } 
         public Employee IssuedBy { get; set; }
 
         public InvoiceCustomer InvoiceCustomer { get; set; }
