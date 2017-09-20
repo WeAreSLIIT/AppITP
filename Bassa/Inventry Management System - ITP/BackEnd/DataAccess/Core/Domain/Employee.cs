@@ -5,6 +5,7 @@ namespace DataAccess.Core.Domain
     public class Employee
     {
         public long EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
 
         public ICollection<Invoice> IssuedInvoices { get; set; }
 

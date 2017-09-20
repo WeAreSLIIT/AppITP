@@ -31,7 +31,11 @@ namespace DataAccess.Persistence.Repositories
 
         public InvoiceCustomer Get(string PublicID, long CustomerID)
         {
+<<<<<<< HEAD
             return this._context.InvoiceCustomer.SingleOrDefault(ic => ic.Invoice.InvoicPublicID == PublicID && ic.CustomerID == CustomerID);
+=======
+            return this._context.InvoiceCustomer.SingleOrDefault(ic => ic.Invoice.InvoicePublicID == PublicID && ic.CustomerID == CustomerID);
+>>>>>>> Bassa
         }
     }
 }

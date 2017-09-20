@@ -8,6 +8,7 @@ namespace DataAccess.Persistence
     {
         private readonly InventryMangementSystemDbContext _context;
 
+        public IInvoiceControlAppRepository InvoiceControlApps { get; private set; }
         public ICustomerRepository Customers { get; private set; }
         public IDiscountRepository Discounts { get; private set; }
         public IEmployeeRepository Employees { get; private set; }
@@ -25,6 +26,7 @@ namespace DataAccess.Persistence
         {
             this._context = new InventryMangementSystemDbContext();
 
+            InvoiceControlApps = new InvoiceControlAppRepository(this._context);
             Customers = new CustomerRepository(this._context);
             Discounts = new DiscountRepository(this._context);
             Employees = new EmployeeRepository(this._context);
@@ -36,7 +38,6 @@ namespace DataAccess.Persistence
             Invoices = new InvoiceRepository(this._context);
             Products = new ProductRepository(this._context);
             PaymentMethods = new PaymentMethodRepository(this._context);
-
         }
 
         public int Complete()

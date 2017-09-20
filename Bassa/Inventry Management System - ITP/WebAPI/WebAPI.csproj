@@ -96,11 +96,19 @@
     <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\Mappings\MappingsForInvoices.cs" />
+    <Compile Include="Controllers\Resources\CustomerResource.cs" />
+    <Compile Include="Controllers\Resources\EmployeeResource.cs" />
+    <Compile Include="Controllers\Resources\Enum.cs" />
+    <Compile Include="Controllers\Resources\InvoiceCustomerResource.cs" />
     <Compile Include="Controllers\Resources\InvoiceDealDiscountResource.cs" />
     <Compile Include="Controllers\Resources\InvoiceDealResource.cs" />
+    <Compile Include="Controllers\Resources\InvoiceEmployeeDiscountResource.cs" />
     <Compile Include="Controllers\Resources\InvoiceProductResource.cs" />
     <Compile Include="Controllers\Resources\InvoiceProductsResource.cs" />
+    <Compile Include="Controllers\Resources\CreateInvoiceResource.cs" />
     <Compile Include="Controllers\Resources\InvoiceResource.cs" />
+    <Compile Include="Controllers\Resources\PaymentMethodResource.cs" />
     <Compile Include="Controllers\Resources\ProductResoure.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -118,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Methods\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

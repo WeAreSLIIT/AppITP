@@ -8,6 +8,8 @@ namespace DataAccess.Persistence
 {
     public class InventryMangementSystemDbContext : DbContext
     {
+        public DbSet<InvoiceControlApp> InvoiceControlApps { get; set; }
+
         public DbSet<Customer> Courses { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Discount> Discounts { get; set; }
@@ -27,18 +29,38 @@ namespace DataAccess.Persistence
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            #region InvoiceControlApps Table
+
+            //Primary Key
+            modelBuilder.Entity<InvoiceControlApp>().HasKey(ica => ica.ID).ToTable("InvoiceControlApps");
+            //Other Attributes
+            modelBuilder.Entity<InvoiceControlApp>().Property(ica => ica.Username).IsRequired();
+            modelBuilder.Entity<InvoiceControlApp>().Property(ica => ica.Username).HasMaxLength(20);
+            modelBuilder.Entity<InvoiceControlApp>().Property(ica => ica.Username)
+                    .HasColumnAnnotation("InvoiceControlAppUsername", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            #endregion
+
             #region Invoices Table
 
             //Primary Key
             modelBuilder.Entity<Invoice>().HasKey(i => i.InvoiceID).ToTable("Invoices");
             //Unique key
+<<<<<<< HEAD
             modelBuilder.Entity<Invoice>().Property(i => i.InvoicPublicID).IsRequired();
             modelBuilder.Entity<Invoice>().Property(i => i.InvoicPublicID).HasMaxLength(20);
             modelBuilder.Entity<Invoice>().Property(i => i.InvoicPublicID)
+=======
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID).IsRequired();
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID).HasMaxLength(20);
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID)
+>>>>>>> Bassa
                     .HasColumnAnnotation("InvoicePublicID", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             //Foreign Key
             modelBuilder.Entity<Invoice>().HasRequired(i => i.IssuedBy).WithMany(e => e.IssuedInvoices)
                 .HasForeignKey(i => i.IssuedByID).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Invoice>().HasRequired(i => i.InvoiceControlApp).WithMany(ica => ica.Invoices)
+                .HasForeignKey(i => i.InvoiceControlAppID).WillCascadeOnDelete(false);
             //Optional InvoiceCustomer attribute
             //HasOptional(op => op.InvoiceCustomer).WithOptionalPrincipal(p => p.Invoice);
 
@@ -96,6 +118,11 @@ namespace DataAccess.Persistence
 
             //Primary Key
             modelBuilder.Entity<InvoiceProduct>().HasKey(ip => new { ip.InvoiceID, ip.ProductID }).ToTable("InvoiceProduct");
+            //Foreign Key
+            modelBuilder.Entity<InvoiceProduct>().HasRequired(ip => ip.Product).WithMany(p => p.InvoiceProducts)
+                .HasForeignKey(ip => ip.ProductID).WillCascadeOnDelete(false);
+            modelBuilder.Entity<InvoiceProduct>().HasRequired(ip => ip.Invoice).WithMany(i => i.InvoiceProducts)
+                .HasForeignKey(ip => ip.InvoiceID).WillCascadeOnDelete(false);
 
             #endregion
 
