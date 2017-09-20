@@ -221,7 +221,7 @@ namespace DataAccess.Migrations
                 removedColumnAnnotations: new Dictionary<string, IDictionary<string, object>>
                 {
                     {
-                        "PublicID",
+                        "InvoicPublicID",
                         new Dictionary<string, object>
                         {
                             { "InvoicePublicID", "IndexAnnotation: { IsUnique: True }" },

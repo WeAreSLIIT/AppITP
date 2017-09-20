@@ -16,19 +16,19 @@ namespace DataAccess.Persistence.Repositories
 
         public Invoice Get(string PublicID)
         {
-            return this._context.Invoices.SingleOrDefault(i => i.PublicID == PublicID);
+            return this._context.Invoices.SingleOrDefault(i => i.InvoicPublicID == PublicID);
         }
 
         public long? GetInvoiceID(string PublicID)
         {
-            long temp = this._context.Invoices.Where(i => i.PublicID == PublicID).Select(i => i.InvoiceID).SingleOrDefault();
+            long temp = this._context.Invoices.Where(i => i.InvoicPublicID == PublicID).Select(i => i.InvoiceID).SingleOrDefault();
 
             return (temp != 0) ? temp : (long?)null;
         }
 
         public string GetPublicID(long InvoiceID)
         {
-            return this._context.Invoices.Where(i => i.InvoiceID == InvoiceID).Select(i => i.PublicID).SingleOrDefault();
+            return this._context.Invoices.Where(i => i.InvoiceID == InvoiceID).Select(i => i.InvoicPublicID).SingleOrDefault();
         }
     }
 }

@@ -32,9 +32,9 @@ namespace DataAccess.Persistence
             //Primary Key
             modelBuilder.Entity<Invoice>().HasKey(i => i.InvoiceID).ToTable("Invoices");
             //Unique key
-            modelBuilder.Entity<Invoice>().Property(i => i.PublicID).IsRequired();
-            modelBuilder.Entity<Invoice>().Property(i => i.PublicID).HasMaxLength(20);
-            modelBuilder.Entity<Invoice>().Property(i => i.PublicID)
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoicPublicID).IsRequired();
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoicPublicID).HasMaxLength(20);
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoicPublicID)
                     .HasColumnAnnotation("InvoicePublicID", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             //Foreign Key
             modelBuilder.Entity<Invoice>().HasRequired(i => i.IssuedBy).WithMany(e => e.IssuedInvoices)

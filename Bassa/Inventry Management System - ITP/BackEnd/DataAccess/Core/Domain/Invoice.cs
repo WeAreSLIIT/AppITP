@@ -5,7 +5,7 @@ namespace DataAccess.Core.Domain
     public class Invoice
     {
         public long InvoiceID { get; set; }
-        public string PublicID { get; set; }
+        public string InvoicPublicID { get; set; }
         public long Time { get; set; }
         public float FullPayment { get; set; }
         public float Discount { get; set; }
