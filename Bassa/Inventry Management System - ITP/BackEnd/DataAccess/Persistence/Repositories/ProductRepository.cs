@@ -1,6 +1,8 @@
 ﻿using DataAccess.Core.Domain;
 using DataAccess.Core.Repositories;
 using System.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace DataAccess.Persistence.Repositories
 {

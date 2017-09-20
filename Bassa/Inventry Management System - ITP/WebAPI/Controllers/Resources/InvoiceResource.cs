@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace WebAPI.Controllers.Resources
 {
@@ -22,12 +19,12 @@ namespace WebAPI.Controllers.Resources
         public InvoiceDealResource InvoiceDeal { get; set; }
 
         public ICollection<InvoiceProductResource> InvoiceProducts { get; set; }
-        public ICollection<PaymentMethodResource> PaymentMethods { get; set; }
+        public ICollection<CreatePaymentMethodResource> PaymentMethods { get; set; }
 
         public InvoiceResource()
         {
             InvoiceProducts = new HashSet<InvoiceProductResource>();
-            PaymentMethods = new HashSet<PaymentMethodResource>();
+            PaymentMethods = new HashSet<CreatePaymentMethodResource>();
         }
     }
 }

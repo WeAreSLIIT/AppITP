@@ -4,7 +4,7 @@ namespace DataAccess.Core.Domain
 {
     public class PaymentMethod
     {
-        public long PaymentMethodID { get; private set; }
+        public long PaymentMethodID { get; set; }
         public string PaymentMethodName { get; set; }
 
         public ICollection<Invoice> Invoices { get; set; }

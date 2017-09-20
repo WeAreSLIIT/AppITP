@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebAPI.Controllers.Mapping;
+using WebAPI.Controllers.Methods;
 using WebAPI.Controllers.Resources;
 
 namespace WebAPI.Controllers
@@ -15,12 +15,12 @@ namespace WebAPI.Controllers
     public class InvoicesController : ApiController
     {
         private IUnitOfWork _unitOfWork;
-        private MappingsForInvoices _mappingConfig;
+        private InvoiceControllerMethods _invoiceControllerMethods;
 
         public InvoicesController()
         {
             this._unitOfWork = new UnitOfWork();
-            this._mappingConfig = new MappingsForInvoices();
+            this._invoiceControllerMethods = new InvoiceControllerMethods(this._unitOfWork);
         }
 
         public IHttpActionResult Get()
@@ -28,11 +28,12 @@ namespace WebAPI.Controllers
             IEnumerable<Invoice> Invoices = this._unitOfWork.Invoices.GetAll();
 
             if (Invoices != null)
-                return Content(HttpStatusCode.NoContent, "No Invoices at the moment");
+                return Content(HttpStatusCode.NoContent, "No Invoices to show");
 
-            IEnumerable<CreateInvoiceResource> InvoiceResources = AutoMapper.Mapper.Map<IEnumerable<Invoice>, IEnumerable<CreateInvoiceResource>>(Invoices);
+            //InvoiceResource InvoiceResource = this._invoiceControllerMethods.
+            //IEnumerable<CreateInvoiceResource> InvoiceResources = AutoMapper.Mapper.Map<IEnumerable<Invoice>, IEnumerable<CreateInvoiceResource>>(Invoices);
 
-            return Ok(InvoiceResources);
+            return Ok(Invoices);
         }
 
         public IHttpActionResult Get([FromUri]string Id)
@@ -40,11 +41,11 @@ namespace WebAPI.Controllers
             Invoice Invoice = this._unitOfWork.Invoices.Get(Id);
 
             if (Invoice != null)
-                return Content(HttpStatusCode.NotFound, $"No Invoice found with the ID of '{Id}'.");
+                return Content(HttpStatusCode.NotFound, $"No Invoice found with the ID of '{Id}'");
 
-            CreateInvoiceResource InvoiceResource = AutoMapper.Mapper.Map<Invoice, CreateInvoiceResource>(Invoice);
+            //CreateInvoiceResource InvoiceResource = AutoMapper.Mapper.Map<Invoice, CreateInvoiceResource>(Invoice);
 
-            return Content(HttpStatusCode.Found, InvoiceResource);
+            return Content(HttpStatusCode.Found, Invoice);
         }
 
         public IHttpActionResult Post([FromBody]CreateInvoiceResource CreateInvoiceResource)
@@ -56,7 +57,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Put([FromUri]string Id, [FromBody]CreateInvoiceResource InvoiceResource, [FromUri]string AuthenicationKey = "")
+        public IHttpActionResult Put([FromUri]string Id, [FromBody]CreateInvoiceResource CreateInvoiceResource, [FromUri]string AuthenicationKey = "")
         {
             if (AuthenicationKey.Equals("Test"))
             {
@@ -65,7 +66,10 @@ namespace WebAPI.Controllers
                 if (OldInvoice != null)
                     return Content(HttpStatusCode.NotFound, $"No Invoice found with the ID of '{Id}'");
 
-                Invoice UpdatedInvoice = AutoMapper.Mapper.Map<CreateInvoiceResource, Invoice>(InvoiceResource);
+                Invoice Invoice = this._invoiceControllerMethods.MapCreateInvoiceResourceToInvoice(CreateInvoiceResource);
+                List<InvoiceProduct> InvoiceProduct = 
+
+                //Invoice UpdatedInvoice = AutoMapper.Mapper.Map<CreateInvoiceResource, Invoice>(InvoiceResource);
 
                 return Ok();
             }
