@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
-using AutoMapper;
-using WebAPI.App_Start;
 
 namespace WebAPI
 {
@@ -14,9 +12,6 @@ namespace WebAPI
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
-            //AutoMapper Configurations
-            AutoMappingConfig.Configure();
         }
     }
 }

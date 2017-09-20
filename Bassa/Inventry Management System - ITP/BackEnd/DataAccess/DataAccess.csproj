@@ -52,6 +52,7 @@
     <Compile Include="Core\Domain\Employee.cs" />
     <Compile Include="Core\Domain\Enums.cs" />
     <Compile Include="Core\Domain\Invoice.cs" />
+    <Compile Include="Core\Domain\InvoiceControlApp.cs" />
     <Compile Include="Core\Domain\InvoiceCustomer.cs" />
     <Compile Include="Core\Domain\InvoiceDeal.cs" />
     <Compile Include="Core\Domain\InvoiceDealDiscount.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Core\Repositories\ICustomerRepository.cs" />
     <Compile Include="Core\Repositories\IDiscountRepository.cs" />
     <Compile Include="Core\Repositories\IEmployeeRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoiceControlAppRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceCustomerRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceDealDiscountRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceDealRepository.cs" />
@@ -72,17 +74,9 @@
     <Compile Include="Core\Repositories\IPaymentMethodRepository.cs" />
     <Compile Include="Core\Repositories\IProductRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
-    <Compile Include="Migrations\201709162345288_InvoicePartInitialModelBeta.cs" />
-    <Compile Include="Migrations\201709162345288_InvoicePartInitialModelBeta.Designer.cs">
-      <DependentUpon>201709162345288_InvoicePartInitialModelBeta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709181626326_InvoiceClassChanged.cs" />
-    <Compile Include="Migrations\201709181626326_InvoiceClassChanged.Designer.cs">
-      <DependentUpon>201709181626326_InvoiceClassChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709190021110_ClassesChanged.cs" />
-    <Compile Include="Migrations\201709190021110_ClassesChanged.Designer.cs">
-      <DependentUpon>201709190021110_ClassesChanged.cs</DependentUpon>
+    <Compile Include="Migrations\201709201239277_InitializeInvoicePartBeta9_20.cs" />
+    <Compile Include="Migrations\201709201239277_InitializeInvoicePartBeta9_20.Designer.cs">
+      <DependentUpon>201709201239277_InitializeInvoicePartBeta9_20.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\EntityConfigurations\InvoiceConfiguration.cs" />
@@ -96,6 +90,7 @@
     <Compile Include="Persistence\Repositories\CustomerRepository.cs" />
     <Compile Include="Persistence\Repositories\DiscountRepository.cs" />
     <Compile Include="Persistence\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoiceControlAppRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceCustomerRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceDealDiscountRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceDealRepository.cs" />
@@ -113,14 +108,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709162345288_InvoicePartInitialModelBeta.resx">
-      <DependentUpon>201709162345288_InvoicePartInitialModelBeta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709181626326_InvoiceClassChanged.resx">
-      <DependentUpon>201709181626326_InvoiceClassChanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709190021110_ClassesChanged.resx">
-      <DependentUpon>201709190021110_ClassesChanged.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709201239277_InitializeInvoicePartBeta9_20.resx">
+      <DependentUpon>201709201239277_InitializeInvoicePartBeta9_20.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
