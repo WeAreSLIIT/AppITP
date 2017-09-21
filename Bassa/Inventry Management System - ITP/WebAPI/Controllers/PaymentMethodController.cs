@@ -101,7 +101,7 @@ namespace WebAPI.Controllers
                 if (CurrentPaymentMethod.PaymentMethodNote.Equals(UpdatedPaymentMethodResource.Note.Trim()))
                     return Content(HttpStatusCode.NotModified, $"Payment Method named '{Id}' already up-to date");
 
-                CurrentPaymentMethod.PaymentMethodNote = UpdatedPaymentMethodResource.Note;
+                CurrentPaymentMethod.PaymentMethodNote = UpdatedPaymentMethodResource.Note.Trim();
                 this._unitOfWork.Complete();
 
                 return Content(HttpStatusCode.OK, $"Payment Method, named '{Id}' updated");

@@ -18,8 +18,8 @@ namespace WebAPI.Controllers.Methods
 
         public PaymentMethod MapCreatePaymentMethodResourceToPaymentMethod(PaymentMethodResource PaymentMethodResource)
         {
-            if (PaymentMethodResource == null || PaymentMethodResource.Name == null || PaymentMethodResource.Name.Equals(String.Empty) ||
-                PaymentMethodResource.Note == null || PaymentMethodResource.Note.Equals(String.Empty))
+            if (PaymentMethodResource == null || PaymentMethodResource.Name == null || (PaymentMethodResource.Name.Trim()).Equals(String.Empty) ||
+                PaymentMethodResource.Note == null || (PaymentMethodResource.Note.Trim()).Equals(String.Empty))
                 return null;
 
             PaymentMethod CheckPaymentMethod = this._unitOfWork.PaymentMethods.Get(PaymentMethodResource.Name);
@@ -29,8 +29,8 @@ namespace WebAPI.Controllers.Methods
 
             PaymentMethod PaymentMethod = new PaymentMethod()
             {
-                PaymentMethodName = PaymentMethodResource.Name,
-                PaymentMethodNote = PaymentMethodResource.Note
+                PaymentMethodName = PaymentMethodResource.Name.Trim(),
+                PaymentMethodNote = PaymentMethodResource.Note.Trim()
             };
 
             return PaymentMethod;
@@ -38,19 +38,19 @@ namespace WebAPI.Controllers.Methods
 
         public PaymentMethod MapPaymentMethodResourceToPaymentMethod(PaymentMethodResource PaymentMethodResource)
         {
-            if (PaymentMethodResource == null || PaymentMethodResource.Name == null || PaymentMethodResource.Name.Equals(String.Empty) || 
-                PaymentMethodResource.Note == null || PaymentMethodResource.Note.Equals(String.Empty))
+            if (PaymentMethodResource == null || PaymentMethodResource.Name == null || (PaymentMethodResource.Name.Trim()).Equals(String.Empty) ||
+                PaymentMethodResource.Note == null || (PaymentMethodResource.Note.Trim()).Equals(String.Empty))
                 return null;
 
-            PaymentMethod CheckPaymentMethod = this._unitOfWork.PaymentMethods.Get(PaymentMethodResource.Name);
+            PaymentMethod CheckPaymentMethod = this._unitOfWork.PaymentMethods.Get(PaymentMethodResource.Name.Trim());
 
             if (CheckPaymentMethod == null)
                 return null;
 
             PaymentMethod PaymentMethod = new PaymentMethod()
             {
-                PaymentMethodName = PaymentMethodResource.Name,
-                PaymentMethodNote = PaymentMethodResource.Note
+                PaymentMethodName = PaymentMethodResource.Name.Trim(),
+                PaymentMethodNote = PaymentMethodResource.Note.Trim()
             };
 
             return PaymentMethod;
