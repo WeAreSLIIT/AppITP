@@ -19,12 +19,12 @@ namespace WebAPI.Controllers.Resources
         public InvoiceDealResource InvoiceDeal { get; set; }
 
         public ICollection<InvoiceProductResource> InvoiceProducts { get; set; }
-        public ICollection<CreatePaymentMethodResource> PaymentMethods { get; set; }
+        public ICollection<PaymentMethodResource> PaymentMethods { get; set; }
 
         public InvoiceResource()
         {
             InvoiceProducts = new HashSet<InvoiceProductResource>();
-            PaymentMethods = new HashSet<CreatePaymentMethodResource>();
+            PaymentMethods = new HashSet<PaymentMethodResource>();
         }
     }
 }

@@ -94,6 +94,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\Methods\InvoiceControllerMethods.cs" />
+    <Compile Include="Controllers\Methods\PaymentMethodControllerMethods.cs" />
+    <Compile Include="Controllers\Methods\ProductControllerMethods.cs" />
+    <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Controllers\Resources\CustomerResource.cs" />
     <Compile Include="Controllers\Resources\EmployeeResource.cs" />
     <Compile Include="Controllers\Resources\Enum.cs" />
@@ -146,7 +149,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>5972</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5972/</IISUrl>
+          <IISUrl>http://localhost:5556/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

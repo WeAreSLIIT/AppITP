@@ -124,9 +124,14 @@ namespace DataAccess.Persistence
 
             //Primary Key
             modelBuilder.Entity<PaymentMethod>().HasKey(pm => pm.PaymentMethodID).ToTable("PaymentMethods");
-            //Other Attributes
+            //Unique Key
             modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodName).IsRequired();
-            modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodName).HasMaxLength(100);
+            modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodName).HasMaxLength(50);
+            modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodName)
+                .HasColumnAnnotation("PaymentMethodName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+            //Other Columns
+            modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodNote).IsRequired();
+            modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodNote).HasMaxLength(200);
 
             #endregion
 

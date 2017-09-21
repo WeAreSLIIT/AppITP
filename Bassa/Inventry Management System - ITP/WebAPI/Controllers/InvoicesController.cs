@@ -25,9 +25,10 @@ namespace WebAPI.Controllers
 
         public IHttpActionResult Get()
         {
-            IEnumerable<Invoice> Invoices = this._unitOfWork.Invoices.GetAll();
+            ICollection<Invoice> Invoices = this._unitOfWork.Invoices.GetAll().ToList();
+            this._unitOfWork.Dispose();
 
-            if (Invoices != null)
+            if (Invoices != null || Invoices.Count == 0)
                 return Content(HttpStatusCode.NoContent, "No Invoices to show");
 
             //InvoiceResource InvoiceResource = this._invoiceControllerMethods.
@@ -41,7 +42,7 @@ namespace WebAPI.Controllers
             Invoice Invoice = this._unitOfWork.Invoices.Get(Id);
 
             if (Invoice != null)
-                return Content(HttpStatusCode.NotFound, $"No Invoice found with the ID of '{Id}'");
+                return Content(HttpStatusCode.NotFound, $"No Invoice found with ID of '{Id}'");
 
             //CreateInvoiceResource InvoiceResource = AutoMapper.Mapper.Map<Invoice, CreateInvoiceResource>(Invoice);
 
@@ -67,7 +68,7 @@ namespace WebAPI.Controllers
                     return Content(HttpStatusCode.NotFound, $"No Invoice found with the ID of '{Id}'");
 
                 Invoice Invoice = this._invoiceControllerMethods.MapCreateInvoiceResourceToInvoice(CreateInvoiceResource);
-                List<InvoiceProduct> InvoiceProduct = 
+                //List<InvoiceProduct> InvoiceProduct = 
 
                 //Invoice UpdatedInvoice = AutoMapper.Mapper.Map<CreateInvoiceResource, Invoice>(InvoiceResource);
 
