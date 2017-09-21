@@ -16,6 +16,8 @@ namespace WebAPI.Controllers.Methods
             this._unitOfWork = UnitOfWork;
         }
 
+        #region Map CreatePaymentMethodResource to PaymentMethod
+
         public PaymentMethod MapCreatePaymentMethodResourceToPaymentMethod(PaymentMethodResource PaymentMethodResource)
         {
             if (PaymentMethodResource == null || PaymentMethodResource.Name == null || (PaymentMethodResource.Name.Trim()).Equals(String.Empty) ||
@@ -35,6 +37,10 @@ namespace WebAPI.Controllers.Methods
 
             return PaymentMethod;
         }
+
+        #endregion
+
+        #region Map PaymentMethodResource to PaymentMethod
 
         public PaymentMethod MapPaymentMethodResourceToPaymentMethod(PaymentMethodResource PaymentMethodResource)
         {
@@ -56,6 +62,10 @@ namespace WebAPI.Controllers.Methods
             return PaymentMethod;
         }
 
+        #endregion
+
+        #region Map PaymentMethod to PaymentMethodResource
+
         public PaymentMethodResource MapPaymentMethodToPaymentMethodResource(PaymentMethod PaymentMethod)
         {
             if (PaymentMethod == null || PaymentMethod.PaymentMethodName == null || PaymentMethod.PaymentMethodName.Equals(String.Empty))
@@ -69,6 +79,10 @@ namespace WebAPI.Controllers.Methods
 
             return PaymentMethodResource;
         }
+
+        #endregion
+
+        #region Map List of PaymentMethodResource to List of PaymentMethod
 
         public ICollection<PaymentMethod> MapListPaymentMethodResourceToListPaymentMethod(ICollection<PaymentMethodResource> PaymentMethodResources)
         {
@@ -87,6 +101,10 @@ namespace WebAPI.Controllers.Methods
                 return null;
         }
 
+        #endregion
+
+        #region Map List of PaymentMethod to List of PaymentMethodResource
+
         public ICollection<PaymentMethodResource> MapListPaymentMethodToListPaymentMethodResource(ICollection<PaymentMethod> PaymentMethods)
         {
             if (PaymentMethods == null || PaymentMethods.Count == 0)
@@ -94,7 +112,7 @@ namespace WebAPI.Controllers.Methods
 
             ICollection<PaymentMethodResource> PaymentMethodResources = new List<PaymentMethodResource>();
 
-            foreach(PaymentMethod PaymentMethod in PaymentMethods)
+            foreach (PaymentMethod PaymentMethod in PaymentMethods)
             {
                 PaymentMethodResource PaymentMethodResource = this.MapPaymentMethodToPaymentMethodResource(PaymentMethod);
 
@@ -106,6 +124,10 @@ namespace WebAPI.Controllers.Methods
 
             return PaymentMethodResources;
         }
+
+        #endregion
+
+        #region Validate List of PaymentMethod IDs
 
         public bool ValidatePaymentMethodIDs(ICollection<long> PaymentMethodIDs)
         {
@@ -120,6 +142,10 @@ namespace WebAPI.Controllers.Methods
             return true;
         }
 
+        #endregion
+
+        #region Validate List of PaymentMethod Names
+
         public bool ValidatePaymentMethodNames(ICollection<string> PaymentMethodNames)
         {
             if (PaymentMethodNames == null || PaymentMethodNames.Count == 0)
@@ -132,5 +158,7 @@ namespace WebAPI.Controllers.Methods
 
             return true;
         }
+
+        #endregion
     }
 }

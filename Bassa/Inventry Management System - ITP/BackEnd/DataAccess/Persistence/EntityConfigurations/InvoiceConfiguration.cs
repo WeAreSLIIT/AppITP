@@ -12,15 +12,9 @@ namespace DataAccess.Persistence.EntityConfigurations
             //Primary Key
             HasKey(i => i.InvoiceID).ToTable("Invoices");
             //Unique key
-<<<<<<< HEAD
-            Property(i => i.InvoicPublicID).IsRequired();
-            Property(i => i.InvoicPublicID).HasMaxLength(20);
-            Property(i => i.InvoicPublicID)
-=======
             Property(i => i.InvoicePublicID).IsRequired();
             Property(i => i.InvoicePublicID).HasMaxLength(20);
             Property(i => i.InvoicePublicID)
->>>>>>> Bassa
                     .HasColumnAnnotation("InvoicePublicID", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             //Foreign Key
             HasRequired(i => i.IssuedBy).WithMany(e => e.IssuedInvoices)
