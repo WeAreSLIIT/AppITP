@@ -11,6 +11,8 @@ using System;
 
 namespace WebAPI.Controllers
 {
+
+    // api/PaymentMethod
     public class PaymentMethodController : ApiController
     {
         private IUnitOfWork _unitOfWork;
