@@ -93,8 +93,8 @@ namespace WebAPI.Controllers.Methods
             else
                 return null;
 
-            if (new PaymentMethodControllerMethod(this._unitOfWork).ValidatePaymentMethodIDs(CreateInvoiceResource.PaymentMethods))
-                NewInvoice.PaymentMethods = CreateInvoiceResource.PaymentMethods;
+            //if (new PaymentMethodControllerMethod(this._unitOfWork).ValidatePaymentMethodIDs(CreateInvoiceResource.PaymentMethods))
+            //    NewInvoice.PaymentMethods = CreateInvoiceResource.PaymentMethods;
 
             /*
             public float FullPayment { get; set; }
