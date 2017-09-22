@@ -96,7 +96,7 @@
     <Compile Include="Controllers\Methods\InvoiceControllerMethods.cs" />
     <Compile Include="Controllers\Methods\PaymentMethodControllerMethods.cs" />
     <Compile Include="Controllers\Methods\ProductControllerMethods.cs" />
-    <Compile Include="Controllers\PaymentMethodController.cs" />
+    <Compile Include="Controllers\PaymentMethodsController.cs" />
     <Compile Include="Controllers\Resources\CustomerResource.cs" />
     <Compile Include="Controllers\Resources\EmployeeResource.cs" />
     <Compile Include="Controllers\Resources\Enum.cs" />

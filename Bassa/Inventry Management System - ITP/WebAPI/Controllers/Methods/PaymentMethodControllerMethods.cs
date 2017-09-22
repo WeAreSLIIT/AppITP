@@ -3,6 +3,7 @@ using DataAccess.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using WebAPI.Controllers.Resources;
 
 namespace WebAPI.Controllers.Methods
@@ -10,10 +11,13 @@ namespace WebAPI.Controllers.Methods
     public class PaymentMethodControllerMethods
     {
         private IUnitOfWork _unitOfWork;
+        private readonly string _paymentMethodNameRegexString = @"^[a-z0-9_@.-]{1,50}$";
+        private Regex _paymentMethodNamePattern;
 
         public PaymentMethodControllerMethods(IUnitOfWork UnitOfWork)
         {
             this._unitOfWork = UnitOfWork;
+            this._paymentMethodNamePattern = new Regex(this._paymentMethodNameRegexString, RegexOptions.IgnoreCase);
         }
 
         #region Map CreatePaymentMethodResource to PaymentMethod
@@ -22,6 +26,9 @@ namespace WebAPI.Controllers.Methods
         {
             if (PaymentMethodResource == null || PaymentMethodResource.Name == null || (PaymentMethodResource.Name.Trim()).Equals(String.Empty) ||
                 PaymentMethodResource.Note == null || (PaymentMethodResource.Note.Trim()).Equals(String.Empty))
+                return null;
+
+            if (!this._paymentMethodNamePattern.IsMatch(PaymentMethodResource.Name.Trim()))
                 return null;
 
             PaymentMethod CheckPaymentMethod = this._unitOfWork.PaymentMethods.Get(PaymentMethodResource.Name);
