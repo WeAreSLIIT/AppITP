@@ -47,12 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Domain\Counter.cs" />
     <Compile Include="Core\Domain\Customer.cs" />
     <Compile Include="Core\Domain\Discount.cs" />
     <Compile Include="Core\Domain\Employee.cs" />
     <Compile Include="Core\Domain\Enums.cs" />
     <Compile Include="Core\Domain\Invoice.cs" />
-    <Compile Include="Core\Domain\InvoiceControlApp.cs" />
+    <Compile Include="Core\Domain\Branch.cs" />
     <Compile Include="Core\Domain\InvoiceCustomer.cs" />
     <Compile Include="Core\Domain\InvoiceDeal.cs" />
     <Compile Include="Core\Domain\InvoiceDealDiscount.cs" />
@@ -61,10 +62,11 @@
     <Compile Include="Core\Domain\PaymentMethod.cs" />
     <Compile Include="Core\Domain\Product.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Repositories\ICounterRepository.cs" />
     <Compile Include="Core\Repositories\ICustomerRepository.cs" />
     <Compile Include="Core\Repositories\IDiscountRepository.cs" />
     <Compile Include="Core\Repositories\IEmployeeRepository.cs" />
-    <Compile Include="Core\Repositories\IInvoiceControlAppRepository.cs" />
+    <Compile Include="Core\Repositories\IBranchRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceCustomerRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceDealDiscountRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceDealRepository.cs" />
@@ -74,6 +76,14 @@
     <Compile Include="Core\Repositories\IPaymentMethodRepository.cs" />
     <Compile Include="Core\Repositories\IProductRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
+    <Compile Include="Migrations\201709222152019_Reinitialize.cs" />
+    <Compile Include="Migrations\201709222152019_Reinitialize.Designer.cs">
+      <DependentUpon>201709222152019_Reinitialize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709222223004_Reinitialize2.cs" />
+    <Compile Include="Migrations\201709222223004_Reinitialize2.Designer.cs">
+      <DependentUpon>201709222223004_Reinitialize2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\EntityConfigurations\InvoiceConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\InvoiceCustomerConfiguration.cs" />
@@ -83,10 +93,11 @@
     <Compile Include="Persistence\EntityConfigurations\InvoiceProductConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\PaymentMethodConfiguration.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
+    <Compile Include="Persistence\Repositories\CounterRepository.cs" />
     <Compile Include="Persistence\Repositories\CustomerRepository.cs" />
     <Compile Include="Persistence\Repositories\DiscountRepository.cs" />
     <Compile Include="Persistence\Repositories\EmployeeRepository.cs" />
-    <Compile Include="Persistence\Repositories\InvoiceControlAppRepository.cs" />
+    <Compile Include="Persistence\Repositories\BranchRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceCustomerRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceDealDiscountRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceDealRepository.cs" />
@@ -100,8 +111,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Persistence\App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709222152019_Reinitialize.resx">
+      <DependentUpon>201709222152019_Reinitialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709222223004_Reinitialize2.resx">
+      <DependentUpon>201709222223004_Reinitialize2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

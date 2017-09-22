@@ -1,5 +1,6 @@
 ﻿using DataAccess.Core;
 using DataAccess.Core.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebAPI.Controllers.Resources;
@@ -74,19 +75,23 @@ namespace WebAPI.Controllers.Methods
             Invoice NewInvoice = new Invoice()
             {
                 InvoicePublicID = CreateInvoiceResource.InvoiceId,
-                Time = CreateInvoiceResource.Time,
                 FullPayment = CreateInvoiceResource.FullPayment,
                 Discount = CreateInvoiceResource.Discount,
                 Payed = CreateInvoiceResource.Payed,
                 Balance = CreateInvoiceResource.Balance
             };
 
+            if (CreateInvoiceResource.Time == null || CreateInvoiceResource.Time <= 0)
+                NewInvoice.Time = TimeConverterMethods.GetCurrentTimeInLong();
+            else
+                NewInvoice.Time = (long)CreateInvoiceResource.Time;
+
             if (this._unitOfWork.Employees.Get(CreateInvoiceResource.IssuedBy) != null)
                 NewInvoice.IssuedByID = CreateInvoiceResource.IssuedBy;
             else
                 return null;
 
-            ICollection<InvoiceProduct> TempInvoiceProducts = this.MapListInvoiceProductResourceToListInvoiceProduct(CreateInvoiceResource.Products);
+            ICollection<InvoiceProduct> TempInvoiceProducts = new List<InvoiceProduct>(); // this.MapListInvoiceProductResourceToListInvoiceProduct(CreateInvoiceResource.Products);
 
             if (TempInvoiceProducts != null)
                 NewInvoice.InvoiceProducts = TempInvoiceProducts;

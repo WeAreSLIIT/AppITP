@@ -5,7 +5,8 @@ namespace DataAccess.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-        IInvoiceControlAppRepository InvoiceControlApps { get; }
+        IBranchRepository Branches { get; }
+        ICounterRepository Counters { get; }
         ICustomerRepository Customers { get; }
         IDiscountRepository Discounts { get; }
         IEmployeeRepository Employees { get; }

@@ -8,7 +8,8 @@ namespace DataAccess.Persistence
 {
     public class InventryMangementSystemDbContext : DbContext
     {
-        public DbSet<InvoiceControlApp> InvoiceControlApps { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Counter> Counters { get; set; }
 
         public DbSet<Customer> Courses { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -29,15 +30,30 @@ namespace DataAccess.Persistence
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            #region InvoiceControlApps Table
+            #region Branches Table
 
             //Primary Key
-            modelBuilder.Entity<InvoiceControlApp>().HasKey(ica => ica.ID).ToTable("InvoiceControlApps");
+            modelBuilder.Entity<Branch>().HasKey(b => b.BranchID).ToTable("Branches");
             //Other Attributes
-            modelBuilder.Entity<InvoiceControlApp>().Property(ica => ica.Username).IsRequired();
-            modelBuilder.Entity<InvoiceControlApp>().Property(ica => ica.Username).HasMaxLength(20);
-            modelBuilder.Entity<InvoiceControlApp>().Property(ica => ica.Username)
-                    .HasColumnAnnotation("InvoiceControlAppUsername", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+            modelBuilder.Entity<Branch>().Property(b => b.Name).IsRequired();
+            modelBuilder.Entity<Branch>().Property(b => b.Name).HasMaxLength(50);
+
+            #endregion
+
+            #region Counters Table
+
+            //Primary Key
+            modelBuilder.Entity<Counter>().HasKey(c => c.CounterID).ToTable("Counters");
+            //Foreign Key
+            modelBuilder.Entity<Counter>().HasRequired(c => c.Branch).WithMany(b => b.Counters)
+                .HasForeignKey(c => c.BranchID).WillCascadeOnDelete(false);
+            //Unique Keys
+            modelBuilder.Entity<Counter>().Property(c => c.BranchID)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_BranchCounterID", 1) { IsUnique = true }));
+            modelBuilder.Entity<Counter>().Property(c => c.CounterID)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_BranchCounterID", 2) { IsUnique = true }));
+            //Ignore Attribute
+            modelBuilder.Entity<Counter>().Ignore(c => c.Online);
 
             #endregion
 
@@ -47,14 +63,14 @@ namespace DataAccess.Persistence
             modelBuilder.Entity<Invoice>().HasKey(i => i.InvoiceID).ToTable("Invoices");
             //Unique key
             modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID).IsRequired();
-            modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID).HasMaxLength(20);
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID).HasMaxLength(50);
             modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID)
-                    .HasColumnAnnotation("InvoicePublicID", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+                    .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             //Foreign Key
             modelBuilder.Entity<Invoice>().HasRequired(i => i.IssuedBy).WithMany(e => e.IssuedInvoices)
                 .HasForeignKey(i => i.IssuedByID).WillCascadeOnDelete(false);
-            modelBuilder.Entity<Invoice>().HasRequired(i => i.InvoiceControlApp).WithMany(ica => ica.Invoices)
-                .HasForeignKey(i => i.InvoiceControlAppID).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Invoice>().HasRequired(i => i.Counter).WithMany(ica => ica.Invoices)
+                .HasForeignKey(i => i.CounterID).WillCascadeOnDelete(false);
             //Optional InvoiceCustomer attribute
             //HasOptional(op => op.InvoiceCustomer).WithOptionalPrincipal(p => p.Invoice);
 
@@ -128,7 +144,7 @@ namespace DataAccess.Persistence
             modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodName).IsRequired();
             modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodName).HasMaxLength(50);
             modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodName)
-                .HasColumnAnnotation("PaymentMethodName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             //Other Columns
             modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodNote).IsRequired();
             modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodNote).HasMaxLength(200);

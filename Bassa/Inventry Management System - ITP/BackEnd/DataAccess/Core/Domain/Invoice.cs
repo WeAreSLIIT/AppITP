@@ -15,8 +15,8 @@ namespace DataAccess.Core.Domain
         public long IssuedByID { get; set; }
         public Employee IssuedBy { get; set; }
         
-        public long InvoiceControlAppID { get; set; }
-        public InvoiceControlApp InvoiceControlApp { get; set; }
+        public long CounterID { get; set; }
+        public Counter Counter { get; set; }
 
         public InvoiceCustomer InvoiceCustomer { get; set; }
         public InvoiceDeal InvoiceDeal { get; set; }

@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
             ICollection<Invoice> Invoices = this._unitOfWork.Invoices.GetAll().ToList();
             this._unitOfWork.Dispose();
 
-            if (Invoices != null || Invoices.Count == 0)
+            if (Invoices == null || Invoices.Count == 0)
                 return Content(HttpStatusCode.NoContent, "No Invoices to show");
 
             //InvoiceResource InvoiceResource = this._invoiceControllerMethods.
@@ -51,16 +51,19 @@ namespace WebAPI.Controllers
 
         public IHttpActionResult Post([FromBody]CreateInvoiceResource CreateInvoiceResource)
         {
-            //Invoice NewInvoice = AutoMapper.Mapper.Map<CreateInvoiceResource, Invoice>(InvoiceResource);
+            if (ModelState.IsValid)
+            {
 
-            //Invoice NewInvoice = MappingsForInvoices(CreateInvoiceResource);
 
-            return Ok();
+                return Content(HttpStatusCode.Created, "Invoice added");
+            }
+            else
+                return BadRequest();
         }
 
-        public IHttpActionResult Put([FromUri]string Id, [FromBody]CreateInvoiceResource CreateInvoiceResource, [FromUri]string AuthenicationKey = "")
+        public IHttpActionResult Put([FromUri]string Id, [FromBody]CreateInvoiceResource CreateInvoiceResource)
         {
-            if (AuthenicationKey.Equals("Test"))
+            try
             {
                 Invoice OldInvoice = this._unitOfWork.Invoices.Get(Id);
 
@@ -74,10 +77,10 @@ namespace WebAPI.Controllers
 
                 return Ok();
             }
-            else
-                return Content(HttpStatusCode.NonAuthoritativeInformation, "No authentication to do this task.");
-
-
+            catch
+            {
+                return Content(HttpStatusCode.Conflict, "Something went wrong");
+            }
         }
 
     }
