@@ -100,7 +100,7 @@ namespace WebAPI.Controllers.Methods
 
             PaymentMethodNames = PaymentMethodResources.Select(pmr => pmr.Name).ToList();
 
-            if (this.ValidatePaymentMethodNames(PaymentMethodNames))
+            if (this.MapPaymentMethodNamesToPaymentMethods(PaymentMethodNames) != null)
             {
                 return this._unitOfWork.PaymentMethods.Search(pm => PaymentMethodNames.Contains(pm.PaymentMethodName)).ToList();
             }
@@ -134,36 +134,36 @@ namespace WebAPI.Controllers.Methods
 
         #endregion
 
-        #region Validate List of PaymentMethod IDs
+        #region Map List of PaymentMethod IDs to List of PaymentMethods
 
-        public bool ValidatePaymentMethodIDs(ICollection<long> PaymentMethodIDs)
+        public ICollection<PaymentMethod> MapPaymentMethodIDsToPaymentMethods(ICollection<long> PaymentMethodIDs)
         {
             if (PaymentMethodIDs == null || PaymentMethodIDs.Count == 0)
-                return false;
+                return null;
 
             ICollection<PaymentMethod> PaymentMethods = this._unitOfWork.PaymentMethods.Search(pm => PaymentMethodIDs.Contains(pm.PaymentMethodID)).ToList();
 
             if (PaymentMethods == null || PaymentMethods.Count == 0 || PaymentMethods.Count != PaymentMethodIDs.Count)
-                return false;
+                return null;
 
-            return true;
+            return PaymentMethods;
         }
 
         #endregion
 
-        #region Validate List of PaymentMethod Names
+        #region Map List of PaymentMethod Names to List of PaymentMethods
 
-        public bool ValidatePaymentMethodNames(ICollection<string> PaymentMethodNames)
+        public ICollection<PaymentMethod> MapPaymentMethodNamesToPaymentMethods(ICollection<string> PaymentMethodNames)
         {
             if (PaymentMethodNames == null || PaymentMethodNames.Count == 0)
-                return false;
+                return null;
 
             ICollection<PaymentMethod> PaymentMethods = this._unitOfWork.PaymentMethods.Search(pm => PaymentMethodNames.Contains(pm.PaymentMethodName)).ToList();
 
             if (PaymentMethods == null || PaymentMethods.Count == 0 || PaymentMethods.Count != PaymentMethodNames.Count)
-                return false;
+                return null;
 
-            return true;
+            return PaymentMethods;
         }
 
         #endregion

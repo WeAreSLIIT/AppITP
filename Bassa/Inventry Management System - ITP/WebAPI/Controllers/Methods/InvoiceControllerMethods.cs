@@ -1,9 +1,11 @@
 ﻿using DataAccess.Core;
 using DataAccess.Core.Domain;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using WebAPI.Controllers.Resources;
+using System.Threading.Tasks;
+using WebAPI.Models;
 
 namespace WebAPI.Controllers.Methods
 {
@@ -16,108 +18,116 @@ namespace WebAPI.Controllers.Methods
             this._unitOfWork = UnitOfWork;
         }
 
-        public ICollection<InvoiceProduct> MapListInvoiceProductResourceToListInvoiceProduct(ICollection<InvoiceProductResource> InvoiceProductResources)
+        public ICollection<InvoiceProduct> MapInvoiceProductResourcesToInvoiceProducts(ICollection<InvoiceProductResource> InvoiceProductResources)
         {
             if (InvoiceProductResources == null || InvoiceProductResources.Count == 0)
                 return null;
 
-            ICollection<InvoiceProduct> InvoiceProducts = new List<InvoiceProduct>();
-            bool Error = false;
-
-
-            ICollection<long> ProductIDs = new List<long>();
-            ProductIDs = InvoiceProductResources.Select(ipr => ipr.ProductID).ToList();
+            ICollection<string> ProductIDs = new List<string>();
+            ProductIDs = InvoiceProductResources.Select(ipr => ipr.ID).ToList();
 
             ICollection<Product> Products = new List<Product>();
+            Products = this._unitOfWork.Products.Search(p => ProductIDs.Contains(p.ProductPublicID)).ToList();
 
-            if (ProductIDs == null || ProductIDs.Count == 0)
-                Error = true;
-            else
+            if (Products == null || Products.Count == 0 || InvoiceProductResources.Count != Products.Count)
+                return null;
+
+            ICollection<InvoiceProduct> InvoiceProducts = new List<InvoiceProduct>();
+
+            foreach (InvoiceProductResource InvoiceProductResource in InvoiceProductResources)
             {
-                Products = this._unitOfWork.Products.Search(p => ProductIDs.Contains(p.ProductID)).ToList();
+                if (InvoiceProductResource.Quantity <= 0)
+                    return null;
 
-                if (Products == null || Products.Count == 0 || Products.Count != ProductIDs.Count)
-                    Error = true;
-            }
-
-            if (!Error)
-            {
-                foreach (InvoiceProductResource InvoiceProductResource in InvoiceProductResources)
+                InvoiceProduct TempInvoiceProduct = new InvoiceProduct()
                 {
-                    InvoiceProduct TempInvoiceProduct = this.MapInvoiceProductResourceToInvoiceProduct(InvoiceProductResource);
+                    ProductID = Products.FirstOrDefault(p => p.ProductPublicID == InvoiceProductResource.ID).ProductID,
+                    Quantity = InvoiceProductResource.Quantity
+                };
 
-                    InvoiceProducts.Add(TempInvoiceProduct);
-                }
+                InvoiceProducts.Add(TempInvoiceProduct);
             }
 
-            return (Error) ? null : InvoiceProducts;
+            return InvoiceProducts;
         }
 
-        public InvoiceProduct MapInvoiceProductResourceToInvoiceProduct(InvoiceProductResource InvoiceProductResource)
+        public async Task<Invoice> MapCreateInvoiceResourceToInvoice(CreateInvoiceResource SentInvoiceResource)
         {
-            if (InvoiceProductResource.ProductID == 0 || InvoiceProductResource.Quantity == 0)
-                return null;
+            Invoice ReturnInvoice = new Invoice();
 
-            InvoiceProduct InvoiceProduct = new InvoiceProduct()
-            {
-                ProductID = InvoiceProductResource.ProductID,
-                Quantity = InvoiceProductResource.Quantity
-            };
+            ReturnInvoice = await Task.Run(
+                () =>
+                {
+                    //Check That SentInvoice is null
+                    if (SentInvoiceResource == null)
+                        return null;
 
-            return InvoiceProduct;
-        }
+                    //Check Counter is online and its real, if counter not online it will reject
+                    bool? CounterStatus = true; // BackgroundProcess.CheckCounterIsOnline(SentInvoiceResource.Counter.BranchID, SentInvoiceResource.Counter.CouterNo);
 
-        public Invoice MapCreateInvoiceResourceToInvoice(CreateInvoiceResource CreateInvoiceResource)
-        {
-            if (CreateInvoiceResource == null)
-                return null;
+                    if (CounterStatus == null || CounterStatus == false)
+                        return null;
 
-            Invoice NewInvoice = new Invoice()
-            {
-                InvoicePublicID = CreateInvoiceResource.InvoiceId,
-                FullPayment = CreateInvoiceResource.FullPayment,
-                Discount = CreateInvoiceResource.Discount,
-                Payed = CreateInvoiceResource.Payed,
-                Balance = CreateInvoiceResource.Balance
-            };
+                    //Get Counter DB ID
+                    long CounterID = (long)this._unitOfWork.Counters.GetCounterID(SentInvoiceResource.Counter.BranchID, SentInvoiceResource.Counter.CouterNo);
 
-            if (CreateInvoiceResource.Time == null || CreateInvoiceResource.Time <= 0)
-                NewInvoice.Time = TimeConverterMethods.GetCurrentTimeInLong();
-            else
-                NewInvoice.Time = (long)CreateInvoiceResource.Time;
+                    //Initialize NewInvoice
+                    Invoice NewInvoice = new Invoice()
+                    {
+                        FullPayment = SentInvoiceResource.FullPayment,
+                        Discount = SentInvoiceResource.Discount,
+                        Payed = SentInvoiceResource.Payed,
+                        Balance = SentInvoiceResource.Balance,
+                        CounterID = CounterID
+                    };
 
-            if (this._unitOfWork.Employees.Get(CreateInvoiceResource.IssuedBy) != null)
-                NewInvoice.IssuedByID = CreateInvoiceResource.IssuedBy;
-            else
-                return null;
+                    //check Time that sent by app
+                    //if time is not given assign current time in server
+                    if (SentInvoiceResource.Time == null || SentInvoiceResource.Time <= 0)
+                        NewInvoice.Time = TimeConverterMethods.GetCurrentTimeInLong();
+                    else
+                        NewInvoice.Time = (long)SentInvoiceResource.Time;
 
-            ICollection<InvoiceProduct> TempInvoiceProducts = new List<InvoiceProduct>(); // this.MapListInvoiceProductResourceToListInvoiceProduct(CreateInvoiceResource.Products);
+                    //check Invoice issued employee exsits
+                    if (this._unitOfWork.Employees.Get(SentInvoiceResource.IssuedBy) != null)
+                        NewInvoice.IssuedByID = SentInvoiceResource.IssuedBy;
+                    else
+                        return null;
 
-            if (TempInvoiceProducts != null)
-                NewInvoice.InvoiceProducts = TempInvoiceProducts;
-            else
-                return null;
+                    //check payment methods are real and converte payment method name to PaymentMethod objects
+                    ICollection<PaymentMethod> PaymentMethods = new List<PaymentMethod>();
+                    PaymentMethods = new PaymentMethodControllerMethods(this._unitOfWork).MapPaymentMethodNamesToPaymentMethods(SentInvoiceResource.PaymentMethods);
 
-            //if (new PaymentMethodControllerMethod(this._unitOfWork).ValidatePaymentMethodIDs(CreateInvoiceResource.PaymentMethods))
-            //    NewInvoice.PaymentMethods = CreateInvoiceResource.PaymentMethods;
+                    if (PaymentMethods == null || PaymentMethods.Count == 0)
+                        return null;
 
-            /*
-            public float FullPayment { get; set; }
-            public float Discount { get; set; }
-            public float Payed { get; set; }
-            public float Balance { get; set; }
+                    NewInvoice.PaymentMethods = PaymentMethods;
 
-            public long IssuedByID { get; set; }
-            public Employee IssuedBy { get; set; }
+                    //check sende product are real and if it isn't reject
+                    ICollection<InvoiceProduct> TempInvoiceProducts = new List<InvoiceProduct>();
+                    TempInvoiceProducts = this.MapInvoiceProductResourcesToInvoiceProducts(SentInvoiceResource.Products.ToList());
 
-            public InvoiceCustomer InvoiceCustomer { get; set; }
-            public InvoiceDeal InvoiceDeal { get; set; }
+                    if (TempInvoiceProducts == null || TempInvoiceProducts.Count == 0)
+                        return null;
 
-            public ICollection<InvoiceProduct> InvoiceProducts { get; set; }
-            public ICollection<PaymentMethod> PaymentMethods { get; set; }
-            */
+                    NewInvoice.InvoiceProducts = TempInvoiceProducts.ToList();
 
-            return NewInvoice;
+                    //validate public id sended
+                    NewInvoice.InvoicePublicID = SentInvoiceResource.InvoiceId;
+                    long CountInvoices = this._unitOfWork.Invoices.GetAllInvoicesCount();
+
+                    string TempStringID = NewInvoice.InvoicePublicID;
+                    Random Rand = new Random();
+
+                    while (this._unitOfWork.Invoices.Get(NewInvoice.InvoicePublicID) != null)
+                    {
+                        NewInvoice.InvoicePublicID = TempStringID + "-sys" + (CountInvoices % 10000).ToString() + (Rand.Next(1, 99));
+                    }
+
+                    return NewInvoice;
+                });
+
+            return ReturnInvoice;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace DataAccess.Core.Repositories
     {
         string GetPublicID(long InvoiceID);
         long? GetInvoiceID(string PublicID);
+        long GetAllInvoicesCount();
         Invoice Get(string PublicID);
     }
 }

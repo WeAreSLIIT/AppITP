@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DataAccess.Core.Domain
+﻿namespace DataAccess.Core.Domain
 {
     public class InvoiceProduct
     {

@@ -13,6 +13,7 @@ namespace DataAccess.Core.Domain
         public ICollection<Invoice> Invoices { get; set; }
 
         public bool Online { get; set; }
+        public bool Disabled { get; set; }
 
         public Counter()
         {

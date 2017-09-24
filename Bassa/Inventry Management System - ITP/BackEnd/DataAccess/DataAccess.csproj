@@ -84,14 +84,15 @@
     <Compile Include="Migrations\201709222223004_Reinitialize2.Designer.cs">
       <DependentUpon>201709222223004_Reinitialize2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.cs" />
+    <Compile Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.Designer.cs">
+      <DependentUpon>201709230423574_FixCoutersTableUniqueKeyIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709240635134_FixChangesMadeForInvoice.cs" />
+    <Compile Include="Migrations\201709240635134_FixChangesMadeForInvoice.Designer.cs">
+      <DependentUpon>201709240635134_FixChangesMadeForInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Persistence\EntityConfigurations\InvoiceConfiguration.cs" />
-    <Compile Include="Persistence\EntityConfigurations\InvoiceCustomerConfiguration.cs" />
-    <Compile Include="Persistence\EntityConfigurations\InvoiceDealConfiguration.cs" />
-    <Compile Include="Persistence\EntityConfigurations\InvoiceDealDiscountConfiguration.cs" />
-    <Compile Include="Persistence\EntityConfigurations\InvoiceEmployeeDiscountConfiguration.cs" />
-    <Compile Include="Persistence\EntityConfigurations\InvoiceProductConfiguration.cs" />
-    <Compile Include="Persistence\EntityConfigurations\PaymentMethodConfiguration.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
     <Compile Include="Persistence\Repositories\CounterRepository.cs" />
     <Compile Include="Persistence\Repositories\CustomerRepository.cs" />
@@ -123,6 +124,15 @@
     <EmbeddedResource Include="Migrations\201709222223004_Reinitialize2.resx">
       <DependentUpon>201709222223004_Reinitialize2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.resx">
+      <DependentUpon>201709230423574_FixCoutersTableUniqueKeyIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709240635134_FixChangesMadeForInvoice.resx">
+      <DependentUpon>201709240635134_FixChangesMadeForInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Persistence\EntityConfigurations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,7 +2,6 @@
 using DataAccess.Core.Domain;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using DataAccess.Persistence.EntityConfigurations;
 
 namespace DataAccess.Persistence
 {
@@ -50,7 +49,7 @@ namespace DataAccess.Persistence
             //Unique Keys
             modelBuilder.Entity<Counter>().Property(c => c.BranchID)
                 .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_BranchCounterID", 1) { IsUnique = true }));
-            modelBuilder.Entity<Counter>().Property(c => c.CounterID)
+            modelBuilder.Entity<Counter>().Property(c => c.BranchCounterNo)
                 .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_BranchCounterID", 2) { IsUnique = true }));
             //Ignore Attribute
             modelBuilder.Entity<Counter>().Ignore(c => c.Online);
@@ -63,7 +62,7 @@ namespace DataAccess.Persistence
             modelBuilder.Entity<Invoice>().HasKey(i => i.InvoiceID).ToTable("Invoices");
             //Unique key
             modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID).IsRequired();
-            modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID).HasMaxLength(50);
+            modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID).HasMaxLength(30);
             modelBuilder.Entity<Invoice>().Property(i => i.InvoicePublicID)
                     .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             //Foreign Key

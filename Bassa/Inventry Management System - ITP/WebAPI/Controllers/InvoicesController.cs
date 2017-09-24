@@ -1,11 +1,10 @@
 ﻿using DataAccess.Core;
 using DataAccess.Core.Domain;
 using DataAccess.Persistence;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WebAPI.Controllers.Methods;
 using WebAPI.Controllers.Resources;
@@ -44,16 +43,21 @@ namespace WebAPI.Controllers
             if (Invoice != null)
                 return Content(HttpStatusCode.NotFound, $"No Invoice found with ID of '{Id}'");
 
-            //CreateInvoiceResource InvoiceResource = AutoMapper.Mapper.Map<Invoice, CreateInvoiceResource>(Invoice);
-
             return Content(HttpStatusCode.Found, Invoice);
         }
 
-        public IHttpActionResult Post([FromBody]CreateInvoiceResource CreateInvoiceResource)
+        [HttpPost]
+        public async Task<IHttpActionResult> AddNewInvoice([FromBody]CreateInvoiceResource CreateInvoiceResource)
         {
             if (ModelState.IsValid)
             {
+                Invoice NewInvoice = await Task.Run(() => this._invoiceControllerMethods.MapCreateInvoiceResourceToInvoice(CreateInvoiceResource));
 
+                if (NewInvoice == null)
+                    return Content(HttpStatusCode.NotAcceptable, "Invoice data not acceptable");
+
+                this._unitOfWork.Invoices.Add(NewInvoice);
+                this._unitOfWork.Complete();
 
                 return Content(HttpStatusCode.Created, "Invoice added");
             }
@@ -70,10 +74,8 @@ namespace WebAPI.Controllers
                 if (OldInvoice != null)
                     return Content(HttpStatusCode.NotFound, $"No Invoice found with the ID of '{Id}'");
 
-                Invoice Invoice = this._invoiceControllerMethods.MapCreateInvoiceResourceToInvoice(CreateInvoiceResource);
-                //List<InvoiceProduct> InvoiceProduct = 
+                //Invoice Invoice = this._invoiceControllerMethods.MapCreateInvoiceResourceToInvoice(CreateInvoiceResource);
 
-                //Invoice UpdatedInvoice = AutoMapper.Mapper.Map<CreateInvoiceResource, Invoice>(InvoiceResource);
 
                 return Ok();
             }

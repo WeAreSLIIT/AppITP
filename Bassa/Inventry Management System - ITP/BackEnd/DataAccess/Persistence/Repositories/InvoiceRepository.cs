@@ -26,6 +26,11 @@ namespace DataAccess.Persistence.Repositories
             return (temp != 0) ? temp : (long?)null;
         }
 
+        public long GetAllInvoicesCount()
+        {
+            return this._context.Invoices.Select(i => i.InvoiceID).Count();
+        }
+
         public string GetPublicID(long InvoiceID)
         {
             return this._context.Invoices.Where(i => i.InvoiceID == InvoiceID).Select(i => i.InvoicePublicID).SingleOrDefault();
