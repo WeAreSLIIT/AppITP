@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataAccess.Core.Domain;
 using DataAccess.Core.Repositories;
+using System.Data.Entity;
 
 namespace DataAccess.Persistence.Repositories
 {
@@ -34,6 +36,42 @@ namespace DataAccess.Persistence.Repositories
         public string GetPublicID(long InvoiceID)
         {
             return this._context.Invoices.Where(i => i.InvoiceID == InvoiceID).Select(i => i.InvoicePublicID).SingleOrDefault();
+        }
+
+        public Invoice GetInvoiceWithData(long InvoiceID)
+        {
+            return this._context.Invoices
+                .Include(i => i.Counter)
+                .Include(i => i.InvoiceCustomer)
+                .Include(i => i.InvoiceDeal)
+                .Include(i => i.PaymentMethods)
+                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoiceProducts)
+                .Where(i => i.InvoiceID == InvoiceID).SingleOrDefault();
+        }
+
+        public Invoice GetInvoiceWithData(string PublicID)
+        {
+            return this._context.Invoices
+                .Include(i => i.Counter)
+                .Include(i => i.InvoiceCustomer)
+                .Include(i => i.InvoiceDeal)
+                .Include(i => i.PaymentMethods)
+                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoiceProducts)
+                .Where(i => i.InvoicePublicID == PublicID).SingleOrDefault();
+        }
+
+        public ICollection<Invoice> GetAllInvoicesWithData()
+        {
+            return this._context.Invoices
+                .Include(i => i.Counter)
+                .Include(i => i.InvoiceCustomer)
+                .Include(i => i.InvoiceDeal)
+                .Include(i => i.PaymentMethods)
+                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoiceProducts)
+                .ToList();
         }
     }
 }

@@ -93,6 +93,7 @@
     <Compile Include="Controllers\CountersController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\Resources\CounterResource.cs" />
+    <Compile Include="Controllers\Resources\InvoicePaymentMethodResource.cs" />
     <Compile Include="Models\BackgroundProcess.cs" />
     <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

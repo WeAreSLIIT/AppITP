@@ -8,11 +8,11 @@ namespace DataAccess.Core.Domain
         public string PaymentMethodName { get; set; }
         public string PaymentMethodNote { get; set; }
 
-        public ICollection<Invoice> Invoices { get; set; }
+        public ICollection<InvoicePaymentMethod> InvoicePaymentMethods { get; set; }
 
         public PaymentMethod()
         {
-            Invoices = new HashSet<Invoice>();
+            InvoicePaymentMethods = new HashSet<InvoicePaymentMethod>();
         }
     }
 }

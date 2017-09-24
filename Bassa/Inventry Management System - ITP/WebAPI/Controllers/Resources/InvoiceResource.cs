@@ -13,18 +13,18 @@ namespace WebAPI.Controllers.Resources
         public float Balance { get; set; }
         
         public long IssuedBy { get; set; }
-        public long BranchID { get; set; }
+        public CounterResource Counter { get; set; }
 
         public long? PurchasedBy { get; set; }
         public long? InvoiceDeal { get; set; }
         
-        public ICollection<string> Products { get; set; }
-        public ICollection<string> PaymentMethods { get; set; }
+        public ICollection<ProductResoure> Products { get; set; }
+        public ICollection<InvoicePaymentMethodResource> Payments { get; set; }
 
         public InvoiceResource()
         {
-            Products = new HashSet<string>();
-            PaymentMethods = new HashSet<string>();
+            Products = new HashSet<ProductResoure>();
+            Payments = new HashSet<InvoicePaymentMethodResource>();
         }
     }
 }

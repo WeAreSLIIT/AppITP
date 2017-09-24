@@ -22,12 +22,12 @@ namespace DataAccess.Core.Domain
         public InvoiceDeal InvoiceDeal { get; set; }
 
         public ICollection<InvoiceProduct> InvoiceProducts { get; set; }
-        public ICollection<PaymentMethod> PaymentMethods { get; set; }
+        public ICollection<InvoicePaymentMethod> InvoicePaymentMethods { get; set; }
 
         public Invoice()
         {
             InvoiceProducts = new HashSet<InvoiceProduct>();
-            PaymentMethods = new HashSet<PaymentMethod>();
+            InvoicePaymentMethods = new HashSet<InvoicePaymentMethod>();
         }
     }
 }

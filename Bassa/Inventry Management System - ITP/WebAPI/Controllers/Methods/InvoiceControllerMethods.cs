@@ -96,7 +96,7 @@ namespace WebAPI.Controllers.Methods
 
                     //check payment methods are real and converte payment method name to PaymentMethod objects
                     ICollection<PaymentMethod> PaymentMethods = new List<PaymentMethod>();
-                    PaymentMethods = new PaymentMethodControllerMethods(this._unitOfWork).MapPaymentMethodNamesToPaymentMethods(SentInvoiceResource.PaymentMethods);
+                    PaymentMethods = new PaymentMethodControllerMethods(this._unitOfWork).MapPaymentMethodNamesToPaymentMethods(SentInvoiceResource.Payments);
 
                     if (PaymentMethods == null || PaymentMethods.Count == 0)
                         return null;
@@ -128,6 +128,31 @@ namespace WebAPI.Controllers.Methods
                 });
 
             return ReturnInvoice;
+        }
+
+        public InvoiceResource MapInvoiceToInvoiceResource(Invoice Invoice)
+        {
+            InvoiceResource InvoiceResource = new InvoiceResource()
+            {
+                InvoiceId = Invoice.InvoicePublicID,
+                Time = Invoice.Time,
+                FullPayment = Invoice.FullPayment,
+                Discount = Invoice.Discount,
+                Payed = Invoice.Payed,
+                Balance = Invoice.Balance,
+                IssuedBy = Invoice.IssuedByID,
+                Counter = new CounterResource()
+                {
+                    BranchID = Invoice.Counter.BranchID,
+                    CouterNo = Invoice.Counter.BranchCounterNo
+                },
+                PurchasedBy = Invoice.InvoiceCustomer.CustomerID,
+                InvoiceDeal = Invoice.InvoiceDeal.InvoiceDealDiscountID
+            };
+
+
+
+            return InvoiceResource;
         }
     }
 }

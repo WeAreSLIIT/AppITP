@@ -24,21 +24,20 @@ namespace WebAPI.Controllers
 
         public IHttpActionResult Get()
         {
-            ICollection<Invoice> Invoices = this._unitOfWork.Invoices.GetAll().ToList();
+            ICollection<Invoice> Invoices = this._unitOfWork.Invoices.GetAllInvoicesWithData().ToList();
             this._unitOfWork.Dispose();
 
             if (Invoices == null || Invoices.Count == 0)
                 return Content(HttpStatusCode.NoContent, "No Invoices to show");
 
-            //InvoiceResource InvoiceResource = this._invoiceControllerMethods.
-            //IEnumerable<CreateInvoiceResource> InvoiceResources = AutoMapper.Mapper.Map<IEnumerable<Invoice>, IEnumerable<CreateInvoiceResource>>(Invoices);
+            
 
             return Ok(Invoices);
         }
 
         public IHttpActionResult Get([FromUri]string Id)
         {
-            Invoice Invoice = this._unitOfWork.Invoices.Get(Id);
+            Invoice Invoice = this._unitOfWork.Invoices.GetInvoiceWithData(Id);
 
             if (Invoice != null)
                 return Content(HttpStatusCode.NotFound, $"No Invoice found with ID of '{Id}'");
@@ -64,26 +63,5 @@ namespace WebAPI.Controllers
             else
                 return BadRequest();
         }
-
-        public IHttpActionResult Put([FromUri]string Id, [FromBody]CreateInvoiceResource CreateInvoiceResource)
-        {
-            try
-            {
-                Invoice OldInvoice = this._unitOfWork.Invoices.Get(Id);
-
-                if (OldInvoice != null)
-                    return Content(HttpStatusCode.NotFound, $"No Invoice found with the ID of '{Id}'");
-
-                //Invoice Invoice = this._invoiceControllerMethods.MapCreateInvoiceResourceToInvoice(CreateInvoiceResource);
-
-
-                return Ok();
-            }
-            catch
-            {
-                return Content(HttpStatusCode.Conflict, "Something went wrong");
-            }
-        }
-
     }
 }

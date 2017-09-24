@@ -22,6 +22,7 @@ namespace DataAccess.Persistence
         public DbSet<InvoiceEmployeeDiscount> InvoiceDiscounts { get; set; }
         public DbSet<InvoiceProduct> InvoiceProducts { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
+        public DbSet<InvoicePaymentMethod> InvoicePaymentMethods { get; set; }
 
         #endregion
 
@@ -147,6 +148,18 @@ namespace DataAccess.Persistence
             //Other Columns
             modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodNote).IsRequired();
             modelBuilder.Entity<PaymentMethod>().Property(pm => pm.PaymentMethodNote).HasMaxLength(200);
+
+            #endregion
+
+            #region InvoicePaymentMethods Table
+
+            //Primary Key
+            modelBuilder.Entity<InvoicePaymentMethod>().HasKey(ipm => new { ipm.InvoiceID, ipm.PaymentMethodID }).ToTable("InvoicePaymentMethods");
+            //Foreign Key
+            modelBuilder.Entity<InvoicePaymentMethod>().HasRequired(ipm => ipm.Invoice).WithMany(i => i.InvoicePaymentMethods)
+                .HasForeignKey(ipm => ipm.InvoiceID).WillCascadeOnDelete(false);
+            modelBuilder.Entity<InvoicePaymentMethod>().HasRequired(ipm => ipm.PaymentMethod).WithMany(pm => pm.InvoicePaymentMethods)
+                .HasForeignKey(ipm => ipm.PaymentMethodID).WillCascadeOnDelete(false);
 
             #endregion
 

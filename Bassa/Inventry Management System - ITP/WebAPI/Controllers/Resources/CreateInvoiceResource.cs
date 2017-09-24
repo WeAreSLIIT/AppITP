@@ -32,12 +32,12 @@ namespace WebAPI.Controllers.Resources
         [Required]
         public ICollection<InvoiceProductResource> Products { get; set; }
         [Required]
-        public ICollection<string> PaymentMethods { get; set; }
+        public ICollection<InvoicePaymentMethodResource> Payments { get; set; }
 
         public CreateInvoiceResource()
         {
             Products = new HashSet<InvoiceProductResource>();
-            PaymentMethods = new HashSet<string>();
+            Payments = new HashSet<InvoicePaymentMethodResource>();
         }
     }
 }

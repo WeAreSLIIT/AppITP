@@ -58,6 +58,7 @@
     <Compile Include="Core\Domain\InvoiceDeal.cs" />
     <Compile Include="Core\Domain\InvoiceDealDiscount.cs" />
     <Compile Include="Core\Domain\InvoiceEmployeeDiscount.cs" />
+    <Compile Include="Core\Domain\InvoicePaymentMethod.cs" />
     <Compile Include="Core\Domain\InvoiceProduct.cs" />
     <Compile Include="Core\Domain\PaymentMethod.cs" />
     <Compile Include="Core\Domain\Product.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Core\Repositories\IInvoiceDealDiscountRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceDealRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceEmployeeDiscountRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoicePaymentMethodRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceRepository.cs" />
     <Compile Include="Core\Repositories\IInvoiceProductRepository.cs" />
     <Compile Include="Core\Repositories\IPaymentMethodRepository.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Persistence\Repositories\InvoiceDealDiscountRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceDealRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceEmployeeDiscountRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoicePaymentMethodRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceProductRepository.cs" />
     <Compile Include="Persistence\Repositories\InvoiceRepository.cs" />
     <Compile Include="Persistence\Repositories\PaymentMethodRepository.cs" />

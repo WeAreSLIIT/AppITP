@@ -16,6 +16,7 @@ namespace DataAccess.Core
         IInvoiceEmployeeDiscountRepository InvoiceEmployeeDiscounts { get; }
         IInvoiceProductRepository InvoiceProducts { get; }
         IInvoiceRepository Invoices { get; }
+        IInvoicePaymentMethodRepository InvoicePaymentMethods { get; }
         IProductRepository Products { get; }
         IPaymentMethodRepository PaymentMethods { get; }
 
