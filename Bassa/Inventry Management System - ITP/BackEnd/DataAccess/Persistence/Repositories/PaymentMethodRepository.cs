@@ -16,7 +16,7 @@ namespace DataAccess.Persistence.Repositories
 
         public PaymentMethod Get(string PaymentName)
         {
-            return this._context.PaymentMethods.SingleOrDefault(pm => pm.PaymentMethodName == PaymentName);
+            return this._context.PaymentMethods.SingleOrDefault(pm => pm.PaymentMethodName.ToLower().Equals(PaymentName.ToLower()));
         }
     }
 }

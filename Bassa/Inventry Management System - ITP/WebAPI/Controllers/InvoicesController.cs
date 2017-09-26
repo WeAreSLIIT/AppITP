@@ -1,6 +1,7 @@
 ﻿using DataAccess.Core;
 using DataAccess.Core.Domain;
 using DataAccess.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,46 +23,85 @@ namespace WebAPI.Controllers
             this._invoiceControllerMethods = new InvoiceControllerMethods(this._unitOfWork);
         }
 
-        public IHttpActionResult Get()
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAllInvoices()
         {
-            ICollection<Invoice> Invoices = this._unitOfWork.Invoices.GetAllInvoicesWithData().ToList();
-            this._unitOfWork.Dispose();
+            try
+            {
+                ICollection<InvoiceResource> InvoiceResources = new List<InvoiceResource>();
 
-            if (Invoices == null || Invoices.Count == 0)
-                return Content(HttpStatusCode.NoContent, "No Invoices to show");
+                InvoiceResources = await Task.Run(
+                    () =>
+                    {
+                        ICollection<Invoice> Invoices = this._unitOfWork.Invoices.GetAllInvoicesWithAllData().ToList();
 
-            
+                        return this._invoiceControllerMethods.MapListInvoiceToListInvoiceResource(Invoices);
+                    });
 
-            return Ok(Invoices);
+                if (InvoiceResources == null || InvoiceResources.Count == 0)
+                    return Content(HttpStatusCode.NotFound, "No Invoices to send");
+
+                return Content(HttpStatusCode.Found, InvoiceResources);
+            }
+            catch
+            {
+                return Content(HttpStatusCode.Conflict, "Something went wrong");
+            }
         }
 
-        public IHttpActionResult Get([FromUri]string Id)
+        [HttpGet]
+        public async Task<IHttpActionResult> GetInvoiceByPublicID([FromUri]string Id)
         {
-            Invoice Invoice = this._unitOfWork.Invoices.GetInvoiceWithData(Id);
+            try
+            {
+                InvoiceResource InvoiceResource = new InvoiceResource();
 
-            if (Invoice != null)
-                return Content(HttpStatusCode.NotFound, $"No Invoice found with ID of '{Id}'");
+                InvoiceResource = await Task.Run(
+                    ()=>
+                    {
+                        Invoice Invoice = this._unitOfWork.Invoices.GetInvoiceWithData(Id);
 
-            return Content(HttpStatusCode.Found, Invoice);
+                        if (Invoice == null)
+                            return null;
+
+                        return this._invoiceControllerMethods.MapInvoiceToInvoiceResource(Invoice);
+                    });
+
+                if (InvoiceResource == null)
+                    return Content(HttpStatusCode.NotFound, $"No Invoice found with ID of '{Id}'");
+
+                return Content(HttpStatusCode.Found, InvoiceResource);
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.Conflict, "Something went wrong " + ex);
+            }
         }
 
         [HttpPost]
         public async Task<IHttpActionResult> AddNewInvoice([FromBody]CreateInvoiceResource CreateInvoiceResource)
         {
-            if (ModelState.IsValid)
+            try
             {
-                Invoice NewInvoice = await Task.Run(() => this._invoiceControllerMethods.MapCreateInvoiceResourceToInvoice(CreateInvoiceResource));
+                if (ModelState.IsValid)
+                {
+                    Invoice NewInvoice = await Task.Run(() => this._invoiceControllerMethods.MapCreateInvoiceResourceToInvoice(CreateInvoiceResource));
 
-                if (NewInvoice == null)
-                    return Content(HttpStatusCode.NotAcceptable, "Invoice data not acceptable");
+                    if (NewInvoice == null)
+                        return Content(HttpStatusCode.NotAcceptable, "Invoice data not acceptable");
 
-                this._unitOfWork.Invoices.Add(NewInvoice);
-                this._unitOfWork.Complete();
+                    this._unitOfWork.Invoices.Add(NewInvoice);
+                    this._unitOfWork.Complete();
 
-                return Content(HttpStatusCode.Created, "Invoice added");
+                    return Content(HttpStatusCode.Created, "Invoice added");
+                }
+                else
+                    return BadRequest();
             }
-            else
-                return BadRequest();
+            catch
+            {
+                return Content(HttpStatusCode.Conflict, "Something went wrong");
+            }
         }
     }
 }

@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201709240635134_FixChangesMadeForInvoice.Designer.cs">
       <DependentUpon>201709240635134_FixChangesMadeForInvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709250727557_InvoicePaymentTableAdded.cs" />
+    <Compile Include="Migrations\201709250727557_InvoicePaymentTableAdded.Designer.cs">
+      <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
     <Compile Include="Persistence\Repositories\CounterRepository.cs" />
@@ -132,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709240635134_FixChangesMadeForInvoice.resx">
       <DependentUpon>201709240635134_FixChangesMadeForInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709250727557_InvoicePaymentTableAdded.resx">
+      <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

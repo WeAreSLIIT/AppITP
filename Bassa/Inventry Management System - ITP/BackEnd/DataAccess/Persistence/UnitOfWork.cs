@@ -1,4 +1,5 @@
-﻿using DataAccess.Core;
+﻿using System;
+using DataAccess.Core;
 using DataAccess.Core.Repositories;
 using DataAccess.Persistence.Repositories;
 
@@ -21,6 +22,7 @@ namespace DataAccess.Persistence
         public IInvoiceRepository Invoices { get; private set; }
         public IProductRepository Products { get; private set; }
         public IPaymentMethodRepository PaymentMethods { get; private set; }
+        public IInvoicePaymentMethodRepository InvoicePaymentMethods { get; private set; }
 
         //public UnitOfWork(InventryMangementSystemDbContext Context)
         public UnitOfWork()
@@ -40,6 +42,7 @@ namespace DataAccess.Persistence
             Invoices = new InvoiceRepository(this._context);
             Products = new ProductRepository(this._context);
             PaymentMethods = new PaymentMethodRepository(this._context);
+            InvoicePaymentMethods = new InvoicePaymentMethodRepository(this._context);
         }
 
         public int Complete()

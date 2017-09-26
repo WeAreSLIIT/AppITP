@@ -1,5 +1,6 @@
 ﻿using DataAccess.Core.Domain;
 using DataAccess.Core.Repositories;
+using System.Linq;
 
 namespace DataAccess.Persistence.Repositories
 {
@@ -19,7 +20,7 @@ namespace DataAccess.Persistence.Repositories
 
         public InvoicePaymentMethod Get(long InvoiceID, long PaymentMethodID)
         {
-            this._context.InvoicePaymentMethod
+            return this._context.InvoicePaymentMethods.Where(ipm => ipm.InvoiceID == InvoiceID && ipm.PaymentMethodID == PaymentMethodID).SingleOrDefault();
         }
     }
 }

@@ -40,7 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APICall\BaseHttpAPICall.cs" />
+    <Compile Include="APICall\ServerConnectionAPICall.cs" />
+    <Compile Include="Core\Domain\ServerData.cs" />
+    <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Repositories\" />
+    <Folder Include="Persistence\Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

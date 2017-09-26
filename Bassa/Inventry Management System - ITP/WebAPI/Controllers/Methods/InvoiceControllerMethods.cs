@@ -94,14 +94,14 @@ namespace WebAPI.Controllers.Methods
                     else
                         return null;
 
-                    //check payment methods are real and converte payment method name to PaymentMethod objects
-                    ICollection<PaymentMethod> PaymentMethods = new List<PaymentMethod>();
-                    PaymentMethods = new PaymentMethodControllerMethods(this._unitOfWork).MapPaymentMethodNamesToPaymentMethods(SentInvoiceResource.Payments);
+                    //check payment methods are real and convert payment method name to InvoicePaymentMethod objects
+                    ICollection<InvoicePaymentMethod> InvoicePaymentMethods = new List<InvoicePaymentMethod>();
+                    InvoicePaymentMethods = new InvoicePaymentMethodControllerMethods(this._unitOfWork).MapListInvoicePaymentMethodResourcesToListInvoicePaymentMethods(SentInvoiceResource.Payments);
 
-                    if (PaymentMethods == null || PaymentMethods.Count == 0)
+                    if (InvoicePaymentMethods == null || InvoicePaymentMethods.Count == 0)
                         return null;
 
-                    NewInvoice.PaymentMethods = PaymentMethods;
+                    NewInvoice.InvoicePaymentMethods = InvoicePaymentMethods;
 
                     //check sende product are real and if it isn't reject
                     ICollection<InvoiceProduct> TempInvoiceProducts = new List<InvoiceProduct>();
@@ -132,6 +132,9 @@ namespace WebAPI.Controllers.Methods
 
         public InvoiceResource MapInvoiceToInvoiceResource(Invoice Invoice)
         {
+            if (Invoice == null)
+                return null;
+
             InvoiceResource InvoiceResource = new InvoiceResource()
             {
                 InvoiceId = Invoice.InvoicePublicID,
@@ -146,13 +149,46 @@ namespace WebAPI.Controllers.Methods
                     BranchID = Invoice.Counter.BranchID,
                     CouterNo = Invoice.Counter.BranchCounterNo
                 },
-                PurchasedBy = Invoice.InvoiceCustomer.CustomerID,
-                InvoiceDeal = Invoice.InvoiceDeal.InvoiceDealDiscountID
+                PurchasedBy = Invoice.InvoiceCustomer == null ? (long?)null : Invoice.InvoiceCustomer.CustomerID,
+                InvoiceDeal = Invoice.InvoiceDeal == null ? (long?)null : Invoice.InvoiceDeal.InvoiceDealDiscountID
             };
 
+            foreach (InvoiceProduct InvoiceProduct in Invoice.InvoiceProducts)
+            {
+                InvoiceResource.Products.Add(
+                    new InvoiceProductResource()
+                    {
+                        ID = InvoiceProduct.Product.ProductPublicID,
+                        Quantity = InvoiceProduct.Quantity
+                    });
+            }
 
+            foreach (InvoicePaymentMethod InvoicePaymentMethod in Invoice.InvoicePaymentMethods)
+            {
+                InvoiceResource.Payments.Add(
+                    new InvoicePaymentMethodResource()
+                    {
+                        Method = InvoicePaymentMethod.PaymentMethod.PaymentMethodName,
+                        Amount = InvoicePaymentMethod.Amount
+                    });
+            }
 
             return InvoiceResource;
+        }
+
+        public ICollection<InvoiceResource> MapListInvoiceToListInvoiceResource(ICollection<Invoice> Invoices)
+        {
+            if (Invoices == null || Invoices.Count == 0)
+                return null;
+
+            ICollection<InvoiceResource> InvoiceResources = new List<InvoiceResource>();
+
+            foreach(Invoice Invoice in Invoices)
+            {
+                InvoiceResources.Add(this.MapInvoiceToInvoiceResource(Invoice));
+            }
+
+            return InvoiceResources;
         }
     }
 }

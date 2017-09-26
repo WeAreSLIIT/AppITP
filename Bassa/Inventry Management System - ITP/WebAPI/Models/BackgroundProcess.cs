@@ -25,19 +25,19 @@ namespace WebAPI.Models
         #region Background Process of make all online apps to offline
 
         private static bool CounterOnlineStatusProcessRunning = false;
-        private static List<Counter> CheckingOnlineCounters = new List<Counter>();
+        private static List<Counter> AvailableCounters = new List<Counter>();
         private static List<Counter> LastOnlineCounters = new List<Counter>();
 
         private static void InitializingCountersList()
         {
-            CheckingOnlineCounters = new UnitOfWork().Counters.Search(c => c.Disabled == false).ToList();
+            AvailableCounters = new UnitOfWork().Counters.Search(c => c.Disabled == false).ToList();
         }
 
         private static void CounterOnlineStatus()
         {
             InitializingCountersList();
 
-            if (!(CheckingOnlineCounters == null || CheckingOnlineCounters.Count == 0))
+            if (!(AvailableCounters == null || AvailableCounters.Count == 0))
             {
                 System.Timers.Timer Timer = new System.Timers.Timer();
 
@@ -47,7 +47,7 @@ namespace WebAPI.Models
 
                     LastOnlineCounters.Clear();
 
-                    CheckingOnlineCounters.Where(c => c.Online == true).ToList()
+                    AvailableCounters.Where(c => c.Online == true).ToList()
                         .ForEach((Counter c) =>
                         {
                             Counter OldCounter = new Counter()
@@ -73,7 +73,7 @@ namespace WebAPI.Models
 
         public static bool? CheckCounterIsOnline(long CounterID)
         {
-            Counter ResultCounter = CheckingOnlineCounters.SingleOrDefault(c => c.CounterID == CounterID);
+            Counter ResultCounter = AvailableCounters.SingleOrDefault(c => c.CounterID == CounterID);
 
             if (ResultCounter == null)
                 return null;
@@ -91,12 +91,34 @@ namespace WebAPI.Models
 
         public static bool? CheckCounterIsOnline(long BranchID, long CounterNo)
         {
-            Counter ResultCounter = CheckingOnlineCounters.SingleOrDefault(c => c.BranchID == BranchID && c.BranchCounterNo == CounterNo);
+            Counter ResultCounter = AvailableCounters.SingleOrDefault(c => c.BranchID == BranchID && c.BranchCounterNo == CounterNo);
 
             if (ResultCounter == null)
                 return null;
 
             return CheckCounterIsOnline(ResultCounter.CounterID);
+        }
+
+        public static bool SetCounterOnline(long BranchID, long CounterNo)
+        {
+            Counter ResultCounter = AvailableCounters.SingleOrDefault(c => c.BranchID == BranchID && c.BranchCounterNo == CounterNo);
+
+            if (ResultCounter == null)
+                return false;
+
+            ResultCounter.Online = true;
+            return true;
+        }
+
+        public static bool SetCounterOnline(long CounterID)
+        {
+            Counter ResultCounter = AvailableCounters.SingleOrDefault(c => c.CounterID == CounterID);
+
+            if (ResultCounter == null)
+                return false;
+
+            ResultCounter.Online = true;
+            return true;
         }
 
         public static void RefreshCounterOnlineStatus()

@@ -18,7 +18,7 @@ namespace DataAccess.Persistence.Repositories
 
         public Invoice Get(string PublicID)
         {
-            return this._context.Invoices.SingleOrDefault(i => i.InvoicePublicID == PublicID);
+            return this._context.Invoices.SingleOrDefault(i => i.InvoicePublicID.ToLower().Equals(PublicID.ToLower()));
         }
 
         public long? GetInvoiceID(string PublicID)
@@ -38,15 +38,58 @@ namespace DataAccess.Persistence.Repositories
             return this._context.Invoices.Where(i => i.InvoiceID == InvoiceID).Select(i => i.InvoicePublicID).SingleOrDefault();
         }
 
+        public Invoice GetInvoiceWithAllData(long InvoiceID)
+        {
+            return this._context.Invoices
+                .Include(i => i.Counter)
+                .Include(i => i.InvoiceCustomer)
+                .Include(i => i.InvoiceDeal)
+                .Include(i => i.InvoicePaymentMethods)
+                .Include(i => i.InvoicePaymentMethods.Select(pm => pm.PaymentMethod))
+                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoiceProducts)
+                .Include(i => i.InvoiceProducts.Select(ip => ip.Product))
+                .Where(i => i.InvoiceID == InvoiceID).SingleOrDefault();
+        }
+
+        public Invoice GetInvoiceWithAllData(string PublicID)
+        {
+            return this._context.Invoices
+                .Include(i => i.Counter)
+                .Include(i => i.InvoiceCustomer)
+                .Include(i => i.InvoiceDeal)
+                .Include(i => i.InvoicePaymentMethods)
+                .Include(i => i.InvoicePaymentMethods.Select(pm => pm.PaymentMethod))
+                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoiceProducts)
+                .Include(i => i.InvoiceProducts.Select(ip => ip.Product))
+                .Where(i => i.InvoicePublicID.ToLower().Equals(PublicID.ToLower())).SingleOrDefault();
+        }
+
+        public ICollection<Invoice> GetAllInvoicesWithAllData()
+        {
+            return this._context.Invoices
+                .Include(i => i.Counter)
+                .Include(i => i.InvoiceCustomer)
+                .Include(i => i.InvoiceDeal)
+                .Include(i => i.InvoicePaymentMethods)
+                .Include(i => i.InvoicePaymentMethods.Select(pm => pm.PaymentMethod))
+                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoiceProducts)
+                .Include(i => i.InvoiceProducts.Select(ip => ip.Product))
+                .ToList();
+        }
+
         public Invoice GetInvoiceWithData(long InvoiceID)
         {
             return this._context.Invoices
                 .Include(i => i.Counter)
                 .Include(i => i.InvoiceCustomer)
                 .Include(i => i.InvoiceDeal)
-                .Include(i => i.PaymentMethods)
-                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoicePaymentMethods)
+                .Include(i => i.InvoicePaymentMethods.Select(pm => pm.PaymentMethod))
                 .Include(i => i.InvoiceProducts)
+                .Include(i => i.InvoiceProducts.Select(ip => ip.Product))
                 .Where(i => i.InvoiceID == InvoiceID).SingleOrDefault();
         }
 
@@ -56,9 +99,10 @@ namespace DataAccess.Persistence.Repositories
                 .Include(i => i.Counter)
                 .Include(i => i.InvoiceCustomer)
                 .Include(i => i.InvoiceDeal)
-                .Include(i => i.PaymentMethods)
-                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoicePaymentMethods)
+                .Include(i => i.InvoicePaymentMethods.Select(pm => pm.PaymentMethod))
                 .Include(i => i.InvoiceProducts)
+                .Include(i => i.InvoiceProducts.Select(ip => ip.Product))
                 .Where(i => i.InvoicePublicID == PublicID).SingleOrDefault();
         }
 
@@ -68,9 +112,10 @@ namespace DataAccess.Persistence.Repositories
                 .Include(i => i.Counter)
                 .Include(i => i.InvoiceCustomer)
                 .Include(i => i.InvoiceDeal)
-                .Include(i => i.PaymentMethods)
-                .Include(i => i.IssuedBy)
+                .Include(i => i.InvoicePaymentMethods)
+                .Include(i => i.InvoicePaymentMethods.Select(pm => pm.PaymentMethod))
                 .Include(i => i.InvoiceProducts)
+                .Include(i => i.InvoiceProducts.Select(ip => ip.Product))
                 .ToList();
         }
     }
