@@ -7,223 +7,241 @@
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:custom="clr-namespace:Styles.Controler;assembly=Styles"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="500" >
-    
-    <Grid Background="White" Margin="5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+             d:DesignHeight="800" d:DesignWidth="500">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid Background="White">
+        <Grid Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" FontSize="24" FontWeight="Bold" Text="Invoice Bill" Margin="0 0 0 10"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="1" Padding="5 0"
-                              HorizontalScrollBarVisibility="Disabled" 
-                              VerticalScrollBarVisibility="Auto">
+                <TextBlock Grid.Row="0" FontSize="24" FontWeight="Bold" Text="Invoice Bill" Margin="0 0 0 10"/>
 
-            <DockPanel LastChildFill="False" MinHeight="500">
-                <StackPanel DockPanel.Dock="Bottom">
+                <Grid Grid.Row="1" Margin="5 0">
 
-                    <Grid Margin="0 10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <DockPanel LastChildFill="False">
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
+                        <StackPanel DockPanel.Dock="Bottom">
 
-                        <StackPanel Margin="0 0 0 10" Grid.Row="0" Grid.ColumnSpan="2">
-                            <Grid>
+                            <Grid Margin="0 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="150"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Text="Add Product" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
-                                <TextBox Grid.Column="1" FontSize="16" Padding="5"/>
-                                <Button Grid.Column="2" Style="{StaticResource btn-info}" Content="Search" Margin="5 0 0 0" FontSize="18"/>
-                            </Grid>
-                        </StackPanel>
-                        
-                        <Separator Grid.Row="1" Grid.ColumnSpan="3"/>
-                        
-                        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="200"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Text="Gross Total" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="3520.40" FontSize="18" FontWeight="Bold" 
-                                           HorizontalAlignment="Right"/>
-                            </Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
 
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Text="Discount" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="-20.40" FontSize="18" FontWeight="Bold" 
-                                           HorizontalAlignment="Right"/>
-                            </Grid>
-
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Text="Net Total" FontSize="22" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="3500.00" FontSize="24" FontWeight="Bold" 
-                                           HorizontalAlignment="Right"/>
-                            </Grid>
-                        </StackPanel>
-
-                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Payment Method" FontSize="18" FontWeight="Bold"/>
-                        <StackPanel Grid.Column="1" Grid.Row="4">
-                            <StackPanel>
-                                <ListView x:Name="InvoicePaymentMethodListView" Margin="0 0 0 10" BorderBrush="Transparent" BorderThickness="0">
-                                    <ListViewItem>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="2*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Grid.Column="0" Text="Sampath" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="1" Text="3000.00" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
-                                        </Grid>
-                                    </ListViewItem>
-                                    
-                                    <ListViewItem>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="2*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Grid.Column="0" Text="Cash" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="1" Text="1000.00" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
-                                        </Grid>
-                                    </ListViewItem>
-                                </ListView>
-                                
-                                
-                                <StackPanel Margin="0 0 0 0">
+                                <StackPanel Margin="0 0 0 10" Grid.Row="0" Grid.ColumnSpan="2">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2*"/>
-                                            <ColumnDefinition Width="*" MaxWidth="150"/>
+                                            <ColumnDefinition MinWidth="150" Width="*"/>
+                                            <ColumnDefinition Width="160"/>
+                                            <ColumnDefinition Width="160"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Grid.Column="0" Text="Payment Type" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <!--<TextBox Grid.Column="1" FontSize="16" Padding="5"/>-->
-                                        <Button Grid.Column="2" Style="{StaticResource btn-info}" Content="Add" Margin="5 0 0 0"/>
+                                        <TextBlock Grid.Column="0" Text="Invoice Item Actions" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" HorizontalAlignment="Right"/>
+                                        <Button x:Name="SearchProduct" Grid.Column="1" Style="{StaticResource btn-info}" Content="Product Search" Margin="10 0 0 0" FontSize="16" Click="SearchProduct_Click"/>
+                                        
+                                        <Button x:Name="RemoveProduct" Grid.Column="2" Style="{StaticResource btn-danger}" Content="Remove Selected" Margin="10 0 0 0" FontSize="16" Click="RemoveProduct_Click"/>
                                     </Grid>
                                 </StackPanel>
+
+                                <Separator Grid.Row="1" Grid.ColumnSpan="3"/>
+
+                                <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Gross Total" FontSize="18" FontWeight="Bold"/>
+                                        <TextBlock x:Name="GrossTotalTextBlock" Grid.Column="1" Grid.Row="0" Text="--.--" FontSize="20" FontWeight="Bold" 
+                                           HorizontalAlignment="Right"/>
+                                    </Grid>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Discount" FontSize="16" FontWeight="Bold"/>
+                                        <TextBlock x:Name="InvoiceDiscountTextBlock" Grid.Column="1" Grid.Row="0" Text="--.--" FontSize="18" FontWeight="Bold" 
+                                           HorizontalAlignment="Right"/>
+                                    </Grid>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Net Total" FontSize="22" FontWeight="Bold"/>
+                                        <TextBlock x:Name="NetTotalTextBlock" Grid.Column="1" Grid.Row="0" Text="--.--" FontSize="24" FontWeight="Bold" 
+                                           HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="0" Grid.Row="4" Text="Payment Method" FontSize="18" FontWeight="Bold"/>
+                                <StackPanel Grid.Column="1" Grid.Row="4">
+                                    <StackPanel>
+                                        <ListView x:Name="InvoicePaymentMethodListView" Margin="0 0 0 10" BorderBrush="Transparent" BorderThickness="0">
+                                            <ListViewItem>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock Grid.Column="0" Text="Sampath" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="3000.00" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </ListViewItem>
+
+                                            <ListViewItem>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock Grid.Column="0" Text="Cash" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="1000.00" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </ListViewItem>
+                                        </ListView>
+
+
+                                        <StackPanel Margin="0 0 0 0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*"/>
+                                                    <ColumnDefinition Width="*" MaxWidth="150"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="Payment Type" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                <!--<TextBox Grid.Column="1" FontSize="16" Padding="5"/>-->
+                                                <Button Grid.Column="2" Style="{StaticResource btn-primary}" Content="Add" Margin="5 0 0 0"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="0" Grid.Row="6" Text="Change" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                                <TextBlock Grid.Column="1" Grid.Row="6" Text="500.00" FontSize="20" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+
+                            </Grid>
+
+                            <StackPanel Margin="0 0 0 10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="Customer" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                    <Button Grid.Column="2" Style="{StaticResource btn-info}" Content="Search" Margin="5 0 0 0"/>
+                                </Grid>
                             </StackPanel>
                         </StackPanel>
 
-                        <TextBlock Grid.Column="0" Grid.Row="6" Text="Change" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom"/>
-                        <TextBlock Grid.Column="1" Grid.Row="6" Text="500.00" FontSize="20" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        <Grid DockPanel.Dock="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    </Grid>
+                            <Grid Margin="0 0 0 5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="200*"/>
+                                    <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                                    <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                                    <ColumnDefinition MinWidth="75" Width="75*" MaxWidth="150"/>
+                                    <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
+                                </Grid.ColumnDefinitions>
 
-                    <StackPanel Margin="0 0 0 10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="150"/>
-                            </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="Customer" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
-                            <Button Grid.Column="2" Style="{StaticResource btn-danger}" Content="Search" Margin="5 0 0 0"/>
+                                <TextBlock FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">No</TextBlock>
+                                <TextBlock Grid.Column="1" FontSize="16" FontWeight="Bold" Padding="5 0">Product</TextBlock>
+                                <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Price</TextBlock>
+                                <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Discount</TextBlock>
+                                <TextBlock Grid.Column="4" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Quantity</TextBlock>
+                                <TextBlock Grid.Column="5" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" Padding="0 0 10 0">Amount</TextBlock>
+                            </Grid>
+                            <Separator Grid.Row="1" Padding="0" Margin="0"/>
+                            <Grid Grid.Row="2">
+                                <ListBox x:Name="InvoiceItemsList"
+                                     Background="Transparent" 
+                                     ScrollViewer.CanContentScroll="False" 
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                     Padding="0" Margin="0" KeyDown="InvoiceItemsList_KeyDown" />
+
+                            </Grid>
                         </Grid>
-                    </StackPanel>
-                </StackPanel>
-
-                <Grid DockPanel.Dock="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <Grid Margin="0 0 0 5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="200*"/>
-                            <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
-                            <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
-                            <ColumnDefinition MinWidth="75" Width="75*" MaxWidth="150"/>
-                            <ColumnDefinition MinWidth="100" Width="100*" MaxWidth="200"/>
-                        </Grid.ColumnDefinitions>
-
-
-                        <TextBlock FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">No</TextBlock>
-                        <TextBlock Grid.Column="1" FontSize="16" FontWeight="Bold" Padding="5 0">Product</TextBlock>
-                        <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Price</TextBlock>
-                        <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Discount</TextBlock>
-                        <TextBlock Grid.Column="4" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center">Quantity</TextBlock>
-                        <TextBlock Grid.Column="5" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" Padding="0 0 10 0">Amount</TextBlock>
-                    </Grid>
-                    <ListBox x:Name="InvoiceItemList"
-                                 Grid.Row="1" Background="Transparent" 
-                                 ScrollViewer.CanContentScroll="False" 
-                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                                 ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                 Padding="0" Margin="0">
-
-                        <ListBox.Resources>
-                            <Style TargetType="{x:Type ListBoxItem}">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Padding" Value="0 3"/>
-                                <Setter Property="Margin" Value="0"/>
-
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                            <Border BorderBrush="{TemplateBinding BorderBrush}" 
-                                                        BorderThickness="{TemplateBinding BorderThickness}" 
-                                                        Background="{TemplateBinding Background}"
-                                                        Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                            </Border>
-
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ListBox.Resources>
-
-                        <ListBoxItem>
-                            <custom:InvoiceItemContent x:Name="LI1" ItemNo="1" ProductID="Product xxx"
-                                                               ProductDescription="Marmite" ItemPrice="100.00" 
-                                                               Quantity="1" TotalPrice="100.00" Discount="-" />
-                        </ListBoxItem>
-                    </ListBox>
-
+                    </DockPanel>
                 </Grid>
+            </Grid>
+        </Grid>
 
+        <Grid x:Name="SearchProductsPanel" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" MinWidth="350" MaxWidth="600"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            </DockPanel>
-        </ScrollViewer>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="SearchProductsPanelBackground" Background="{StaticResource LeftNav-Background-SolidColorBrush}" Opacity="0.7" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+
+            <Border Background="#f7f7f7" Grid.Column="1" Grid.Row="1" BorderBrush="{StaticResource LeftNav-Background-SolidColorBrush}" BorderThickness="5" CornerRadius="5">
+                <Grid>
+                    <DockPanel LastChildFill="True">
+                        <StackPanel DockPanel.Dock="Top">
+                            <TextBlock Grid.Column="0" Text="Search Product" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                            <Separator/>
+                            <TextBox Grid.Column="1" FontSize="16" Padding="5" Margin="5" Controls:TextBoxHelper.Watermark="Product key words"/>
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Bottom">
+                            <Separator/>
+                            <Button Grid.Column="2" Style="{StaticResource btn-primary}" Content="Add" Margin="5" IsDefault="True"/>
+                        </StackPanel>
+
+                        <Grid>
+                            <ListBox x:Name="ProductItemsList"
+                                     Background="Transparent" 
+                                     ScrollViewer.CanContentScroll="False" 
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                     Padding="5" Margin="0"/>
+                        </Grid>
+                    </DockPanel>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

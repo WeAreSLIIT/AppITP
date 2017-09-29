@@ -157,6 +157,8 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Nav\Settings.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ModelView\ApplicationContent\InvoiceContent\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

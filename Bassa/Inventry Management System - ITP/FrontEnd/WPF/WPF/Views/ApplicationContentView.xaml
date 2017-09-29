@@ -43,8 +43,8 @@
                     <StackPanel>
                         <!-- Navigation Buttons -->
                         <custom:NavigationButton x:Name="navButton" Style="{StaticResource btn-nav-default}" Content="Invoices" Height="55" Image="../Resources/Images/Nav/Bill.png" Margin="0, 10" IsActive="True"/>
-                        <custom:NavigationButton x:Name="navButton2" Style="{StaticResource btn-nav-default}" Content="Customer" Height="55" Image="../Resources/Images/Nav/Customer.png" Margin="0, 10"/>
-                        <custom:NavigationButton x:Name="navButton3" Style="{StaticResource btn-nav-default}" Content="Products" Height="55" Image="../Resources/Images/Nav/Product.png" Margin="0, 10"/>
+                        <custom:NavigationButton x:Name="navButton2" Style="{StaticResource btn-nav-default}" Content="Customer" Height="55" Image="../Resources/Images/Nav/Customer.png" Margin="0, 10" Visibility="Collapsed"/>
+                        <custom:NavigationButton x:Name="navButton3" Style="{StaticResource btn-nav-default}" Content="Products" Height="55" Image="../Resources/Images/Nav/Product.png" Margin="0, 10" Visibility="Collapsed"/>
 
                     </StackPanel>
                 </ScrollViewer>
