@@ -20,18 +20,60 @@ namespace WPF.ModelView.ApplicationContent
         
         //products collection
 
-        ObservableCollection<InvoiceItemContent> Products = new ObservableCollection<InvoiceItemContent>();
+        public ObservableCollection<InvoiceItemContent> ProductsList;
+
+        private string _grossTotal;
+
+        public string GrossTotal
+        {
+            get { return this._grossTotal; }
+            set
+            {
+                this._grossTotal = value;
+                this.NotifyPropertyChanged("GrossTotal");
+            }
+        }
+
+        private string _discount;
+
+        public string Discount
+        {
+            get { return this._discount; }
+            set
+            {
+                this._discount = value;
+                this.NotifyPropertyChanged("Discount");
+            }
+        }
+
+        private string _netTotal;
+
+        public string NetTotal
+        {
+            get { return this._netTotal; }
+            set
+            {
+                this._netTotal = value;
+                this.NotifyPropertyChanged("NetTotal");
+            }
+        }
+
+        public InvoiceContent()
+        {
+            ProductsList = new ObservableCollection<InvoiceItemContent>();
+            this._grossTotal = "0.00";
+            this._discount = "0.00";
+            this._netTotal = "0.00";
+        }
 
         public void AddNewProductToInvoice(InvoiceItemContent Product)
         {
-            Products.Add(Product);
+            ProductsList.Add(Product);
         }
 
         public void RemoveProductByIndex(int Index)
         {
-            Products.RemoveAt(Index);
+            ProductsList.RemoveAt(Index);
         }
-
-        //
     }
 }
