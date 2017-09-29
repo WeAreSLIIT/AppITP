@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F45491C8-131E-4B5B-8D1F-F369D0EAA2E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Domain\Counter.cs" />
+    <Compile Include="Core\Domain\Customer.cs" />
+    <Compile Include="Core\Domain\Discount.cs" />
+    <Compile Include="Core\Domain\Employee.cs" />
+    <Compile Include="Core\Domain\Enums.cs" />
+    <Compile Include="Core\Domain\Invoice.cs" />
+    <Compile Include="Core\Domain\Branch.cs" />
+    <Compile Include="Core\Domain\InvoiceCustomer.cs" />
+    <Compile Include="Core\Domain\InvoiceDeal.cs" />
+    <Compile Include="Core\Domain\InvoiceDealDiscount.cs" />
+    <Compile Include="Core\Domain\InvoiceEmployeeDiscount.cs" />
+    <Compile Include="Core\Domain\InvoicePaymentMethod.cs" />
+    <Compile Include="Core\Domain\InvoiceProduct.cs" />
+    <Compile Include="Core\Domain\PaymentMethod.cs" />
+    <Compile Include="Core\Domain\Product.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Repositories\ICounterRepository.cs" />
+    <Compile Include="Core\Repositories\ICustomerRepository.cs" />
+    <Compile Include="Core\Repositories\IDiscountRepository.cs" />
+    <Compile Include="Core\Repositories\IEmployeeRepository.cs" />
+    <Compile Include="Core\Repositories\IBranchRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoiceCustomerRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoiceDealDiscountRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoiceDealRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoiceEmployeeDiscountRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoicePaymentMethodRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoiceRepository.cs" />
+    <Compile Include="Core\Repositories\IInvoiceProductRepository.cs" />
+    <Compile Include="Core\Repositories\IPaymentMethodRepository.cs" />
+    <Compile Include="Core\Repositories\IProductRepository.cs" />
+    <Compile Include="Core\Repositories\IRepository.cs" />
+    <Compile Include="Migrations\201709222152019_Reinitialize.cs" />
+    <Compile Include="Migrations\201709222152019_Reinitialize.Designer.cs">
+      <DependentUpon>201709222152019_Reinitialize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709222223004_Reinitialize2.cs" />
+    <Compile Include="Migrations\201709222223004_Reinitialize2.Designer.cs">
+      <DependentUpon>201709222223004_Reinitialize2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.cs" />
+    <Compile Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.Designer.cs">
+      <DependentUpon>201709230423574_FixCoutersTableUniqueKeyIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709240635134_FixChangesMadeForInvoice.cs" />
+    <Compile Include="Migrations\201709240635134_FixChangesMadeForInvoice.Designer.cs">
+      <DependentUpon>201709240635134_FixChangesMadeForInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709250727557_InvoicePaymentTableAdded.cs" />
+    <Compile Include="Migrations\201709250727557_InvoicePaymentTableAdded.Designer.cs">
+      <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
+    <Compile Include="Persistence\Repositories\CounterRepository.cs" />
+    <Compile Include="Persistence\Repositories\CustomerRepository.cs" />
+    <Compile Include="Persistence\Repositories\DiscountRepository.cs" />
+    <Compile Include="Persistence\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Persistence\Repositories\BranchRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoiceCustomerRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoiceDealDiscountRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoiceDealRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoiceEmployeeDiscountRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoicePaymentMethodRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoiceProductRepository.cs" />
+    <Compile Include="Persistence\Repositories\InvoiceRepository.cs" />
+    <Compile Include="Persistence\Repositories\PaymentMethodRepository.cs" />
+    <Compile Include="Persistence\Repositories\ProductRepository.cs" />
+    <Compile Include="Persistence\Repositories\Repository.cs" />
+    <Compile Include="Persistence\UnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709222152019_Reinitialize.resx">
+      <DependentUpon>201709222152019_Reinitialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709222223004_Reinitialize2.resx">
+      <DependentUpon>201709222223004_Reinitialize2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.resx">
+      <DependentUpon>201709230423574_FixCoutersTableUniqueKeyIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709240635134_FixChangesMadeForInvoice.resx">
+      <DependentUpon>201709240635134_FixChangesMadeForInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709250727557_InvoicePaymentTableAdded.resx">
+      <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Persistence\EntityConfigurations\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
