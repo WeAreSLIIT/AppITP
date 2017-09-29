@@ -19,7 +19,7 @@
         <td>{{user.Mobile}}</td>
         <td>
           <div class="btn-group">
-           <button class="btn btn-warning" ><i class="fa fa-edit"></i></button>
+           <button class="btn btn-warning" (click)="onClickEdit(i)"><i class="fa fa-edit"></i></button>
             <button class="btn btn-danger" (click)="onClickDelete(i)"><i class="fa fa-trash"></i></button>
           </div>
         </td>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/Rx';
+import { User } from "./../../interfaces/user";
 
 @Component({
   selector: 'app-users-table',
@@ -10,7 +11,7 @@ import 'rxjs/Rx';
 })
 export class UsersTableComponent implements OnInit {
 
-  users : user[];
+  users : User[];
   constructor( private userService:UserService) { }
 
   ngOnInit() {
@@ -28,16 +29,9 @@ export class UsersTableComponent implements OnInit {
     });
   }
 
-  onClickEdit(id){
-    //To Be Developed!
+  onClickEdit(index){
+    this.userService.setSeletetedUser(this.users[index]);
   }
 
 }
 
-interface user {
-  Id : number;
-  FirstName : string;
-  LastName : string;
-  Gender : string;
-  Mobile : string;
-}

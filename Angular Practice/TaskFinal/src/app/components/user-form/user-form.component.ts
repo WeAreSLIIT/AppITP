@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "./../../services/user.service";
-
+import { User } from "./../../interfaces/user";
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
@@ -15,9 +15,12 @@ export class UserFormComponent implements OnInit {
     Mobile    : ''
   } ;
 
+  selectedUser : User ;
+
   constructor(private userService:UserService) { }
 
   ngOnInit() {
+    this.user = this.userService.getSelectedUser();
   }
 
   onSubmit(){

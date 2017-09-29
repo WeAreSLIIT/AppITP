@@ -1,0 +1,184 @@
+C# Notes
+
+Console.WriteLine("Hello World");
+string line = Console.ReadLine();
+
+Console.WriteLine("Hello" + var1 );
+Console.WriteLine("Hello {0}", var1 );
+
+##Show a Message Box
+MessageBox.Show('This is the Message');
+MessageBox.Show('This is the Message', "Title Here" );
+
+
+##Variables
+int, long,  float , bool, string , double , decimal
+
+object - it can hold anything
+
+Escape Seaquence \n  \t \" \\  ...
+
+Verbatim Litarals 
+stirng url = @"http:\\www.Anything.com\show\here";
+
+Value Types And Reference Types
+VT - int , float , double ... (Default Value 0 )
+RF -  Classes , Interfaces , Delegate Arrays ... (Default value null)
+
+To make Value Type Nullable use ?
+
+	int? num = null;
+
+	(num.Value == null) 
+
+Null Colasing Operator ??
+
+	null to notnull 
+	int num1 ; int? num2;
+
+	num1 = num2.Value;
+	num1 = (int) num2;
+
+	instead of this 
+
+	int num1 = num2 ?? 0;
+
+#Parsing Types
+	Variable.ToString();
+
+#Data Type Conversion
+
+Implicit  - small data type to big data type.
+Explicit -  big data type to small data type  
+	int i = (int) Float;  // Casting 
+	int I = Convert.ToInt32(Float) // Using Convert Class
+Try Parse 
+	int I = int.Parse(StringNumber); // This also won’t work on “2016IT”
+	
+	int str = “2016IT”
+	int I result =0
+
+	bool b = int.TryParse(str, out I ); // No Exceptions return true if conversion success
+	
+
+Comments  Single Line //  Multi Line  /*  */  XML Documentation Comment ///  
+
+Access Form Objects Properties
+	textBox.Text = "Any";
+	btnFirst.Enabled = false;
+
+	Height , Length , MaxLength
+
+if (){} 
+if (){} else{} 
+if (){} else if (){} else{} 
+if() { if(){} else{} } else { if(){} else{}}
+
+if(!CheckBox.Checked){}
+
+switch(string or int) {
+	case "": ... break;
+	default :
+}
+
+break;
+
+Ternary Operator ?:
+varType i = (expression) ? ValueifTrue : ValueIfFalse ;
+
+Concadidate Operator +
+Arithmetic Operators + - / * % 
+Comparison Operators > < => =< == !=
+Logical Operators && || !  Single | & (check both conditions anyway)
+Assingment Operator  = += -= *= /=
+increment decrement x++ ,x-- ,++x ,--x
+
+#Arrays
+
+	string[] myArr  = new string[5];
+	myArr[0] = "Hey";
+	string[] myArr = {"Any" , "Any"};l
+
+#List (Don't have to specify items )
+
+	List<TypeOfVaribale> myList =  new List<TypeOfVaribale> ();
+	myList.Add( item );
+	myList[0] 
+
+foreach(dataType item in items){...}; // For arrays or lists
+
+for (int i=0 , i<10 ; i++) {...};
+while(i < 10){...}
+do {...} while (1<10);
+
+try {...} catch {...}
+try {...} catch (Exception e) {...} finally {...}
+
+Methods
+
+ returnType methodName(arguments){ ...; return x; }
+
+continue; break;
+
+#NameSpace namespace used to organize classes interfaces and strucks. namespaces can be nested.
+
+to use namespace 
+ 	using NameSpaceName.ChildNameSpaceName;
+
+Constructor Class A {  A() {}  , A( argumetns ){} )}
+
+Make new Instance
+	
+	MyClass  myc =  new MyClass(arguments);
+	myc.property ;
+	myc.method();
+
+Access Modifiers
+	public private protected and default
+
+Overloading - Same method name different parameters
+
+Enumaration 
+	
+	enum season { Winter, Summer }
+	enum season { Winter = 0, Summer = 1 }
+	enum season : byte { Winter = 0, Summer = 1 }
+
+	season newSeason = season.Summer;
+
+Property 
+	string name { get ; set ;}
+	string name { public get ; private set ;}
+	string name { public get ; private set ;}
+	string name { public get { reutn "my nam " + name ;}}
+	string name { set { if (value == "") {...}  }  }
+
+New Exeption
+
+method (){
+	  if ( ) { 
+	  		throw new Exception ("Your new exeption message");
+	  }
+	 }
+or 
+
+ static Exception myExce = new Exception ("This is my Exception ");
+ throw myExce;
+
+ Inheritance 
+ 	Class childClass : parentClass  {...}
+
+ Overriding  - Modify the parentClass method or property
+
+ Interfaces (When you can't inherit 2 classes , But Class can inherit 1 Class and many Interfaces)
+
+ 	interface IMyNewInterface {
+
+ 	}
+ 	Class clildClas : parentClass , IMyNewInterface {...}
+
+Indexers 
+	public string this[int index] {
+		get;
+		set;
+	}

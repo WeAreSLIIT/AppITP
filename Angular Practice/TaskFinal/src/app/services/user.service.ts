@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Http,Headers } from "@angular/http";
 import 'rxjs/add/operator/map';
+import { User  } from "./../interfaces/user";
 
 @Injectable()
 export class UserService {
 
+   selectedUser : User ={
+    Id : 0,
+    FirstName :'',
+    LastName  :'',
+    Gender    :'',
+    Mobile    : ''
+  }  ;
+ 
   url = 'http://localhost:5556/api/user/';
   constructor(private http:Http) { }
 
@@ -12,7 +21,6 @@ export class UserService {
     return this.http.get(this.url)
       .map( res => res.json());
   }
-  
   
   
   getUserById(id){
@@ -34,5 +42,13 @@ export class UserService {
   deleteUser(id){
     return this.http.delete(this.url + id)
     .map(res => res.json());
+  }
+
+  setSeletetedUser (user){
+    this.selectedUser = user;
+  }
+
+  getSelectedUser(){
+    return this.selectedUser;
   }
 }
