@@ -78,25 +78,36 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("api/counters/{CounterNo}/branch/{BranchID}")]
-        public IHttpActionResult SetCouterIsOnline([FromUri]long CounterNo, [FromUri]long BranchID, [FromUri]string App = "")
+        [Route("api/counters")]
+        public IHttpActionResult SetCouterIsOnline([FromBody]CounterResource CounterResource, [FromUri]string App = "")
         {
             try
             {
-                bool SettingCounterOnline = BackgroundProcess.SetCounterOnline(BranchID, CounterNo);
-
-                if (SettingCounterOnline)
+                if (!String.IsNullOrEmpty(App.Trim()) && (App.Trim().ToLower()).Equals(AppAuthID))
                 {
-                    ServerOnlineResource ServerOnlineResource = new ServerOnlineResource()
+                    if (CounterResource == null)
+                        return BadRequest();
+
+                    long CounterNo = CounterResource.CouterNo;
+                    long BranchID = CounterResource.BranchID;
+
+                    bool SettingCounterOnline = BackgroundProcess.SetCounterOnline(BranchID, CounterNo);
+
+                    if (SettingCounterOnline)
                     {
-                        ServerUp = true,
-                        Time = TimeConverterMethods.GetCurrentTimeInLong()
-                    };
+                        ServerOnlineResource ServerOnlineResource = new ServerOnlineResource()
+                        {
+                            ServerUp = true,
+                            Time = TimeConverterMethods.GetCurrentTimeInLong()
+                        };
 
-                    return Content(HttpStatusCode.OK, ServerOnlineResource);
+                        return Content(HttpStatusCode.OK, ServerOnlineResource);
+                    }
+
+                    return NotFound();
                 }
-
-                return NotFound();
+                else
+                    return BadRequest();
             }
             catch
             {

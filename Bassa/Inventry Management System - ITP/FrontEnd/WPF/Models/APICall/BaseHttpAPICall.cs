@@ -8,9 +8,12 @@ namespace Models.APICall
     {
         private string _baseAddress = "http://localhost:5556/";
         protected HttpClient _httpClient;
+        protected string _appID;
 
         public BaseHttpAPICall()
         {
+            this._appID = "csbwpfapp";
+
             this._httpClient = new HttpClient();
             this._httpClient.BaseAddress = new Uri(this._baseAddress);
             this._httpClient.DefaultRequestHeaders.Accept.Clear();

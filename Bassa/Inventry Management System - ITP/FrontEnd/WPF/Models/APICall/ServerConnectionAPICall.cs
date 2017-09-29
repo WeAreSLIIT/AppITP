@@ -5,11 +5,14 @@ namespace Models.APICall
 {
     public class ServerConnectionAPICall : BaseHttpAPICall
     {
-        public async Task<bool> CheckServerStatus()
-        {
-            //HttpResponseMessage Respose = await base._httpClient.PutAsync("api/counters/");
+        private long _branchID;
+        private long _counterNo;
 
-            return false;
-        }
+        //public async Task<bool> CheckServerStatus()
+        //{
+        //    HttpResponseMessage Respose = await base._httpClient.PutAsync($"api/counters", );
+
+        //    return false;
+        //}
     }
 }
