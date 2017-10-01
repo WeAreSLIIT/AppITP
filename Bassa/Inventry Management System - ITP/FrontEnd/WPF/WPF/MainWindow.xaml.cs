@@ -1,5 +1,7 @@
 ﻿using MahApps.Metro.Controls;
+using Models.Persistence;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using WPF.Views;
 
 namespace WPF
@@ -68,13 +70,28 @@ namespace WPF
             InitializeComponent();
             this._isThisFirstTime = true;
 
-            ApplicationPage = ApplicationPage.NotLoggedIn;
-            IsAppLoading = false;
+            ApplicationPage = ApplicationPage.JustLoading;
+            IsAppLoading = true;
+            LoadDatabaseData();
         }
 
         public void ChangeApplicationPagesAnimation(TransitionType AnimateTo)
         {
             this.MainContent.Transition = AnimateTo;
+        }
+
+        public async void LoadDatabaseData()
+        {
+            IsAppLoading = true;
+
+            bool check = await Task.Run(
+                () => 
+                {
+                    return InventryMangementSystemDbContext.InitializeData();
+                });
+
+            IsAppLoading = false;
+            ApplicationPage = ApplicationPage.NotLoggedIn ;
         }
     }
 
@@ -82,6 +99,7 @@ namespace WPF
     {
         NotSetup = 0,
         NotLoggedIn,
-        LoggedIn
+        LoggedIn,
+        JustLoading
     }
 }

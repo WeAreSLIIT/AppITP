@@ -1,4 +1,4 @@
-﻿namespace Models.Core.Domain
+﻿namespace Models.Core
 {
     public class SystemInfo
     {
