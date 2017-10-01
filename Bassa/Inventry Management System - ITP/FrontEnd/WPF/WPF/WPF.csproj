@@ -61,12 +61,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Mappings\ProductMapping.cs" />
     <Compile Include="ModelView\ApplicationContent\InvoiceContent.cs" />
+    <Compile Include="ModelView\ApplicationContent\InvoiceContents\SearchProductContent.cs" />
     <Compile Include="Views\ApplicationContentView.xaml.cs">
       <DependentUpon>ApplicationContentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ApplicationContent\InvoiceContent.xaml.cs">
       <DependentUpon>InvoiceContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationContent\InvoiceContents\SearchCustomerContent.xaml.cs">
+      <DependentUpon>SearchCustomerContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationContent\InvoiceContents\SearchPaymentMethodContent.xaml.cs">
+      <DependentUpon>SearchPaymentMethodContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationContent\InvoiceContents\SearchProductContent.xaml.cs">
+      <DependentUpon>SearchProductContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginContentView.xaml.cs">
       <DependentUpon>LoginContentView.xaml</DependentUpon>
@@ -88,6 +99,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ApplicationContent\InvoiceContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationContent\InvoiceContents\SearchCustomerContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationContent\InvoiceContents\SearchPaymentMethodContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationContent\InvoiceContents\SearchProductContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,8 +180,6 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Nav\Settings.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ModelView\ApplicationContent\InvoiceContent\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

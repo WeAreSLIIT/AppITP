@@ -136,7 +136,7 @@
 
                                                 <TextBlock Grid.Column="0" Text="Payment Type" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                                                 <!--<TextBox Grid.Column="1" FontSize="16" Padding="5"/>-->
-                                                <Button Grid.Column="2" Style="{StaticResource btn-primary}" Content="Add" Margin="5 0 0 0"/>
+                                                <Button  x:Name="SearchPaymentMethod" Grid.Column="2" Style="{StaticResource btn-primary}" Content="Add" Margin="5 0 0 0" Click="SearchPaymentMethod_Click"/>
                                             </Grid>
                                         </StackPanel>
                                     </StackPanel>
@@ -157,7 +157,7 @@
 
                                     <TextBlock Grid.Column="0" Text="Customer" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                                     <TextBlock Grid.Column="1" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
-                                    <Button Grid.Column="2" Style="{StaticResource btn-info}" Content="Search" Margin="5 0 0 0"/>
+                                    <Button x:Name="SearchCustomer" Grid.Column="2" Style="{StaticResource btn-info}" Content="Search" Margin="5 0 0 0" Click="SearchCustomer_Click"/>
                                 </Grid>
                             </StackPanel>
                         </StackPanel>
@@ -203,7 +203,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="SearchProductsPanel" Visibility="Collapsed">
+        <Grid x:Name="ContentPanel" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*" MinWidth="350" MaxWidth="600"/>
@@ -215,33 +215,10 @@
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="SearchProductsPanelBackground" Background="{StaticResource LeftNav-Background-SolidColorBrush}" Opacity="0.7" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+            
+            <Grid x:Name="ContentPanelBackground" Background="{StaticResource LeftNav-Background-SolidColorBrush}" Opacity="0.7" Grid.ColumnSpan="3" Grid.RowSpan="3" MouseUp="ContentPanelBackground_MouseUp"/>
 
-            <Border Background="#f7f7f7" Grid.Column="1" Grid.Row="1" BorderBrush="{StaticResource LeftNav-Background-SolidColorBrush}" BorderThickness="5" CornerRadius="5">
-                <Grid>
-                    <DockPanel LastChildFill="True">
-                        <StackPanel DockPanel.Dock="Top">
-                            <TextBlock Grid.Column="0" Text="Search Product" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
-                            <Separator/>
-                            <TextBox Grid.Column="1" FontSize="16" Padding="5" Margin="5" Controls:TextBoxHelper.Watermark="Product key words"/>
-                        </StackPanel>
-
-                        <StackPanel DockPanel.Dock="Bottom">
-                            <Separator/>
-                            <Button Grid.Column="2" Style="{StaticResource btn-primary}" Content="Add" Margin="5" IsDefault="True"/>
-                        </StackPanel>
-
-                        <Grid>
-                            <ListBox x:Name="ProductItemsList"
-                                     Background="Transparent" 
-                                     ScrollViewer.CanContentScroll="False" 
-                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                                     ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                     Padding="5" Margin="0"/>
-                        </Grid>
-                    </DockPanel>
-                </Grid>
-            </Border>
+            <Controls:TransitioningContentControl x:Name="ContentPanelContent" Grid.Column="1" Grid.Row="1" Transition="Down"/>
         </Grid>
     </Grid>
 </UserControl>

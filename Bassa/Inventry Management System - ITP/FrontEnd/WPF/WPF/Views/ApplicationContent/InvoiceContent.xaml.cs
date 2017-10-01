@@ -1,13 +1,16 @@
-﻿using Styles.Controler;
+﻿using Models.Core;
+using Styles.Controler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using WPFs = WPF.ModelView.ApplicationContent;
+using WPF.Views.ApplicationContent.InvoiceContents;
+using ModelViews = WPF.ModelView.ApplicationContent;
 
 namespace WPF.Views.ApplicationContent
 {
@@ -28,14 +31,55 @@ namespace WPF.Views.ApplicationContent
 
         #endregion
 
-        private ObservableCollection<InvoiceItemContent> _invoiceProducts;
+        //Content Pages
+        private SearchProductContent _productContent;
+        private SearchCustomerContent _customerContent;
+        private SearchPaymentMethodContent _paymentMethodContent;
+
         private Timer _checkQuantityIsCorrectTimer;
 
-        private WPFs.InvoiceContent _invoiceData;
+        private ModelViews.InvoiceContent _invoiceData;
+
+        private byte _invoiceContentCurrentPage;
+
+        public InvoiceContentCurrentPage ContentCurrentPage
+        {
+            get { return (InvoiceContentCurrentPage)this._invoiceContentCurrentPage; }
+            set
+            {
+                this._invoiceContentCurrentPage = (byte)value;
+
+                if (value == InvoiceContentCurrentPage.Invoices)
+                {
+                    this.ContentPanel.Visibility = Visibility.Collapsed;
+                    this.ContentPanelContent.Content = null;
+                }
+                else if (value == InvoiceContentCurrentPage.Product)
+                {
+                    this.ContentPanel.Visibility = Visibility.Visible;
+                    this.ContentPanelContent.Content = this._productContent;
+                }
+                else if (value == InvoiceContentCurrentPage.PaymentMethod)
+                {
+                    this.ContentPanel.Visibility = Visibility.Visible;
+                    this.ContentPanelContent.Content = this._paymentMethodContent;
+                }
+                else if (value == InvoiceContentCurrentPage.Customer)
+                {
+                    this.ContentPanel.Visibility = Visibility.Visible;
+                    this.ContentPanelContent.Content = this._customerContent;
+                }
+            }
+        }
 
         public InvoiceContent()
         {
-            this._invoiceData = new WPFs.InvoiceContent();
+            this._invoiceData = new ModelViews.InvoiceContent();
+            
+            this._productContent = new SearchProductContent(this);
+            this._customerContent = new SearchCustomerContent(this);
+            this._paymentMethodContent = new SearchPaymentMethodContent(this);
+
             InitializeComponent();
 
             //databindings
@@ -70,6 +114,7 @@ namespace WPF.Views.ApplicationContent
             this._checkQuantityIsCorrectTimer.Interval = 0.5 * 1000;
             this._checkQuantityIsCorrectTimer.Enabled = true;
 
+            ContentCurrentPage = InvoiceContentCurrentPage.Invoices;
         }
 
         private void RefreshQuantityInInvoice()
@@ -134,22 +179,57 @@ namespace WPF.Views.ApplicationContent
 
         private void SearchProduct_Click(object sender, RoutedEventArgs e)
         {
-            this._invoiceData.ProductsList.Add(new InvoiceItemContent()
+            ContentCurrentPage = InvoiceContentCurrentPage.Product;
+        }
+
+        public void AddProductToProductList(Product Product)
+        {
+            InvoiceItemContent IIC = this._invoiceData.ProductsList.SingleOrDefault(pl => pl.ProductID == Product.ID);
+
+            if (IIC == null)
             {
-                ItemNo = this._invoiceData.ProductsList.Count + 1,
-                ItemPrice = "100.00",
-                ProductID = "Bic-01-01",
-                ProductDescription = "Gold Maree",
-                Quantity = "1",
-                ItemType = ProductType.Unit,
-                AllSettedUp = true
-            });
+                this._invoiceData.ProductsList.Add(new InvoiceItemContent()
+                {
+                    ItemNo = this._invoiceData.ProductsList.Count + 1,
+                    ItemPrice = Product.Price.ToString(),
+                    ProductID = Product.ID,
+                    ProductDescription = Product.Name,
+                    ItemType = Product.Type == Models.Core.ProductType.Measurable ? Styles.Controler.ProductType.Measurable : Styles.Controler.ProductType.Unit,
+                    Quantity = Product.Type == Models.Core.ProductType.Measurable ? "1.000" : "1",
+                    AllSettedUp = true
+                });
+
+                InvoiceItemsList.SelectedIndex = this._invoiceData.ProductsList.Count - 1;
+                InvoiceItemsList.ScrollIntoView(InvoiceItemsList.SelectedItem);
+                InvoiceItemsList.SelectedIndex = -1;
+            }
+            else
+            {
+                int itemIndex = IIC.ItemNo - 1;
+                InvoiceItemsList.SelectedIndex = itemIndex;
+                InvoiceItemsList.ScrollIntoView(InvoiceItemsList.SelectedItem);
+            }
         }
 
         private void InvoiceItemsList_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
                 RemoveProduct_Click(null, null);
+        }
+
+        private void SearchCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            this.ContentCurrentPage = InvoiceContentCurrentPage.Customer;
+        }
+
+        private void SearchPaymentMethod_Click(object sender, RoutedEventArgs e)
+        {
+            this.ContentCurrentPage = InvoiceContentCurrentPage.PaymentMethod;
+        }
+
+        private void ContentPanelBackground_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.ContentCurrentPage = InvoiceContentCurrentPage.Invoices;
         }
     }
 

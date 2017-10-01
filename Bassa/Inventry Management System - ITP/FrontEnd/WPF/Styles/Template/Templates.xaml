@@ -9,7 +9,9 @@
         <ResourceDictionary Source="Button/NavigationButtonTemplate.xaml"/>
 
         <!-- Content Templates -->
-        <!-- Navigation -->
+        <ResourceDictionary Source="Content/ProductSearchItem.xaml"/>
+
+        <!-- Navigation Content Templates -->
         <ResourceDictionary Source="Content/Navigation/LoggedUserNavigationContentTemplate.xaml"/>
         <ResourceDictionary Source="Content/Navigation/SystemTitleNavigationContentTemplate.xaml"/>
         

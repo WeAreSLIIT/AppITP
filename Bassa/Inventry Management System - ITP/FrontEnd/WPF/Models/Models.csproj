@@ -65,8 +65,10 @@
     <Compile Include="APICall\BaseHttpAPICall.cs" />
     <Compile Include="APICall\Resources\CounterResource.cs" />
     <Compile Include="APICall\ServerConnectionAPICall.cs" />
-    <Compile Include="Core\Domain\SystemInfo.cs" />
-    <Compile Include="Core\Domain\ServerData.cs" />
+    <Compile Include="Core\Enums.cs" />
+    <Compile Include="Core\Product.cs" />
+    <Compile Include="Core\SystemInfo.cs" />
+    <Compile Include="Core\ServerData.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,10 +76,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\Repositories\" />
-    <Folder Include="Persistence\Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\..\..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
