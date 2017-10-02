@@ -18,6 +18,7 @@ namespace InventoryMgmt.Controllers
             this._unitOfWork = new UnitOfWork();
         }
 
+        [Route("api/Stock/Get")]
         [HttpGet]
         public IHttpActionResult GetStock()
         {
@@ -39,9 +40,12 @@ namespace InventoryMgmt.Controllers
         //    }
         //    return Content(HttpStatusCode.Found, Stock);
         //}
+
+        [Route("api/Stock/GetStock/{id}")]
         [HttpGet]
         public IHttpActionResult GetStock(int id)
         {
+
             var Stock = this._unitOfWork.Stocks.Get(id);
             if (Stock == null)
             {
@@ -49,16 +53,24 @@ namespace InventoryMgmt.Controllers
             }
             return Content(HttpStatusCode.Found, Stock);
         }
-        //public IHttpActionResult GetStockByItem(string ItemId)
-        //{
-        //    ICollection<Stock> Stocks = new List<Stock>();
-        //    Stocks = this._unitOfWork.Stocks.GetAll(ItemId).ToList();
-        //    if (Stocks == null)
-        //    {
-        //        return Content(HttpStatusCode.NotFound, "No matching item(s) found");
-        //    }
-        //    return Content(HttpStatusCode.Found, Stocks);
-        //}
+
+        [Route("api/Stock/Search/{ItemId}")]
+        [HttpGet]
+        public IHttpActionResult GetStockByItem([FromUri]string ItemId)
+        {
+            //return Ok();
+            if (ItemId == null || ItemId.Trim().Equals(String.Empty))
+                return Content(HttpStatusCode.NotAcceptable, "Search Item Code not valid");
+
+            ICollection<Stock> Stocks = new List<Stock>();
+            Stocks = this._unitOfWork.Stocks.Search(s=>s.PublicItemCode.Contains(ItemId)).ToList();
+            if (Stocks == null )
+            {
+                return Content(HttpStatusCode.NotFound, "No matching item(s) found");
+            }
+            return Content(HttpStatusCode.Found, Stocks);
+        }
+
 
         [HttpPost]
         public IHttpActionResult InsertStock(Stock NewStock)
@@ -118,19 +130,6 @@ namespace InventoryMgmt.Controllers
         }
 
 
-        //DELETE api/GiftVoucherIssue/4
-        //[System.Web.Http.HttpDelete]
-        //public IHttpActionResult DeleteIssuedGiftVoucher(int id)
-        //{
-        //    var GiftVoucherIssue = this._unitOfWork.GiftVoucherIssues.Get(id);
 
-        //    if (GiftVoucherIssue == null)
-        //        return Content(HttpStatusCode.NotFound, $" '{id}' not found");
-        //    //throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    this._unitOfWork.GiftVoucherIssues.Remove(GiftVoucherIssue);
-        //    this._unitOfWork.Complete();
-
-        //    return Content(HttpStatusCode.OK, $" '{id}' Deleted");
-        //}
     }
 }
