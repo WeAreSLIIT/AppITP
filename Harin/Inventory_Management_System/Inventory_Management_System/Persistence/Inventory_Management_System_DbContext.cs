@@ -27,16 +27,32 @@ namespace Inventory_Management_System.Persistence
 
             modelBuilder.Entity<Category>().HasKey(i => i.CategoryId).ToTable("Categories");
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity<Category>().Property(i => i.CategoryName)
+                .HasColumnAnnotation("CategoryName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+>>>>>>> master
             #endregion
 
             #region SubCategory Table
 
+<<<<<<< HEAD
             modelBuilder.Entity<SubCategory>().HasKey(i => i.CategoryId).ToTable("SubCategories");
 
             modelBuilder.Entity<SubCategory>().Property(i => i.Description).IsOptional();
 
             modelBuilder.Entity<SubCategory>().HasRequired(i => i.Category).WithMany(e => e.SubCategories)
                 .HasForeignKey(i => i.MainCategoryId).WillCascadeOnDelete(true);
+=======
+            modelBuilder.Entity<SubCategory>().HasKey(i => i.SubCategoryId).ToTable("SubCategories");
+            modelBuilder.Entity<SubCategory>().Property(i => i.SubCategoryName)
+                .HasColumnAnnotation("SubCategoryName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+            modelBuilder.Entity<SubCategory>().Property(i => i.Description).IsOptional();
+
+            modelBuilder.Entity<SubCategory>().HasRequired(i => i.Category).WithMany(e => e.SubCategories)
+                .HasForeignKey(i => i.CategoryId).WillCascadeOnDelete(true);
+>>>>>>> master
 
             #endregion
 
@@ -44,11 +60,22 @@ namespace Inventory_Management_System.Persistence
 
             modelBuilder.Entity<Section>().HasKey(i => i.SectionId).ToTable("Sections");
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity<Section>().Property(i => i.SectionName)
+                .HasColumnAnnotation("SectionName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+>>>>>>> master
             #endregion
 
             #region Rack Table
 
             modelBuilder.Entity<Rack>().HasKey(i => i.RackId).ToTable("Racks");
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity<Rack>().Property(i => i.RackName)
+                .HasColumnAnnotation("RackName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+>>>>>>> master
 
             modelBuilder.Entity<Rack>().HasRequired(i => i.Section).WithMany(e => e.Racks)
                 .HasForeignKey(i => i.SectionId).WillCascadeOnDelete(true);

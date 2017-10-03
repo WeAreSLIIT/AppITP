@@ -19,9 +19,15 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpGet]
+<<<<<<< HEAD
         public IEnumerable<Section> GetAll()
         {
             return this._unitOfWork.Sections.GetAll();
+=======
+        public IHttpActionResult GetAll()
+        {
+            return Content(HttpStatusCode.Found, this._unitOfWork.Sections.GetAll());
+>>>>>>> master
         }
 
         [HttpPost]
@@ -31,7 +37,11 @@ namespace Inventory_Management_System.Controllers
             {
                 return Content(HttpStatusCode.NotAcceptable, "Data is not Valid");
             }
+<<<<<<< HEAD
             else if (this._unitOfWork.Sections.Get(section.SectionId) != null)
+=======
+            else if (this._unitOfWork.Sections.GetName(section.SectionName) != null)
+>>>>>>> master
             {
                 return Content(HttpStatusCode.BadRequest, "Section is already Exist");
             }
@@ -44,11 +54,21 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpDelete]
+<<<<<<< HEAD
         public IHttpActionResult RemoveSection(Section section)
         {
             if (this._unitOfWork.Sections.Get(section.SectionId) == null)
             {
                 return Content(HttpStatusCode.NotFound, $"Section named '{section.SectionName}' is not found");
+=======
+        public IHttpActionResult RemoveSection(long Id)
+        {
+            Section section = this._unitOfWork.Sections.Get(Id);
+
+            if (section == null)
+            {
+                return Content(HttpStatusCode.NotFound, $"Section named '{Id}' is not found");
+>>>>>>> master
             }
             else
             {

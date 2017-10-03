@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Styles.Color.Font">
+
+    <!-- Left Nav Font Color -->
+    <Color x:Key="LeftNav-Background-Font-Color" A="255" R="236" G="240" B="241"/>
+    <SolidColorBrush x:Key="LeftNav-Background-Font-SolidColorBrush" Color="#ecf0f1"/>
+
+    <!-- Top Nav Font Color -->
+    <Color x:Key="TopNav-Background-Font-Color" A="255" R="0" G="0" B="0"/>
+    <SolidColorBrush x:Key="TopNav-Background-Font-SolidColorBrush" Color="#000"/>
+
+    <!-- Content Background Color -->
+    <Color x:Key="Content-Background-Font-Color" A="255" R="0" G="0" B="0"/>
+    <SolidColorBrush x:Key="Content-Background-Font-SolidColorBrush" Color="#000"/>
+
+</ResourceDictionary>

@@ -9,5 +9,9 @@ namespace Inventory_Management_System.Repository
 {
     public interface ISectionRepository : IRepository<Section>
     {
+<<<<<<< HEAD
+=======
+        Section GetName(string Name);
+>>>>>>> master
     }
 }

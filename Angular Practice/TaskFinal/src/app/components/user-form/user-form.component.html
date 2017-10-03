@@ -1,0 +1,26 @@
+  <form (submit)="onSubmit()">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" [(ngModel)]="user.FirstName" class="form-control" placeholder="Enter First Name" name="FirstName">
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" [(ngModel)]="user.LastName" class="form-control" placeholder="Enter Last Name" name="LastName">
+    </div>
+
+    <div class="form-group">
+      <label>Gender</label>
+      <select  [(ngModel)]="user.Gender" class="form-control" name="Gender">
+        <option selected value="Male" >Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Mobile</label>
+      <input type="text" [(ngModel)]="user.Mobile" class="form-control" aria-describedby="mobileHelp" placeholder="Enter Mobile Number" name="Mobile">
+      <small id="emailHelp" class="form-text text-muted">Mobile number like 07XXXXXXXX</small>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user-plus"></i> Add User</button>
+  </form>

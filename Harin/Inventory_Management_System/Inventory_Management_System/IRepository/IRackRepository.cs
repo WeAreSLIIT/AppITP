@@ -9,5 +9,9 @@ namespace Inventory_Management_System.Repository
 {
     public interface IRackRepository : IRepository<Rack>
     {
+<<<<<<< HEAD
+=======
+        Rack GetName(string Name);
+>>>>>>> master
     }
 }

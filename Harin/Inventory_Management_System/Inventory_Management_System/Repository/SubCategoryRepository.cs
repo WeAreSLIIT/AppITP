@@ -10,8 +10,21 @@ namespace Inventory_Management_System.Repository
 {
     public class SubCategoryRepository : Repository<SubCategory>, ISubCategoryRepository
     {
+<<<<<<< HEAD
         public SubCategoryRepository(Inventory_Management_System_DbContext Context) : base(Context)
         {
+=======
+        private new Inventory_Management_System_DbContext _context;
+
+        public SubCategoryRepository(Inventory_Management_System_DbContext Context) : base(Context)
+        {
+            this._context = Context;
+        }
+
+        public SubCategory GetName(string Name)
+        {
+            return this._context.SubCategories.SingleOrDefault(pn => pn.SubCategoryName == Name);
+>>>>>>> master
         }
     }
 }

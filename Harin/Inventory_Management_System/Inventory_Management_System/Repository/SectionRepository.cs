@@ -10,8 +10,21 @@ namespace Inventory_Management_System.Repository
 {
     public class SectionRepository : Repository<Section>, ISectionRepository
     {
+<<<<<<< HEAD
         public SectionRepository(Inventory_Management_System_DbContext Context) : base(Context)
         {
+=======
+        private new Inventory_Management_System_DbContext _context;
+
+        public SectionRepository(Inventory_Management_System_DbContext Context) : base(Context)
+        {
+            this._context = Context;
+        }
+
+        public Section GetName(string Name)
+        {
+            return this._context.Sections.SingleOrDefault(pn => pn.SectionName == Name);
+>>>>>>> master
         }
     }
 }

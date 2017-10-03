@@ -19,9 +19,15 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpGet]
+<<<<<<< HEAD
         public IEnumerable<Category>GetAll()
         {
             return this._unitOfWork.Categories.GetAll();
+=======
+        public IHttpActionResult GetAll()
+        {
+            return Content(HttpStatusCode.Found,this._unitOfWork.Categories.GetAll());
+>>>>>>> master
         }
 
         [HttpPost]
@@ -31,7 +37,11 @@ namespace Inventory_Management_System.Controllers
             {
                 return Content(HttpStatusCode.NotAcceptable, "Data is not Valid");
             }
+<<<<<<< HEAD
             else if (this._unitOfWork.Categories.Get(category.CategoryId) != null)
+=======
+            else if (this._unitOfWork.Categories.GetName(category.CategoryName) != null)
+>>>>>>> master
             {
                 return Content(HttpStatusCode.BadRequest, "Category is already Exist");
             }
@@ -44,11 +54,21 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpDelete]
+<<<<<<< HEAD
         public IHttpActionResult RemoveCategory(Category category)
         {
             if (this._unitOfWork.Categories.Get(category.CategoryId) == null)
             {
                 return Content(HttpStatusCode.NotFound, $"Category named '{category.CategoryName}' is not found");
+=======
+        public IHttpActionResult RemoveCategory(long Id)
+        {
+            Category category = this._unitOfWork.Categories.Get(Id);
+
+            if (category == null)
+            {
+                return Content(HttpStatusCode.NotFound, $"Category named '{Id}' is not found");
+>>>>>>> master
             }
             else
             {

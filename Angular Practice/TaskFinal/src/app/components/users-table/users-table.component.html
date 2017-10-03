@@ -1,0 +1,28 @@
+ <h3>List of Users -</h3> 
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Mobile</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users ; let i = index">
+        <th scope="row">{{user.Id}}</th>
+        <td>{{user.FirstName}}</td>
+        <td>{{user.LastName}}</td>
+        <td>{{user.Gender}}</td>
+        <td>{{user.Mobile}}</td>
+        <td>
+          <div class="btn-group">
+           <button class="btn btn-warning" (click)="onClickEdit(i)"><i class="fa fa-edit"></i></button>
+            <button class="btn btn-danger" (click)="onClickDelete(i)"><i class="fa fa-trash"></i></button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
