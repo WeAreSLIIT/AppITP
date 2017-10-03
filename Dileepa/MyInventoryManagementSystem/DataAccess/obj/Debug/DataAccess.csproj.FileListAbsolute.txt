@@ -1,0 +1,15 @@
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\DataAccess.dll.config
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\AutoMapper.dll
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\bin\Debug\AutoMapper.xml
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\obj\Debug\DataAccess.Migrations.MItpTest.resources
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\obj\Debug\DataAccess.csproj.GenerateResource.Cache
+C:\Users\Nuwanthi\documents\visual studio 2017\Projects\MyInventoryManagementSystem\DataAccess\obj\Debug\DataAccess.Migrations.MAddForeignKeys.resources
