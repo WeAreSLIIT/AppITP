@@ -21,7 +21,7 @@ namespace Inventory_Management_System.Controllers
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            return Content(HttpStatusCode.Found, this._unitOfWork.SubCategories.GetAll());
+            return Content(HttpStatusCode.OK, this._unitOfWork.SubCategories.GetAll());
         }
 
         [HttpGet]
@@ -35,7 +35,7 @@ namespace Inventory_Management_System.Controllers
                 return Content(HttpStatusCode.NotFound, "No SubCategories");
             }
 
-            return Content(HttpStatusCode.Found,subCategory);
+            return Content(HttpStatusCode.OK,subCategory);
         }
 
         [HttpPost]

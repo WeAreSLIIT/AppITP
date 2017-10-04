@@ -37,15 +37,16 @@ namespace Inventory_Management_System.Repository
 
         public void UpdateProduct(Product product)
         {
-            Product ProductUpdate = _context.Products.FirstOrDefault(p => p.ProductId == product.ProductId);
+            Product ProductUpdate = _context.Products.FirstOrDefault(p => p.ProductPublicId == product.ProductPublicId);
             ProductUpdate.ProductName = product.ProductName;
             ProductUpdate.ProductBrand = product.ProductBrand;
             ProductUpdate.Cost = product.Cost;
             ProductUpdate.NotifyDay = product.NotifyDay;
             ProductUpdate.Price = product.Price;
             ProductUpdate.PriceType = product.PriceType;
+            ProductUpdate.SubCategoryId = product.SubCategoryId;
 
-            if(product.PriceType == PriceType.PackPrice)
+            if (product.PriceType == PriceType.PackPrice)
             {
                 ProductUpdate.NumberOfUnits = product.NumberOfUnits;
                 ProductUpdate.Unit = null;

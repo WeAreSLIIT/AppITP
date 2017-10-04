@@ -21,7 +21,7 @@ namespace Inventory_Management_System.Controllers
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            return Content(HttpStatusCode.Found, this._unitOfWork.Racks.GetAll());
+            return Content(HttpStatusCode.OK, this._unitOfWork.Racks.GetAll());
         }
 
         [HttpGet]
@@ -35,7 +35,7 @@ namespace Inventory_Management_System.Controllers
                 return Content(HttpStatusCode.NotFound, "No Racks");
             }
 
-            return Content(HttpStatusCode.Found, rack);
+            return Content(HttpStatusCode.OK, rack);
         }
 
         [HttpPost]

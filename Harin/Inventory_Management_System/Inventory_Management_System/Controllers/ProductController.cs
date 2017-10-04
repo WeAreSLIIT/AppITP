@@ -23,11 +23,11 @@ namespace Inventory_Management_System.Controllers
         [Route("")]
         public IHttpActionResult GetAllProducts()
         {
-            return Content(HttpStatusCode.Found, this._unitOfWork.Products.GetAll());
+            return Content(HttpStatusCode.OK, this._unitOfWork.Products.GetAll());
         }
 
         [HttpGet]
-        [Route("~/{Id:int}")]
+        [Route("~/{Id:int}/GetProduct")]
         public IHttpActionResult GetProduct(long Id)
         {
             Product product= this._unitOfWork.Products.Get(Id);
@@ -39,7 +39,7 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpGet]
-        [Route("~/GetProductById/{Id:alpha}")]
+        [Route("~/{Id:alpha}/GetProductById")]
         public IHttpActionResult GetProductById(string Id)
         {
             Product product = this._unitOfWork.Products.GetId(Id);
@@ -51,13 +51,13 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpGet]
-        [Route("~/GetProductByName/{Id:alpha}")]
-        public IHttpActionResult GetProductByName(string Name)
+        [Route("~/{Id:alpha}/GetProductByName")]
+        public IHttpActionResult GetProductByName(string Id)
         {
-            Product product = this._unitOfWork.Products.GetName(Name);
+            Product product = this._unitOfWork.Products.GetName(Id);
             if (product == null)
             {
-                return Content(HttpStatusCode.NotFound, $"Product Name = '{Name}' not found");
+                return Content(HttpStatusCode.NotFound, $"Product Name = '{Id}' not found");
             }
             return Content(HttpStatusCode.OK, product);
         }
@@ -83,7 +83,7 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpPost]
-        [Route("~/InsertRack{Id:alpha}")]
+        [Route("~/{Id:alpha}/InsertRack")]
         public IHttpActionResult InsertRack(Rack rack,String Id)
         {
             Product product = this._unitOfWork.Products.GetId(Id);
@@ -91,7 +91,11 @@ namespace Inventory_Management_System.Controllers
             {
                 return Content(HttpStatusCode.NotFound, $"Product Id, named '{Id}' not found");
             }
-            else if(product.RackId != null)
+            else if (this._unitOfWork.Racks.Get(rack.RackId) == null)
+            {
+                return Content(HttpStatusCode.BadRequest, $"Rack name = '{rack.RackName}' is not Exist");
+            }
+            else if (product.RackId != null)
             {
                 return Content(HttpStatusCode.BadRequest, $"Product Id, named '{Id}' Already have a Rack");
             }
@@ -104,7 +108,7 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpDelete]
-        [Route("~/{Id:alpha}")]
+        [Route("~/{Id:alpha}/RemoveProduct")]
         public IHttpActionResult RemoveProduct(string Id)
         {
             Product product = this._unitOfWork.Products.GetId(Id);
@@ -122,7 +126,7 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpDelete]
-        [Route("~/RemoveProductInRack/{Id:alpha}")]
+        [Route("~/{Id:alpha}/RemoveProductInRack")]
         public IHttpActionResult RemoveProductInRack(string Id)
         {
             Product product = this._unitOfWork.Products.GetId(Id);
@@ -171,9 +175,17 @@ namespace Inventory_Management_System.Controllers
             {
                 return Content(HttpStatusCode.NotFound, $"Product Id, named '{Id}' not found");
             }
+            else if(product.RackId == null)
+            {
+                return Content(HttpStatusCode.BadRequest, $"Product Id, named '{Id}' does not have a Rack");
+            }
+            else if (this._unitOfWork.Racks.Get(rack.RackId) == null)
+            {
+                return Content(HttpStatusCode.BadRequest, $"Rack name = '{rack.RackName}' is not Exist");
+            }
             else
             {
-                this._unitOfWork.Products.AddProductToRack(product, rack.RackId);
+                this._unitOfWork.Products.UpdateProductInRack(product, rack.RackId);
                 this._unitOfWork.Complete();
                 return Content(HttpStatusCode.OK, "Product is Updated");
             }
