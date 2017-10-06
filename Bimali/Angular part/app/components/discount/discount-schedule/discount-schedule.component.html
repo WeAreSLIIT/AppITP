@@ -1,0 +1,149 @@
+
+ <!-- page content -->
+ <div class="right_col" role="main">
+  <div class="col-xs-12 col-sm-6">
+    <div class="form_shedule"  style="width: 100%; " > 
+    <h1>Discount Schedule</h1>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group">
+      <label for="itemCode">Item Code:</label>
+      <input
+            [(ngModel)]="DiscountSchedule.itemCode"
+            name="itemCode"
+            #itemCode="ngModel"
+            id="itemCode"
+            type="text" 
+            class="form-control"  
+            placeholder="Enter your code here"
+            required>
+            <div *ngIf=" itemCode.touched && itemCode.errors">
+                <div class="alert alert-danger" 
+                *ngIf="itemCode.errors.required"> 
+                    Item Code is Required.
+               </div>
+            </div>
+        
+    </div>
+    <div class="form-group">
+      <label for="originalPrice">Original Price:</label>
+      <input 
+            [(ngModel)]="DiscountSchedule.originalPrice"
+            name="originalPrice"
+            id="originalPrice"
+            #originalPrice="ngModel" 
+            type="number"
+            class="form-control"
+            placeholder="Enter amount" required>
+            <div *ngIf=" originalPrice.touched && originalPrice.errors">
+                <div class="alert alert-danger" 
+                *ngIf="originalPrice.errors.required"> 
+                Price is Required.
+               </div>
+            </div>
+    </div>
+    <div class="form-group" >
+      <label for="discountType">Discount Type:</label>
+            <select 
+              [(ngModel)]="DiscountSchedule.discountType" 
+              class="form-control"
+               name="discountType">
+                <option selected value="Fixed" >Fixed</option>
+                <option value="Percentage">Percentage</option>
+            </select>       
+    </div>
+    <div class="form-group">
+    <input
+    [(ngModel)]="DiscountSchedule.discountTypeValue"
+    name="discountTypeValue"
+    #discountTypeValue="ngModel" 
+    type="text" 
+    class="form-control">
+    <div *ngIf=" discountTypeValue.touched && discountTypeValue.errors">
+        <div class="alert alert-danger" 
+        *ngIf="discountTypeValue.errors.required"> 
+        Percentage Or Fixed Value is Required.
+       </div>
+    </div>
+    </div> 
+
+    <div class="form-group">
+      <label for="priceAfterDiscount">Price With Discount:</label>
+      <input 
+            type="number"
+            [(ngModel)]="DiscountSchedule.priceAfterDiscount"
+            #priceAfterDiscount="ngModel"  
+            name="priceAfterDiscount"
+            class="form-control" 
+            placeholder="Enter amount" 
+            id="priceAfterDiscount" >
+    </div>
+    <div class="form-group">
+      <label for="from">From:</label>
+      <input
+            [(ngModel)]="DiscountSchedule.from"
+            #from="ngModel"  
+            type="date"
+            name="from" 
+            class="form-control"  
+            id="from" >
+
+      <div *ngIf=" from.touched && from.errors">
+          <div class="alert alert-danger" 
+          *ngIf="from.errors.required"> 
+          date is Required.
+         </div>
+      </div>
+    </div> 
+      <div class="form-group">
+          <label for="to">To:</label>
+          <input
+              [(ngModel)]="DiscountSchedule.to"
+              #to="ngModel"
+              name="to"  
+              type="date" 
+              class="form-control"
+              id="to" >
+
+          <div *ngIf=" to.touched && itemCode.errors">
+              <div class="alert alert-danger" 
+              *ngIf="to.errors.required"> 
+              date is Required.
+             </div>
+          </div>
+      </div> 
+      <div class="btn_group" style="float:right; margin-top: 50px;">
+        <button class="btn btn-success " type="submit"  (click)="onClickAdd(add)"><span class="glyphicon glyphicon-save"></span>Save</button>
+        <button class="btn btn-warning "><span class="glyphicon glyphicon-edit"></span>Edit</button>
+        <button class="btn btn-danger "><span class="glyphicon glyphicon-trash"></span>Delete</button>
+        <button class="btn btn-info "><span class="glyphicon glyphicon-remove" (click)="onClickDelete(i)"></span>Reset</button>
+      </div>
+  </form>
+  </div>
+</div>
+<div class="col-xs-12 col-sm-6">
+  <div class="tabel-responsive" style="width: 100%;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Item Code</th>
+          <th>Original Price</th>
+          <th>Type</th>
+          <th>Price With Discount</th>
+          <th>From</th>
+          <th>To</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let DiscountSchedule of DiscountTables ; let i = index">
+          <td>{{DiscountSchedule.ItemCode}}</td>
+          <td>{{DiscountSchedule.OriginalPrice}}</td>
+          <td>{{DiscountSchedule.DiscountType}}</td>
+          <td>{{DiscountSchedule.PriceWithDiscount}}</td>
+          <td>{{DiscountSchedule.From}}</td>
+          <td>{{DiscountSchedule.To}}</td>
+      </tr>      
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

@@ -1,0 +1,87 @@
+  <!-- page content -->
+  <div class="right_col" role="main">
+    <div  class="col-md-6">
+      <h2>Generate new GRN</h2>
+      <form action="" name="avStock" data-parsley-validate class="form-horizontal form-label-left" >               
+        <table class="table">
+          <tr >
+            <td><label  for="stockNumber">Stock Number</label></td>
+            <td><input type="text" [(ngModel)]="stockNumber" name="stockNumber" required="required" ></td>
+          </tr>
+          <tr >
+            <td><label  for="grnNum">GRN Number</label></td>
+            <td><input type="text" [(ngModel)]="grnNum" name="grnNum" required="required" disabled="" ></td>
+          </tr>
+
+          <tr>
+            <td><label for="poNum">Purchase Order</label></td>
+            <td><input type="text" [(ngModel)]="poNum" name="poNum" required="required" disabled=""></td>
+          </tr>
+
+
+          <tr>
+            <td><label  for="supplier">Supplier</label></td>
+            <td><input type="text" [(ngModel)]="supplier" name="supplier" required="required" disabled=""></td>
+          </tr>
+
+
+          <tr>
+            <td><label  for="itemCode">Item Code</label></td>
+            <td><input type="text" [(ngModel)]="itemCode" name="itemCode" required="required" disabled=""> </td>
+          </tr>
+
+
+          <tr>
+           <td><label  for="itemName">Item Name</label></td>
+           <td><input type="text" [(ngModel)]="itemName" name="itemName" required="required" disabled=""></td>
+          </tr>
+
+          <tr>
+           <td><label  for="itemDesc">Description</label></td>
+           <td><textarea class="col-sm-6" [(ngModel)]="description" name="description" disabled=""></textarea></td>
+          </tr>
+          <tr>
+           <td><label  for="expiryDate">Expiry date</label></td>
+           <td><input type="date" [(ngModel)]="expiryDate" name="expiryDate" required="required" disabled=""></td>
+          </tr>
+
+          <tr>
+            <td><label for="avQty">Available Qty</label></td>          
+            <td><input type="Number" [(ngModel)]="avQty" name="avQty" required="required" disabled=""></td>
+          </tr>
+
+        <tr>
+          <td><label  for="wholeSaleValue">Whole Sale Value</label></td>
+          <td><input type="text" [(ngModel)]="wholeSaleValue" name="wholeSaleValue" required="required" class="col-sm-6" disabled=""></td>
+        </tr>
+        <tr>
+          <td><label  for="grnDate">GRN date</label></td>
+          <td><input type="date" [(ngModel)]="grnDate" name="grnDate" required="required" class="col-sm-6" disabled=""></td>
+        </tr>
+
+      </table>
+    </form>
+    
+  </div>
+  <div class="col-md-offset-6" style="border: thick;" >
+    <h2>Preview GRN</h2>
+    <div class="col-md-12" >
+      <button class="btn btn-md" type="button">
+        <a data-toggle="tooltip" data-placement="bottom" title="Print">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+        </a>
+      </button>
+      <button class="btn btn-md" type="button">
+        <a data-toggle="tooltip" data-placement="bottom" title="Send as attachment">
+          <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+        </a>
+      </button>
+      <button type="button" class="btn btn-md">
+        <a data-toggle="tooltip" data-placement="bottom" title="Download PDF">
+          <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+        </a>
+      </button>
+    </div>
+  </div>
+</div>
+  <!-- /page content -->

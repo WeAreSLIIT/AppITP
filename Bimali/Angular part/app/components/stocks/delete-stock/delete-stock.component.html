@@ -1,0 +1,141 @@
+<!-- page content -->
+<div class="right_col" role="main" >
+
+
+  <div class="col-md-12" >
+
+    <h1>Delete Stock</h1>
+    <form action="" name="deleteStock" data-parsley-validate class="form-horizontal form-label-left" >
+
+
+      <div class="col-md-6" >
+      <table class="table">
+      <tr >
+        <td><label  for="stockNumber">Stock Number</label></td>
+        <td><input type="text" [(ngModel)]="stock.PublicStockID" name="stockNumber" required="required"  ></td>
+      </tr>
+      
+      <tr>
+        <td><label for="poNum">Purchase Order</label></td>
+        <td><input type="text" [(ngModel)]="stock.PurchaseOrder" name="poNum" required="required"></td>
+      </tr>
+
+
+     <!-- <tr>
+        <td><label  for="supplier">Supplier</label></td>
+        <td><input type="text" [(ngModel)]="supplier" name="supplier" required="required"></td>
+      </tr>-->
+
+
+      <tr>
+        <td><label  for="itemCode">Item Code</label></td>
+        <td><input type="text" [(ngModel)]="stock.PublicItemCode" name="itemCode" required="required" > </td>
+      </tr>
+
+
+       <tr>
+       <td><label  for="itemName">Item Name</label></td>
+       <td><input type="text" [(ngModel)]="stock.ItemName" name="itemName" required="required"></td>
+       </tr>
+
+       <tr>
+       <td><label  for="itemDesc">Description</label></td>
+       <td><textarea class="col-sm-8" [(ngModel)]="stock.ItemCategory" name="itemDesc"></textarea></td>
+       </tr>
+      <!-- <tr>
+       <td><label  for="expiryDate">Expiry date</label></td>
+       <td><input type="date" [(ngModel)]="expiryDate" name="expiryDate" required="required"></td>
+       </tr>-->
+      </table>
+      </div>
+
+      <div class="col-md-offset-6">
+      <table class="table">
+
+        
+        <tr><button class="btn btn-primary btn-md " type="button">Add from Stock Number</button></tr>
+        <tr>
+        <td><label for="quantity">Initial Qty</label></td>
+      
+        <td><input type="Number" [(ngModel)]="stock.InitQty" name="initquantity" required="required" ></td>
+        </tr>
+      
+
+        <tr>
+        <td><label for="avQty">Available Qty</label></td>
+        
+        <td><input type="Number" [(ngModel)]="stock.PresentQty" name="avQty" required="required" ></td>
+        </tr>
+  
+     
+        <tr>
+        <td><label for="packSize">Pack Size</label></td>
+        
+        <td><input type="text" [(ngModel)]="stock.UoM" name="packSize" required="required" ></td>
+        </tr>
+
+     
+        <tr>
+        <td><label for="wholeSaleValue">Whole sale value</label></td>
+        
+        <td><input type="text" [(ngModel)]="stock.WholeSaleValue" name="wholeSaleValue" required="required"></td>
+        </tr>
+
+
+        <tr>
+        <td><label for="unitPrize">Unit retail value</label></td>
+        
+        <td><input type="text" [(ngModel)]="unitPrize" name="unitPrize" required="required"></td>
+        </tr>
+
+
+       <!-- <tr>
+        <td><label  for="lastModDate">Last modified date</label></td>
+
+        <td><input type="date" [(ngModel)]="lModDate" name="lModDate" required="required" class="col-sm-6" disabled=""></td>
+        </tr>-->
+
+        <tr>
+        <td colspan="2">
+        <button class="btn btn-primary btn-md col-md-offset-5" type="button">Cancel</button>
+        <button class="btn btn-primary btn-md" type="Reset">Reset</button>
+        <button type="submit" class="btn btn-danger btn-md">Delete</button>
+        </td>
+        </tr>
+      </table>
+      </div>
+      </form>
+    </div> 
+           
+           <div class="table_schedule" >
+            <table table class="table table-hover">
+              <thead>
+                <tr>
+                 <th>Stock</th>
+                 <th>Item code</th>
+                 <th>Name</th>
+                 <th>Initial Qty</th>
+                 <th>Present Qty</th>
+                 <th>UoM</th>
+                 <th>Wholesale value</th>
+                 <th>Unit Price</th>
+                 <th>Stock status</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr *ngFor="let stock of stocks ; let i = index">
+                  <td>{{stock.PublicStockID}}</td>
+                  <td>{{stock.PublicItemCode}}</td>
+                  <td>{{stock.ItemName}}</td>
+                  <td>{{stock.InitQty}}</td>
+                  <td>{{stock.PresentQty}}</td>
+                  <td>{{stock.UoM}}</td>
+                  <td>{{stock.WholeSaleValue}}</td>
+                  <td>{{stock.UnitPrice}}</td>
+                  <td>{{stock.StockStatus}}</td>
+               </tr>
+             </tbody>
+           </table> 
+
+          </div>
+</div>

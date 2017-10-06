@@ -1,0 +1,70 @@
+<!-- page content -->
+        <div class="right_col col-md-12" role="main">
+
+        <h1>Add New Stock</h1>
+        <!-- name="addNewStock" data-parsley-validate class="form-horizontal form-label-left" -->
+          <form action="" ng-if="discountForm"  style="width: 50%;">
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="poNum">Purchase Order</label>
+              <input type="text" [(ngModel)]="stock.PurchaseOrder" name="poNum" required="required"  class="col-sm-6 ">
+            </div>
+           <!-- <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="supplier">Supplier</label>
+              <input type="text" [(ngModel)]="supplier" name="supplier" required="required" class="col-sm-6" >
+            </div>-->
+            <div class="form-group"> 
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stockNumber">Stock Number</label>
+              <input type="text" [(ngModel)]="stock.PublicStockID" name="stockNumber" required="required" class=" col-sm-6 ">
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="itemCode">Item Code</label>
+              <input type="text" [(ngModel)]="stock.PublicItemCode" name="itemCode" required="required" class="col-sm-6"> 
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="itemName">Item Name</label>
+              <input type="text" [(ngModel)]="stock.ItemName" name="itemName" required="required" class="col-sm-6">
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="itemDesc">Description</label>
+              <textarea class="col-sm-6" [(ngModel)]="stock.ItemCategory" name="description"></textarea> 
+            </div>
+            <!--<div class="form-group"> 
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="expiryDate">Expiry date</label>
+              <input type="date" [(ngModel)]="expiryDate" name="expiryDate" required="required" class="col-sm-6">
+            </div>-->
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity">Qty</label>
+              <input type="Number"[(ngModel)]="stock.InitQty" name="quantity" required="required" class="col-sm-6">
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="packSize">Pack Size</label>
+              <input type="text" [(ngModel)]="stock.UoM" name="packSize" required="required" class="col-sm-6">
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="wholeSaleValue">Whole sale value</label>
+              <input type="text" [(ngModel)]="stock.WholeSaleValue" name="wholeSaleValue" required="required" class="col-sm-6">
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unitPrice">Unit retail value</label>
+              <input type="text" [(ngModel)]="stock.UnitPrice" name="unitPrize" required="required"  class="col-sm-6">
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Status">Status</label>
+                  <select class="col-md-6" [(ngModel)]="stock.StockStatus" name="status">
+                  <!--    <option [ngModel]="status.StatusEnum">{{status.StatusName}}</option>-->
+                     <option value="0">Free&Availabel-0</option>
+                      <option value="1">Recount-1</option> 
+                      <option value="2">Empty-2</option>-->
+                  </select>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+              <button class="btn btn-primary" type="button">Cancel</button>
+              <button class="btn btn-primary" type="reset">Reset</button>
+              <button type="submit" class="btn btn-success" (click)="addStocks(stock)">Add</button>
+            </div>
+            </div>
+          </form>
+        </div>
+<!-- /page content -->

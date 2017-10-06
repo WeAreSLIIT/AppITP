@@ -1,0 +1,143 @@
+    <!-- page content -->
+           <!-- page content -->
+        <div class="right_col" role="main">
+
+
+
+          <div  class="col-md-6">
+          <h2>Available Stock details</h2>
+          <form action="" name="avStock" data-parsley-validate class="form-horizontal form-label-left" >               
+            <table class="table">
+              <tr >
+                <td><label  for="stockNumber">Stock Number</label></td>
+                <td><input type="text"  [(ngModel)]="itemName" name="stockNumber" required="required" ></td>
+              </tr>
+              <tr >
+                <td><label  for="grnNum">GRN Number</label></td>
+                <td><input type="text"  [(ngModel)]="itemName" name="grnNum" required="required" disabled="" ></td>
+              </tr>
+              
+              <tr>
+                <td><label for="poNum">Purchase Order</label></td>
+                <td><input type="text"  [(ngModel)]="itemName" name="poNum" required="required" disabled=""></td>
+              </tr>
+
+
+              <tr>
+                <td><label  for="supplier">Supplier</label></td>
+                <td><input type="text"  [(ngModel)]="itemName" name="supplier" required="required" disabled=""></td>
+              </tr>
+
+
+              <tr>
+                <td><label  for="itemCode">Item Code</label></td>
+                <td><input type="text"  [(ngModel)]="itemName" name="itemCode" required="required" disabled=""> </td>
+              </tr>
+
+
+               <tr>
+               <td><label  for="itemName">Item Name</label></td>
+               <td><input type="text"  [(ngModel)]="itemName" name="itemName" required="required" disabled=""></td>
+               </tr>
+
+               <tr>
+               <td><label  for="itemDesc">Description</label></td>
+               <td><textarea class="col-sm-6"  [(ngModel)]="itemName" name="description" disabled=""></textarea></td>
+               </tr>
+               <tr>
+               <td><label  for="expiryDate">Expiry date</label></td>
+               <td><input type="date"  [(ngModel)]="itemName" name="expiryDate" required="required" disabled=""></td>
+               </tr>
+
+               <tr>
+                <td><label for="quantity">Initial Qty</label></td>
+              
+                <td><input type="Number"  [(ngModel)]="itemName" name="quantity" required="required" disabled=""></td>
+                </tr>
+              
+
+                <tr>
+                <td><label for="avQty">Available Qty</label></td>
+                
+                <td><input type="Number"  [(ngModel)]="itemName" name="avQty" required="required" disabled=""></td>
+                </tr>
+
+                <tr>
+                <td><label  for="lastModDate">Last modified date</label></td>
+
+                <td><input type="date"  [(ngModel)]="itemName" name="lModDate" required="required" class="col-sm-6" disabled=""></td>
+                </tr>
+
+            </table>
+            </form>
+          </div>
+          
+          <div  class="col-md-6">
+          <h2> Recount Stock details</h2>
+          <form action="" name="recountStock" data-parsley-validate class="form-horizontal form-label-left" >               
+            <table class="table">
+              <tr >
+                <td><label  for="stockNumber">Stock Number</label></td>
+                <td><input type="text"  [(ngModel)]="stockNumber" name="stockNumber" required="required"></td>
+              </tr>
+              <tr >
+                <td><label  for="grnNum">GRN Number</label></td>
+                <td><input type="text"  [(ngModel)]="grnNum" name="grnNum" required="required" ></td>
+              </tr>
+              <tr>
+                <td><label for="poNum">Purchase Order</label></td>
+                <td><input type="text"  [(ngModel)]="poNum" name="poNum" required="required"></td>
+              </tr>
+
+
+              <tr>
+                <td><label  for="supplier">Supplier</label></td>
+                <td><input type="text"  [(ngModel)]="supplier" name="supplier" required="required"></td>
+              </tr>
+
+
+              <tr>
+                <td><label  for="itemCode">Item Code</label></td>
+                <td><input type="text"  [(ngModel)]="itemCode" name="itemCode" required="required" > </td>
+              </tr>
+
+
+               <tr>
+               <td><label  for="itemName">Item Name</label></td>
+               <td><input type="text" [(ngModel)]="itemName" name="itemName" required="required"></td>
+               </tr>
+
+               <tr>
+               <td><label  for="itemDesc">Description</label></td>
+               <td><textarea class="col-sm-6"  [(ngModel)]="description" name="description"></textarea></td>
+               </tr>
+               <tr>
+               <td><label  for="expiryDate">Expiry date</label></td>
+               <td><input type="date"  [(ngModel)]="expiryDate" name="expiryDate" required="required"></td>
+               </tr>
+
+                <tr>
+                <td><label for="avQty">Available Qty</label></td>
+                
+                <td><input type="Number"  [(ngModel)]="avQty" name="avQty" required="required" ></td>
+                </tr>
+
+                <tr>
+                <td><label  for="startDate">Recount started on</label></td>
+                <td><input type="date"  [(ngModel)]="startDate" name="startDate" required="required" class="col-sm-6" disabled=""></td>
+                </tr>
+                <tr>
+                <td><label  for="endDate">Recount ended on</label></td>
+                <td><input type="date"  [(ngModel)]="endDate" name="endDate" required="required" class="col-sm-6" ></td>
+                </tr>
+
+            </table>
+            </form>
+          </div>
+          <div class="col-md-offset-6">
+                <button class="btn btn-primary btn-md" type="button">Cancel</button>
+                <button class="btn btn-primary btn-md" type="Reset">Reset</button>
+                <a href="../recount-transaction/recount-transaction.component.html"><button class="btn btn-primary btn-md" type="button">Transaction done during recount</button></a>
+                <button type="submit" class="btn btn-success btn-md">Submit & Confirm</button>
+          </div>
+        </div>

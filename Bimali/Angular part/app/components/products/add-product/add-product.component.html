@@ -1,0 +1,137 @@
+<!-- page content -->
+<div class="right_col" role="top">
+    <div>
+        <h3>Choose the Category</h3>
+        <form class="form-horizontal form-label-left">
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Category 
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a Category
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sub-category">Sub-Category 
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a Sub-Category
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                    </ul>
+                </div>
+            </div> 
+        <h3>Product Details</h3>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_id">Product Id 
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="product_id" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="barcode">Barcode 
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="Barcode" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_name">Product Name 
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="product_name" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="brand">Brand 
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="brand" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cost">Cost 
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="number" step="0.01" min="0" id="cost" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="expirable">Expirable </label>
+                <div class="col-md-1 col-sm-1 col-xs-1">
+                    <input type="checkbox" id="Exp_yes" value="Yes" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cost">Notify Day </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="number" min="0" id="day" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+        <h3>Price Details</h3>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="type">Type 
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div id="p_type" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                        <input type="radio" value="Nomal_Price"> &nbsp; Nomal Price  &nbsp;
+                    </label>
+                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                        <input type="radio" value="Pack_Price"> &nbsp; Pack Price  &nbsp;
+                    </label>
+                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                        <input type="radio" value="Unit_Price"> &nbsp; Unit Price  &nbsp;
+                    </label>
+                </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="price">Price 
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="number" step="0.01" min="0" id="price" required="required" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="uninit">Unit
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12" required="required">
+                    <input  type="number" id="unit" min="0" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pack">Pack
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12" required="required">
+                    <input  type="number" min="0" id="pack" class="form-control col-md-7 col-xs-12">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-xs-offset-4">
+                    <button class="btn btn-success btn-lg">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- page content end -->

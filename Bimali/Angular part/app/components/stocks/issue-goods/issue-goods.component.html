@@ -1,0 +1,46 @@
+<!-- page content -->
+<div class="right_col"  role="main">
+  <h1>Issue Goods</h1>
+  <div class="col-md-9" >
+  <form action="" name="issuedStock" data-parsley-validate class="form-horizontal form-label-left clearfix" style="width: 100%;">
+    <div class="form-group" > 
+    
+    <table class="table col-md-12" >
+      <tr>
+      <td class="col-md-6"><label class="control-label col-md-3 col-sm-3 col-xs-12" for="itemCode">Item Code</label></td>
+      <td><input type="text" [(ngModel)]="itemCode" name="itemCode" required="required" class=" col-sm-6 "></td>
+      </tr>
+      <tr>
+      <td><label class="control-label col-md-3 col-sm-3 col-xs-12" for="stockNumber">Stock name</label></td>
+      <td><input type="text" [(ngModel)]="stockId" name="stockId" required="required" class=" col-sm-6 "></td>
+      </tr>
+      <tr>
+      <td><label class="control-label col-md-3 col-sm-3 col-xs-12" for="Issued">Issued For</label></td>
+      <td> <select  [(ngModel)]="issuedFor" name="issuedFor" class="col-sm-6">
+          <option value="Market">Market</option>
+          <option value="opt1">Promotion</option> 
+          <option value="opt2">Opt2</option>
+        </select>
+      </td>
+      </tr>
+      <tr> 
+      <td><label class="control-label col-md-3 col-sm-3 col-xs-12" for="expiryDate">Expiry date</label></td>
+      <td><input type="date" [(ngModel)]="expiryDate" name="expiryDate" required="required" class="col-sm-6"></td>
+      </tr>
+      <tr>
+      <td><label class="control-label col-md-3 col-sm-3 col-xs-12" for="sentQuantity"> Quantity</label></td>
+      <td><input type="Number" [(ngModel)]="sentQuantity" name="sentQuantity" required="required" class="col-sm-6"></td>
+      </tr>
+    </table> 
+
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <button class="btn btn-primary" type="button">Cancel</button>
+        <button class="btn btn-primary" type="reset">Reset</button>
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+      </div>
+  </form>
+  </div>
+
+  </div>
+<!-- /page content -->
