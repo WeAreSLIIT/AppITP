@@ -55,12 +55,20 @@ namespace DataAccess.Core
 
         #region Pathmika's
 
+        IOrderProductRepository OrderProducts { get; }
+        IOrderRepository Orders { get; }
+        IOrderServiceRepository OrderServices { get; }
+        ISupplierRepository Suppliers { get; }
+        IServiceSupplierRepository ServiceSuppliers { get; }
+        IProductSupplierRepository ProductSuppliers { get; }
+        ISupplierPaymentRepository SupplierPayments { get; }
+
         #endregion
 
         #region Yashika's
 
         #endregion
-        
+
 
         int Complete();
     }

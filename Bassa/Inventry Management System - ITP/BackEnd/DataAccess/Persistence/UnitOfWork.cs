@@ -61,7 +61,13 @@ namespace DataAccess.Persistence
 
         #region Pathmika's
 
-
+        public IOrderRepository Orders { get; private set; }
+        public IOrderServiceRepository OrderServices { get; private set; }
+        public IOrderProductRepository OrderProducts { get; private set; }
+        public ISupplierRepository Suppliers { get; private set; }
+        public IProductSupplierRepository ProductSuppliers { get; private set; }
+        public IServiceSupplierRepository ServiceSuppliers { get; private set; }
+        public ISupplierPaymentRepository SupplierPayments { get; private set; }
 
         #endregion
 
@@ -109,6 +115,15 @@ namespace DataAccess.Persistence
             LoyaltyPrograms = new LoyaltyProgramRepository(this._context);
             Preorders = new PreorderRepository(this._context);
             Logins = new LoginRepository(this._context);
+
+            //Pathmika
+            Orders = new OrderRepository(this._context);
+            OrderServices = new OrderServiceRepository(this._context);
+            OrderProducts = new OrderProductRepository(this._context);
+            Suppliers = new SupplierRepository(this._context);
+            ProductSuppliers = new ProductSupplierRepository(this._context);
+            ServiceSuppliers = new ServiceSupplierRepository(this._context);
+            SupplierPayments = new SupplierPaymentRepository(this._context);
         }
 
         public int Complete()

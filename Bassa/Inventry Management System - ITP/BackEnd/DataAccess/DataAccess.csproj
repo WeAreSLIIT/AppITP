@@ -56,6 +56,13 @@
     <Compile Include="Core\Domain\Kavi\LoyaltyCard.cs" />
     <Compile Include="Core\Domain\Kavi\LoyaltyProgram.cs" />
     <Compile Include="Core\Domain\Kavi\Preorder.cs" />
+    <Compile Include="Core\Domain\Pathmika\Order.cs" />
+    <Compile Include="Core\Domain\Pathmika\OrderProduct.cs" />
+    <Compile Include="Core\Domain\Pathmika\OrderService.cs" />
+    <Compile Include="Core\Domain\Pathmika\ProductSupplier.cs" />
+    <Compile Include="Core\Domain\Pathmika\ServiceSupplier.cs" />
+    <Compile Include="Core\Domain\Pathmika\Supplier.cs" />
+    <Compile Include="Core\Domain\Pathmika\SupplierPayment.cs" />
     <Compile Include="Core\Domain\Samith\Employee.cs" />
     <Compile Include="Core\Domain\Enums.cs" />
     <Compile Include="Core\Domain\CSB\Invoice.cs" />
@@ -84,6 +91,13 @@
     <Compile Include="Core\Repositories\Kavi\ILoyaltyCardRepository.cs" />
     <Compile Include="Core\Repositories\Kavi\ILoyaltyProgramRepository.cs" />
     <Compile Include="Core\Repositories\Kavi\IPreorderRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IOrderProductRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IOrderRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IOrderServiceRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IProductSupplierRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IServiceSupplierRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\ISupplierPaymentRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\ISupplierRepository.cs" />
     <Compile Include="Core\Repositories\Samith\IEmployeeRepository.cs" />
     <Compile Include="Core\Repositories\Samith\IBranchRepository.cs" />
     <Compile Include="Core\Repositories\CSB\IInvoiceCustomerRepository.cs" />
@@ -116,6 +130,10 @@
     <Compile Include="Migrations\201709250727557_InvoicePaymentTableAdded.Designer.cs">
       <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.cs" />
+    <Compile Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.Designer.cs">
+      <DependentUpon>201710060738174_IntegratedHarinKaviAndPathmika.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
     <Compile Include="Persistence\Repositories\CSB\CounterRepository.cs" />
@@ -130,6 +148,13 @@
     <Compile Include="Persistence\Repositories\Kavi\LoyaltyCardRepository.cs" />
     <Compile Include="Persistence\Repositories\Kavi\LoyaltyProgramRepository.cs" />
     <Compile Include="Persistence\Repositories\Kavi\PreorderRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\OrderProductRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\OrderRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\OrderServiceRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\ProductSupplierRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\ServiceSupplierRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\SupplierPaymentRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\SupplierRepository.cs" />
     <Compile Include="Persistence\Repositories\Samith\EmployeeRepository.cs" />
     <Compile Include="Persistence\Repositories\Samith\BranchRepository.cs" />
     <Compile Include="Persistence\Repositories\CSB\InvoiceCustomerRepository.cs" />
@@ -167,18 +192,18 @@
     <EmbeddedResource Include="Migrations\201709250727557_InvoicePaymentTableAdded.resx">
       <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.resx">
+      <DependentUpon>201710060738174_IntegratedHarinKaviAndPathmika.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Domain\Dileepa\" />
     <Folder Include="Core\Domain\Ovin\" />
-    <Folder Include="Core\Domain\Pathmika\" />
     <Folder Include="Core\Domain\Yashika\" />
     <Folder Include="Core\Repositories\Ovin\" />
-    <Folder Include="Core\Repositories\Pathmika\" />
     <Folder Include="Core\Repositories\Yashika\" />
     <Folder Include="Persistence\EntityConfigurations\" />
     <Folder Include="Persistence\Repositories\Ovin\" />
-    <Folder Include="Persistence\Repositories\Pathmika\" />
     <Folder Include="Persistence\Repositories\Yashika\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

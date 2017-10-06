@@ -38,7 +38,13 @@ namespace DataAccess.Persistence
 
         #region Pathmika's
 
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderService> OrderServices { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<ProductSupplier> ProductSuppliers { get; set; }
+        public DbSet<ServiceSupplier> ServiceSuppliers { get; set; }
+        public DbSet<SupplierPayment> SupplierPayments { get; set; }
 
         #endregion
 
