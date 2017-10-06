@@ -1,0 +1,157 @@
+<!-- page content -->
+<div class="right_col" role="main" >
+
+
+  <div class="col-md-12" >
+
+    <h1>Delete Stock</h1>
+    <form action="" id="deleteStock" data-parsley-validate class="form-horizontal form-label-left" >
+
+
+      <div class="col-md-6" >
+      <table class="table">
+      <tr >
+        <td><label  for="stockNumber">Stock Number</label></td>
+        <td><input type="text" id="stockNumber" required="required"  ></td>
+      </tr>
+      
+      <tr>
+        <td><label for="poNum">Purchase Order</label></td>
+        <td><input type="text" id="poNum" required="required"></td>
+      </tr>
+
+
+      <tr>
+        <td><label  for="supplier">Supplier</label></td>
+        <td><input type="text" id="supplier" required="required"></td>
+      </tr>
+
+
+      <tr>
+        <td><label  for="itemCode">Item Code</label></td>
+        <td><input type="text" id="itemCode" required="required" > </td>
+      </tr>
+
+
+       <tr>
+       <td><label  for="itemName">Item Name</label></td>
+       <td><input type="text" id="itemName" required="required"></td>
+       </tr>
+
+       <tr>
+       <td><label  for="itemDesc">Description</label></td>
+       <td><textarea class="col-sm-8"></textarea></td>
+       </tr>
+       <tr>
+       <td><label  for="expiryDate">Expiry date</label></td>
+       <td><input type="date" id="expiryDate" required="required"></td>
+       </tr>
+      </table>
+      </div>
+
+      <div class="col-md-offset-6">
+      <table class="table">
+
+        
+        <tr><button class="btn btn-primary btn-md " type="button">Add from Stock Number</button></tr>
+        <tr>
+        <td><label for="quantity">Initial Qty</label></td>
+      
+        <td><input type="Number" id="quantity" required="required" ></td>
+        </tr>
+      
+
+        <tr>
+        <td><label for="avQty">Available Qty</label></td>
+        
+        <td><input type="Number" id="avQty" required="required" ></td>
+        </tr>
+  
+     
+        <tr>
+        <td><label for="packSize">Pack Size</label></td>
+        
+        <td><input type="text" id="packSize" required="required" ></td>
+        </tr>
+
+     
+        <tr>
+        <td><label for="wholeSaleValue">Whole sale value</label></td>
+        
+        <td><input type="text" id="wholeSaleValue" required="required"></td>
+        </tr>
+
+
+        <tr>
+        <td><label for="unitPrize">Unit retail value</label></td>
+        
+        <td><input type="text" id="unitPrize" required="required"></td>
+        </tr>
+
+
+        <tr>
+        <td><label  for="lastModDate">Last modified date</label></td>
+
+        <td><input type="date" id="lModDate" required="required" class="col-sm-6" disabled=""></td>
+        </tr>
+
+        <tr>
+        <td colspan="2">
+        <button class="btn btn-primary btn-md col-md-offset-5" type="button">Cancel</button>
+        <button class="btn btn-primary btn-md" type="Reset">Reset</button>
+        <button type="submit" class="btn btn-danger btn-md">Delete</button>
+        </td>
+        </tr>
+      </table>
+      </div>          
+  <div class="table_schedule" style="">
+    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+      <thead>
+        <tr>
+         <th> </th>
+         <th>Stock</th>
+         <th>PO</th>
+         <th>Supplier</th>
+         <th>Item code</th>
+         <th>Name</th>
+         <th>Expiry date</th>
+         <th>Initial Qty</th>
+         <th>Pack size</th>
+         <th>Wholesale value</th>
+         <th>Unit Price</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+       </tr>
+       <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+       </tr>
+     </tbody>
+   </table> 
+ </div> 
+</form>
+</div>
+</div>
+<!-- /page content -->

@@ -1,0 +1,137 @@
+<!-- page content -->
+<div class="right_col" role="main"> 
+  
+<div class="col-xs-12 col-sm-6">
+
+   <h1>Purchased Gift Vouchers</h1>
+ <div class="tabel-responsive" style="width: 100%;">
+   <table class="table table-hover">
+     <thead>
+       <tr>
+         <th>Customer Name</th>
+         <th>Email</th>
+         <th>Phone Number</th>
+         <th>Voucher Amount</th>
+         <th>SKU</th>
+         <th>Status</th>
+       </tr>
+     </thead>
+     <tbody>
+     <tr *ngFor="let purchase of purchases">
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td>
+            <button class="btn btn-warning "><span class="glyphicon glyphicon-save"></span>Edit</button>
+            <button class="btn btn-danger "><span class="glyphicon glyphicon-save"></span>Delete</button>
+         </td>
+     </tr>      
+     </tbody>
+   </table>
+ </div>
+ <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+ <br>
+ <br>
+</div>
+
+<!-- <div class="col-xs-12 col-sm-6"> -->
+   <div class="form_shedule"  style="width: 50%; " >
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+ <div class="form-group">
+   <label for="customerName">Customer Name:</label>
+   <input
+         [(ngModel)]="customerName"
+         name="customerName"
+         type="text" 
+         class="form-control"
+         required>
+         <!-- <div *ngIf=" customerName.touched && customerName.errors">
+             <div class="alert alert-danger" 
+             *ngIf="customerName.errors.required"> 
+                 Customer Name  is Required.
+            </div>
+         </div> -->
+     
+ </div>
+ <div class="form-group">
+   <label for="email">Email:</label>
+   <input 
+         [(ngModel)]="email"
+         name="email"
+         type="email"
+         class="form-control"
+         required>
+         <!-- <div *ngIf=" email.touched && email.errors">
+             <div class="alert alert-danger" 
+             *ngIf="email.errors.required"> 
+             Email is Required.
+            </div>
+         </div> -->
+ </div>
+ <div class="form-group">
+     <label for="phone">Phone:</label>
+         <input
+         [(ngModel)]="phone"
+          name="phone"
+         type="tel" 
+         class="form-control">
+     <!-- <div *ngIf=" phone.touched && phone.errors">
+         <div class="alert alert-danger" 
+         *ngIf="phone.errors.required"> 
+          Phone Number is Required.
+         </div>
+     </div> -->
+ </div> 
+ <div class="form-group">
+   <label for="amount">Voucher Amount:</label>
+   <input
+       [(ngModel)]="amount"
+       name="amount"  
+       type="number" 
+       class="form-control"
+        >
+<!-- 
+   <div *ngIf=" amount.touched && amount.errors">
+       <div class="alert alert-danger" 
+       *ngIf="amount.errors.required"> 
+       Amount is Required.
+      </div>
+   </div> -->
+ </div> 
+ <div class="form-group">
+   <label for="SKU">SKU:</label>
+   <input
+         [(ngModel)]="sku" 
+         type="text"
+         name="sku"
+         class="form-control" 
+        >
+
+     
+   <!-- <div *ngIf=" sku.touched && sku.errors">
+     <div class="alert alert-danger" 
+     *ngIf="sku.errors.required"> 
+     SKU is Required.
+    </div>
+ </div>          -->
+ </div>
+ <div class="form-group">
+   <label for="status">Status:</label>
+   <select>
+     <option value="redeemed">Redeemed</option>
+     <option value="issued">Issued</option>
+     <option value="expired">Expired</option>
+     <option value="renewed">Renewed</option>
+   </select>
+ </div>
+ <div class="btn_group" style="float:right;">
+   <button class="btn btn-success "><span class="glyphicon glyphicon-save"></span>Save</button>
+   <button class="btn btn-info "><span class="glyphicon glyphicon-remove"></span>Reset</button>
+ </div>
+</form> 
+</div>
+ <!-- </div>  -->
+</div> 

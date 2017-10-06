@@ -1,0 +1,76 @@
+<!-- page content -->
+<div class="right_col" role="main">
+	
+		<h1>Promotion Types</h1>
+		<div class="main_button" style="float: right">
+			<button class="btn btn-warning" id="add_btn">Add Promotion Type</button>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th><h3>Promotion</h3></th>
+				</tr>  
+			</thead>
+	
+			<tbody>
+	
+				<tr>
+					<td><a href="type0.html">Bonus Pack</a></td>
+					<td>
+						<button class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+						<button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+					</td>   
+				</tr>  
+				<tr>
+					<td><a href="type1.html">Checkout Dispences</a></td>
+					<td>
+						<button class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+						<button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+					</td>   
+				</tr>
+	
+	
+			</tbody>
+		</table>
+	</div>
+	
+	<!-- add/update pop up -->
+	
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+	
+			<!-- Modal content-->
+			<div class="modal-content" >
+				<div class="modal-header" style="padding:35px 50px;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4><span class="glyphicon glyphicon-save"></span> Add Discount</h4>
+				</div>
+				<div class="modal-body" style="padding:40px 50px; ">
+					<form>
+						<div class="form-group" >
+							<label for="">Name:</label>
+							<input type="text">
+						</div>  
+						<br>
+						<div class="form-group" >
+							<label for="">Time Span:</label>
+							<input type="text">
+						</div>    
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+	
+					<button type="submit" class="btn btn-success btn-default pull-right" data-dismiss="modal"> <span class="glyphicon glyphicon-plus"></span>Add</button>
+				</div> 
+			</div>
+		</div>
+	</div>
+	
+		<script>
+		$(document).ready(function(){
+			$("#add_btn").click(function(){
+				$("#myModal").modal();
+			});
+		});
+		</script>

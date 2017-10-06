@@ -1,0 +1,62 @@
+<!-- page content -->
+<div class="right_col" role="main">
+<h2>Customer Returns</h2>
+<form id="customerReturns">
+  <table class="table">
+    <tr>
+      <td class="col-md-4"><label  for="itemCode">Returned item Code</label></td>
+      <td><input type="text" id="itemCode" required="required"></td>
+    </tr>
+    <tr>
+      <td><label  for="invoiceNum">Invoice Number</label></td>
+      <td><input type="text" id="invoiceNum" required="required"></td>
+    </tr>
+    <tr>
+      <td><label  for="itemName">Item Name</label></td>
+      <td><input type="text" id="itemName" required="required" disabled=""></td>
+    </tr>
+    <tr>
+      <td><label  for="stockNumber">Stock Number</label></td>
+      <td><input type="text" id="stockNumber" required="required" disabled=""></td>
+    </tr>
+    <tr>
+      <td><label for="probDesc">Cause of return</label></td>
+      <td>
+        <select  name="causeOfReturn" id="causeOfReturn">
+          <option value="Different Content">Different content</option>
+          <option value="Damaged packages">Damaged Packages</option> 
+          <option value="Other">Other(Specify below)</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td><label  for="probDesc">Description</label></td>
+      <td><textarea ></textarea></td>
+    </tr>
+  </table>
+  <h2>Replacements</h2>
+  <table class="table">
+    <tr>
+      <td class="col-md-4"><label for="replacement">Replacement type</label></td>
+      <td>
+        <select  name="replacement" id="replacement">
+          <option value="Cash">Cash</option> 
+          <option value="Sameitem">Same Item</option>
+          <option value="Other">Other(Specify below)</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label  for="repDesc">Description</label></td>
+      <td><textarea ></textarea></td>
+    </tr>
+  </table>
+        <div class="form-group">
+        <button class="btn btn-primary" type="button">Cancel</button>
+        <button class="btn btn-primary" type="reset">Reset</button>
+        <button type="button" class="btn btn-success">Save</button>
+      </div>
+  </form>
+</div>
+<!-- /page content -->
