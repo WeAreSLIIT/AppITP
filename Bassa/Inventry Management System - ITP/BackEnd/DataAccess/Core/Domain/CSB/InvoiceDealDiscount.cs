@@ -6,7 +6,7 @@ namespace DataAccess.Core.Domain
     {
         public long InvoiceDealDiscountID { get; set; }
 
-        //Price = 0, Percentage = 1
+        //Price = 0, percentage = 1
         public byte Method { get; set; }
         public DiscountMethod DiscountMethod
         {

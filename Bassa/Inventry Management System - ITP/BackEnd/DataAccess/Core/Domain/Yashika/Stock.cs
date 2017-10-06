@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Core.Domain
 {
     public class Stock
     {
-      [Key]
+        [Key]
         public long StockID { get; set; }
         public string PublicStockID { get; set; }
         public string PublicItemCode { get; set; }
@@ -33,12 +28,5 @@ namespace DataAccess.Core.Domain
             get { return (StockStatus)(this.StockStatus); }
             set { this.StockStatus = (byte)value; }
         }
-    }
-
-    public enum StockStatus : byte
-    {
-        FreeAndAvailable = 0,
-        Recount = 1,
-        Empty = 2
     }
 }

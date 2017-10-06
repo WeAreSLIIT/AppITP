@@ -1,15 +1,39 @@
 ﻿namespace DataAccess.Core.Domain
 {
-    public enum DiscountMethod : byte
+    //Dileepa
+    public enum ExpireStatus
     {
-        Price = 0,
-        Percentage
+        limited = 1,
+        unlimited = 2
     }
 
+    public enum Status : byte
+    {
+        redeemed = 1,
+        issued = 2,
+        expired = 3,
+        renewed = 4
+    }
+
+    public enum DiscountMethod : byte
+    {
+        fixedPrice = 1,
+        percentage = 2
+    }
+
+    //Harin's
     public enum ProductPriceType : byte
     {
         NormalPrice = 0,
         PackPrice,
         UnitPrice
+    }
+
+    //Yashika's
+    public enum StockStatus : byte
+    {
+        FreeAndAvailable = 0,
+        Recount = 1,
+        Empty = 2
     }
 }

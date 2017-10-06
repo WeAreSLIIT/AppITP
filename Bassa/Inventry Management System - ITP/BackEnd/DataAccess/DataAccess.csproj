@@ -47,11 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Domain\Dileepa\DiscountSchedule.cs" />
+    <Compile Include="Core\Domain\Dileepa\DiscountType.cs" />
+    <Compile Include="Core\Domain\Dileepa\GiftVoucherIssue.cs" />
+    <Compile Include="Core\Domain\Dileepa\GiftVoucherType.cs" />
+    <Compile Include="Core\Repositories\Dileepa\IDiscountScheduleRepository.cs" />
+    <Compile Include="Core\Repositories\Dileepa\IDiscountTypeRepository.cs" />
+    <Compile Include="Core\Repositories\Dileepa\IGiftVoucherIssueRepository.cs" />
+    <Compile Include="Core\Repositories\Dileepa\IGiftVoucherTypeRepository.cs" />
+    <Compile Include="Core\Repositories\Dileepa\IPromotionScheduleRepository.cs" />
+    <Compile Include="Core\Repositories\Dileepa\IPromotionTypeRepository.cs" />
+    <Compile Include="Core\Validation\PhoneNumber.cs" />
     <Compile Include="Core\Domain\Harin\Category.cs" />
     <Compile Include="Core\Domain\CSB\Counter.cs" />
+    <Compile Include="Core\Domain\Dileepa\PromotionSchedule.cs" />
+    <Compile Include="Core\Domain\Dileepa\PromotionType.cs" />
+    <Compile Include="Core\Domain\Yashika\Item.cs" />
     <Compile Include="Core\Domain\Kavi\Credit.cs" />
     <Compile Include="Core\Domain\Kavi\Customer.cs" />
-    <Compile Include="Core\Domain\Discount.cs" />
+    <Compile Include="Core\Domain\Dileepa\Discount.cs" />
     <Compile Include="Core\Domain\Kavi\Login.cs" />
     <Compile Include="Core\Domain\Kavi\LoyaltyCard.cs" />
     <Compile Include="Core\Domain\Kavi\LoyaltyProgram.cs" />
@@ -63,6 +77,8 @@
     <Compile Include="Core\Domain\Pathmika\ServiceSupplier.cs" />
     <Compile Include="Core\Domain\Pathmika\Supplier.cs" />
     <Compile Include="Core\Domain\Pathmika\SupplierPayment.cs" />
+    <Compile Include="Core\Domain\Yashika\Recount.cs" />
+    <Compile Include="Core\Domain\Yashika\ReturnStock.cs" />
     <Compile Include="Core\Domain\Samith\Employee.cs" />
     <Compile Include="Core\Domain\Enums.cs" />
     <Compile Include="Core\Domain\CSB\Invoice.cs" />
@@ -78,12 +94,23 @@
     <Compile Include="Core\Domain\Harin\Rack.cs" />
     <Compile Include="Core\Domain\Harin\Section.cs" />
     <Compile Include="Core\Domain\Harin\SubCategory.cs" />
+    <Compile Include="Core\Domain\Yashika\Stock.cs" />
+    <Compile Include="Core\Domain\Yashika\TransInStock.cs" />
+    <Compile Include="Core\Domain\Yashika\TransOut.cs" />
+    <Compile Include="Core\Domain\Yashika\Wastage.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Repositories\CSB\ICounterRepository.cs" />
     <Compile Include="Core\Repositories\Harin\ICategoryRepository.cs" />
     <Compile Include="Core\Repositories\Harin\IRackRepository.cs" />
     <Compile Include="Core\Repositories\Harin\ISectionRepository.cs" />
     <Compile Include="Core\Repositories\Harin\ISubCategoryRepository.cs" />
+    <Compile Include="Core\Repositories\Yashika\IItemRepository.cs" />
+    <Compile Include="Core\Repositories\Yashika\IRecountRepository.cs" />
+    <Compile Include="Core\Repositories\Yashika\IReturnRepository.cs" />
+    <Compile Include="Core\Repositories\Yashika\IStockRepository.cs" />
+    <Compile Include="Core\Repositories\Yashika\ITransInRepository.cs" />
+    <Compile Include="Core\Repositories\Yashika\ITransOutRepository.cs" />
+    <Compile Include="Core\Repositories\Yashika\IWastageRepository.cs" />
     <Compile Include="Core\Repositories\Kavi\ICreditRepository.cs" />
     <Compile Include="Core\Repositories\Kavi\ICustomerRepository.cs" />
     <Compile Include="Core\Repositories\Dileepa\IDiscountRepository.cs" />
@@ -110,6 +137,7 @@
     <Compile Include="Core\Repositories\CSB\IPaymentMethodRepository.cs" />
     <Compile Include="Core\Repositories\Harin\IProductRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
+    <Compile Include="Core\Validation\CustomerEmailAddress.cs" />
     <Compile Include="Migrations\201709222152019_Reinitialize.cs" />
     <Compile Include="Migrations\201709222152019_Reinitialize.Designer.cs">
       <DependentUpon>201709222152019_Reinitialize.cs</DependentUpon>
@@ -134,13 +162,28 @@
     <Compile Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.Designer.cs">
       <DependentUpon>201710060738174_IntegratedHarinKaviAndPathmika.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710060908558_IntegratedYashikasPart.cs" />
+    <Compile Include="Migrations\201710060908558_IntegratedYashikasPart.Designer.cs">
+      <DependentUpon>201710060908558_IntegratedYashikasPart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710061006553_IntegratedDileepasPart.cs" />
+    <Compile Include="Migrations\201710061006553_IntegratedDileepasPart.Designer.cs">
+      <DependentUpon>201710061006553_IntegratedDileepasPart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
     <Compile Include="Persistence\Repositories\CSB\CounterRepository.cs" />
+    <Compile Include="Persistence\Repositories\Dileepa\DiscountScheduleRepository.cs" />
+    <Compile Include="Persistence\Repositories\Dileepa\DiscountTypeRepository.cs" />
+    <Compile Include="Persistence\Repositories\Dileepa\GiftVoucherIssueRepository.cs" />
+    <Compile Include="Persistence\Repositories\Dileepa\GiftVoucherTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\Harin\CategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\Harin\RackRepository.cs" />
     <Compile Include="Persistence\Repositories\Harin\SectionRepository.cs" />
     <Compile Include="Persistence\Repositories\Harin\SubCategoryRepository.cs" />
+    <Compile Include="Persistence\Repositories\Dileepa\PromotionScheduleRepository.cs" />
+    <Compile Include="Persistence\Repositories\Dileepa\PromotionTypeRepository.cs" />
+    <Compile Include="Persistence\Repositories\Yashika\ItemRepository.cs" />
     <Compile Include="Persistence\Repositories\Kavi\CreditRepository.cs" />
     <Compile Include="Persistence\Repositories\Kavi\CustomerRepository.cs" />
     <Compile Include="Persistence\Repositories\Dileepa\DiscountRepository.cs" />
@@ -155,6 +198,8 @@
     <Compile Include="Persistence\Repositories\Pathmika\ServiceSupplierRepository.cs" />
     <Compile Include="Persistence\Repositories\Pathmika\SupplierPaymentRepository.cs" />
     <Compile Include="Persistence\Repositories\Pathmika\SupplierRepository.cs" />
+    <Compile Include="Persistence\Repositories\Yashika\RecountRepository.cs" />
+    <Compile Include="Persistence\Repositories\Yashika\ReturnRepository.cs" />
     <Compile Include="Persistence\Repositories\Samith\EmployeeRepository.cs" />
     <Compile Include="Persistence\Repositories\Samith\BranchRepository.cs" />
     <Compile Include="Persistence\Repositories\CSB\InvoiceCustomerRepository.cs" />
@@ -167,6 +212,10 @@
     <Compile Include="Persistence\Repositories\CSB\PaymentMethodRepository.cs" />
     <Compile Include="Persistence\Repositories\Harin\ProductRepository.cs" />
     <Compile Include="Persistence\Repositories\Repository.cs" />
+    <Compile Include="Persistence\Repositories\Yashika\StockRepository.cs" />
+    <Compile Include="Persistence\Repositories\Yashika\TransInRepository.cs" />
+    <Compile Include="Persistence\Repositories\Yashika\TransOutRepository.cs" />
+    <Compile Include="Persistence\Repositories\Yashika\WastageRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -195,16 +244,18 @@
     <EmbeddedResource Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.resx">
       <DependentUpon>201710060738174_IntegratedHarinKaviAndPathmika.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710060908558_IntegratedYashikasPart.resx">
+      <DependentUpon>201710060908558_IntegratedYashikasPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710061006553_IntegratedDileepasPart.resx">
+      <DependentUpon>201710061006553_IntegratedDileepasPart.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\Domain\Dileepa\" />
     <Folder Include="Core\Domain\Ovin\" />
-    <Folder Include="Core\Domain\Yashika\" />
     <Folder Include="Core\Repositories\Ovin\" />
-    <Folder Include="Core\Repositories\Yashika\" />
     <Folder Include="Persistence\EntityConfigurations\" />
     <Folder Include="Persistence\Repositories\Ovin\" />
-    <Folder Include="Persistence\Repositories\Yashika\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

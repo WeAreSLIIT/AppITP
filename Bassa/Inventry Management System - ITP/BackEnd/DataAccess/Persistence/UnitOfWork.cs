@@ -33,8 +33,15 @@ namespace DataAccess.Persistence
 
         #region Dileepa's
 
+        //CSB Temporary
         public IDiscountRepository Discounts { get; private set; }
 
+        public IDiscountScheduleRepository DiscountSchedules { get; private set; }
+        public IDiscountTypeRepository DiscountTypes { get; private set; }
+        public IGiftVoucherTypeRepository GiftVoucherTypes { get; private set; }
+        public IGiftVoucherIssueRepository GiftVoucherIssues { get; private set; }
+        public IPromotionTypeRepository PromotionTypes { get; private set; }
+        public IPromotionScheduleRepository PromotionSchedules { get; private set; }
 
         #endregion
 
@@ -73,7 +80,13 @@ namespace DataAccess.Persistence
 
         #region Yashika's
 
-
+        public IItemRepository Items { get; private set; }
+        public IRecountRepository Recounts { get; private set; }
+        public IReturnRepository ReturnStocks { get; private set; }
+        public IStockRepository Stocks { get; private set; }
+        public ITransInRepository TransInStocks { get; private set; }
+        public ITransOutRepository TransOuts { get; private set; }
+        public IWastageRepository Wastages { get; private set; }
 
         #endregion
 
@@ -86,8 +99,15 @@ namespace DataAccess.Persistence
             Employees = new EmployeeRepository(this._context);
             Branches = new BranchRepository(this._context);
 
-            Customers = new CustomerRepository(this._context);
+            //Deleepa
+            DiscountSchedules = new DiscountScheduleRepository(this._context);
+            DiscountTypes = new DiscountTypeRepository(this._context);
+            GiftVoucherTypes = new GiftVoucherTypeRepository(this._context);
+            GiftVoucherIssues = new GiftVoucherIssueRepository(this._context);
+            PromotionTypes = new PromotionTypeRepository(this._context);
+            PromotionSchedules = new PromotionScheduleRepository(this._context);
 
+            //CSB Temporary
             Discounts = new DiscountRepository(this._context);
 
             //CSB
@@ -124,6 +144,15 @@ namespace DataAccess.Persistence
             ProductSuppliers = new ProductSupplierRepository(this._context);
             ServiceSuppliers = new ServiceSupplierRepository(this._context);
             SupplierPayments = new SupplierPaymentRepository(this._context);
+
+            //Yashika
+            Items = new ItemRepository(this._context);
+            Recounts = new RecountRepository(this._context);
+            ReturnStocks = new ReturnRepository(this._context);
+            Stocks = new StockRepository(this._context);
+            TransInStocks = new TransInRepository(this._context);
+            TransOuts = new TransOutRepository(this._context);
+            Wastages = new WastageRepository(this._context);
         }
 
         public int Complete()

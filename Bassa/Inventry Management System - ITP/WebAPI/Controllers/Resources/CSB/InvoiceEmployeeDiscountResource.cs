@@ -4,7 +4,7 @@
     {
         public long InvoiceEmployeeDiscountID { get; set; }
 
-        //Price = 0, Percentage = 1
+        //Price = 0, percentage = 1
         public byte Method { get; set; }
         public DiscountMethodResource DiscountMethod
         {

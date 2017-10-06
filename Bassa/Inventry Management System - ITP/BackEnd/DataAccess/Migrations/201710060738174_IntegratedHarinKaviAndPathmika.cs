@@ -214,7 +214,7 @@ namespace DataAccess.Migrations
             AddColumn("dbo.Products", "Barcode", c => c.String());
             AddColumn("dbo.Products", "Cost", c => c.Double(nullable: false));
             AddColumn("dbo.Products", "NotifyDay", c => c.Int());
-            AddColumn("dbo.Products", "Price", c => c.Double(nullable: false));
+            AddColumn("dbo.Products", "fixedPrice", c => c.Double(nullable: false));
             AddColumn("dbo.Products", "PriceType", c => c.Byte(nullable: false));
             AddColumn("dbo.Products", "NumberOfUnits", c => c.Int());
             AddColumn("dbo.Products", "Unit", c => c.Double());
@@ -269,7 +269,7 @@ namespace DataAccess.Migrations
             DropColumn("dbo.Products", "Unit");
             DropColumn("dbo.Products", "NumberOfUnits");
             DropColumn("dbo.Products", "PriceType");
-            DropColumn("dbo.Products", "Price");
+            DropColumn("dbo.Products", "fixedPrice");
             DropColumn("dbo.Products", "NotifyDay");
             DropColumn("dbo.Products", "Cost");
             DropColumn("dbo.Products", "Barcode");

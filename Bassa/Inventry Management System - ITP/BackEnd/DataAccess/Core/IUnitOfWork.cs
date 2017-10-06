@@ -48,8 +48,15 @@ namespace DataAccess.Core
         #endregion
 
         #region Dileepa's
-
+        //CSB Temporary
         IDiscountRepository Discounts { get; }
+
+        IDiscountScheduleRepository DiscountSchedules { get; }
+        IDiscountTypeRepository DiscountTypes { get; }
+        IGiftVoucherTypeRepository GiftVoucherTypes { get; }
+        IGiftVoucherIssueRepository GiftVoucherIssues { get; }
+        IPromotionTypeRepository PromotionTypes { get; }
+        IPromotionScheduleRepository PromotionSchedules { get; }
 
         #endregion
 
@@ -66,6 +73,14 @@ namespace DataAccess.Core
         #endregion
 
         #region Yashika's
+
+        IItemRepository Items { get; }
+        IRecountRepository Recounts { get; }
+        IReturnRepository ReturnStocks { get; }
+        IStockRepository Stocks { get; }
+        ITransInRepository TransInStocks { get; }
+        ITransOutRepository TransOuts { get; }
+        IWastageRepository Wastages { get; }
 
         #endregion
 

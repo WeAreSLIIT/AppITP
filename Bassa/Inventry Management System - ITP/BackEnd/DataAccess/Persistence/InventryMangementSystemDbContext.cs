@@ -25,14 +25,27 @@ namespace DataAccess.Persistence
         #endregion
 
         #region Dileepa's
-
+        //CSB Temporary
         public DbSet<Discount> Discounts { get; set; }
+
+        public DbSet<DiscountType> DiscountTypes { get; set; }
+        public DbSet<DiscountSchedule> DiscountShedules { get; set; }
+        public DbSet<PromotionType> PromotionTypes { get; set; }
+        public DbSet<PromotionSchedule> PromotionShedules { get; set; }
+        public DbSet<GiftVoucherType> GiftVoucherTypes { get; set; }
+        public DbSet<GiftVoucherIssue> GiftVoucherIssues { get; set; }
 
         #endregion
 
         #region Yashika's
 
-
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Recount> Recounts { get; set; }
+        public DbSet<ReturnStock> ReturnStocks { get; set; }
+        public DbSet<TransInStock> TransInStocks { get; set; }
+        public DbSet<TransOut> TransOuts { get; set; }
+        public DbSet<Wastage> Wastages { get; set; }
 
         #endregion
 
