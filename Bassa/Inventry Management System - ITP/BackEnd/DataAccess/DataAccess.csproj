@@ -47,36 +47,68 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Domain\Counter.cs" />
-    <Compile Include="Core\Domain\Customer.cs" />
+    <Compile Include="Core\Domain\Harin\Category.cs" />
+    <Compile Include="Core\Domain\CSB\Counter.cs" />
+    <Compile Include="Core\Domain\Kavi\Credit.cs" />
+    <Compile Include="Core\Domain\Kavi\Customer.cs" />
     <Compile Include="Core\Domain\Discount.cs" />
-    <Compile Include="Core\Domain\Employee.cs" />
+    <Compile Include="Core\Domain\Kavi\Login.cs" />
+    <Compile Include="Core\Domain\Kavi\LoyaltyCard.cs" />
+    <Compile Include="Core\Domain\Kavi\LoyaltyProgram.cs" />
+    <Compile Include="Core\Domain\Kavi\Preorder.cs" />
+    <Compile Include="Core\Domain\Pathmika\Order.cs" />
+    <Compile Include="Core\Domain\Pathmika\OrderProduct.cs" />
+    <Compile Include="Core\Domain\Pathmika\OrderService.cs" />
+    <Compile Include="Core\Domain\Pathmika\ProductSupplier.cs" />
+    <Compile Include="Core\Domain\Pathmika\ServiceSupplier.cs" />
+    <Compile Include="Core\Domain\Pathmika\Supplier.cs" />
+    <Compile Include="Core\Domain\Pathmika\SupplierPayment.cs" />
+    <Compile Include="Core\Domain\Samith\Employee.cs" />
     <Compile Include="Core\Domain\Enums.cs" />
-    <Compile Include="Core\Domain\Invoice.cs" />
-    <Compile Include="Core\Domain\Branch.cs" />
-    <Compile Include="Core\Domain\InvoiceCustomer.cs" />
-    <Compile Include="Core\Domain\InvoiceDeal.cs" />
-    <Compile Include="Core\Domain\InvoiceDealDiscount.cs" />
-    <Compile Include="Core\Domain\InvoiceEmployeeDiscount.cs" />
-    <Compile Include="Core\Domain\InvoicePaymentMethod.cs" />
-    <Compile Include="Core\Domain\InvoiceProduct.cs" />
-    <Compile Include="Core\Domain\PaymentMethod.cs" />
-    <Compile Include="Core\Domain\Product.cs" />
+    <Compile Include="Core\Domain\CSB\Invoice.cs" />
+    <Compile Include="Core\Domain\Samith\Branch.cs" />
+    <Compile Include="Core\Domain\CSB\InvoiceCustomer.cs" />
+    <Compile Include="Core\Domain\CSB\InvoiceDeal.cs" />
+    <Compile Include="Core\Domain\CSB\InvoiceDealDiscount.cs" />
+    <Compile Include="Core\Domain\CSB\InvoiceEmployeeDiscount.cs" />
+    <Compile Include="Core\Domain\CSB\InvoicePaymentMethod.cs" />
+    <Compile Include="Core\Domain\CSB\InvoiceProduct.cs" />
+    <Compile Include="Core\Domain\CSB\PaymentMethod.cs" />
+    <Compile Include="Core\Domain\Harin\Product.cs" />
+    <Compile Include="Core\Domain\Harin\Rack.cs" />
+    <Compile Include="Core\Domain\Harin\Section.cs" />
+    <Compile Include="Core\Domain\Harin\SubCategory.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
-    <Compile Include="Core\Repositories\ICounterRepository.cs" />
-    <Compile Include="Core\Repositories\ICustomerRepository.cs" />
-    <Compile Include="Core\Repositories\IDiscountRepository.cs" />
-    <Compile Include="Core\Repositories\IEmployeeRepository.cs" />
-    <Compile Include="Core\Repositories\IBranchRepository.cs" />
-    <Compile Include="Core\Repositories\IInvoiceCustomerRepository.cs" />
-    <Compile Include="Core\Repositories\IInvoiceDealDiscountRepository.cs" />
-    <Compile Include="Core\Repositories\IInvoiceDealRepository.cs" />
-    <Compile Include="Core\Repositories\IInvoiceEmployeeDiscountRepository.cs" />
-    <Compile Include="Core\Repositories\IInvoicePaymentMethodRepository.cs" />
-    <Compile Include="Core\Repositories\IInvoiceRepository.cs" />
-    <Compile Include="Core\Repositories\IInvoiceProductRepository.cs" />
-    <Compile Include="Core\Repositories\IPaymentMethodRepository.cs" />
-    <Compile Include="Core\Repositories\IProductRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\ICounterRepository.cs" />
+    <Compile Include="Core\Repositories\Harin\ICategoryRepository.cs" />
+    <Compile Include="Core\Repositories\Harin\IRackRepository.cs" />
+    <Compile Include="Core\Repositories\Harin\ISectionRepository.cs" />
+    <Compile Include="Core\Repositories\Harin\ISubCategoryRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ICreditRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ICustomerRepository.cs" />
+    <Compile Include="Core\Repositories\Dileepa\IDiscountRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ILoginRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ILoyaltyCardRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ILoyaltyProgramRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\IPreorderRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IOrderProductRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IOrderRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IOrderServiceRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IProductSupplierRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\IServiceSupplierRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\ISupplierPaymentRepository.cs" />
+    <Compile Include="Core\Repositories\Pathmika\ISupplierRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IEmployeeRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IBranchRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\IInvoiceCustomerRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\IInvoiceDealDiscountRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\IInvoiceDealRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\IInvoiceEmployeeDiscountRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\IInvoicePaymentMethodRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\IInvoiceRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\IInvoiceProductRepository.cs" />
+    <Compile Include="Core\Repositories\CSB\IPaymentMethodRepository.cs" />
+    <Compile Include="Core\Repositories\Harin\IProductRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Migrations\201709222152019_Reinitialize.cs" />
     <Compile Include="Migrations\201709222152019_Reinitialize.Designer.cs">
@@ -98,22 +130,42 @@
     <Compile Include="Migrations\201709250727557_InvoicePaymentTableAdded.Designer.cs">
       <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.cs" />
+    <Compile Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.Designer.cs">
+      <DependentUpon>201710060738174_IntegratedHarinKaviAndPathmika.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
-    <Compile Include="Persistence\Repositories\CounterRepository.cs" />
-    <Compile Include="Persistence\Repositories\CustomerRepository.cs" />
-    <Compile Include="Persistence\Repositories\DiscountRepository.cs" />
-    <Compile Include="Persistence\Repositories\EmployeeRepository.cs" />
-    <Compile Include="Persistence\Repositories\BranchRepository.cs" />
-    <Compile Include="Persistence\Repositories\InvoiceCustomerRepository.cs" />
-    <Compile Include="Persistence\Repositories\InvoiceDealDiscountRepository.cs" />
-    <Compile Include="Persistence\Repositories\InvoiceDealRepository.cs" />
-    <Compile Include="Persistence\Repositories\InvoiceEmployeeDiscountRepository.cs" />
-    <Compile Include="Persistence\Repositories\InvoicePaymentMethodRepository.cs" />
-    <Compile Include="Persistence\Repositories\InvoiceProductRepository.cs" />
-    <Compile Include="Persistence\Repositories\InvoiceRepository.cs" />
-    <Compile Include="Persistence\Repositories\PaymentMethodRepository.cs" />
-    <Compile Include="Persistence\Repositories\ProductRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\CounterRepository.cs" />
+    <Compile Include="Persistence\Repositories\Harin\CategoryRepository.cs" />
+    <Compile Include="Persistence\Repositories\Harin\RackRepository.cs" />
+    <Compile Include="Persistence\Repositories\Harin\SectionRepository.cs" />
+    <Compile Include="Persistence\Repositories\Harin\SubCategoryRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\CreditRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\CustomerRepository.cs" />
+    <Compile Include="Persistence\Repositories\Dileepa\DiscountRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\LoginRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\LoyaltyCardRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\LoyaltyProgramRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\PreorderRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\OrderProductRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\OrderRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\OrderServiceRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\ProductSupplierRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\ServiceSupplierRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\SupplierPaymentRepository.cs" />
+    <Compile Include="Persistence\Repositories\Pathmika\SupplierRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\EmployeeRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\BranchRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\InvoiceCustomerRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\InvoiceDealDiscountRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\InvoiceDealRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\InvoiceEmployeeDiscountRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\InvoicePaymentMethodRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\InvoiceProductRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\InvoiceRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\PaymentMethodRepository.cs" />
+    <Compile Include="Persistence\Repositories\Harin\ProductRepository.cs" />
     <Compile Include="Persistence\Repositories\Repository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -140,9 +192,19 @@
     <EmbeddedResource Include="Migrations\201709250727557_InvoicePaymentTableAdded.resx">
       <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.resx">
+      <DependentUpon>201710060738174_IntegratedHarinKaviAndPathmika.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Core\Domain\Dileepa\" />
+    <Folder Include="Core\Domain\Ovin\" />
+    <Folder Include="Core\Domain\Yashika\" />
+    <Folder Include="Core\Repositories\Ovin\" />
+    <Folder Include="Core\Repositories\Yashika\" />
     <Folder Include="Persistence\EntityConfigurations\" />
+    <Folder Include="Persistence\Repositories\Ovin\" />
+    <Folder Include="Persistence\Repositories\Yashika\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

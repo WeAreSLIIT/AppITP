@@ -90,12 +90,31 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CountersController.cs" />
+    <Compile Include="Controllers\CreditsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
+    <Compile Include="Controllers\LoyaltyCardsController.cs" />
+    <Compile Include="Controllers\LoyaltyProgramsController.cs" />
+    <Compile Include="Controllers\Methods\CounterControllerMethods.cs" />
     <Compile Include="Controllers\Methods\InvoicePaymentMethodControllerMethods.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderProductController.cs" />
+    <Compile Include="Controllers\OrderServiceController.cs" />
+    <Compile Include="Controllers\PreordersController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductSupplierController.cs" />
+    <Compile Include="Controllers\RackController.cs" />
     <Compile Include="Controllers\Resources\CounterResource.cs" />
     <Compile Include="Controllers\Resources\InvoicePaymentMethodResource.cs" />
     <Compile Include="Controllers\Resources\ServerOnlineResource.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\ServiceSupplierController.cs" />
+    <Compile Include="Controllers\SubCategoryController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\SupplierPaymentController.cs" />
     <Compile Include="Models\BackgroundProcess.cs" />
     <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

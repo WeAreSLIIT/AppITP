@@ -39,7 +39,7 @@
                     </Grid.RowDefinitions>
 
                     <Grid Margin="5">
-                        <StackPanel x:Name="ProductsFound" Visibility="Collapsed">
+                        <StackPanel x:Name="ProductsFound">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30"/>
@@ -54,13 +54,13 @@
                                 <TextBlock Grid.Column="3" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Text="Item Price"/>
                             </Grid>
                         </StackPanel>
-                        <StackPanel x:Name="ProductsNotFound" Visibility="Collapsed">
+                        <StackPanel x:Name="ProductsNotFound">
                             <TextBlock Text="No Product found :/" FontSize="20" FontWeight="Bold"/>
                             <TextBlock Text="Please try search with another." FontSize="16" FontWeight="Bold" Foreground="Gray"/>
                         </StackPanel>
                     </Grid>
 
-                    <ListBox x:Name="ProductItemsList" Grid.Row="1"
+                    <ListView x:Name="ProductItemsList" Grid.Row="1"
                                      Background="Transparent" 
                                      ScrollViewer.CanContentScroll="False" 
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 

@@ -50,6 +50,8 @@
     <Compile Include="Controler\Button\NavigationButton.cs" />
     <Compile Include="Controler\Content\ImageSingleContent.cs" />
     <Compile Include="Controler\Content\InvoiceItemContent.cs" />
+    <Compile Include="Controler\Content\InvoicePaymentListItemContent.cs" />
+    <Compile Include="Controler\Content\PaymentSearchItem.cs" />
     <Compile Include="Controler\Content\ProductSearchItem.cs" />
     <Compile Include="Converter\ButtonImageVisibilityConverter.cs" />
     <Compile Include="Converter\ButtonTextblockVisibilityConverter.cs" />
@@ -94,6 +96,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Color\Content\InvoiceItemContentColor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Color\Font\MainWindowFontColor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,11 +128,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Template\Content\InvoicePaymentListItemContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Template\Content\Navigation\LoggedUserNavigationContentTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Template\Content\Navigation\SystemTitleNavigationContentTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\Content\PaymentSearchItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

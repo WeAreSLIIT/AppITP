@@ -5,5 +5,6 @@
     <!-- App Notify Colors -->
     <SolidColorBrush x:Key="Notify-SomethingWrong-SolidColorBrush" Color="#ff6496"/>
     <Color x:Key="Notify-SomethingWrong-Color" R="255" G="100" B="150" A="255" />
+    <Color x:Key="Notify-ItemAlreadyExsits-Color" R="200" G="255" B="100" A="255" />
 
 </ResourceDictionary>

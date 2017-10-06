@@ -187,7 +187,7 @@ namespace DataAccess.Migrations
             DropForeignKey("dbo.PaymentMethodInvoices", "Invoice_InvoiceID", "dbo.Invoices");
             DropForeignKey("dbo.PaymentMethodInvoices", "PaymentMethod_PaymentMethodID", "dbo.PaymentMethods");
             DropForeignKey("dbo.Invoices", "IssuedByID", "dbo.Employees");
-            DropForeignKey("dbo.InvoiceProduct", "ProductID", "dbo.Products");
+            DropForeignKey("dbo.InvoiceProduct", "ProductId", "dbo.Products");
             DropForeignKey("dbo.InvoiceProduct", "InvoiceID", "dbo.Invoices");
             DropForeignKey("dbo.InvoiceDeals", "InvoiceDealDiscountID", "dbo.InvoiceDealDiscount");
             DropForeignKey("dbo.InvoiceDealDiscount", "GivenEmployeeID", "dbo.Employees");
@@ -201,7 +201,7 @@ namespace DataAccess.Migrations
             DropIndex("dbo.PaymentMethodInvoices", new[] { "Invoice_InvoiceID" });
             DropIndex("dbo.PaymentMethodInvoices", new[] { "PaymentMethod_PaymentMethodID" });
             DropIndex("dbo.PaymentMethods", new[] { "PaymentMethodName" });
-            DropIndex("dbo.InvoiceProduct", new[] { "ProductID" });
+            DropIndex("dbo.InvoiceProduct", new[] { "ProductId" });
             DropIndex("dbo.InvoiceProduct", new[] { "InvoiceID" });
             DropIndex("dbo.InvoiceEmployeeDiscounts", new[] { "Invoice_InvoiceID" });
             DropIndex("dbo.InvoiceEmployeeDiscounts", new[] { "PermittedEmployeeID" });

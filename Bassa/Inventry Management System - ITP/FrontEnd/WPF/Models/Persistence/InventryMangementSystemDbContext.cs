@@ -1,8 +1,10 @@
-﻿using Models.Core;
+﻿using Models.APICall;
+using Models.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,17 +12,60 @@ namespace Models.Persistence
 {
     public static class InventryMangementSystemDbContext
     {
+        public static bool ConnectionCheckFirstTime;
+
+        public static bool ConnectionToServer;
+        public static string BaseAddressToServer;
+        public static string AppID;
+
         public static ICollection<Product> Products;
+        public static ICollection<PaymentMethod> PaymentMethods;
+        public static ServerData ServerDateTime;
+        public static SystemInfo SystemInformation;
+        public static Counter CounterWorking;
 
         static InventryMangementSystemDbContext()
         {
             Products = new List<Product>();
-        }
+            PaymentMethods = new List<PaymentMethod>();
+            ServerDateTime = new ServerData();
+            SystemInformation = new SystemInfo();
+            CounterWorking = new Counter();
 
-        public static bool InitializeData()
+            ConnectionToServer = false;
+            BaseAddressToServer = @"http://localhost:5556/";
+            AppID = "csbwpfapp";
+        }        
+
+        public async static Task<bool> InitializeData()
         {
             try
             {
+                await Task.Run(() => { });
+
+                #region Tempory Code until DB Connection
+
+                #region Server Date Time
+
+
+
+                #endregion
+
+                #region Server Date Time
+
+
+
+                #endregion
+
+                #region Counter Working
+
+                CounterWorking.BranchID = 1;
+                CounterWorking.CouterNo = 1;
+
+                #endregion
+
+                #region Products
+
                 Products.Add(new Product()
                 {
                     ID = "001-1-1",
@@ -66,6 +111,38 @@ namespace Models.Persistence
                     Type = ProductType.Unit
                 });
 
+                #endregion
+
+                #region PaymentMethods
+
+                PaymentMethods.Add(new PaymentMethod()
+                {
+                    Name = "Cash",
+                    Note = "Cash by hand"
+                });
+
+                PaymentMethods.Add(new PaymentMethod()
+                {
+                    Name = "Sampath-Credit",
+                    Note = "Sampath Bank's Credit Card"
+                });
+
+                PaymentMethods.Add(new PaymentMethod()
+                {
+                    Name = "Commercial-Credit",
+                    Note = "Commercial Bank's Credit Card"
+                });
+
+                #endregion
+
+                #region Customers
+
+
+
+                #endregion
+
+                #endregion
+
                 return true;
             }
             catch
@@ -73,5 +150,12 @@ namespace Models.Persistence
                 return false;
             }
         }
+
+        public async static Task<bool> CheckConnectionToServer()
+        {
+            return await new ServerConnectionAPICall().CheckServerStatus();
+        }
+
+
     }
 }

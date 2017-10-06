@@ -7,16 +7,66 @@ namespace DataAccess.Persistence
 {
     public class InventryMangementSystemDbContext : DbContext
     {
-        public DbSet<Branch> Branches { get; set; }
-        public DbSet<Counter> Counters { get; set; }
+        #region Samith's
 
-        public DbSet<Customer> Courses { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+
+        #endregion
+
+        #region Kavi's
+        
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<LoyaltyCard> LoyaltyCards { get; set; }
+        public DbSet<LoyaltyProgram> LoyaltyPrograms { get; set; }
+        public DbSet<Preorder> Preorders { get; set; }
+        public DbSet<Credit> Credits { get; set; }
+
+        #endregion
+
+        #region Dileepa's
+
         public DbSet<Discount> Discounts { get; set; }
+
+        #endregion
+
+        #region Yashika's
+
+
+
+        #endregion
+
+        #region Pathmika's
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderService> OrderServices { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<ProductSupplier> ProductSuppliers { get; set; }
+        public DbSet<ServiceSupplier> ServiceSuppliers { get; set; }
+        public DbSet<SupplierPayment> SupplierPayments { get; set; }
+
+        #endregion
+
+        #region Ovins's
+
+
+
+        #endregion
+
+        #region Harin's
+
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Rack> Racks { get; set; }
 
-        #region DbSets of Invoice Related Tables
+        #endregion
 
+        #region CSB's
+
+        public DbSet<Counter> Counters { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceCustomer> InvoiceCustomer { get; set; }
         public DbSet<InvoiceEmployeeDiscount> InvoiceDiscounts { get; set; }
@@ -160,6 +210,121 @@ namespace DataAccess.Persistence
                 .HasForeignKey(ipm => ipm.InvoiceID).WillCascadeOnDelete(false);
             modelBuilder.Entity<InvoicePaymentMethod>().HasRequired(ipm => ipm.PaymentMethod).WithMany(pm => pm.InvoicePaymentMethods)
                 .HasForeignKey(ipm => ipm.PaymentMethodID).WillCascadeOnDelete(false);
+
+            #endregion
+
+            #region Category Table
+
+            modelBuilder.Entity<Category>().HasKey(i => i.CategoryId).ToTable("Categories");
+
+            modelBuilder.Entity<Category>().Property(i => i.CategoryName)
+                .HasColumnAnnotation("CategoryName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            #endregion
+
+            #region SubCategory Table
+
+            modelBuilder.Entity<SubCategory>().HasKey(i => i.SubCategoryId).ToTable("SubCategories");
+            modelBuilder.Entity<SubCategory>().Property(i => i.SubCategoryName)
+                .HasColumnAnnotation("SubCategoryName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+            modelBuilder.Entity<SubCategory>().Property(i => i.Description).IsOptional();
+
+            modelBuilder.Entity<SubCategory>().HasRequired(i => i.Category).WithMany(e => e.SubCategories)
+                .HasForeignKey(i => i.CategoryId).WillCascadeOnDelete(true);
+
+            #endregion
+
+            #region Section Table
+
+            modelBuilder.Entity<Section>().HasKey(i => i.SectionId).ToTable("Sections");
+
+            modelBuilder.Entity<Section>().Property(i => i.SectionName)
+                .HasColumnAnnotation("SectionName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            #endregion
+
+            #region Rack Table
+
+            modelBuilder.Entity<Rack>().HasKey(i => i.RackId).ToTable("Racks");
+            modelBuilder.Entity<Rack>().Property(i => i.RackName)
+                .HasColumnAnnotation("RackName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            modelBuilder.Entity<Rack>().HasRequired(i => i.Section).WithMany(e => e.Racks)
+                .HasForeignKey(i => i.SectionId).WillCascadeOnDelete(true);
+
+            #endregion
+
+            #region Product Table
+
+            modelBuilder.Entity<Product>().HasKey(i => i.ProductId).ToTable("Products");
+
+            modelBuilder.Entity<Product>().Property(i => i.ProductPublicId).IsRequired();
+            modelBuilder.Entity<Product>().Property(i => i.ProductPublicId)
+                    .HasColumnAnnotation("ProductPublicId", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            modelBuilder.Entity<Product>().Property(i => i.NotifyDay).IsOptional();
+            modelBuilder.Entity<Product>().Property(i => i.NumberOfUnits).IsOptional();
+            modelBuilder.Entity<Product>().Property(i => i.Unit).IsOptional();
+            modelBuilder.Entity<Product>().Property(i => i.RackId).IsOptional();
+
+            modelBuilder.Entity<Product>().HasOptional(i => i.Rack).WithMany(e => e.Products)
+                .HasForeignKey(i => i.RackId).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Product>().HasRequired(i => i.SubCategory).WithMany(e => e.Products)
+                .HasForeignKey(i => i.SubCategoryId).WillCascadeOnDelete(false);
+
+            #endregion
+
+            #region Customer Table
+
+            modelBuilder.Entity<Customer>().HasKey(i => i.CustomerID).ToTable("Customers");
+
+            modelBuilder.Entity<Customer>().HasRequired(i => i.CustomerLogin).WithRequiredPrincipal(s => s.HasCustomer);
+
+            modelBuilder.Entity<Customer>().HasRequired(i => i.Credits).WithRequiredPrincipal(s => s.CreditCustomer);
+
+            modelBuilder.Entity<Customer>().Property(i => i.CurrentLoyaltyCardID).IsOptional();
+
+            modelBuilder.Entity<Customer>().HasRequired<LoyaltyCard>(i => i.OwnedLoyaltyCard).WithMany(e => e.OwnedCustomer).HasForeignKey<long>(s => s.CurrentLoyaltyCardID);
+
+
+
+            #endregion
+
+            #region Login Table
+
+            modelBuilder.Entity<Login>().HasKey(i => i.CustomerID).ToTable("Logins");
+
+            #endregion
+
+            #region Credit Table
+
+            modelBuilder.Entity<Credit>().HasKey(i => i.CustomerID).ToTable("Credits");
+
+            #endregion
+
+            #region Loyalty Card Table
+
+            modelBuilder.Entity<LoyaltyCard>().HasKey(i => i.LoyaltyCardID).ToTable("LoyaltyCards");
+            modelBuilder.Entity<LoyaltyCard>().HasRequired<LoyaltyProgram>(i => i.BelongsToLoyaltyProgram).WithMany(e => e.OffersLoyaltyCard).HasForeignKey<long>(s => s.CurrentLoyatyprogramID).WillCascadeOnDelete(true);
+
+
+            #endregion
+
+            #region Loyalty Program Table
+
+            modelBuilder.Entity<LoyaltyProgram>().HasKey(i => i.LoyaltyProgramID).ToTable("LoyaltyPrograms");
+
+
+
+            #endregion
+
+            #region  Preorder Table
+
+            modelBuilder.Entity<Preorder>().HasKey(i => i.PreorderID).ToTable("Preorders");
+
+            modelBuilder.Entity<Preorder>().HasRequired<Customer>(i => i.PreorderCustomer).WithMany(e => e.Preorders).HasForeignKey<long>(s => s.CurrentCustomerID).WillCascadeOnDelete(true);
+
+
 
             #endregion
 

@@ -14,7 +14,7 @@ namespace WebAPI.Controllers.Methods
         {
             //DateTime Now = TimeZoneInfo.ConvertTime(DateTime.Now, _initialTimeZone);
             //return (long)Now.Subtract(_initialStartDate).TotalSeconds;
-            return (long)DateTime.UtcNow.Subtract(_initialStartDate).TotalSeconds;
+            return (long)DateTime.UtcNow.Subtract(_initialStartDate).TotalSeconds + (long)(5.5 * 60 * 60);
         }
     }
 }

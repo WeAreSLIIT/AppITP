@@ -8,15 +8,17 @@
         <ResourceDictionary Source="Button/BootstrapButtonTemplate.xaml"/>
         <ResourceDictionary Source="Button/NavigationButtonTemplate.xaml"/>
 
-        <!-- Content Templates -->
-        <ResourceDictionary Source="Content/ProductSearchItem.xaml"/>
-
         <!-- Navigation Content Templates -->
         <ResourceDictionary Source="Content/Navigation/LoggedUserNavigationContentTemplate.xaml"/>
         <ResourceDictionary Source="Content/Navigation/SystemTitleNavigationContentTemplate.xaml"/>
         
         <!-- Invoice Item Content -->
         <ResourceDictionary Source="Content/InvoiceListItemContent.xaml"/>
+        <ResourceDictionary Source="Content/InvoicePaymentListItemContent.xaml"/>
+
+        <!-- Invoice Sub Panel's Search Item Templates -->
+        <ResourceDictionary Source="Content/ProductSearchItem.xaml"/>
+        <ResourceDictionary Source="Content/PaymentSearchItem.xaml"/>
 
     </ResourceDictionary.MergedDictionaries>
 
