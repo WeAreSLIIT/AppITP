@@ -8,15 +8,21 @@ namespace DataAccess.Persistence
     public class InventryMangementSystemDbContext : DbContext
     {
         public DbSet<Branch> Branches { get; set; }
-        public DbSet<Counter> Counters { get; set; }
 
         public DbSet<Customer> Courses { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Discount> Discounts { get; set; }
+
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Rack> Racks { get; set; }
+
 
         #region DbSets of Invoice Related Tables
 
+        public DbSet<Counter> Counters { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceCustomer> InvoiceCustomer { get; set; }
         public DbSet<InvoiceEmployeeDiscount> InvoiceDiscounts { get; set; }
@@ -160,6 +166,67 @@ namespace DataAccess.Persistence
                 .HasForeignKey(ipm => ipm.InvoiceID).WillCascadeOnDelete(false);
             modelBuilder.Entity<InvoicePaymentMethod>().HasRequired(ipm => ipm.PaymentMethod).WithMany(pm => pm.InvoicePaymentMethods)
                 .HasForeignKey(ipm => ipm.PaymentMethodID).WillCascadeOnDelete(false);
+
+            #endregion
+
+            #region Category Table
+
+            modelBuilder.Entity<Category>().HasKey(i => i.CategoryId).ToTable("Categories");
+
+            modelBuilder.Entity<Category>().Property(i => i.CategoryName)
+                .HasColumnAnnotation("CategoryName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            #endregion
+
+            #region SubCategory Table
+
+            modelBuilder.Entity<SubCategory>().HasKey(i => i.SubCategoryId).ToTable("SubCategories");
+            modelBuilder.Entity<SubCategory>().Property(i => i.SubCategoryName)
+                .HasColumnAnnotation("SubCategoryName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+            modelBuilder.Entity<SubCategory>().Property(i => i.Description).IsOptional();
+
+            modelBuilder.Entity<SubCategory>().HasRequired(i => i.Category).WithMany(e => e.SubCategories)
+                .HasForeignKey(i => i.CategoryId).WillCascadeOnDelete(true);
+
+            #endregion
+
+            #region Section Table
+
+            modelBuilder.Entity<Section>().HasKey(i => i.SectionId).ToTable("Sections");
+
+            modelBuilder.Entity<Section>().Property(i => i.SectionName)
+                .HasColumnAnnotation("SectionName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            #endregion
+
+            #region Rack Table
+
+            modelBuilder.Entity<Rack>().HasKey(i => i.RackId).ToTable("Racks");
+            modelBuilder.Entity<Rack>().Property(i => i.RackName)
+                .HasColumnAnnotation("RackName", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            modelBuilder.Entity<Rack>().HasRequired(i => i.Section).WithMany(e => e.Racks)
+                .HasForeignKey(i => i.SectionId).WillCascadeOnDelete(true);
+
+            #endregion
+
+            #region Product Table
+
+            modelBuilder.Entity<Product>().HasKey(i => i.ProductId).ToTable("Products");
+
+            modelBuilder.Entity<Product>().Property(i => i.ProductPublicId).IsRequired();
+            modelBuilder.Entity<Product>().Property(i => i.ProductPublicId)
+                    .HasColumnAnnotation("ProductPublicId", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+
+            modelBuilder.Entity<Product>().Property(i => i.NotifyDay).IsOptional();
+            modelBuilder.Entity<Product>().Property(i => i.NumberOfUnits).IsOptional();
+            modelBuilder.Entity<Product>().Property(i => i.Unit).IsOptional();
+            modelBuilder.Entity<Product>().Property(i => i.RackId).IsOptional();
+
+            modelBuilder.Entity<Product>().HasOptional(i => i.Rack).WithMany(e => e.Products)
+                .HasForeignKey(i => i.RackId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Product>().HasRequired(i => i.SubCategory).WithMany(e => e.Products)
+                .HasForeignKey(i => i.SubCategoryId).WillCascadeOnDelete(false);
 
             #endregion
 

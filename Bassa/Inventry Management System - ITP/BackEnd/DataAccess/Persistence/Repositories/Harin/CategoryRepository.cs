@@ -1,14 +1,14 @@
-﻿using Inventory_Management_System.Models;
-using Inventory_Management_System.Persistence;
+﻿using DataAccess.Core.Domain;
+using DataAccess.Core.Repositories;
 using System.Linq;
 
-namespace Inventory_Management_System.Repository
+namespace DataAccess.Persistence.Repositories
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        private new Inventory_Management_System_DbContext _context;
+        private new InventryMangementSystemDbContext _context;
 
-        public CategoryRepository(Inventory_Management_System_DbContext Context) : base(Context)
+        public CategoryRepository(InventryMangementSystemDbContext Context) : base(Context)
         {
             this._context = Context;
         }

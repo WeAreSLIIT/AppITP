@@ -27,7 +27,7 @@ namespace WebAPI.Controllers.Methods
             ProductIDs = InvoiceProductResources.Select(ipr => ipr.ID).ToList();
 
             ICollection<Product> Products = new List<Product>();
-            Products = this._unitOfWork.Products.Search(p => ProductIDs.Contains(p.ProductPublicID)).ToList();
+            Products = this._unitOfWork.Products.Search(p => ProductIDs.Contains(p.ProductPublicId)).ToList();
 
             if (Products == null || Products.Count == 0 || InvoiceProductResources.Count != Products.Count)
                 return null;
@@ -41,7 +41,7 @@ namespace WebAPI.Controllers.Methods
 
                 InvoiceProduct TempInvoiceProduct = new InvoiceProduct()
                 {
-                    ProductID = Products.FirstOrDefault(p => p.ProductPublicID == InvoiceProductResource.ID).ProductID,
+                    ProductID = Products.FirstOrDefault(p => p.ProductPublicId == InvoiceProductResource.ID).ProductId,
                     Quantity = InvoiceProductResource.Quantity
                 };
 
@@ -158,7 +158,7 @@ namespace WebAPI.Controllers.Methods
                 InvoiceResource.Products.Add(
                     new InvoiceProductResource()
                     {
-                        ID = InvoiceProduct.Product.ProductPublicID,
+                        ID = InvoiceProduct.Product.ProductPublicId,
                         Quantity = InvoiceProduct.Quantity
                     });
             }

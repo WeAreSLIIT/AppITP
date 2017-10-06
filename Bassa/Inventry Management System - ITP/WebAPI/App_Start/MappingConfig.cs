@@ -20,7 +20,7 @@ namespace WebAPI.App_Start
             //        .ForMember(dest => dest.PurchasedBy, opt => opt.MapFrom(sour => (sour.InvoiceCustomer == null) ? (long?)null : sour.InvoiceCustomer.CustomerID))
             //        .ForMember(dest => dest.InvoiceDeal, opt => opt.MapFrom(sour => (sour.InvoiceDeal == null) ? (long?)null : sour.InvoiceDeal.InvoiceDealDiscountID))
             //        .ForMember(dest => dest.Products, opt => opt.MapFrom(sour => sour.InvoiceProducts.Select(pro =>
-            //                        new InvoiceProductResource() { ProductID = pro.ProductID, Quantity = pro.Quantity })));
+            //                        new InvoiceProductResource() { ProductId = pro.ProductId, Quantity = pro.Quantity })));
 
 
 
@@ -34,7 +34,7 @@ namespace WebAPI.App_Start
             //        .ForMember(dest => dest.InvoiceCustomer, opt => opt.MapFrom(sour => (sour.PurchasedBy == null) ? null : new InvoiceCustomer() { InvoiceID = (long)new UnitOfWork().Invoices.GetInvoiceID(sour.InvoiceId), CustomerID = (long)sour.PurchasedBy }))
             //        .ForMember(dest => dest.InvoiceDeal, opt => opt.MapFrom(sour => (sour.InvoiceDeal == null) ? null : new InvoiceDeal() { InvoiceID = (long)new UnitOfWork().Invoices.GetInvoiceID(sour.InvoiceId), InvoiceDealDiscountID = (long)sour.InvoiceDeal }))
             //        .ForMember(dest => dest.InvoiceProducts, opt => opt.MapFrom(sour => sour.Products.Select(ip =>
-            //                        new InvoiceProduct { InvoiceID = (long)new UnitOfWork().Invoices.GetInvoiceID(sour.InvoiceId), ProductID = ip.ProductID, Quantity = ip.Quantity })));
+            //                        new InvoiceProduct { InvoiceID = (long)new UnitOfWork().Invoices.GetInvoiceID(sour.InvoiceId), ProductId = ip.ProductId, Quantity = ip.Quantity })));
 
             //    #endregion
             //});

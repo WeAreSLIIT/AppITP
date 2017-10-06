@@ -41,6 +41,8 @@ namespace Models.Persistence
         {
             try
             {
+                await Task.Run(() => { });
+
                 #region Tempory Code until DB Connection
 
                 #region Server Date Time
