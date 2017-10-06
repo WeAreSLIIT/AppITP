@@ -1,0 +1,40 @@
+<!-- page content -->
+<div class="right_col" role="main">
+  <h1>Add Gift Voucher</h1>
+  <form action="">
+    <div class="form-group">
+      <label for="name">Gift Voucher Name:</label>
+      <input type="text" [(ngModel)]="voucherName" class="form-control" placeholder="Enter name" name="voucherName">
+    </div>
+    <div class="form-group">
+      <label for="amt">Amount:</label>
+      <input type="number" [(ngModel)]="amount" class="form-control" placeholder="Enter amount" name="amount">
+    </div>
+    <div class="form-group">
+      <label for="des">Descriptin:</label><br>
+      <textarea name="description" [(ngModel)]="description" style="width:500px;" cols="20" rows="10"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label><input type="checkbox" name="remember"> Allow gift voucher to be voided</label>
+    </div>
+
+    <strong>Allow gift vouchers to expire;</strong>>
+    <div class="form-group">
+      <input type="radio" [(ngModel)]="expireStatus" name="expireStatus" value="Never" checked> Never<br>
+    </div>
+    <div class="form-group">
+      <input type="radio" name="expire" value="">
+      <input type="text" [(ngModel)]="expire" class="form-control" name="expire" style="width: 150px;">
+      <select>
+				<option value="Days">Day</option>
+				<option value="Month">Month</option>
+				<option value="Year">Year</option>
+			</select>after use
+    </div>
+    <div class="btn_group" style="float:right;">
+      <button class="btn btn-success "><span class="glyphicon glyphicon-save"></span>Save</button>
+      <button class="btn btn-info "><span class="glyphicon glyphicon-remove"></span>Reset</button>
+    </div>
+  </form>
+</div>

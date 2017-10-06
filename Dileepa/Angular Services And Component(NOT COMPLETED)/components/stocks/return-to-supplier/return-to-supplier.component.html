@@ -1,0 +1,115 @@
+  <!-- page content -->
+  <div class="right_col" role="main">
+    <div class="col-md-12" >
+
+      <h1>Return Stock</h1>
+      <form action="" id="returnStock" data-parsley-validate class="form-horizontal form-label-left" >
+
+
+        <div class="col-md-6" >
+          <table class="table">
+            <tr >
+              <td><label  for="stockNumber">Stock Number</label></td>
+              <td><input type="text" id="stockNumber" required="required"  ></td>
+            </tr>
+
+            <tr>
+              <td><label for="poNum">Purchase Order</label></td>
+              <td><input type="text" id="poNum" required="required"></td>
+            </tr>
+
+
+            <tr>
+              <td><label  for="supplier">Supplier</label></td>
+              <td><input type="text" id="supplier" required="required"></td>
+            </tr>
+
+
+            <tr>
+              <td><label  for="itemCode">Item Code</label></td>
+              <td><input type="text" id="itemCode" required="required"> </td>
+            </tr>
+
+
+            <tr>
+             <td><label  for="itemName">Item Name</label></td>
+             <td><input type="text" id="itemName" required="required"></td>
+           </tr>
+
+           <tr>
+             <td><label for="probDesc">Cause of return</label></td>
+             <td>
+              <select class="col-md-6" name="causeOfReturn" id="causeOfReturn">
+                <option value="QI failed">QI failed</option>
+                <option value="Different Content">Different content</option>
+                <option value="Damaged packages">Damaged Packages</option> 
+                <option value="Other">Other(Specify below)</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+           <td><label  for="probDesc">Description</label></td>
+           <td><textarea class="col-sm-8"></textarea></td>
+         </tr>
+         <tr>
+          <td><label for="avQty">Available Qty</label></td>               
+          <td><input type="Number" id="avQty" required="required"></td>
+        </tr>
+
+
+        <tr>
+          <td><label for="packSize">Pack Size</label></td>
+
+          <td><input type="text" id="packSize" required="required" ></td>
+        </tr>
+
+
+        <tr>
+          <td><label for="wholeSaleValue">Whole sale value</label></td>
+
+          <td><input type="text" id="wholeSaleValue" required="required"></td>
+        </tr>
+      
+        <tr>
+        <td>
+        <button type="button" class="btn btn-md">
+        <a data-toggle="tooltip" data-placement="bottom" title="Generate invoice">
+          <span class="glyphicon glyphicon-list-alt"><strong>  Generate invoice</strong></span>
+        </a>
+        </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-md">
+        <a data-toggle="tooltip" data-placement="bottom" title="Save">
+          <span class="glyphicon glyphicon-list-alt"><strong> Save</strong></span>
+        </a>
+        </button>
+        </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+  </div>
+  <div class="col-md-offset-6" style="border: solid;" >
+    
+  
+      <button class="btn btn-md" type="button">
+        <a data-toggle="tooltip" data-placement="bottom" title="Print">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+        </a>
+      </button>
+      <button class="btn btn-md" type="button">
+        <a data-toggle="tooltip" data-placement="bottom" title="Send as attachment">
+          <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+        </a>
+      </button>
+      <button type="button" class="btn btn-md">
+        <a data-toggle="tooltip" data-placement="bottom" title="Download PDF">
+          <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+        </a>
+      </button>
+   
+  </div>
+</div>
+  <!-- /page content -->
