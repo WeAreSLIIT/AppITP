@@ -1,6 +1,8 @@
 ﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Models.Persistence;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using WPF.Views;
 
@@ -24,7 +26,12 @@ namespace WPF
             {
                 this._applicationPage = (byte)ApplicationPage;
 
-                if (value == ApplicationPage.NotSetup)
+                if (value == ApplicationPage.None)
+                {
+                    this.ChangeApplicationPagesAnimation(TransitionType.Down);
+                    this.MainContent.Content = null;
+                }
+                else if (value == ApplicationPage.NotSetup)
                 {
                     this.ChangeApplicationPagesAnimation(TransitionType.Down);
                     this.MainContent.Content = new ApplicationContentView();
@@ -45,6 +52,11 @@ namespace WPF
                 {
                     this.ChangeApplicationPagesAnimation(TransitionType.LeftReplace);
                     this.MainContent.Content = new ApplicationContentView();
+                }
+                else if (value == ApplicationPage.NoConnection)
+                {
+                    this.ChangeApplicationPagesAnimation(TransitionType.Up);
+                    this.MainContent.Content = new NoConnectionContentView();
                 }
             }
         }
@@ -85,21 +97,40 @@ namespace WPF
             IsAppLoading = true;
 
             bool check = await Task.Run(
-                () => 
+                () =>
                 {
                     return InventryMangementSystemDbContext.InitializeData();
                 });
 
-            IsAppLoading = false;
-            ApplicationPage = ApplicationPage.NotLoggedIn ;
+            if (check)
+            {
+                check = await Task.Run(
+                    () =>
+                    {
+                        return InventryMangementSystemDbContext.CheckConnectionToServer();
+                    });
+
+                if (check && InventryMangementSystemDbContext.ConnectionCheckFirstTime && InventryMangementSystemDbContext.ConnectionToServer)
+                {
+                    IsAppLoading = false;
+                    ApplicationPage = ApplicationPage.NotLoggedIn;
+                }
+                else
+                {
+                    IsAppLoading = false;
+                    ApplicationPage = ApplicationPage.NoConnection;
+                }
+            }
         }
     }
 
     public enum ApplicationPage : byte
     {
-        NotSetup = 0,
+        None,
+        NotSetup,
         NotLoggedIn,
         LoggedIn,
-        JustLoading
+        JustLoading,
+        NoConnection
     }
 }

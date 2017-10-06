@@ -2,6 +2,8 @@
 using DataAccess.Core.Domain;
 using DataAccess.Persistence;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Http;
 using WebAPI.Controllers.Methods;
@@ -13,11 +15,13 @@ namespace WebAPI.Controllers
     public class CountersController : ApiController
     {
         private IUnitOfWork _unitOfWork;
+        private CounterControllerMethods _counterControllerMethods;
         private const string AppAuthID = "csbwpfapp";
 
         public CountersController()
         {
             this._unitOfWork = new UnitOfWork();
+            this._counterControllerMethods = new CounterControllerMethods(this._unitOfWork);
         }
 
         [HttpGet]
@@ -25,7 +29,14 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Content(HttpStatusCode.OK, this._unitOfWork.Counters.GetAll());
+                ICollection<CounterResource> CounterResources = new List<CounterResource>();
+
+                CounterResources = this._counterControllerMethods.ListCounterToListCounterResource(this._unitOfWork.Counters.GetAll().ToList());
+
+                if (CounterResources == null || CounterResources.Count == 0)
+                    return NotFound();
+
+                return Content(HttpStatusCode.OK, CounterResources);
             }
             catch
             {
@@ -43,7 +54,12 @@ namespace WebAPI.Controllers
                 if (Counter == null)
                     return NotFound();
 
-                return Content(HttpStatusCode.Found, Counter);
+                CounterResource CounterResource = this._counterControllerMethods.CounterToCounterResource(Counter);
+
+                if (CounterResource == null)
+                    return null;
+
+                return Content(HttpStatusCode.OK, CounterResource);
             }
             catch
             {
@@ -66,7 +82,7 @@ namespace WebAPI.Controllers
                     else if (IsOnline == true)
                         return Content(HttpStatusCode.Unauthorized, "Counter is already online");
 
-                    return Content(HttpStatusCode.OK, "Counter is offline");
+                    return Content(HttpStatusCode.OK, "Counter is available");
                 }
                 else
                     return BadRequest();
@@ -140,7 +156,7 @@ namespace WebAPI.Controllers
                     this._unitOfWork.Complete();
 
                     BackgroundProcess.RefreshCounterOnlineStatus();
-                    return Content(HttpStatusCode.Created, "Counter added to the branch");
+                    return Content(HttpStatusCode.OK, "Counter added to the branch");
                 }
                 else
                     return BadRequest();

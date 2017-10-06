@@ -11,11 +11,12 @@
     
     <Style TargetType="{x:Type custom:InvoiceItemContent}">
         <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Background" Value="Transparent"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type custom:InvoiceItemContent}">
-                    <StackPanel>
+                    <StackPanel x:Name="stackPanelContainer" Background="{TemplateBinding Background}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
@@ -72,8 +73,8 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="txtQuantity"  Storyboard.TargetProperty="(TextBox.Background).(SolidColorBrush.Color)" 
-                                                        To="{StaticResource Notify-SomethingWrong-Color}" 
+                                        <ColorAnimation Storyboard.TargetName="txtQuantity" Storyboard.TargetProperty="(TextBox.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource Invoice-Notify-SomethingWrong-Color}" 
                                                         Duration="0:0:0.5" AutoReverse="True" RepeatBehavior="Forever"/>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -81,7 +82,27 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="txtQuantity"  Storyboard.TargetProperty="(TextBox.Background).(SolidColorBrush.Color)"  Duration="0:0:0.1" />
+                                        <ColorAnimation Storyboard.TargetName="txtQuantity" Storyboard.TargetProperty="(TextBox.Background).(SolidColorBrush.Color)" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                        <Trigger Property="IsNotify" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="stackPanelContainer" Storyboard.TargetProperty="(StackPanel.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource Invoice-Notify-ItemAlreadyExsitsTo-Color}" From="{StaticResource Invoice-Notify-ItemAlreadyExsitsFrom-Color}"
+                                                        AutoReverse="True" RepeatBehavior="4x" Duration="0:0:0.4"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="stackPanelContainer" Storyboard.TargetProperty="(StackPanel.Background).(SolidColorBrush.Color)" 
+                                                        To="{StaticResource Invoice-Notify-ItemAlreadyExsitsFrom-Color}"  Duration="0:0:0.4"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>

@@ -15,7 +15,8 @@
                 <StackPanel DockPanel.Dock="Top">
                     <TextBlock Grid.Column="0" Text="Search Payment Method" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
                     <Separator/>
-                    <TextBox Grid.Column="1" FontSize="16" Padding="5" Margin="5" Controls:TextBoxHelper.Watermark="Payment Method key words" Controls:TextBoxHelper.ClearTextButton="True"/>
+                    <TextBox x:Name="SearchPaymentText" Grid.Column="1" FontSize="16" Padding="5" Margin="5" Controls:TextBoxHelper.Watermark="Payment Method key words" Controls:TextBoxHelper.ClearTextButton="True"/>
+                    <Separator/>
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Bottom">
@@ -27,17 +28,42 @@
                         </Grid.ColumnDefinitions>
 
                         <Button x:Name="CloseSearchPaymentMethodContent" Grid.Column="0" Style="{StaticResource btn-danger}" Content="Close" Margin="5 5 2.5 5" Click="CloseSearchPaymentMethodContent_Click"/>
-                        <Button Grid.Column="1" Style="{StaticResource btn-primary}" Content="Add" Margin="2.5 5 5 5" IsDefault="True"/>
+                        <Button x:Name="SelectSearchPaymentMethodContent" Grid.Column="1" Style="{StaticResource btn-primary}" Content="Add" Margin="2.5 5 5 5" Click="SelectSearchPaymentMethodContent_Click"/>
                     </Grid>
                 </StackPanel>
 
                 <Grid>
-                    <ListBox x:Name="ProductItemsList"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Margin="5">
+                        <StackPanel x:Name="PaymentMethodsFound">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="2*" MinWidth="150"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Text="No"/>
+                                <TextBlock Grid.Column="1" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Text="Name"/>
+                                <TextBlock Grid.Column="2" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Text="Note"/>
+
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel x:Name="PaymentMethodsNotFound">
+                            <TextBlock Text="No Payement Method found :/" FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="Please try search with another." FontSize="16" FontWeight="Bold" Foreground="Gray"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <ListView x:Name="PayementMethodsList" Grid.Row="1"
                                      Background="Transparent" 
                                      ScrollViewer.CanContentScroll="False" 
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                      ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                     Padding="5" Margin="0"/>
+                                     Margin="5" KeyDown="PayementMethodsList_KeyDown"/>
                 </Grid>
             </DockPanel>
         </Grid>

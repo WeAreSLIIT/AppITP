@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using ModelViews = WPF.ModelView.ApplicationContent.InvoiceContents;
-using Models.Core;
 using WPF.Mappings;
 using Styles.Controler;
 
@@ -50,13 +49,30 @@ namespace WPF.Views.ApplicationContent.InvoiceContents
                     Path = new PropertyPath("SelectSearchItemButtonEnabled"),
                     Mode = BindingMode.OneWay
                 });
+
+            this.ProductsFound.SetBinding(StackPanel.VisibilityProperty,
+                new Binding()
+                {
+                    Source = this._searchProductContent,
+                    Path = new PropertyPath("IsItemsFoundVisibility"),
+                    Mode = BindingMode.OneWay
+                });
+
+            this.ProductsNotFound.SetBinding(StackPanel.VisibilityProperty,
+                new Binding()
+                {
+                    Source = this._searchProductContent,
+                    Path = new PropertyPath("IsItemsNotFoundVisibility"),
+                    Mode = BindingMode.OneWay
+                });
+
+            //this.ProductsFound.Visibility = Visibility.Collapsed; 
         }
-        
 
         private void CloseSearchProductContent_Click(object sender, RoutedEventArgs e)
         {
-            SearchProductText.Text = "";
             this._invoiceContentUserControl.ContentCurrentPage = InvoiceContentCurrentPage.Invoices;
+            this._invoiceContentUserControl.ResetSearchProductContent();
         }
 
         private void SelectSearchProductContent_Click(object sender, RoutedEventArgs e)
@@ -76,7 +92,7 @@ namespace WPF.Views.ApplicationContent.InvoiceContents
         {
             if (this._searchProductContent.CurrentlySelectedItemIndexInResult != -1)
             {
-                this._invoiceContentUserControl.AddProductToProductList(new ProductMapping().ProductToProductSearchItem(ProductItemsList.SelectedItem as ProductSearchItem));
+                this._invoiceContentUserControl.AddProductToProductList(new ProductMapping().ProductSearchItemToProduct(ProductItemsList.SelectedItem as ProductSearchItem));
                 this.CloseSearchProductContent_Click(null, null);
             }
         }

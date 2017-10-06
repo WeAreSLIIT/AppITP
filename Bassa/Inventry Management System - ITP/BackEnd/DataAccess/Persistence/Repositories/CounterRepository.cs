@@ -14,6 +14,16 @@ namespace DataAccess.Persistence.Repositories
             this._context = Context;
         }
 
+        public Counter Get(long BranchID, long CounterNo)
+        {
+            Counter Counter = this._context.Counters.SingleOrDefault(c => c.BranchID == BranchID && c.BranchCounterNo == CounterNo);
+
+            if (Counter == null)
+                return null;
+
+            return Counter;
+        }
+
         public long? GetCounterCountInBranch(long BranchID)
         {
             if (this._context.Branches.SingleOrDefault(b => b.BranchID == BranchID) == null)

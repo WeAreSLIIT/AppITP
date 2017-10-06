@@ -9,7 +9,7 @@ using WPF.Mappings;
 
 namespace WPF.ModelView.ApplicationContent.InvoiceContents
 {
-    public class SearchProductContent : INotifyPropertyChanged
+    public class SearchPaymentMethodContent : INotifyPropertyChanged
     {
         #region Notify Property Changed
 
@@ -23,9 +23,10 @@ namespace WPF.ModelView.ApplicationContent.InvoiceContents
 
         #endregion
 
-        private ProductMapping _productMapping;
 
-        public ObservableCollection<ProductSearchItem> ProductSearchItems;
+        private PaymentMethodMapping _paymentMethodMapping;
+
+        public ObservableCollection<PaymentSearchItem> PaymentSearchList;
 
         private string _oldSearchKeyWord;
         private string _searchKeyWord;
@@ -37,7 +38,7 @@ namespace WPF.ModelView.ApplicationContent.InvoiceContents
             {
                 this._searchKeyWord = value;
                 this.NotifyPropertyChanged("SearchKeyWord");
-                this.RefreshProductSearchItems();
+                this.RefreshPaymentMethodSearchItems();
             }
         }
 
@@ -107,7 +108,7 @@ namespace WPF.ModelView.ApplicationContent.InvoiceContents
             }
         }
 
-        private void RefreshProductSearchItems()
+        private void RefreshPaymentMethodSearchItems()
         {
             int index = 0;
 
@@ -120,42 +121,40 @@ namespace WPF.ModelView.ApplicationContent.InvoiceContents
                     this.SearchKeyWord = "";
             }
 
-            bool ProductSearchItemsIsChanged = false;
+            bool PaymentMethodSearchItemsIsChanged = false;
 
-            ICollection<Product> Products = new List<Product>();
-            Products = InventryMangementSystemDbContext.Products;
+            ICollection<PaymentMethod> PaymentMethods = new List<PaymentMethod>();
+            PaymentMethods = InventryMangementSystemDbContext.PaymentMethods;
 
-            ICollection<Product> FilteredProducts = new List<Product>();
+            ICollection<PaymentMethod> FilteredPaymentMethods = new List<PaymentMethod>();
 
             if (this._oldSearchKeyWord.Equals("") && this.SearchKeyWord.Equals(""))
             {
-                FilteredProducts = Products.Take(20).ToList();
-                ProductSearchItemsIsChanged = true;
+                FilteredPaymentMethods = PaymentMethods.Take(20).ToList();
+                PaymentMethodSearchItemsIsChanged = true;
             }
 
             if (!this._oldSearchKeyWord.Equals(this.SearchKeyWord))
             {
-                FilteredProducts = Products.Where(p => p.ID.ToLower().Contains(
-                    this.SearchKeyWord.ToLower()) ||
-                    p.Bracode.ToLower().Contains(this.SearchKeyWord.ToLower()) ||
-                    p.Name.ToLower().Contains(this.SearchKeyWord.ToLower())).Take(20).ToList();
+                FilteredPaymentMethods = PaymentMethods.Where(pm => pm.Name.ToLower().Contains(this.SearchKeyWord.ToLower()) ||
+                pm.Note.ToLower().Contains(this.SearchKeyWord.ToLower())).Take(20).ToList();
 
-                ProductSearchItemsIsChanged = true;
+                PaymentMethodSearchItemsIsChanged = true;
             }
 
-            if (ProductSearchItemsIsChanged)
+            if (PaymentMethodSearchItemsIsChanged)
             {
-                this.ProductSearchItems.Clear();
+                this.PaymentSearchList.Clear();
 
-                if (!(FilteredProducts == null || FilteredProducts.Count == 0))
+                if (!(FilteredPaymentMethods == null || FilteredPaymentMethods.Count == 0))
                 {
                     this.IsItemsFoundVisibility = System.Windows.Visibility.Visible;
 
-                    foreach (Product Product in FilteredProducts)
+                    foreach (PaymentMethod PaymentMethod in FilteredPaymentMethods)
                     {
-                        ProductSearchItem Temp = this._productMapping.ProductToProductSearchItem(Product);
+                        PaymentSearchItem Temp = this._paymentMethodMapping.PaymentMethodToPaymentSearchItem(PaymentMethod);
                         Temp.ItemNo = ++index;
-                        this.ProductSearchItems.Add(Temp);
+                        this.PaymentSearchList.Add(Temp);
                     }
                 }
                 else
@@ -165,15 +164,15 @@ namespace WPF.ModelView.ApplicationContent.InvoiceContents
             this._oldSearchKeyWord = this.SearchKeyWord;
         }
 
-        public SearchProductContent()
+        public SearchPaymentMethodContent()
         {
-            this.ProductSearchItems = new ObservableCollection<ProductSearchItem>();
-            this._productMapping = new ProductMapping();
+            this.PaymentSearchList = new ObservableCollection<PaymentSearchItem>();
+            this._paymentMethodMapping = new PaymentMethodMapping();
 
             this._oldSearchKeyWord = "";
             this.SearchKeyWord = "";
 
-            CurrentlySelectedItemIndexInResult = -1;
+            this.CurrentlySelectedItemIndexInResult = -1;
             this.IsItemsFoundVisibility = System.Windows.Visibility.Collapsed;
         }
     }

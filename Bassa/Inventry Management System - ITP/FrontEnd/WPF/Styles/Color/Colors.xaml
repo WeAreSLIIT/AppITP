@@ -16,6 +16,9 @@
 
         <!-- Application Colors -->
         <ResourceDictionary Source="OtherColors.xaml"/>
+        
+        <!-- Invoice Item Content -->
+        <ResourceDictionary Source="Content/InvoiceItemContentColor.xaml"/>
 
     </ResourceDictionary.MergedDictionaries>
 
