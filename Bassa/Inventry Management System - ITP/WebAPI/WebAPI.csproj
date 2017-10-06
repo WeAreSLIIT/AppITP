@@ -92,9 +92,15 @@
   <ItemGroup>
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CountersController.cs" />
+    <Compile Include="Controllers\CreditsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
+    <Compile Include="Controllers\LoyaltyCardsController.cs" />
+    <Compile Include="Controllers\LoyaltyProgramsController.cs" />
     <Compile Include="Controllers\Methods\CounterControllerMethods.cs" />
     <Compile Include="Controllers\Methods\InvoicePaymentMethodControllerMethods.cs" />
+    <Compile Include="Controllers\PreordersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RackController.cs" />
     <Compile Include="Controllers\Resources\CounterResource.cs" />

@@ -39,6 +39,11 @@ namespace DataAccess.Core
         #region Kavi's
 
         ICustomerRepository Customers { get; }
+        ILoyaltyCardRepository LoyaltyProgram { get; }
+        ICreditRepository Credits { get; }
+        ILoyaltyProgramRepository LoyaltyPrograms { get; }
+        IPreorderRepository Preorders { get; }
+        ILoginRepository Logins { get; }
 
         #endregion
 

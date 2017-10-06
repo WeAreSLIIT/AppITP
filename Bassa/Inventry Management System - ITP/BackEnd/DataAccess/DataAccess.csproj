@@ -49,8 +49,13 @@
   <ItemGroup>
     <Compile Include="Core\Domain\Harin\Category.cs" />
     <Compile Include="Core\Domain\CSB\Counter.cs" />
+    <Compile Include="Core\Domain\Kavi\Credit.cs" />
     <Compile Include="Core\Domain\Kavi\Customer.cs" />
     <Compile Include="Core\Domain\Discount.cs" />
+    <Compile Include="Core\Domain\Kavi\Login.cs" />
+    <Compile Include="Core\Domain\Kavi\LoyaltyCard.cs" />
+    <Compile Include="Core\Domain\Kavi\LoyaltyProgram.cs" />
+    <Compile Include="Core\Domain\Kavi\Preorder.cs" />
     <Compile Include="Core\Domain\Samith\Employee.cs" />
     <Compile Include="Core\Domain\Enums.cs" />
     <Compile Include="Core\Domain\CSB\Invoice.cs" />
@@ -72,8 +77,13 @@
     <Compile Include="Core\Repositories\Harin\IRackRepository.cs" />
     <Compile Include="Core\Repositories\Harin\ISectionRepository.cs" />
     <Compile Include="Core\Repositories\Harin\ISubCategoryRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ICreditRepository.cs" />
     <Compile Include="Core\Repositories\Kavi\ICustomerRepository.cs" />
     <Compile Include="Core\Repositories\Dileepa\IDiscountRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ILoginRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ILoyaltyCardRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\ILoyaltyProgramRepository.cs" />
+    <Compile Include="Core\Repositories\Kavi\IPreorderRepository.cs" />
     <Compile Include="Core\Repositories\Samith\IEmployeeRepository.cs" />
     <Compile Include="Core\Repositories\Samith\IBranchRepository.cs" />
     <Compile Include="Core\Repositories\CSB\IInvoiceCustomerRepository.cs" />
@@ -113,8 +123,13 @@
     <Compile Include="Persistence\Repositories\Harin\RackRepository.cs" />
     <Compile Include="Persistence\Repositories\Harin\SectionRepository.cs" />
     <Compile Include="Persistence\Repositories\Harin\SubCategoryRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\CreditRepository.cs" />
     <Compile Include="Persistence\Repositories\Kavi\CustomerRepository.cs" />
     <Compile Include="Persistence\Repositories\Dileepa\DiscountRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\LoginRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\LoyaltyCardRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\LoyaltyProgramRepository.cs" />
+    <Compile Include="Persistence\Repositories\Kavi\PreorderRepository.cs" />
     <Compile Include="Persistence\Repositories\Samith\EmployeeRepository.cs" />
     <Compile Include="Persistence\Repositories\Samith\BranchRepository.cs" />
     <Compile Include="Persistence\Repositories\CSB\InvoiceCustomerRepository.cs" />

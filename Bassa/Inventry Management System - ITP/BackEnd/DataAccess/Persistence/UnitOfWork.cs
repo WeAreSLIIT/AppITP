@@ -51,7 +51,11 @@ namespace DataAccess.Persistence
         #region Kavi's
 
         public ICustomerRepository Customers { get; private set; }
-
+        public ICreditRepository Credits { get; private set; }
+        public ILoyaltyCardRepository LoyaltyProgram { get; private set; }
+        public ILoyaltyProgramRepository LoyaltyPrograms { get; private set; }
+        public IPreorderRepository Preorders { get; private set; }
+        public ILoginRepository Logins { get; private set; }
 
         #endregion
 
@@ -80,6 +84,7 @@ namespace DataAccess.Persistence
 
             Discounts = new DiscountRepository(this._context);
 
+            //CSB
             Counters = new CounterRepository(this._context);
             InvoiceCustomers = new InvoiceCustomerRepository(this._context);
             InvoiceDealDiscounts = new InvoiceDealDiscountRepository(this._context);
@@ -90,11 +95,20 @@ namespace DataAccess.Persistence
             PaymentMethods = new PaymentMethodRepository(this._context);
             InvoicePaymentMethods = new InvoicePaymentMethodRepository(this._context);
 
+            //Harin
             Products = new ProductRepository(this._context);
             Categories = new CategoryRepository(this._context);
             SubCategories = new SubCategoryRepository(this._context);
             Sections = new SectionRepository(this._context);
             Racks = new RackRepository(this._context);
+            
+            //Kavi
+            Customers = new CustomerRepository(this._context);
+            Credits = new CreditRepository(this._context);
+            LoyaltyProgram = new LoyaltyCardRepository(this._context);
+            LoyaltyPrograms = new LoyaltyProgramRepository(this._context);
+            Preorders = new PreorderRepository(this._context);
+            Logins = new LoginRepository(this._context);
         }
 
         public int Complete()

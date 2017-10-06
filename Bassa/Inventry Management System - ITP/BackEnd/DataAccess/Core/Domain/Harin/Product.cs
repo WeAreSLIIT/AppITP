@@ -9,14 +9,6 @@ namespace DataAccess.Core.Domain
         public string ProductName { get; set; }
         public string ProductBrand { set; get; }
         public string Barcode { set; get; }
-
-        public ICollection<InvoiceProduct> InvoiceProducts { get; set; }
-
-        public Product()
-        {
-            InvoiceProducts = new HashSet<InvoiceProduct>();
-        }
-        
         
         public double Cost { set; get; }
         public int? NotifyDay { set; get; }
@@ -30,6 +22,14 @@ namespace DataAccess.Core.Domain
 
         public long SubCategoryId { set; get; }
         public SubCategory SubCategory { set; get; }
+
+        //By CSB
+        public ICollection<InvoiceProduct> InvoiceProducts { get; set; }
+
+        public Product()
+        {
+            InvoiceProducts = new HashSet<InvoiceProduct>();
+        }
 
     }
 }
