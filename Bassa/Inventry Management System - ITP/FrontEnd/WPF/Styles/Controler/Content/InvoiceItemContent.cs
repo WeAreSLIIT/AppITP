@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -126,6 +124,16 @@ namespace Styles.Controler
                         }
                     }));
 
+
+
+        public bool IsNotify
+        {
+            get { return (bool)GetValue(IsNotifyProperty); }
+            set { SetValue(IsNotifyProperty, value); }
+        }
+        
+        public static readonly DependencyProperty IsNotifyProperty =
+            DependencyProperty.Register("IsNotify", typeof(bool), typeof(InvoiceItemContent), new PropertyMetadata(false));
 
         public bool IsContentWrong
         {

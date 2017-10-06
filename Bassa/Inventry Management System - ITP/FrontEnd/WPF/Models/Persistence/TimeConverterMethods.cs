@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace WebAPI.Controllers.Methods
+namespace Models.Persistence
 {
     public class TimeConverterMethods
     {
@@ -12,9 +9,12 @@ namespace WebAPI.Controllers.Methods
 
         public static long GetCurrentTimeInLong()
         {
-            //DateTime Now = TimeZoneInfo.ConvertTime(DateTime.Now, _initialTimeZone);
-            //return (long)Now.Subtract(_initialStartDate).TotalSeconds;
-            return (long)DateTime.UtcNow.Subtract(_initialStartDate).TotalSeconds + (long)(5.5 * 60 * 60);
+            return InventryMangementSystemDbContext.ServerDateTime.Time;
+        }
+
+        public static DateTime GetCurrentTimeInDateTime()
+        {
+            return _initialStartDate.AddSeconds(TimeConverterMethods.GetCurrentTimeInLong());
         }
     }
 }

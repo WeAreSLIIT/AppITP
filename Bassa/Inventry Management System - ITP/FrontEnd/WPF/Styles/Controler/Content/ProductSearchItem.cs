@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Styles.Controler
 {
@@ -8,11 +9,28 @@ namespace Styles.Controler
         public int ItemNo
         {
             get { return (int)GetValue(ItemNoProperty); }
-            set { SetValue(ItemNoProperty, value); }
+            set
+            {
+                SetValue(ItemNoProperty, value);
+
+                if (ItemNo % 2 == 1)
+                    ListBackgroundColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ffffff"));
+                else
+                    ListBackgroundColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#f9f9f9"));
+            }
         }
 
         public static readonly DependencyProperty ItemNoProperty =
             DependencyProperty.Register("ItemNo", typeof(int), typeof(ProductSearchItem), new PropertyMetadata(0));
+
+        public SolidColorBrush ListBackgroundColor
+        {
+            get { return (SolidColorBrush)GetValue(ListBackgroundColorProperty); }
+            private set { SetValue(ListBackgroundColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty ListBackgroundColorProperty =
+            DependencyProperty.Register("ListBackgroundColor", typeof(SolidColorBrush), typeof(ProductSearchItem), new PropertyMetadata((SolidColorBrush)(new BrushConverter().ConvertFrom("#f9f9f9"))));
 
 
         public string ProductID
@@ -22,7 +40,7 @@ namespace Styles.Controler
         }
 
         public static readonly DependencyProperty ProductIDProperty =
-            DependencyProperty.Register("ProductID", typeof(string), typeof(ProductSearchItem), new PropertyMetadata("Unknown ###"));
+            DependencyProperty.Register("ProductID", typeof(string), typeof(ProductSearchItem), new PropertyMetadata("###"));
 
 
         public string ProductDescription

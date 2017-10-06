@@ -17,10 +17,8 @@ namespace WPF.ModelView.ApplicationContent
         }
 
         #endregion
-        
-        //products collection
 
-        public ObservableCollection<InvoiceItemContent> ProductsList;
+        #region Properties of Invoice
 
         private string _grossTotal;
 
@@ -58,22 +56,138 @@ namespace WPF.ModelView.ApplicationContent
             }
         }
 
-        public InvoiceContent()
+        private int _selectedInvoiceItem;
+
+        public int SelectedInvoiceItem
         {
-            ProductsList = new ObservableCollection<InvoiceItemContent>();
-            this._grossTotal = "0.00";
-            this._discount = "0.00";
-            this._netTotal = "0.00";
+            get { return this._selectedInvoiceItem; }
+            set
+            {
+                this._selectedInvoiceItem = value;
+                this.NotifyPropertyChanged("SelectedInvoiceItem");
+
+                this.RemoveInvoiceItemButtonVisible = (value != -1) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private string _changeBalance;
+
+        public string ChangeBalance
+        {
+            get { return this._changeBalance; }
+            set
+            {
+                this._changeBalance = value;
+                this.NotifyPropertyChanged("ChangeBalance");
+            }
+        }
+
+        #endregion
+
+        #region Invoice Payment Method
+
+        public ObservableCollection<InvoicePaymentListItemContent> PaymentMethodsList;
+
+        private int _selectedInvoicePaymentMethod;
+
+        public int SelectedInvoicePaymentMethod
+        {
+            get { return this._selectedInvoicePaymentMethod; }
+            set
+            {
+                this._selectedInvoicePaymentMethod = value;
+                this.NotifyPropertyChanged("SelectedInvoicePaymentMethod");
+
+                this.RemoveInvoicePaymentMethodButtonVisible = (value != -1) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private System.Windows.Visibility _removeInvoicePaymentMethodButtonVisible;
+
+        public System.Windows.Visibility RemoveInvoicePaymentMethodButtonVisible
+        {
+            get { return this._removeInvoicePaymentMethodButtonVisible; }
+            private set
+            {
+                this._removeInvoicePaymentMethodButtonVisible = value;
+                this.NotifyPropertyChanged("RemoveInvoicePaymentMethodButtonVisible");
+            }
+        }
+
+        private System.Windows.Visibility _invoicePaymentMethodNotFound;
+
+        public System.Windows.Visibility InvoicePaymentMethodNotFound
+        {
+            get { return this._invoicePaymentMethodNotFound; }
+            private set
+            {
+                this._invoicePaymentMethodNotFound = value;
+                this.NotifyPropertyChanged("InvoicePaymentMethodNotFound");
+            }
+        }
+
+        public void AddNewPaymentMethodToInvoice(InvoicePaymentListItemContent PaymentMethod)
+        {
+            this.PaymentMethodsList.Add(PaymentMethod);
+
+            if (InvoicePaymentMethodNotFound != System.Windows.Visibility.Collapsed)
+                InvoicePaymentMethodNotFound = System.Windows.Visibility.Collapsed;
+        }
+
+        public void RemovePaymentMethodFromInvoice(int Index)
+        {
+            this.PaymentMethodsList.RemoveAt(Index);
+
+            if (PaymentMethodsList.Count == 0)
+                InvoicePaymentMethodNotFound = System.Windows.Visibility.Visible;
+
+        }
+
+        #endregion
+
+        #region Invoice Items List
+
+        public ObservableCollection<InvoiceItemContent> ProductsList;
+
+        private System.Windows.Visibility _removeInvoiceItemButtonVisible;
+
+        public System.Windows.Visibility RemoveInvoiceItemButtonVisible
+        {
+            get { return this._removeInvoiceItemButtonVisible; }
+            private set
+            {
+                this._removeInvoiceItemButtonVisible = value;
+                this.NotifyPropertyChanged("RemoveInvoiceItemButtonVisible");
+            }
         }
 
         public void AddNewProductToInvoice(InvoiceItemContent Product)
         {
-            ProductsList.Add(Product);
+            this.ProductsList.Add(Product);
         }
 
         public void RemoveProductByIndex(int Index)
         {
-            ProductsList.RemoveAt(Index);
+            this.ProductsList.RemoveAt(Index);
         }
+
+        #endregion
+
+        #region Constructor
+
+        public InvoiceContent()
+        {
+            this.ProductsList = new ObservableCollection<InvoiceItemContent>();
+            this._grossTotal = "--.--";
+            this._discount = "--.--";
+            this._netTotal = "--.--";
+
+            this.PaymentMethodsList = new ObservableCollection<InvoicePaymentListItemContent>();
+            this._changeBalance = "--.--";
+
+            InvoicePaymentMethodNotFound = System.Windows.Visibility.Visible;
+        }
+
+        #endregion
     }
 }

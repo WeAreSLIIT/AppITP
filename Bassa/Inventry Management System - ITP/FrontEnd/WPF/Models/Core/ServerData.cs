@@ -8,7 +8,7 @@ namespace Models.Core
 {
     public class ServerData
     {
-        public bool ServerOnline { get; set; }
-        public long ServerTime { get; set; }
+        public bool ServerUp { get; set; }
+        public long Time { get; set; }
     }
 }

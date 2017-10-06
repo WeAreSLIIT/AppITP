@@ -31,6 +31,7 @@ namespace WPF.Views.ApplicationContent.InvoiceContents
         private void CloseSearchCustomerContent_Click(object sender, RoutedEventArgs e)
         {
             this._invoiceContentUserControl.ContentCurrentPage = InvoiceContentCurrentPage.Invoices;
+            this._invoiceContentUserControl.ResetSearchCustomerContent();
         }
     }
 }

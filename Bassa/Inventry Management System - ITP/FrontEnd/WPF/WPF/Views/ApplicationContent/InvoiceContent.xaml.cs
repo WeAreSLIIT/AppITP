@@ -1,5 +1,6 @@
 ﻿using Models.Core;
 using Styles.Controler;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -31,14 +32,47 @@ namespace WPF.Views.ApplicationContent
 
         #endregion
 
+        //
+        private ApplicationContentView _applicationContentView;
+
+        //Primary Content Page
+        private ModelViews.InvoiceContent _invoiceData;
+
+        #region Content Pages
+
         //Content Pages
         private SearchProductContent _productContent;
         private SearchCustomerContent _customerContent;
         private SearchPaymentMethodContent _paymentMethodContent;
 
+        public void ResetSearchProductContent()
+        {
+            this._productContent = new SearchProductContent(this);
+        }
+
+        public void ResetSearchCustomerContent()
+        {
+            this._customerContent = new SearchCustomerContent(this);
+        }
+
+        public void ResetSearchPaymentMethodContent()
+        {
+            this._paymentMethodContent = new SearchPaymentMethodContent(this);
+        }
+
+        public void ResetAllContentPages()
+        {
+            this.ResetSearchProductContent();
+            this.ResetSearchCustomerContent();
+            this.ResetSearchPaymentMethodContent();
+        }
+
+        #endregion
+
+        //Timer
         private Timer _checkQuantityIsCorrectTimer;
 
-        private ModelViews.InvoiceContent _invoiceData;
+        #region Responsible for change Views accordingly
 
         private byte _invoiceContentCurrentPage;
 
@@ -72,19 +106,50 @@ namespace WPF.Views.ApplicationContent
             }
         }
 
-        public InvoiceContent()
+        #endregion
+
+        public InvoiceContent(ApplicationContentView ApplicationContentView)
         {
+            this._applicationContentView = ApplicationContentView;
+
+            #region Respective Panel's Data
+
+            //Every single Invoice data is here
             this._invoiceData = new ModelViews.InvoiceContent();
-            
+
+            //Product search panel
             this._productContent = new SearchProductContent(this);
+            //Customer search panel
             this._customerContent = new SearchCustomerContent(this);
+            //PaymentMethod search panel
             this._paymentMethodContent = new SearchPaymentMethodContent(this);
+
+            #endregion
 
             InitializeComponent();
 
-            //databindings
+            #region Databindings
+
+            //invoice item related data bindings
             InvoiceItemsList.ItemsSource = this._invoiceData.ProductsList;
 
+            InvoiceItemsList.SetBinding(ListBox.SelectedIndexProperty,
+                new Binding()
+                {
+                    Source = this._invoiceData,
+                    Path = new PropertyPath("SelectedInvoiceItem"),
+                    Mode = BindingMode.OneWayToSource
+                });
+
+            RemoveProduct.SetBinding(Button.VisibilityProperty,
+                new Binding()
+                {
+                    Source = this._invoiceData,
+                    Path = new PropertyPath("RemoveInvoiceItemButtonVisible"),
+                    Mode = BindingMode.OneWay
+                });
+
+            //payments related data bindings
             GrossTotalTextBlock.SetBinding(TextBlock.TextProperty,
                 new Binding()
                 {
@@ -109,20 +174,63 @@ namespace WPF.Views.ApplicationContent
                     Delay = 500
                 });
 
+            ChangeBalanceTextBlock.SetBinding(TextBlock.TextProperty,
+                new Binding()
+                {
+                    Source = this._invoiceData,
+                    Path = new PropertyPath("ChangeBalance"),
+                    Delay = 500
+                });
+
+            //payment method realated data bindings
+            InvoicePaymentMethodListView.ItemsSource = this._invoiceData.PaymentMethodsList;
+
+            RemovePaymentMethod.SetBinding(Button.VisibilityProperty,
+                new Binding()
+                {
+                    Source = this._invoiceData,
+                    Path = new PropertyPath("RemoveInvoicePaymentMethodButtonVisible"),
+                    Mode = BindingMode.OneWay
+                });
+
+            InvoicePaymentMethodNotFound.SetBinding(Grid.VisibilityProperty,
+                new Binding()
+                {
+                    Source = this._invoiceData,
+                    Path = new PropertyPath("InvoicePaymentMethodNotFound"),
+                    Mode = BindingMode.OneWay
+                });
+
+            InvoicePaymentMethodListView.SetBinding(ListView.SelectedIndexProperty,
+                new Binding()
+                {
+                    Source = this._invoiceData,
+                    Path = new PropertyPath("SelectedInvoicePaymentMethod"),
+                    Mode = BindingMode.OneWayToSource
+                });
+
+            #endregion
+
+            #region Timer Initializations
+
             this._checkQuantityIsCorrectTimer = new Timer();
             this._checkQuantityIsCorrectTimer.Elapsed += (s, e) => { try { this.RefreshQuantityInInvoice(); } catch { } };
             this._checkQuantityIsCorrectTimer.Interval = 0.5 * 1000;
             this._checkQuantityIsCorrectTimer.Enabled = true;
 
+            #endregion
+
             ContentCurrentPage = InvoiceContentCurrentPage.Invoices;
         }
 
-        private void RefreshQuantityInInvoice()
+        #region Timer Method
+
+        private bool RefreshQuantityInInvoice()
         {
             if (!(this._invoiceData.ProductsList == null || this._invoiceData.ProductsList.Count == 0))
             {
                 bool isAllOk = true;
-                float tot = 0F, dis = 0F;
+                float tot = 0F, dis = 0F, payed = 0F;
 
                 float.TryParse(this._invoiceData.Discount, out dis);
 
@@ -153,12 +261,47 @@ namespace WPF.Views.ApplicationContent
                     this._invoiceData.NetTotal = string.Format("{0:0.00}", tot - dis);
                     this._invoiceData.GrossTotal = string.Format("{0:0.00}", tot);
                     this._invoiceData.Discount = string.Format("{0:0.00}", dis);
+
+                    bool payedOK = true;
+                    payed = 0F;
+
+                    foreach (InvoicePaymentListItemContent Item in this._invoiceData.PaymentMethodsList)
+                    {
+                        float amountPayed;
+                        string amountPayedString = Item.Dispatcher.Invoke(() => { return Item.PaymentAmount; });
+
+                        if (float.TryParse(amountPayedString, out amountPayed))
+                        {
+                            payed += amountPayed;
+                            payedOK = true;
+                        }
+                        else
+                            payedOK = false;
+
+                        if (!payedOK)
+                            break;
+                    }
+
+                    if (payedOK)
+                    {
+                        this._invoiceData.ChangeBalance = string.Format("{0:0.00}", payed - (tot - dis));
+                        return true;
+                    }
+                    else
+                    {
+                        this._invoiceData.ChangeBalance = "--.--";
+                        return false;
+                    }
+
                 }
                 else
                 {
                     this._invoiceData.NetTotal = "--.--";
                     this._invoiceData.GrossTotal = "--.--";
                     this._invoiceData.Discount = "--.--";
+                    this._invoiceData.ChangeBalance = "--.--";
+
+                    return false;
                 }
             }
             else
@@ -166,8 +309,15 @@ namespace WPF.Views.ApplicationContent
                 this._invoiceData.NetTotal = "--.--";
                 this._invoiceData.GrossTotal = "--.--";
                 this._invoiceData.Discount = "--.--";
+                this._invoiceData.ChangeBalance = "--.--";
+
+                return false;
             }
         }
+
+        #endregion
+
+        #region Invoice Items
 
         private void RemoveProduct_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -182,6 +332,12 @@ namespace WPF.Views.ApplicationContent
             ContentCurrentPage = InvoiceContentCurrentPage.Product;
         }
 
+        private void InvoiceItemsList_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+                RemoveProduct_Click(null, null);
+        }
+
         public void AddProductToProductList(Product Product)
         {
             InvoiceItemContent IIC = this._invoiceData.ProductsList.SingleOrDefault(pl => pl.ProductID == Product.ID);
@@ -191,7 +347,7 @@ namespace WPF.Views.ApplicationContent
                 this._invoiceData.ProductsList.Add(new InvoiceItemContent()
                 {
                     ItemNo = this._invoiceData.ProductsList.Count + 1,
-                    ItemPrice = Product.Price.ToString(),
+                    ItemPrice = string.Format("{0:0.00}", Math.Round(Product.Price, 2)),
                     ProductID = Product.ID,
                     ProductDescription = Product.Name,
                     ItemType = Product.Type == Models.Core.ProductType.Measurable ? Styles.Controler.ProductType.Measurable : Styles.Controler.ProductType.Unit,
@@ -207,29 +363,95 @@ namespace WPF.Views.ApplicationContent
             {
                 int itemIndex = IIC.ItemNo - 1;
                 InvoiceItemsList.SelectedIndex = itemIndex;
-                InvoiceItemsList.ScrollIntoView(InvoiceItemsList.SelectedItem);
+                InvoiceItemContent NotifingInvoiceItemContent = InvoiceItemsList.SelectedItem as InvoiceItemContent;
+                InvoiceItemsList.ScrollIntoView(NotifingInvoiceItemContent);
+                InvoiceItemsList.SelectedIndex = -1;
+                NotifingInvoiceItemContent.IsNotify = false;
+                NotifingInvoiceItemContent.IsNotify = true;
             }
         }
 
-        private void InvoiceItemsList_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.Delete)
-                RemoveProduct_Click(null, null);
-        }
+        #endregion
+
+        #region Choose Customer
 
         private void SearchCustomer_Click(object sender, RoutedEventArgs e)
         {
             this.ContentCurrentPage = InvoiceContentCurrentPage.Customer;
         }
 
+        #endregion
+
+        #region Payment Method
+
         private void SearchPaymentMethod_Click(object sender, RoutedEventArgs e)
         {
             this.ContentCurrentPage = InvoiceContentCurrentPage.PaymentMethod;
         }
 
+        public void AddPaymentMethodToList(PaymentMethod PaymentMethod)
+        {
+            InvoicePaymentListItemContent IPLIC = this._invoiceData.PaymentMethodsList.SingleOrDefault(pm => pm.PaymentMethodName.Equals(PaymentMethod.Name));
+
+            if (IPLIC == null)
+            {
+                this._invoiceData.AddNewPaymentMethodToInvoice(new InvoicePaymentListItemContent()
+                {
+                    PaymentMethodName = PaymentMethod.Name,
+                    PaymentAmount = "0.00"
+                });
+
+                InvoicePaymentMethodListView.SelectedIndex = this._invoiceData.PaymentMethodsList.Count - 1;
+                InvoicePaymentMethodListView.ScrollIntoView(InvoicePaymentMethodListView.SelectedItem);
+                InvoicePaymentMethodListView.SelectedIndex = -1;
+            }
+            else
+            {
+
+                int itemIndex = this._invoiceData.PaymentMethodsList.IndexOf(IPLIC);
+                InvoicePaymentMethodListView.SelectedIndex = itemIndex;
+                InvoicePaymentListItemContent NotifingInvoicePaymentMethodContent = InvoicePaymentMethodListView.SelectedItem as InvoicePaymentListItemContent;
+                InvoicePaymentMethodListView.ScrollIntoView(NotifingInvoicePaymentMethodContent);
+                InvoicePaymentMethodListView.SelectedIndex = -1;
+                NotifingInvoicePaymentMethodContent.IsNotify = false;
+                NotifingInvoicePaymentMethodContent.IsNotify = true;
+            }
+        }
+
+        private void InvoicePaymentMethodListView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+                RemovePaymentMethod_Click(null, null);
+        }
+
+        private void RemovePaymentMethod_Click(object sender, RoutedEventArgs e)
+        {
+            if (InvoicePaymentMethodListView.SelectedItem != null)
+            {
+                this._invoiceData.RemovePaymentMethodFromInvoice((InvoicePaymentMethodListView.SelectedIndex));
+            }
+        }
+
+        #endregion
+
+        #region Universal Invoice inside content hider
+
         private void ContentPanelBackground_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.ContentCurrentPage = InvoiceContentCurrentPage.Invoices;
+        }
+
+
+        #endregion
+
+        private void CancelInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            this._applicationContentView.ResetContentPanel();
+        }
+
+        private void CompleteInvoice_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 

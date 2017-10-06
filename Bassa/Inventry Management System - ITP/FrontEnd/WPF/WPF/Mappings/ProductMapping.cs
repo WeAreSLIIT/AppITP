@@ -1,6 +1,7 @@
 ﻿using Models.Core;
 using Models.Persistence;
 using Styles.Controler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,12 +33,12 @@ namespace WPF.Mappings
             {
                 ProductID = Product.ID,
                 ProductDescription = Product.Name,
-                ItemPrice = Product.Price.ToString(),
+                ItemPrice = string.Format("{0:0.00}", Math.Round(Product.Price, 2)),
                 ItemType = (Product.Type == Models.Core.ProductType.Measurable) ? Styles.Controler.ProductType.Measurable : Styles.Controler.ProductType.Unit
             };
         }
 
-        public Product ProductToProductSearchItem(ProductSearchItem ProductSearchItem)
+        public Product ProductSearchItemToProduct(ProductSearchItem ProductSearchItem)
         {
             if (ProductSearchItem == null)
                 return null;

@@ -92,6 +92,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CountersController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\Methods\CounterControllerMethods.cs" />
     <Compile Include="Controllers\Methods\InvoicePaymentMethodControllerMethods.cs" />
     <Compile Include="Controllers\Resources\CounterResource.cs" />
     <Compile Include="Controllers\Resources\InvoicePaymentMethodResource.cs" />
