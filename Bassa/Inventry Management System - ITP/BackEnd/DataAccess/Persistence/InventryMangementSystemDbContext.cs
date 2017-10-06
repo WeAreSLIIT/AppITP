@@ -281,7 +281,7 @@ namespace DataAccess.Persistence
             modelBuilder.Entity<Product>().Property(i => i.RackId).IsOptional();
 
             modelBuilder.Entity<Product>().HasOptional(i => i.Rack).WithMany(e => e.Products)
-                .HasForeignKey(i => i.RackId).WillCascadeOnDelete(true);
+                .HasForeignKey(i => i.RackId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Product>().HasRequired(i => i.SubCategory).WithMany(e => e.Products)
                 .HasForeignKey(i => i.SubCategoryId).WillCascadeOnDelete(false);
 
