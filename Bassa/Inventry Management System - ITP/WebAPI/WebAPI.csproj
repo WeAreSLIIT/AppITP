@@ -163,6 +163,14 @@
     <Compile Include="Controllers\Dileepa\PromotionTypeController.cs" />
     <Compile Include="Controllers\Harin\RackController.cs" />
     <Compile Include="Controllers\Samith\BranchController.cs" />
+    <Compile Include="Controllers\Samith\EmployeeController.cs" />
+    <Compile Include="Controllers\Samith\LogController.cs" />
+    <Compile Include="Controllers\Samith\ModuleController.cs" />
+    <Compile Include="Controllers\Samith\PersonController.cs" />
+    <Compile Include="Controllers\Samith\PrivilegeController.cs" />
+    <Compile Include="Controllers\Samith\SystemController.cs" />
+    <Compile Include="Controllers\Samith\UserAccountController.cs" />
+    <Compile Include="Controllers\Samith\UserRoleController.cs" />
     <Compile Include="Controllers\Yashika\RecountController.cs" />
     <Compile Include="Controllers\Resources\CSB\CounterResource.cs" />
     <Compile Include="Controllers\Resources\CSB\InvoicePaymentMethodResource.cs" />

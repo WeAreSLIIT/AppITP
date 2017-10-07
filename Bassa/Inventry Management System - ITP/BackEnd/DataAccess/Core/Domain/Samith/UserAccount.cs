@@ -18,11 +18,9 @@ namespace DataAccess.Core.Domain
         [ForeignKey("UserRoleID")]
         public UserRole Role { get; set; }
 
-        public ICollection<UserAccount> UserAccounts { get; set; }
-
         public UserAccount()
         {
-            UserAccounts = new HashSet<UserAccount>();
+            
         }
     }
 }

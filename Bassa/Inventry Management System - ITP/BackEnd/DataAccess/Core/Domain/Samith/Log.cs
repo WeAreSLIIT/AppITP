@@ -16,11 +16,11 @@ namespace DataAccess.Core.Domain
         public Module Module { get; set; }
         public string Activity { get; set; }
 
-        public ICollection<Log> Logs { get; set; }
+        
 
         public Log()
         {
-            Logs = new HashSet<Log>();
+           
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace DataAccess.Core.Repositories
 {
-    public interface ISystemRepository 
+    public interface ISystemRepository : IRepository<SystemDetails>
     {
     }
 }

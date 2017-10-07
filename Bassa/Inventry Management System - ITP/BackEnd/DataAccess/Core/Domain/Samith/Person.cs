@@ -18,11 +18,11 @@ namespace DataAccess.Core.Domain
         public string Email { get; set; }
         public Gender Gender { get; set; }
 
-        public ICollection<Person> Persons { get; set; }
+      
 
         public Person()
         {
-            Persons = new HashSet<Person>();
+            
         }
     }
 }

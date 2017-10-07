@@ -15,11 +15,10 @@ namespace DataAccess.Core.Domain
         [ForeignKey("BranchID")]
         public Branch HeadOffice { get; set; }
 
-        public ICollection<UserAccount> UserAccounts { get; set; }
 
         public SystemDetails()
         {
-            UserAccounts = new HashSet<UserAccount>();
+           
         }
     }
 }

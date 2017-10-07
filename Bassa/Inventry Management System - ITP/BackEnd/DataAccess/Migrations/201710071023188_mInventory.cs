@@ -22,11 +22,8 @@ namespace DataAccess.Migrations
                         BranchLevel = c.Int(nullable: false),
                         Address = c.String(),
                         Email = c.String(),
-                        Branch_BranchID = c.Long(),
                     })
-                .PrimaryKey(t => t.BranchID)
-                .ForeignKey("dbo.Branches", t => t.Branch_BranchID)
-                .Index(t => t.Branch_BranchID);
+                .PrimaryKey(t => t.BranchID);
             
             CreateTable(
                 "dbo.Counters",
@@ -210,11 +207,8 @@ namespace DataAccess.Migrations
                         JobTitle = c.String(),
                         Suspend = c.Boolean(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
-                        Person_PersonID = c.Long(),
                     })
-                .PrimaryKey(t => t.PersonID)
-                .ForeignKey("dbo.People", t => t.Person_PersonID)
-                .Index(t => t.Person_PersonID);
+                .PrimaryKey(t => t.PersonID);
             
             CreateTable(
                 "dbo.InvoiceEmployeeDiscounts",
@@ -492,15 +486,12 @@ namespace DataAccess.Migrations
                         UserAccountID = c.Long(nullable: false),
                         ModuleID = c.Long(nullable: false),
                         Activity = c.String(),
-                        Log_LogID = c.Long(),
                     })
                 .PrimaryKey(t => t.LogID)
-                .ForeignKey("dbo.Logs", t => t.Log_LogID)
                 .ForeignKey("dbo.Modules", t => t.ModuleID, cascadeDelete: true)
                 .ForeignKey("dbo.UserAccounts", t => t.UserAccountID, cascadeDelete: true)
                 .Index(t => t.UserAccountID)
-                .Index(t => t.ModuleID)
-                .Index(t => t.Log_LogID);
+                .Index(t => t.ModuleID);
             
             CreateTable(
                 "dbo.Modules",
@@ -512,11 +503,8 @@ namespace DataAccess.Migrations
                         Description = c.String(),
                         Suspend = c.Boolean(nullable: false),
                         Active = c.Boolean(nullable: false),
-                        Module_ModuleID = c.Long(),
                     })
-                .PrimaryKey(t => t.ModuleID)
-                .ForeignKey("dbo.Modules", t => t.Module_ModuleID)
-                .Index(t => t.Module_ModuleID);
+                .PrimaryKey(t => t.ModuleID);
             
             CreateTable(
                 "dbo.UserAccounts",
@@ -527,18 +515,12 @@ namespace DataAccess.Migrations
                         Password = c.String(),
                         EmployeeID = c.Long(nullable: false),
                         UserRoleID = c.Long(nullable: false),
-                        UserAccount_UserAccountID = c.Long(),
-                        SystemDetails_SystemDetailsID = c.Long(),
                     })
                 .PrimaryKey(t => t.UserAccountID)
                 .ForeignKey("dbo.People", t => t.EmployeeID, cascadeDelete: true)
                 .ForeignKey("dbo.UserRoles", t => t.UserRoleID, cascadeDelete: true)
-                .ForeignKey("dbo.UserAccounts", t => t.UserAccount_UserAccountID)
-                .ForeignKey("dbo.SystemDetails", t => t.SystemDetails_SystemDetailsID)
                 .Index(t => t.EmployeeID)
-                .Index(t => t.UserRoleID)
-                .Index(t => t.UserAccount_UserAccountID)
-                .Index(t => t.SystemDetails_SystemDetailsID);
+                .Index(t => t.UserRoleID);
             
             CreateTable(
                 "dbo.UserRoles",
@@ -549,11 +531,8 @@ namespace DataAccess.Migrations
                         AuthorizationLevel = c.Long(nullable: false),
                         Description = c.String(),
                         Suspend = c.Boolean(nullable: false),
-                        UserRole_UserRoleID = c.Long(),
                     })
-                .PrimaryKey(t => t.UserRoleID)
-                .ForeignKey("dbo.UserRoles", t => t.UserRole_UserRoleID)
-                .Index(t => t.UserRole_UserRoleID);
+                .PrimaryKey(t => t.UserRoleID);
             
             CreateTable(
                 "dbo.Privileges",
@@ -561,15 +540,12 @@ namespace DataAccess.Migrations
                     {
                         PrivilegeID = c.Long(nullable: false, identity: true),
                         ModuleID = c.Long(nullable: false),
-                        Privilege_PrivilegeID = c.Long(),
                         UserRole_UserRoleID = c.Long(),
                     })
                 .PrimaryKey(t => t.PrivilegeID)
                 .ForeignKey("dbo.Modules", t => t.ModuleID, cascadeDelete: true)
-                .ForeignKey("dbo.Privileges", t => t.Privilege_PrivilegeID)
                 .ForeignKey("dbo.UserRoles", t => t.UserRole_UserRoleID)
                 .Index(t => t.ModuleID)
-                .Index(t => t.Privilege_PrivilegeID)
                 .Index(t => t.UserRole_UserRoleID);
             
             CreateTable(
@@ -746,20 +722,14 @@ namespace DataAccess.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.TransInStocks", "PublicItemCode", "dbo.Items");
-            DropForeignKey("dbo.UserAccounts", "SystemDetails_SystemDetailsID", "dbo.SystemDetails");
             DropForeignKey("dbo.SystemDetails", "BranchID", "dbo.Branches");
             DropForeignKey("dbo.PromotionSchedules", "PromoTypeId", "dbo.PromotionTypes");
             DropForeignKey("dbo.Logs", "UserAccountID", "dbo.UserAccounts");
-            DropForeignKey("dbo.UserAccounts", "UserAccount_UserAccountID", "dbo.UserAccounts");
             DropForeignKey("dbo.UserAccounts", "UserRoleID", "dbo.UserRoles");
-            DropForeignKey("dbo.UserRoles", "UserRole_UserRoleID", "dbo.UserRoles");
             DropForeignKey("dbo.Privileges", "UserRole_UserRoleID", "dbo.UserRoles");
-            DropForeignKey("dbo.Privileges", "Privilege_PrivilegeID", "dbo.Privileges");
             DropForeignKey("dbo.Privileges", "ModuleID", "dbo.Modules");
             DropForeignKey("dbo.UserAccounts", "EmployeeID", "dbo.People");
             DropForeignKey("dbo.Logs", "ModuleID", "dbo.Modules");
-            DropForeignKey("dbo.Modules", "Module_ModuleID", "dbo.Modules");
-            DropForeignKey("dbo.Logs", "Log_LogID", "dbo.Logs");
             DropForeignKey("dbo.Stocks", "PublicItemCode", "dbo.Items");
             DropForeignKey("dbo.GiftVoucherIssues", "GiftVoucherTypeId", "dbo.GiftVoucherTypes");
             DropForeignKey("dbo.DiscountSchedules", "DiscountTypeId", "dbo.DiscountTypes");
@@ -774,7 +744,6 @@ namespace DataAccess.Migrations
             DropForeignKey("dbo.InvoicePaymentMethods", "InvoiceID", "dbo.Invoices");
             DropForeignKey("dbo.InvoiceDeals", "InvoiceDealDiscountID", "dbo.InvoiceDealDiscount");
             DropForeignKey("dbo.InvoiceDealDiscount", "GivenEmployeeID", "dbo.People");
-            DropForeignKey("dbo.People", "Person_PersonID", "dbo.People");
             DropForeignKey("dbo.InvoiceEmployeeDiscounts", "PermittedEmployeeID", "dbo.People");
             DropForeignKey("dbo.InvoiceEmployeeDiscounts", "Invoice_InvoiceID", "dbo.Invoices");
             DropForeignKey("dbo.InvoiceDeals", "InvoiceID", "dbo.Invoices");
@@ -787,20 +756,13 @@ namespace DataAccess.Migrations
             DropForeignKey("dbo.InvoiceCustomers", "InvoiceID", "dbo.Invoices");
             DropForeignKey("dbo.Invoices", "CounterID", "dbo.Counters");
             DropForeignKey("dbo.Counters", "BranchID", "dbo.Branches");
-            DropForeignKey("dbo.Branches", "Branch_BranchID", "dbo.Branches");
             DropIndex("dbo.TransInStocks", new[] { "PublicItemCode" });
             DropIndex("dbo.SystemDetails", new[] { "BranchID" });
             DropIndex("dbo.PromotionSchedules", new[] { "PromoTypeId" });
             DropIndex("dbo.Privileges", new[] { "UserRole_UserRoleID" });
-            DropIndex("dbo.Privileges", new[] { "Privilege_PrivilegeID" });
             DropIndex("dbo.Privileges", new[] { "ModuleID" });
-            DropIndex("dbo.UserRoles", new[] { "UserRole_UserRoleID" });
-            DropIndex("dbo.UserAccounts", new[] { "SystemDetails_SystemDetailsID" });
-            DropIndex("dbo.UserAccounts", new[] { "UserAccount_UserAccountID" });
             DropIndex("dbo.UserAccounts", new[] { "UserRoleID" });
             DropIndex("dbo.UserAccounts", new[] { "EmployeeID" });
-            DropIndex("dbo.Modules", new[] { "Module_ModuleID" });
-            DropIndex("dbo.Logs", new[] { "Log_LogID" });
             DropIndex("dbo.Logs", new[] { "ModuleID" });
             DropIndex("dbo.Logs", new[] { "UserAccountID" });
             DropIndex("dbo.Stocks", new[] { "PublicItemCode" });
@@ -817,7 +779,6 @@ namespace DataAccess.Migrations
             DropIndex("dbo.InvoicePaymentMethods", new[] { "InvoiceID" });
             DropIndex("dbo.InvoiceEmployeeDiscounts", new[] { "Invoice_InvoiceID" });
             DropIndex("dbo.InvoiceEmployeeDiscounts", new[] { "PermittedEmployeeID" });
-            DropIndex("dbo.People", new[] { "Person_PersonID" });
             DropIndex("dbo.InvoiceDealDiscount", new[] { "GivenEmployeeID" });
             DropIndex("dbo.InvoiceDeals", new[] { "InvoiceDealDiscountID" });
             DropIndex("dbo.InvoiceDeals", new[] { "InvoiceID" });
@@ -832,7 +793,6 @@ namespace DataAccess.Migrations
             DropIndex("dbo.Invoices", new[] { "IssuedByID" });
             DropIndex("dbo.Invoices", new[] { "InvoicePublicID" });
             DropIndex("dbo.Counters", "IX_BranchCounterID");
-            DropIndex("dbo.Branches", new[] { "Branch_BranchID" });
             DropTable("dbo.Wastages");
             DropTable("dbo.TransOuts");
             DropTable("dbo.TransInStocks");

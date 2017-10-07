@@ -15,11 +15,11 @@ namespace DataAccess.Core.Domain
         public Module Module { get; set; }
         public Action[] Actions { get; set; }
 
-        public ICollection<Privilege> Privileges { get; set; }
+   
 
         public Privilege()
         {
-            Privileges = new HashSet<Privilege>();
+            
         }
     }
 }

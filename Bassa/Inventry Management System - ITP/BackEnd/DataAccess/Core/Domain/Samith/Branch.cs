@@ -17,13 +17,13 @@ namespace DataAccess.Core.Domain
         public string[] ContactNumbers { get; set; }
         public string Email { get; set; }
 
-        public ICollection<Branch> Branches { get; set; }
+       
         public ICollection<Counter> Counters { get; set; }
 
         public Branch()
         {
             Counters = new HashSet<Counter>();
-            Branches = new HashSet<Branch>();
+            
         }
     }
 }

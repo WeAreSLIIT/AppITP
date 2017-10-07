@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace WebAPI.Controllers
 {
-    [RoutePrefix("api/branch")]
+    //[RoutePrefix("api/branch")]
     public class BranchController : ApiController
     {
         private UnitOfWork _unitOfWork;
@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("")]
+        [Route("api/branch")]
         public IHttpActionResult GetBranches()
         {
             ICollection<Branch> Branches = new List<Branch>();
@@ -26,13 +26,13 @@ namespace WebAPI.Controllers
             if (Branches == null || Branches.Count == 0)
                 return Content(HttpStatusCode.NotFound, "No Branches found!");
 
-            return Content(HttpStatusCode.Found, Branches);
+            return Content(HttpStatusCode.OK, Branches);
         }
 
 
 
         [HttpGet]
-        [Route("~/{Id:int}")]
+        [Route("api/branch/{Id}")]
         public IHttpActionResult GetBranch(int Id)
         {
 
@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost]
-        [Route("")]
+        [Route("api/branch")]
         public IHttpActionResult InsertBranch(Branch newBranch)
         {
             if (!ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("~/{Id:int}")]
+        [Route("api/branch/{Id}")]
         public IHttpActionResult UpdateBranch(int Id, Branch branch)
         {
             var branchInDb = this._unitOfWork.Branches.Get(Id);
@@ -83,7 +83,7 @@ namespace WebAPI.Controllers
 
 
         [HttpDelete]
-        [Route("~/{Id:int}")]
+        [Route("api/branch/{Id}")]
         public IHttpActionResult DeleteBranch(int Id)
         {
             var BranchInDb = this._unitOfWork.Branches.Get(Id);

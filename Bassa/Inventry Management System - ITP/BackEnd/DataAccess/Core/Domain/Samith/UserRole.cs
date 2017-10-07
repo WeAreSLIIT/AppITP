@@ -15,12 +15,11 @@ namespace DataAccess.Core.Domain
         //public Privilege[] Privileges { get; set; }
         public bool Suspend { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
         public ICollection<Privilege> Privileges { get; set; }
 
         public UserRole()
         {
-            UserRoles = new HashSet<UserRole>();
+            Privileges = new HashSet<Privilege>();
         }
     }
 }

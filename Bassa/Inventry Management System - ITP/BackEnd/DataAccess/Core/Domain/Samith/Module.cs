@@ -12,12 +12,10 @@ namespace DataAccess.Core.Domain
         public string Description { get; set; }
         public bool Suspend { get; set; }
         public bool Active { get; set; }
-
-        public ICollection<Module> Modules { get; set; }
-
+        
         public Module()
         {
-            Modules = new HashSet<Module>();
+           
         }
     }
 }
