@@ -11,6 +11,13 @@ namespace DataAccess.Persistence
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Branch> Branches { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<SystemDetails> SystemDetails { get; set; }
+        public DbSet<Privilege> Privileges { get; set; }
+        public DbSet<Module> Modules { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         #endregion
 

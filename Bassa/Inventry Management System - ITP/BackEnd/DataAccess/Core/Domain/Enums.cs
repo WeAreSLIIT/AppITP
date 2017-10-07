@@ -36,4 +36,12 @@
         Recount = 1,
         Empty = 2
     }
+
+    //Samith's
+    public enum Gender : byte {
+        Female =0 ,
+        Male =1
+    }
+    public enum Action : byte { CREATE, READ, UPDATE, DELETE, SUSPEND, ACTIVE };
+
 }

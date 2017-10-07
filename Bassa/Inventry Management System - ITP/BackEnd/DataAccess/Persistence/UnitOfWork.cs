@@ -27,6 +27,13 @@ namespace DataAccess.Persistence
 
         public IBranchRepository Branches { get; private set; }
         public IEmployeeRepository Employees { get; private set; }
+        public IUserAccountRepository UserAccounts { get; private set; }
+        public IUserRoleRepository UserRoles { get; private set; }
+        public ILogRepository Logs { get; private set; }
+        public IModuleRepository Modules { get; private set; }
+        public IPrivilegeRepository Privileges { get; private set; }
+        public ISystemRepository SystemDetails { get; private set; }
+        public IPersonRepository Persons { get; private set; }
 
 
         #endregion
@@ -153,6 +160,17 @@ namespace DataAccess.Persistence
             TransInStocks = new TransInRepository(this._context);
             TransOuts = new TransOutRepository(this._context);
             Wastages = new WastageRepository(this._context);
+
+            //Samith
+            Branches = new BranchRepository(this._context);
+            Employees = new EmployeeRepository(this._context);
+            Persons = new PersonRepository(this._context);
+            Modules = new ModuleRepository(this._context);
+            Logs = new LogRepository(this._context);
+            Privileges = new PrivilegeRepository(this._context);
+            SystemDetails = new SystemRepository(this._context);
+            UserAccounts = new UserAccountRepository(this._context);
+            UserRoles = new UserRoleRepository(this._context);
         }
 
         public int Complete()
