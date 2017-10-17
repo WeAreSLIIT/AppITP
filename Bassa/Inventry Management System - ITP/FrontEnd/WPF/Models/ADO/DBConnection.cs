@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Models.Core;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
 using System.Diagnostics;
@@ -21,7 +23,7 @@ namespace Models.ADO
             return !File.Exists(_dbFileName);
         }
 
-        public static SQLiteConnection OpenDBConnection()
+        private static SQLiteConnection OpenDBConnection()
         {
             try
             {
@@ -43,46 +45,51 @@ namespace Models.ADO
 
                         #region Create Tables
 
-                        sqliteCommand.CommandText = "CREATE TABLE `Employees` (`ID` TEXT, `Name` TEXT, PRIMARY KEY(`ID`))";
-                        sqliteCommand.ExecuteNonQuery();
-                        Debug.WriteLine("Employees Table Created.");
+                        //sqliteCommand.CommandText = "CREATE TABLE `Employees` (`ID` TEXT, `Name` TEXT, PRIMARY KEY(`ID`))";
+                        //sqliteCommand.ExecuteNonQuery();
+                        //Debug.WriteLine("WPF -> Employees Table Created.");
 
-                        sqliteCommand.CommandText = "";
-                        sqliteCommand.ExecuteNonQuery();
-                        Debug.WriteLine("Products Table Created.");
+                        //sqliteCommand.CommandText = "";
+                        //sqliteCommand.ExecuteNonQuery();
+                        //Debug.WriteLine("WPF -> Invoices Table Created.");
 
-                        sqliteCommand.CommandText = "CREATE TABLE `Products` (`ID` TEXT, `Name` TEXT, `Barcode` INTEGER, `Type` INTEGER, `Price` NUMERIC, `Time` INTEGER, PRIMARY KEY(`ID`));";
+                        sqliteCommand.CommandText = "CREATE TABLE `Products` (`ID` TEXT, `Name` TEXT, `Barcode` INTEGER, `Type` INTEGER, `Price` NUMERIC, PRIMARY KEY(`ID`))";
                         sqliteCommand.ExecuteNonQuery();
-                        Debug.WriteLine("Invoices Table Created.");
+                        Debug.WriteLine("WPF -> Products Table Created.");
 
-                        sqliteCommand.CommandText = "CREATE TABLE `Customers` (`ID` INTEGER, `Name` TEXT, PRIMARY KEY(`ID`))";
+                        sqliteCommand.CommandText = "CREATE TABLE `PaymentMethods` (`Name` TEXT, `Note` TEXT, PRIMARY KEY(`Name`))";
                         sqliteCommand.ExecuteNonQuery();
-                        Debug.WriteLine("Customers Table Created.");
+                        Debug.WriteLine("WPF -> PaymentMethods Table Created.");
 
-                        sqliteCommand.CommandText = "CREATE TABLE `TableVersions` (`Table` INTEGER NOT NULL, `Time` INTEGER NOT NULL, PRIMARY KEY(`Table`))";
+                        sqliteCommand.CommandText = "CREATE TABLE `TableVersions` (`TableID` INTEGER NOT NULL, `Version` INTEGER NOT NULL, PRIMARY KEY(`Table`))";
                         sqliteCommand.ExecuteNonQuery();
-                        Debug.WriteLine("Verstions Table Created.");
+                        Debug.WriteLine("WPF -> Verstions Table Created.");
 
                         #endregion
 
                         #region Seed Tables
 
-                        sqliteCommand.CommandText = "insert into Versions values(@Employees, @Time); ";
-                        sqliteCommand.Parameters.AddWithValue("@Employees", "Employees");
+                        sqliteCommand.CommandText = "insert into TableVersions values(@Products, @Version); ";
+                        sqliteCommand.Parameters.AddWithValue("@Products", "1");
                         sqliteCommand.Parameters.AddWithValue("@Version", "0");
                         sqliteCommand.ExecuteNonQuery();
 
-                        sqliteCommand.CommandText = "insert into Versions values(@Products, @Time); ";
-                        sqliteCommand.Parameters.AddWithValue("@Products", "Products");
+                        sqliteCommand.CommandText = "insert into TableVersions values(@PaymentMethods, @Version); ";
+                        sqliteCommand.Parameters.AddWithValue("@PaymentMethods", "2");
                         sqliteCommand.Parameters.AddWithValue("@Version", "0");
                         sqliteCommand.ExecuteNonQuery();
 
-                        sqliteCommand.CommandText = "insert into Versions values(@Customers, @Time); ";
-                        sqliteCommand.Parameters.AddWithValue("@Customers", "Customers");
-                        sqliteCommand.Parameters.AddWithValue("@Customers", "0");
-                        sqliteCommand.ExecuteNonQuery();
+                        //sqliteCommand.CommandText = "insert into TableVersions values(@Employees, @Version); ";
+                        //sqliteCommand.Parameters.AddWithValue("@Employees", "Employees");
+                        //sqliteCommand.Parameters.AddWithValue("@Version", "0");
+                        //sqliteCommand.ExecuteNonQuery();
 
-                        Debug.WriteLine("Versions Table Seeded.");
+                        //sqliteCommand.CommandText = "insert into TableVersions values(@Employees, @Version); ";
+                        //sqliteCommand.Parameters.AddWithValue("@Employees", "Employees");
+                        //sqliteCommand.Parameters.AddWithValue("@Version", "0");
+                        //sqliteCommand.ExecuteNonQuery();
+
+                        Debug.WriteLine("WPF -> Versions Table Seeded.");
 
                         #endregion
                     }
@@ -92,15 +99,208 @@ namespace Models.ADO
 
                 return _conn;
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine(ex.ToString());
                 return null;
             }
         }
 
-        public static void CloseConnection()
+        public static ICollection<TableVersion> GetTableVersions()
         {
-            _conn.Close();
+            ICollection<TableVersion> TableVersions = new List<TableVersion>();
+
+            try
+            {
+                using (SQLiteConnection Conn = OpenDBConnection())
+                {
+                    Conn.Open();
+
+                    SQLiteCommand cmd = new SQLiteCommand("Select * from TableVersions", Conn);
+
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            TableVersion TableVersion = new TableVersion();
+
+                            TableVersion.Table = (DatabaseTable)(Convert.ToByte(reader["TableID"].ToString()));
+                            TableVersion.Time = Convert.ToInt64(reader["Version"].ToString());
+
+                            TableVersions.Add(TableVersion);
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            return TableVersions;
+        }
+
+        public static void UpdateTableVersions(byte TableID, long Version)
+        {
+            try
+            {
+                using (SQLiteConnection Conn = OpenDBConnection())
+                {
+                    Conn.Open();
+
+                    SQLiteCommand cmd = new SQLiteCommand();
+                    cmd.Connection = Conn;
+                    cmd.CommandText = "Update TableVersion Version = @Version Where TableID = @TableID";
+                    cmd.Parameters.AddWithValue("@Version", Version);
+                    cmd.Parameters.AddWithValue("@TableID", TableID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch { }
+        }
+
+        public static ICollection<Product> GetProducts()
+        {
+            ICollection<Product> Products = new List<Product>();
+
+            try
+            {
+                using (SQLiteConnection Conn = OpenDBConnection())
+                {
+                    Conn.Open();
+
+                    SQLiteCommand cmd = new SQLiteCommand("Select * from Products", Conn);
+
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Product Product = new Product();
+
+                            Product.ID = reader["ID"].ToString();
+                            Product.Name = reader["Name"].ToString();
+                            Product.Bracode = reader["Barcode"].ToString();
+                            Product.Type = (ProductType)Convert.ToByte(reader["Type"].ToString());
+                            Product.Price = (float)Convert.ToDouble(reader["Price"].ToString());
+
+                            Products.Add(Product);
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            return Products;
+        }
+
+        public static void UpdateProducts(ICollection<Product> NewProducts)
+        {
+            try
+            {
+                using (SQLiteConnection Conn = OpenDBConnection())
+                {
+                    Conn.Open();
+
+                    SQLiteCommand cmd = new SQLiteCommand();
+                    cmd.Connection = Conn;
+
+                    using (SQLiteTransaction Transaction = Conn.BeginTransaction())
+                    {
+                        cmd.CommandText = "Delete From Products";
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = "Insert into `Products` (`ID`, `Name`, `Barcode`, `Type` , `Price`) Values(@ID, @Name, @Barcode, @Type , @Price)";
+
+                        foreach (Product NewProduct in NewProducts)
+                        {
+                            cmd.Parameters.AddWithValue("@ID", NewProduct.ID);
+                            cmd.Parameters.AddWithValue("@Name", NewProduct.Name);
+                            cmd.Parameters.AddWithValue("@Barcode", NewProduct.Bracode);
+                            cmd.Parameters.AddWithValue("@Type", (byte)NewProduct.Type);
+                            cmd.Parameters.AddWithValue("@Price", NewProduct.Price);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        Transaction.Commit();
+                    }
+
+                    cmd.CommandText = "VACUUM";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString() + " P1");
+            }
+        }
+
+        public static ICollection<PaymentMethod> GetPaymentMethods()
+        {
+            ICollection<PaymentMethod> PaymentMethods = new List<PaymentMethod>();
+
+            try
+            {
+                using (SQLiteConnection Conn = OpenDBConnection())
+                {
+                    Conn.Open();
+
+                    SQLiteCommand cmd = new SQLiteCommand("Select * from PaymentMethods", Conn);
+
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PaymentMethod PaymentMethod = new PaymentMethod();
+
+                            PaymentMethod.Name = reader["Name"].ToString();
+                            PaymentMethod.Note = reader["Note"].ToString();
+
+                            PaymentMethods.Add(PaymentMethod);
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            return PaymentMethods;
+        }
+
+        public static void UpdatePaymentMethods(ICollection<PaymentMethod> NewPaymentMethods)
+        {
+            try
+            {
+                using (SQLiteConnection Conn = OpenDBConnection())
+                {
+                    Conn.Open();
+
+                    SQLiteCommand cmd = new SQLiteCommand();
+                    cmd.Connection = Conn;
+
+                    using (SQLiteTransaction Transaction = Conn.BeginTransaction())
+                    {
+                        cmd.CommandText = "Delete From PaymentMethods";
+                        cmd.ExecuteNonQuery();
+                        
+                        cmd.CommandText = "Insert into `PaymentMethods` (`Name`, `Note`) Values(@Name, @Note)";
+
+                        foreach (PaymentMethod NewPaymentMethod in NewPaymentMethods)
+                        {
+
+                            cmd.Parameters.AddWithValue("@Name", NewPaymentMethod.Name);
+                            cmd.Parameters.AddWithValue("@Note", NewPaymentMethod.Note);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        Transaction.Commit();
+                    }
+
+                    cmd.CommandText = "VACUUM";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString() + " P2");
+            }
         }
     }
 }

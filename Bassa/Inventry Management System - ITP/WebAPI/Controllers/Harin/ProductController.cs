@@ -4,6 +4,7 @@ using DataAccess.Persistence;
 using System;
 using System.Net;
 using System.Web.Http;
+using WebAPI.Controllers.Methods;
 
 namespace WebAPI.Controllers
 {
@@ -75,6 +76,8 @@ namespace WebAPI.Controllers
             else
             {
                 this._unitOfWork.Products.Add(product);
+                //Added by CSB
+                this._unitOfWork.TableVersions.DatabaseTableUpdated(DatabaseTable.Product, TimeConverterMethods.GetCurrentTimeInLong());
                 this._unitOfWork.Complete();
                 return Content(HttpStatusCode.Created, "New Product is Added");
             }
@@ -117,6 +120,8 @@ namespace WebAPI.Controllers
             else
             {
                 this._unitOfWork.Products.Remove(product);
+                //Added by CSB
+                this._unitOfWork.TableVersions.DatabaseTableUpdated(DatabaseTable.Product, TimeConverterMethods.GetCurrentTimeInLong());
                 this._unitOfWork.Complete();
 
                 return Content(HttpStatusCode.OK, $"Product Id, named '{Id}' is Deleted");

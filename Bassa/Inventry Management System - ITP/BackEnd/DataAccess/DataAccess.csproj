@@ -47,16 +47,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Domain\CSB\TableVersion.cs" />
     <Compile Include="Core\Domain\Dileepa\DiscountSchedule.cs" />
     <Compile Include="Core\Domain\Dileepa\DiscountType.cs" />
     <Compile Include="Core\Domain\Dileepa\GiftVoucherIssue.cs" />
     <Compile Include="Core\Domain\Dileepa\GiftVoucherType.cs" />
+    <Compile Include="Core\Domain\Samith\Branch.cs" />
+    <Compile Include="Core\Domain\Samith\Employee.cs" />
+    <Compile Include="Core\Domain\Samith\Log.cs" />
+    <Compile Include="Core\Domain\Samith\Module.cs" />
+    <Compile Include="Core\Domain\Samith\Person.cs" />
+    <Compile Include="Core\Domain\Samith\Privilege.cs" />
+    <Compile Include="Core\Domain\Samith\System.cs" />
+    <Compile Include="Core\Domain\Samith\UserAccount.cs" />
+    <Compile Include="Core\Domain\Samith\UserRole.cs" />
+    <Compile Include="Core\Repositories\CSB\ITableVersionRepository.cs" />
     <Compile Include="Core\Repositories\Dileepa\IDiscountScheduleRepository.cs" />
     <Compile Include="Core\Repositories\Dileepa\IDiscountTypeRepository.cs" />
     <Compile Include="Core\Repositories\Dileepa\IGiftVoucherIssueRepository.cs" />
     <Compile Include="Core\Repositories\Dileepa\IGiftVoucherTypeRepository.cs" />
     <Compile Include="Core\Repositories\Dileepa\IPromotionScheduleRepository.cs" />
     <Compile Include="Core\Repositories\Dileepa\IPromotionTypeRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IBranchRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IEmployeeRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\ILogRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IModuleRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IPersonRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IPrivilegeRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\ISystemRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IUserAccountRepository.cs" />
+    <Compile Include="Core\Repositories\Samith\IUserRoleRepository.cs" />
     <Compile Include="Core\Validation\PhoneNumber.cs" />
     <Compile Include="Core\Domain\Harin\Category.cs" />
     <Compile Include="Core\Domain\CSB\Counter.cs" />
@@ -79,10 +99,8 @@
     <Compile Include="Core\Domain\Pathmika\SupplierPayment.cs" />
     <Compile Include="Core\Domain\Yashika\Recount.cs" />
     <Compile Include="Core\Domain\Yashika\ReturnStock.cs" />
-    <Compile Include="Core\Domain\Samith\Employee.cs" />
     <Compile Include="Core\Domain\Enums.cs" />
     <Compile Include="Core\Domain\CSB\Invoice.cs" />
-    <Compile Include="Core\Domain\Samith\Branch.cs" />
     <Compile Include="Core\Domain\CSB\InvoiceCustomer.cs" />
     <Compile Include="Core\Domain\CSB\InvoiceDeal.cs" />
     <Compile Include="Core\Domain\CSB\InvoiceDealDiscount.cs" />
@@ -125,8 +143,6 @@
     <Compile Include="Core\Repositories\Pathmika\IServiceSupplierRepository.cs" />
     <Compile Include="Core\Repositories\Pathmika\ISupplierPaymentRepository.cs" />
     <Compile Include="Core\Repositories\Pathmika\ISupplierRepository.cs" />
-    <Compile Include="Core\Repositories\Samith\IEmployeeRepository.cs" />
-    <Compile Include="Core\Repositories\Samith\IBranchRepository.cs" />
     <Compile Include="Core\Repositories\CSB\IInvoiceCustomerRepository.cs" />
     <Compile Include="Core\Repositories\CSB\IInvoiceDealDiscountRepository.cs" />
     <Compile Include="Core\Repositories\CSB\IInvoiceDealRepository.cs" />
@@ -138,41 +154,14 @@
     <Compile Include="Core\Repositories\Harin\IProductRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="Core\Validation\CustomerEmailAddress.cs" />
-    <Compile Include="Migrations\201709222152019_Reinitialize.cs" />
-    <Compile Include="Migrations\201709222152019_Reinitialize.Designer.cs">
-      <DependentUpon>201709222152019_Reinitialize.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709222223004_Reinitialize2.cs" />
-    <Compile Include="Migrations\201709222223004_Reinitialize2.Designer.cs">
-      <DependentUpon>201709222223004_Reinitialize2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.cs" />
-    <Compile Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.Designer.cs">
-      <DependentUpon>201709230423574_FixCoutersTableUniqueKeyIssue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709240635134_FixChangesMadeForInvoice.cs" />
-    <Compile Include="Migrations\201709240635134_FixChangesMadeForInvoice.Designer.cs">
-      <DependentUpon>201709240635134_FixChangesMadeForInvoice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709250727557_InvoicePaymentTableAdded.cs" />
-    <Compile Include="Migrations\201709250727557_InvoicePaymentTableAdded.Designer.cs">
-      <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.cs" />
-    <Compile Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.Designer.cs">
-      <DependentUpon>201710060738174_IntegratedHarinKaviAndPathmika.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710060908558_IntegratedYashikasPart.cs" />
-    <Compile Include="Migrations\201710060908558_IntegratedYashikasPart.Designer.cs">
-      <DependentUpon>201710060908558_IntegratedYashikasPart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710061006553_IntegratedDileepasPart.cs" />
-    <Compile Include="Migrations\201710061006553_IntegratedDileepasPart.Designer.cs">
-      <DependentUpon>201710061006553_IntegratedDileepasPart.cs</DependentUpon>
+    <Compile Include="Migrations\201710080305542_InitializeTable.cs" />
+    <Compile Include="Migrations\201710080305542_InitializeTable.Designer.cs">
+      <DependentUpon>201710080305542_InitializeTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />
     <Compile Include="Persistence\Repositories\CSB\CounterRepository.cs" />
+    <Compile Include="Persistence\Repositories\CSB\TableVersionRepository.cs" />
     <Compile Include="Persistence\Repositories\Dileepa\DiscountScheduleRepository.cs" />
     <Compile Include="Persistence\Repositories\Dileepa\DiscountTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\Dileepa\GiftVoucherIssueRepository.cs" />
@@ -183,6 +172,13 @@
     <Compile Include="Persistence\Repositories\Harin\SubCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\Dileepa\PromotionScheduleRepository.cs" />
     <Compile Include="Persistence\Repositories\Dileepa\PromotionTypeRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\LogRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\ModuleRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\PersonRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\PrivilegeRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\SystemRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\UserAccountRepository.cs" />
+    <Compile Include="Persistence\Repositories\Samith\UserRoleRepository.cs" />
     <Compile Include="Persistence\Repositories\Yashika\ItemRepository.cs" />
     <Compile Include="Persistence\Repositories\Kavi\CreditRepository.cs" />
     <Compile Include="Persistence\Repositories\Kavi\CustomerRepository.cs" />
@@ -226,36 +222,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709222152019_Reinitialize.resx">
-      <DependentUpon>201709222152019_Reinitialize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709222223004_Reinitialize2.resx">
-      <DependentUpon>201709222223004_Reinitialize2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709230423574_FixCoutersTableUniqueKeyIssue.resx">
-      <DependentUpon>201709230423574_FixCoutersTableUniqueKeyIssue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709240635134_FixChangesMadeForInvoice.resx">
-      <DependentUpon>201709240635134_FixChangesMadeForInvoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709250727557_InvoicePaymentTableAdded.resx">
-      <DependentUpon>201709250727557_InvoicePaymentTableAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710060738174_IntegratedHarinKaviAndPathmika.resx">
-      <DependentUpon>201710060738174_IntegratedHarinKaviAndPathmika.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710060908558_IntegratedYashikasPart.resx">
-      <DependentUpon>201710060908558_IntegratedYashikasPart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710061006553_IntegratedDileepasPart.resx">
-      <DependentUpon>201710061006553_IntegratedDileepasPart.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Core\Domain\Ovin\" />
     <Folder Include="Core\Repositories\Ovin\" />
     <Folder Include="Persistence\EntityConfigurations\" />
     <Folder Include="Persistence\Repositories\Ovin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710080305542_InitializeTable.resx">
+      <DependentUpon>201710080305542_InitializeTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

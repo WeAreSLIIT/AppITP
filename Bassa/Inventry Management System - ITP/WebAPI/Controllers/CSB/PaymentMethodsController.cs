@@ -35,10 +35,10 @@ namespace WebAPI.Controllers
                 ICollection<PaymentMethodResource> PaymentMethodResources = new List<PaymentMethodResource>();
                 PaymentMethodResources = this._paymentMethodControllerMethods.MapListPaymentMethodToListPaymentMethodResource(PaymentMethods);
 
-                if (PaymentMethodResources == null || PaymentMethodResources.Count == 0)
-                    return Content(HttpStatusCode.NoContent, "No Payment Method(s) to show");
+                //if (PaymentMethodResources == null || PaymentMethodResources.Count == 0)
+                //    return Content(HttpStatusCode.NoContent, "No Payment Method(s) to show");
 
-                return Content(HttpStatusCode.Found, PaymentMethodResources);
+                return Content(HttpStatusCode.OK, PaymentMethodResources);
             }
             catch
             {
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
                 if (PaymentMethodResource == null)
                     return Content(HttpStatusCode.NotFound, $"Payment Method, named '{Id}' not found");
 
-                return Content(HttpStatusCode.Found, PaymentMethodResource);
+                return Content(HttpStatusCode.OK, PaymentMethodResource);
             }
             catch
             {
@@ -86,7 +86,7 @@ namespace WebAPI.Controllers
                 if (PaymentMethodResources == null || PaymentMethodResources.Count == 0)
                     return Content(HttpStatusCode.NotFound, "No matching item(s) found");
 
-                return Content(HttpStatusCode.Found, PaymentMethodResources);
+                return Content(HttpStatusCode.OK, PaymentMethodResources);
             }
             catch
             {
@@ -107,9 +107,10 @@ namespace WebAPI.Controllers
                         return Content(HttpStatusCode.NotAcceptable, "Payment Method name already exists or data not acceptable");
 
                     this._unitOfWork.PaymentMethods.Add(NewPaymentMethod);
+                    this._unitOfWork.TableVersions.DatabaseTableUpdated(DatabaseTable.PaymentMethod, TimeConverterMethods.GetCurrentTimeInLong());
                     this._unitOfWork.Complete();
 
-                    return Content(HttpStatusCode.Created, "New Payment Method created");
+                    return Content(HttpStatusCode.OK, "New Payment Method created");
                 }
                 else
                     return BadRequest();
@@ -139,9 +140,10 @@ namespace WebAPI.Controllers
                         return Content(HttpStatusCode.Unauthorized, "Payment Method's Note can't be empty");
 
                     if (CurrentPaymentMethod.PaymentMethodNote.Equals(UpdatedPaymentMethodResource.Note.Trim()))
-                        return Content(HttpStatusCode.NotModified, $"Payment Method named '{Id}' already up-to date");
+                        return Content(HttpStatusCode.OK, $"Payment Method named '{Id}' already up-to date");
 
                     CurrentPaymentMethod.PaymentMethodNote = UpdatedPaymentMethodResource.Note.Trim();
+                    this._unitOfWork.TableVersions.DatabaseTableUpdated(DatabaseTable.PaymentMethod, TimeConverterMethods.GetCurrentTimeInLong());
                     this._unitOfWork.Complete();
 
                     return Content(HttpStatusCode.OK, $"Payment Method, named '{Id}' updated");
@@ -167,6 +169,7 @@ namespace WebAPI.Controllers
                     return Content(HttpStatusCode.NotFound, $"Payment Method, named '{Id}' not found");
 
                 this._unitOfWork.PaymentMethods.Remove(PaymentMethod);
+                this._unitOfWork.TableVersions.DatabaseTableUpdated(DatabaseTable.PaymentMethod, TimeConverterMethods.GetCurrentTimeInLong());
                 this._unitOfWork.Complete();
 
                 return Content(HttpStatusCode.OK, $"Payment Method, named '{Id}' Deleted");

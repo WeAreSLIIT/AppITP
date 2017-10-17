@@ -7,6 +7,7 @@ namespace DataAccess.Core
     {
         #region CSB's
 
+        ITableVersionRepository TableVersions { get; }
         IInvoiceCustomerRepository InvoiceCustomers { get; }
         IInvoiceDealDiscountRepository InvoiceDealDiscounts { get; }
         IInvoiceDealRepository InvoiceDeals { get; }

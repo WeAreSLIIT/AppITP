@@ -1,4 +1,5 @@
-﻿using Models.Persistence;
+﻿using Models.Core;
+using Models.Persistence;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -12,8 +13,12 @@ namespace Models.APICall
         protected string _appID;
         protected HttpResponseMessage _response;
 
+        protected Counter _counter;
+
         public BaseHttpAPICall()
         {
+            this._counter = InventryMangementSystemDbContext.CounterWorking;
+
             this._appID = "csbwpfapp";
 
             this._httpClient = new HttpClient();

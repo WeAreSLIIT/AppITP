@@ -1,6 +1,8 @@
 namespace DataAccess.Migrations
 {
+    using DataAccess.Core.Domain;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -14,18 +16,35 @@ namespace DataAccess.Migrations
 
         protected override void Seed(DataAccess.Persistence.InventryMangementSystemDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            //Seeder Methods
+            context.TableVersions.AddRange(new List<TableVersion>()
+            {
+                new TableVersion()
+                {
+                    Table = DatabaseTable.Product,
+                    Time = 1
+                },
+                new TableVersion()
+                {
+                    Table = DatabaseTable.PaymentMethod,
+                    Time = 1
+                }
+            });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            //Temporary Seeders
+            context.Branches.Add(new Branch()
+            {
+                Location = "Malabe",
+                Name = "Malabe",
+
+                Counters = new List<Counter>()
+                {
+                    new Counter()
+                    {
+                        BranchCounterNo = 1
+                    }
+                }
+            });
         }
     }
 }

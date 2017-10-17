@@ -73,6 +73,10 @@ namespace WebAPI.Controllers
             {
                 return Content(HttpStatusCode.NotFound, $"SubCategory named '{Id}' is not found");
             }
+            else if ((this._unitOfWork.Products.Search(x => x.SubCategoryId == Id).ToList() != null) && (this._unitOfWork.Products.Search(x => x.SubCategoryId == Id).ToList().Count != 0))
+            {
+                return Content(HttpStatusCode.OK, $"Can't Delete SubCategory named '{subCategory.SubCategoryName}' is Contain Products");
+            }
             else
             {
                 this._unitOfWork.SubCategories.Remove(subCategory);
