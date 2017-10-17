@@ -5,7 +5,6 @@ using System.Linq;
 using System.Collections.Generic;
 using WebAPI.Controllers.Resources;
 using System.Threading.Tasks;
-using WebAPI.Models;
 
 namespace WebAPI.Controllers.Methods
 {

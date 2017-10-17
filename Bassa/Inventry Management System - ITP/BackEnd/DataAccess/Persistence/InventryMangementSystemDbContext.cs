@@ -11,11 +11,19 @@ namespace DataAccess.Persistence
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Branch> Branches { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<SystemDetails> SystemDetails { get; set; }
+        public DbSet<Privilege> Privileges { get; set; }
+        public DbSet<Module> Modules { get; set; }
+        public DbSet<Log> Logs { get; set; }
+
 
         #endregion
 
         #region Kavi's
-        
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<LoyaltyCard> LoyaltyCards { get; set; }
         public DbSet<LoyaltyProgram> LoyaltyPrograms { get; set; }
@@ -80,6 +88,7 @@ namespace DataAccess.Persistence
         #region CSB's
 
         public DbSet<Counter> Counters { get; set; }
+        public DbSet<TableVersion> TableVersions { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceCustomer> InvoiceCustomer { get; set; }
         public DbSet<InvoiceEmployeeDiscount> InvoiceDiscounts { get; set; }
@@ -117,6 +126,15 @@ namespace DataAccess.Persistence
                 .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_BranchCounterID", 2) { IsUnique = true }));
             //Ignore Attribute
             modelBuilder.Entity<Counter>().Ignore(c => c.Online);
+
+            #endregion
+
+            #region TableVersions Table
+
+            modelBuilder.Entity<TableVersion>().HasKey(tv => tv.TableID).ToTable("TableVersions");
+            modelBuilder.Entity<TableVersion>().Property(tv => tv.TableID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<TableVersion>().Ignore(tv => tv.Table);
 
             #endregion
 

@@ -73,6 +73,10 @@ namespace WebAPI.Controllers
             {
                 return Content(HttpStatusCode.NotFound, $"Rack named '{Id}' is not found");
             }
+            else if ((this._unitOfWork.Products.Search(x => x.RackId == Id).ToList() != null) && (this._unitOfWork.Products.Search(x => x.RackId == Id).ToList().Count != 0))
+            {
+                return Content(HttpStatusCode.OK, $"Can't Delete Rack named '{rack.RackName}' is Contain Products");
+            }
             else
             {
                 this._unitOfWork.Racks.Remove(rack);

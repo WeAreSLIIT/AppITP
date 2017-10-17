@@ -104,6 +104,8 @@
     <Compile Include="Controllers\Kavi\LoyaltyProgramsController.cs" />
     <Compile Include="Controllers\Methods\CSB\CounterControllerMethods.cs" />
     <Compile Include="Controllers\Methods\CSB\InvoicePaymentMethodControllerMethods.cs" />
+    <Compile Include="Controllers\Methods\CSB\ProductForInvoiceControllerMethods.cs" />
+    <Compile Include="Controllers\Methods\CSB\TableVersionControllerMethods.cs" />
     <Compile Include="Controllers\Pathmika\OrderController.cs" />
     <Compile Include="Controllers\Pathmika\OrderProductController.cs" />
     <Compile Include="Controllers\Pathmika\OrderServiceController.cs" />
@@ -113,6 +115,17 @@
     <Compile Include="Controllers\Dileepa\PromotionScheduleController.cs" />
     <Compile Include="Controllers\Dileepa\PromotionTypeController.cs" />
     <Compile Include="Controllers\Harin\RackController.cs" />
+    <Compile Include="Controllers\Resources\CSB\ProductForInvoiceResource.cs" />
+    <Compile Include="Controllers\Resources\CSB\TableVersionResource.cs" />
+    <Compile Include="Controllers\Samith\BranchController.cs" />
+    <Compile Include="Controllers\Samith\EmployeeController.cs" />
+    <Compile Include="Controllers\Samith\LogController.cs" />
+    <Compile Include="Controllers\Samith\ModuleController.cs" />
+    <Compile Include="Controllers\Samith\PersonController.cs" />
+    <Compile Include="Controllers\Samith\PrivilegeController.cs" />
+    <Compile Include="Controllers\Samith\SystemController.cs" />
+    <Compile Include="Controllers\Samith\UserAccountController.cs" />
+    <Compile Include="Controllers\Samith\UserRoleController.cs" />
     <Compile Include="Controllers\Yashika\RecountController.cs" />
     <Compile Include="Controllers\Resources\CSB\CounterResource.cs" />
     <Compile Include="Controllers\Resources\CSB\InvoicePaymentMethodResource.cs" />
@@ -133,8 +146,8 @@
     <Compile Include="Controllers\CSB\InvoicesController.cs" />
     <Compile Include="Controllers\Methods\CSB\InvoiceControllerMethods.cs" />
     <Compile Include="Controllers\Methods\CSB\PaymentMethodControllerMethods.cs" />
-    <Compile Include="Controllers\Methods\CSB\ProductControllerMethods.cs" />
-    <Compile Include="Controllers\Methods\CSB\TimeConverterMethods.cs" />
+    <Compile Include="Controllers\Methods\Harin\ProductControllerMethods.cs" />
+    <Compile Include="Controllers\Methods\TimeConverterMethods.cs" />
     <Compile Include="Controllers\CSB\PaymentMethodsController.cs" />
     <Compile Include="Controllers\Resources\CustomerResource.cs" />
     <Compile Include="Controllers\Resources\EmployeeResource.cs" />
@@ -165,7 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Samith\" />
+    <Folder Include="Controllers\Resources\Harin\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BackEnd\DataAccess\DataAccess.csproj">

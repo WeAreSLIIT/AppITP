@@ -1,6 +1,7 @@
 ﻿using DataAccess.Core;
 using DataAccess.Core.Domain;
 using DataAccess.Persistence;
+using System.Linq;
 using System.Net;
 using System.Web.Http;
 
@@ -48,6 +49,10 @@ namespace WebAPI.Controllers
             if (category == null)
             {
                 return Content(HttpStatusCode.NotFound, $"Category named '{Id}' is not found");
+            }
+            else if ((this._unitOfWork.SubCategories.Search(x => x.CategoryId == Id).ToList() != null) && (this._unitOfWork.SubCategories.Search(x => x.CategoryId == Id).ToList().Count != 0))
+            {
+                return Content(HttpStatusCode.OK, $"Can't Delete Category named '{category.CategoryName}' is Contain SubCategories");
             }
             else
             {

@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="WPF.Views.LoginContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF.Views"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:custom="clr-namespace:Styles.Controler;assembly=Styles"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="750">
+
+    <UserControl.Resources>
+        <ControlTemplate x:Key="LoginUserControlCustomTextBox" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" 
+                x:Name="Bd" BorderBrush="Black"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    
+    <Grid Background="#f7f7f7">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Width="500" Height="auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Separator Grid.Column="0" Grid.Row="0" Margin="0 0 50 0" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Foreground="#73879b" FontSize="30"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Text="Login Form" FontFamily="Tahoma" />
+                    <Separator Grid.Column="2" Grid.Row="0" Margin="50 0 0 0"/>
+                    
+                    <TextBox Grid.ColumnSpan="3" Grid.Row="1" Margin="0 20 0 10" FontSize="16" Padding="3"
+                             Controls:TextBoxHelper.Watermark="Username" Controls:TextBoxHelper.WatermarkAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"/>
+                    <PasswordBox Grid.ColumnSpan="3" Grid.Row="2" Margin="0 10 0 20" FontSize="16" Padding="3"
+                             Controls:TextBoxHelper.Watermark="Password" Controls:TextBoxHelper.WatermarkAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"/>
+
+                    <Button x:Name="LoginButton" Style="{StaticResource btn-default}" Grid.Row="3" Grid.Column="0" Content="Login" 
+                            FontSize="20" Width="100" HorizontalAlignment="Right" Click="LoginButton_Click"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               TextDecorations="Underline" FontSize="13" Text="Lost your password?" Cursor="Hand"/>
+
+                    <StackPanel Grid.Row="4" Grid.ColumnSpan="3">
+                        <Separator Margin="0 15"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Source="../Resources/Images/icon.png" Height="50" Width="50" Margin="0 0 10 0"/>
+                            <TextBlock Text="Inventry Management" FontSize="25" VerticalAlignment="Center" Foreground="#606060" FontWeight="DemiBold"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

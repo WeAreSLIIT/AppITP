@@ -30,6 +30,5 @@ namespace DataAccess.Core.Domain
         {
             InvoiceProducts = new HashSet<InvoiceProduct>();
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DataAccess.Core;
 using DataAccess.Core.Domain;
 using DataAccess.Persistence;
+using System.Linq;
 using System.Net;
 using System.Web.Http;
 
@@ -48,6 +49,10 @@ namespace WebAPI.Controllers
             if (section == null)
             {
                 return Content(HttpStatusCode.NotFound, $"Section named '{Id}' is not found");
+            }
+            else if ((this._unitOfWork.Racks.Search(x => x.SectionId == Id).ToList() != null) && (this._unitOfWork.Racks.Search(x => x.SectionId == Id).ToList().Count != 0))
+            {
+                return Content(HttpStatusCode.OK, $"Can't Delete Section named '{section.SectionName}' is Contain Racks");
             }
             else
             {

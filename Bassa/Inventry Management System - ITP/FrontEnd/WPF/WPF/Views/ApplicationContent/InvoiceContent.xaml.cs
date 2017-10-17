@@ -1,9 +1,12 @@
-﻿using Models.Core;
+﻿using Models.APICall;
+using Models.APICall.Resources;
+using Models.Core;
 using Styles.Controler;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Timers;
 using System.Windows;
@@ -214,7 +217,7 @@ namespace WPF.Views.ApplicationContent
             #region Timer Initializations
 
             this._checkQuantityIsCorrectTimer = new Timer();
-            this._checkQuantityIsCorrectTimer.Elapsed += (s, e) => { try { this.RefreshQuantityInInvoice(); } catch { } };
+            this._checkQuantityIsCorrectTimer.Elapsed += (s, e) => { try { this.RefreshQuantityInInvoice(); } catch (Exception ez) { Debug.WriteLine("Redda" + ez.ToString()); } };
             this._checkQuantityIsCorrectTimer.Interval = 0.5 * 1000;
             this._checkQuantityIsCorrectTimer.Enabled = true;
 
@@ -255,61 +258,79 @@ namespace WPF.Views.ApplicationContent
                     if (!isAllOk)
                         break;
                 }
+                Debug.WriteLine("P");
 
-                if (isAllOk)
+                Dispatcher.Invoke(() => 
                 {
-                    this._invoiceData.NetTotal = string.Format("{0:0.00}", tot - dis);
-                    this._invoiceData.GrossTotal = string.Format("{0:0.00}", tot);
-                    this._invoiceData.Discount = string.Format("{0:0.00}", dis);
-
-                    bool payedOK = true;
-                    payed = 0F;
-
-                    foreach (InvoicePaymentListItemContent Item in this._invoiceData.PaymentMethodsList)
+                    if (isAllOk)
                     {
-                        float amountPayed;
-                        string amountPayedString = Item.Dispatcher.Invoke(() => { return Item.PaymentAmount; });
+                        this._invoiceData.NetTotal = string.Format("{0:0.00}", tot - dis);
+                        this._invoiceData.GrossTotal = string.Format("{0:0.00}", tot);
+                        this._invoiceData.Discount = string.Format("{0:0.00}", dis);
 
-                        if (float.TryParse(amountPayedString, out amountPayed))
+                        bool payedOK = true;
+                        payed = 0F;
+
+                        foreach (InvoicePaymentListItemContent Item in this._invoiceData.PaymentMethodsList)
                         {
-                            payed += amountPayed;
-                            payedOK = true;
+                            float amountPayed;
+                            string amountPayedString = Item.Dispatcher.Invoke(() => { return Item.PaymentAmount; });
+
+                            if (float.TryParse(amountPayedString, out amountPayed))
+                            {
+                                payed += amountPayed;
+                                payedOK = true;
+                            }
+                            else
+                                payedOK = false;
+
+                            if (!payedOK)
+                                break;
+                        }
+
+                        if (payedOK)
+                        {
+
+                            //will change
+                            //Dispatcher.Invoke(() => { CompleteInvoice.IsEnabled = true; });
+                            this._invoiceData.ChangeBalance = string.Format("{0:0.00}", payed - (tot - dis));
+                            return true;
                         }
                         else
-                            payedOK = false;
+                        {
 
-                        if (!payedOK)
-                            break;
-                    }
-
-                    if (payedOK)
-                    {
-                        this._invoiceData.ChangeBalance = string.Format("{0:0.00}", payed - (tot - dis));
-                        return true;
+                            //will change
+                            //Dispatcher.Invoke(() => { CompleteInvoice.IsEnabled = false; });
+                            this._invoiceData.ChangeBalance = "--.--";
+                            return false;
+                        }
                     }
                     else
                     {
+                        this._invoiceData.NetTotal = "--.--";
+                        this._invoiceData.GrossTotal = "--.--";
+                        this._invoiceData.Discount = "--.--";
                         this._invoiceData.ChangeBalance = "--.--";
+
+                        //Dispatcher.Invoke(() => { CompleteInvoice.IsEnabled = false; });
+
                         return false;
                     }
 
-                }
-                else
+                });
+                return false;
+            }
+            else
+            {
+                Dispatcher.Invoke(() =>
                 {
                     this._invoiceData.NetTotal = "--.--";
                     this._invoiceData.GrossTotal = "--.--";
                     this._invoiceData.Discount = "--.--";
                     this._invoiceData.ChangeBalance = "--.--";
 
-                    return false;
-                }
-            }
-            else
-            {
-                this._invoiceData.NetTotal = "--.--";
-                this._invoiceData.GrossTotal = "--.--";
-                this._invoiceData.Discount = "--.--";
-                this._invoiceData.ChangeBalance = "--.--";
+                    CompleteInvoice.IsEnabled = false;
+                });
 
                 return false;
             }
@@ -449,9 +470,11 @@ namespace WPF.Views.ApplicationContent
             this._applicationContentView.ResetContentPanel();
         }
 
-        private void CompleteInvoice_Click(object sender, RoutedEventArgs e)
+        private async void CompleteInvoice_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateInvoiceResource Invoice = new CreateInvoiceResource();
+            await new InvoiceAPICall().SendInvoice(Invoice);
+            this._applicationContentView.ResetContentPanel();
         }
     }
 

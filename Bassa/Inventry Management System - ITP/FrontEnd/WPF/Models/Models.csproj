@@ -80,9 +80,17 @@
   <ItemGroup>
     <Compile Include="ADO\DBConnection.cs" />
     <Compile Include="APICall\BaseHttpAPICall.cs" />
+    <Compile Include="APICall\InvoiceAPICall.cs" />
+    <Compile Include="APICall\PaymentMethodAPICall.cs" />
     <Compile Include="APICall\ProductAPICall.cs" />
     <Compile Include="APICall\Resources\CounterResource.cs" />
+    <Compile Include="APICall\Resources\CreateInvoiceResource.cs" />
+    <Compile Include="APICall\Resources\InvoicePaymentMethodResource.cs" />
+    <Compile Include="APICall\Resources\InvoiceProductResource.cs" />
+    <Compile Include="APICall\Resources\ProductResource.cs" />
+    <Compile Include="APICall\Resources\TableVersionResource.cs" />
     <Compile Include="APICall\ServerConnectionAPICall.cs" />
+    <Compile Include="APICall\TableVersionAPICall.cs" />
     <Compile Include="Core\Counter.cs" />
     <Compile Include="Core\Invoice.cs" />
     <Compile Include="Core\InvoicePaymentMethod.cs" />
@@ -92,6 +100,7 @@
     <Compile Include="Core\Product.cs" />
     <Compile Include="Core\SystemInfo.cs" />
     <Compile Include="Core\ServerData.cs" />
+    <Compile Include="Core\TableVersion.cs" />
     <Compile Include="Persistence\BackgroundTasks.cs" />
     <Compile Include="Persistence\TimeConverterMethods.cs" />
     <Compile Include="Persistence\InventryMangementSystemDbContext.cs" />

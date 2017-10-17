@@ -102,25 +102,17 @@ namespace WPF
                     return InventryMangementSystemDbContext.InitializeData();
                 });
 
-            if (check)
+            if (check && InventryMangementSystemDbContext.ConnectionCheckFirstTime && InventryMangementSystemDbContext.ConnectionToServer)
             {
-                check = await Task.Run(
-                    () =>
-                    {
-                        return InventryMangementSystemDbContext.CheckConnectionToServer();
-                    });
-
-                if (check && InventryMangementSystemDbContext.ConnectionCheckFirstTime && InventryMangementSystemDbContext.ConnectionToServer)
-                {
-                    IsAppLoading = false;
-                    ApplicationPage = ApplicationPage.NotLoggedIn;
-                }
-                else
-                {
-                    IsAppLoading = false;
-                    ApplicationPage = ApplicationPage.NoConnection;
-                }
+                IsAppLoading = false;
+                ApplicationPage = ApplicationPage.NotLoggedIn;
             }
+            else
+            {
+                IsAppLoading = false;
+                ApplicationPage = ApplicationPage.NoConnection;
+            }
+
         }
     }
 
