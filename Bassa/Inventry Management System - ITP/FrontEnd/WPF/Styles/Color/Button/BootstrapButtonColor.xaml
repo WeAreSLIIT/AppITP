@@ -1,0 +1,208 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Styles.Color.Button">
+    
+    <!-- Default Button -->
+    <Color x:Key="Default-Button-Normal" A="255" R="255" G="255" B="255"/>
+    <SolidColorBrush x:Key="Default-Button-Normal-SolidColorBrush" Color="#FFFFFF"/>
+
+    <Color x:Key="Default-Button-Hover" A="255" R="215" G="215" B="215"/>
+    <Color x:Key="Default-Button-Focus" A="255" R="230" G="230" B="230"/>
+    <Color x:Key="Default-Button-FocusHover" A="255" R="212" G="212" B="212"/>
+    <Color x:Key="Default-Button-Active" A="255" R="212" G="212" B="212"/>
+    <Color x:Key="Default-Button-Pressed" A="255" R="230" G="230" B="230"/>
+    <Color x:Key="Default-Button-Disabled" A="255" R="255" G="255" B="255"/>
+
+    <!-- Default Button Border -->
+    <Color x:Key="Default-Button-Normal-Border" A="255" R="204" G="204" B="204"/>
+    <SolidColorBrush x:Key="Default-Button-Normal-Border-SolidColorBrush" Color="#cccccc"/>
+
+    <Color x:Key="Default-Button-Hover-Border" A="255" R="173" G="173" B="173"/>
+    <Color x:Key="Default-Button-Focus-Border" A="255" R="140" G="140" B="140"/>
+    <Color x:Key="Default-Button-FocusHover-Border" A="255" R="140" G="140" B="140"/>
+    <Color x:Key="Default-Button-Active-Border" A="255" R="140" G="140" B="140"/>
+    <Color x:Key="Default-Button-Pressed-Border" A="255" R="140" G="140" B="140"/>
+    <Color x:Key="Default-Button-Disabled-Border" A="255" R="204" G="204" B="204"/>
+
+    <!-- Default Button Font Color -->
+    <Color x:Key="Default-Button-Normal-Font" A="255" R="51" G="51" B="51"/>
+    <SolidColorBrush x:Key="Default-Button-Normal-Font-SolidColorBrush" Color="#333333"/>
+
+    <Color x:Key="Default-Button-Hover-Font"  A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Default-Button-Focus-Font" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Default-Button-FocusHover-Font" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Default-Button-Active-Font" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Default-Button-Pressed-Font" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Default-Button-Disabled-Font" A="255" R="200" G="200" B="200"/>
+
+
+    <!-- Primary Button -->
+    <Color x:Key="Primary-Button-Normal" A="255" R="51" G="122" B="183"/>
+    <SolidColorBrush x:Key="Primary-Button-Normal-SolidColorBrush" Color="#337ab7"/>
+
+    <Color x:Key="Primary-Button-Hover" A="255" R="40" G="96" B="144"/>
+    <Color x:Key="Primary-Button-Focus" A="255" R="40" G="96" B="144"/>
+    <Color x:Key="Primary-Button-FocusHover" A="255" R="32" G="77" B="116"/>
+    <Color x:Key="Primary-Button-Active" A="255" R="32" G="77" B="116"/>
+    <Color x:Key="Primary-Button-Pressed" A="255" R="32" G="77" B="116"/>
+    <Color x:Key="Primary-Button-Disabled" A="255" R="51" G="122" B="183"/>
+
+    <!-- Primary Button Border -->
+    <Color x:Key="Primary-Button-Normal-Border" A="255" R="46" G="109" B="164"/>
+    <SolidColorBrush x:Key="Primary-Button-Normal-Border-SolidColorBrush" Color="#2e6da4"/>
+
+    <Color x:Key="Primary-Button-Hover-Border" A="255" R="32" G="77" B="116"/>
+    <Color x:Key="Primary-Button-Focus-Border" A="255" R="18" G="43" B="64"/>
+    <Color x:Key="Primary-Button-FocusHover-Border" A="255" R="18" G="43" B="64"/>
+    <Color x:Key="Primary-Button-Active-Border" A="255" R="18" G="43" B="64"/>
+    <Color x:Key="Primary-Button-Pressed-Border" A="255" R="18" G="43" B="64"/>
+    <Color x:Key="Primary-Button-Disabled-Border" A="255" R="46" G="109" B="164"/>
+
+    <!-- Primary Button Font Color -->
+    <Color x:Key="Primary-Button-Normal-Font" A="255" R="255" G="255" B="255"/>
+    <SolidColorBrush x:Key="Primary-Button-Normal-Font-SolidColorBrush" Color="#ffffff"/>
+
+    <Color x:Key="Primary-Button-Hover-Font"  A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Primary-Button-Focus-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Primary-Button-FocusHover-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Primary-Button-Active-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Primary-Button-Pressed-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Primary-Button-Disabled-Font" A="255" R="220" G="220" B="220"/>
+
+
+    <!-- Info Button -->
+    <Color x:Key="Info-Button-Normal" A="255" R="91" G="192" B="222"/>
+    <SolidColorBrush x:Key="Info-Button-Normal-SolidColorBrush" Color="#5bc0de"/>
+
+    <Color x:Key="Info-Button-Hover" A="255" R="49" G="176" B="213"/>
+    <Color x:Key="Info-Button-Focus" A="255" R="49" G="176" B="213"/>
+    <Color x:Key="Info-Button-FocusHover" A="255" R="38" G="154" B="188"/>
+    <Color x:Key="Info-Button-Active" A="255" R="38" G="154" B="188"/>
+    <Color x:Key="Info-Button-Pressed" A="255" R="49" G="176" B="213"/>
+    <Color x:Key="Info-Button-Disabled" A="255" R="91" G="192" B="222"/>
+
+    <!-- Info Button Border -->
+    <Color x:Key="Info-Button-Normal-Border" A="255" R="70" G="184" B="218"/>
+    <SolidColorBrush x:Key="Info-Button-Normal-Border-SolidColorBrush" Color="#46b8da"/>
+
+    <Color x:Key="Info-Button-Hover-Border" A="255" R="27" G="109" B="133"/>
+    <Color x:Key="Info-Button-Focus-Border" A="255" R="27" G="109" B="133"/>
+    <Color x:Key="Info-Button-FocusHover-Border" A="255" R="27" G="109" B="133"/>
+    <Color x:Key="Info-Button-Active-Border" A="255" R="27" G="109" B="133"/>
+    <Color x:Key="Info-Button-Pressed-Border" A="255" R="38" G="154" B="188"/>
+    <Color x:Key="Info-Button-Disabled-Border" A="255" R="70" G="184" B="218"/>
+
+    <!-- Info Button Font Color -->
+    <Color x:Key="Info-Button-Normal-Font" A="255" R="255" G="255" B="255"/>
+    <SolidColorBrush x:Key="Info-Button-Normal-Font-SolidColorBrush" Color="#ffffff"/>
+
+    <Color x:Key="Info-Button-Hover-Font"  A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Info-Button-Focus-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Info-Button-FocusHover-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Info-Button-Active-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Info-Button-Pressed-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Info-Button-Disabled-Font" A="255" R="255" G="255" B="255"/>
+
+
+    <!-- Warning Button -->
+    <Color x:Key="Warning-Button-Normal" A="255" R="240" G="173" B="78"/>
+    <SolidColorBrush x:Key="Warning-Button-Normal-SolidColorBrush" Color="#f0ad4e"/>
+
+    <Color x:Key="Warning-Button-Hover" A="255" R="236" G="151" B="31"/>
+    <Color x:Key="Warning-Button-Focus" A="255" R="236" G="151" B="31"/>
+    <Color x:Key="Warning-Button-FocusHover" A="255" R="213" G="133" B="18"/>
+    <Color x:Key="Warning-Button-Active" A="255" R="213" G="133" B="18"/>
+    <Color x:Key="Warning-Button-Pressed" A="255" R="236" G="151" B="31"/>
+    <Color x:Key="Warning-Button-Disabled" A="255" R="240" G="173" B="78"/>
+
+    <!-- Warning Button Border -->
+    <Color x:Key="Warning-Button-Normal-Border" A="255" R="238" G="162" B="54"/>
+    <SolidColorBrush x:Key="Warning-Button-Normal-Border-SolidColorBrush" Color="#eea236"/>
+
+    <Color x:Key="Warning-Button-Hover-Border" A="255" R="213" G="133" B="18"/>
+    <Color x:Key="Warning-Button-Focus-Border" A="255" R="152" G="95" B="13"/>
+    <Color x:Key="Warning-Button-FocusHover-Border" A="255" R="152" G="95" B="13"/>
+    <Color x:Key="Warning-Button-Active-Border" A="255" R="152" G="95" B="13"/>
+    <Color x:Key="Warning-Button-Pressed-Border" A="255" R="213" G="133" B="18"/>
+    <Color x:Key="Warning-Button-Disabled-Border" A="255" R="238" G="162" B="54"/>
+
+    <!-- Warning Button Font Color -->
+    <Color x:Key="Warning-Button-Normal-Font" A="255" R="255" G="255" B="255"/>
+    <SolidColorBrush x:Key="Warning-Button-Normal-Font-SolidColorBrush" Color="#ffffff"/>
+
+    <Color x:Key="Warning-Button-Hover-Font"  A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Warning-Button-Focus-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Warning-Button-FocusHover-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Warning-Button-Active-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Warning-Button-Pressed-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Warning-Button-Disabled-Font" A="255" R="220" G="220" B="220"/>
+
+
+    <!-- Success Button -->
+    <Color x:Key="Success-Button-Normal" A="255" R="92" G="184" B="92"/>
+    <SolidColorBrush x:Key="Success-Button-Normal-SolidColorBrush" Color="#5cae5c"/>
+
+    <Color x:Key="Success-Button-Hover" A="255" R="68" G="157" B="68"/>
+    <Color x:Key="Success-Button-Focus" A="255" R="68" G="157" B="68"/>
+    <Color x:Key="Success-Button-FocusHover" A="255" R="57" G="132" B="57"/>
+    <Color x:Key="Success-Button-Active" A="255" R="57" G="132" B="57"/>
+    <Color x:Key="Success-Button-Pressed" A="255" R="68" G="157" B="68"/>
+    <Color x:Key="Success-Button-Disabled" A="255" R="92" G="184" B="92"/>
+
+    <!-- Success Button Border -->
+    <Color x:Key="Success-Button-Normal-Border" A="255" R="76" G="174" B="76"/>
+    <SolidColorBrush x:Key="Success-Button-Normal-Border-SolidColorBrush" Color="#4cae4c"/>
+
+    <Color x:Key="Success-Button-Hover-Border" A="255" R="57" G="132" B="57"/>
+    <Color x:Key="Success-Button-Focus-Border" A="255" R="37" G="86" B="37"/>
+    <Color x:Key="Success-Button-FocusHover-Border" A="255" R="37" G="86" B="37"/>
+    <Color x:Key="Success-Button-Active-Border" A="255" R="37" G="86" B="37"/>
+    <Color x:Key="Success-Button-Pressed-Border" A="255" R="57" G="132" B="57"/>
+    <Color x:Key="Success-Button-Disabled-Border" A="255" R="76" G="174" B="76"/>
+
+    <!-- Success Button Font Color -->
+    <Color x:Key="Success-Button-Normal-Font" A="255" R="255" G="255" B="255"/>
+    <SolidColorBrush x:Key="Success-Button-Normal-Font-SolidColorBrush" Color="#ffffff"/>
+
+    <Color x:Key="Success-Button-Hover-Font"  A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Success-Button-Focus-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Success-Button-FocusHover-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Success-Button-Active-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Success-Button-Pressed-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Success-Button-Disabled-Font" A="255" R="220" G="220" B="220"/>
+
+
+    <!-- Danger Button -->
+    <Color x:Key="Danger-Button-Normal" A="255" R="217" G="83" B="79"/>
+    <SolidColorBrush x:Key="Danger-Button-Normal-SolidColorBrush" Color="#d9534f"/>
+
+    <Color x:Key="Danger-Button-Hover" A="255" R="201" G="48" B="44"/>
+    <Color x:Key="Danger-Button-Focus" A="255" R="201" G="48" B="44"/>
+    <Color x:Key="Danger-Button-FocusHover" A="255" R="172" G="41" B="37"/>
+    <Color x:Key="Danger-Button-Active" A="255" R="172" G="41" B="37"/>
+    <Color x:Key="Danger-Button-Pressed" A="255" R="201" G="48" B="44"/>
+    <Color x:Key="Danger-Button-Disabled" A="255" R="217" G="83" B="79"/>
+
+    <!-- Danger Button Border -->
+    <Color x:Key="Danger-Button-Normal-Border" A="255" R="212" G="63" B="58"/>
+    <SolidColorBrush x:Key="Danger-Button-Normal-Border-SolidColorBrush" Color="#d43f3a"/>
+
+    <Color x:Key="Danger-Button-Hover-Border" A="255" R="172" G="41" B="37"/>
+    <Color x:Key="Danger-Button-Focus-Border" A="255" R="118" G="28" B="25"/>
+    <Color x:Key="Danger-Button-FocusHover-Border" A="255" R="37" G="86" B="37"/>
+    <Color x:Key="Danger-Button-Active-Border" A="255" R="37" G="86" B="37"/>
+    <Color x:Key="Danger-Button-Pressed-Border" A="255" R="172" G="41" B="37"/>
+    <Color x:Key="Danger-Button-Disabled-Border" A="255" R="212" G="63" B="58"/>
+
+    <!-- Danger Button Font Color -->
+    <Color x:Key="Danger-Button-Normal-Font" A="255" R="255" G="255" B="255"/>
+    <SolidColorBrush x:Key="Danger-Button-Normal-Font-SolidColorBrush" Color="#ffffff"/>
+
+    <Color x:Key="Danger-Button-Hover-Font"  A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Danger-Button-Focus-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Danger-Button-FocusHover-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Danger-Button-Active-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Danger-Button-Pressed-Font" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Danger-Button-Disabled-Font" A="255" R="220" G="220" B="220"/>
+
+</ResourceDictionary>

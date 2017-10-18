@@ -1,0 +1,37 @@
+﻿<Controls:MetroWindow x:Class="WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:custom="clr-namespace:Styles.Controler;assembly=Styles"
+        xmlns:local="clr-namespace:WPF"
+        xmlns:uc="clr-namespace:WPF.Views"
+        mc:Ignorable="d"
+        Title="Inventry Management System (Limited Functionality)" Height="720" Width="800" MinHeight="700" MinWidth="800" WindowState="Maximized"
+        BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1">
+
+    <Window.Resources>
+
+    </Window.Resources>
+
+    <Grid>
+        <Controls:TransitioningContentControl x:Name="MainContent" Transition="LeftReplace"/>
+
+        <Grid x:Name="MainWindowLoading">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="{StaticResource LeftNav-Background-SolidColorBrush}" Opacity="0.7" />
+
+            <Grid>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Controls:ProgressRing IsActive="True" Foreground="{StaticResource LeftNav-Button-Default-Normal-Font-SolidColorBrush}"/>
+                    <TextBlock x:Name="MainWindowLoadingText" HorizontalAlignment="Center" Margin="0 10 0 0" FontSize="15" FontWeight="Bold" 
+                               Foreground="{StaticResource LeftNav-Button-Default-Normal-Font-SolidColorBrush}" Text="Loading..."/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Controls:MetroWindow>
