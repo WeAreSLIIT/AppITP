@@ -236,7 +236,7 @@
                                 <ListBoxItem>
                                     <custom:InvoiceItemContent x:Name="LI1" ItemNo="1" ProductID="Product xxx"
                                                                ProductDescription="Marmite" ItemPrice="100.00" 
-                                                               Quantity="1" TotalPrice="100.00" Discount="-" />
+                                                               Quantity="1" Discount="-" />
                                 </ListBoxItem>
                             </ListBox>
 

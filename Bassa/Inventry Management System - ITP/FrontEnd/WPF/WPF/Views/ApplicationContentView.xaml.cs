@@ -45,7 +45,7 @@ namespace WPF.Views
             this._appContent = new AppContent();
 
             InitializeComponent();
-            
+
             this._invoiceContent = new InvoiceContent(this);
 
             this.ApplicationCurrentContent = ApplicationCurrentView.Invoices;

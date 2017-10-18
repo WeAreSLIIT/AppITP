@@ -1,9 +1,8 @@
 namespace DataAccess.Migrations
 {
-    using System;
-    using System.Data.Entity;
+    using DataAccess.Core.Domain;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DataAccess.Persistence.InventryMangementSystemDbContext>
     {
@@ -14,18 +13,57 @@ namespace DataAccess.Migrations
 
         protected override void Seed(DataAccess.Persistence.InventryMangementSystemDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.TableVersions.AddRange(new List<TableVersion>()
+            {
+                new TableVersion()
+                {
+                    Table = DatabaseTable.Product,
+                    Time = 1
+                },
+                new TableVersion()
+                {
+                    Table = DatabaseTable.PaymentMethod,
+                    Time = 1
+                }
+            });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Branches.Add(new Branch()
+            {
+                Location = "Malabe",
+                Name = "Malabe",
+
+                Counters = new List<Counter>()
+                {
+                    new Counter()
+                    {
+                        BranchCounterNo = 1
+                    }
+                },
+
+                Address = "100",
+                BranchLevel = 1,
+                BranchTitle = "Fodd City",
+                Latitude = 100,
+                ContactNumbers = new string[] {"0778511690"},
+                Email = "brach01@chath.com",
+                Longtitude = 100
+            });
+
+            context.Employees.Add(new Employee()
+            {
+                FirstName = "Chathuranga",
+                LastName = "Basnayake",
+                InitialName = "BM",
+                City = "Homagama",
+                Email = "chath@outlook.com",
+                Gender = Gender.Male,
+                NIC = "951120570v",
+                JobTitle = "Cashier",
+                Town = "Colombo",
+                Province = "Western",
+                Street = "Wimana Rd",
+                Suspend = false
+            });
         }
     }
 }

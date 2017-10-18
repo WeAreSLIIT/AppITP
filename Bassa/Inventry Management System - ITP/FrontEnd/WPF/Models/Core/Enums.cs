@@ -11,4 +11,10 @@ namespace Models.Core
         Unit,
         Measurable
     }
+
+    public enum DatabaseTable : byte
+    {
+        Product = 1,
+        PaymentMethod
+    }
 }

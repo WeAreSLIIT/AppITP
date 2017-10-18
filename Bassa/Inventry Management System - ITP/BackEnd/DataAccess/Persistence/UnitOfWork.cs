@@ -10,7 +10,8 @@ namespace DataAccess.Persistence
         private readonly InventryMangementSystemDbContext _context;
 
         #region CSB's
-        
+
+        public ITableVersionRepository TableVersions { get; private set; }
         public ICounterRepository Counters { get; private set; }
         public IInvoiceCustomerRepository InvoiceCustomers { get; private set; }
         public IInvoiceDealDiscountRepository InvoiceDealDiscounts { get; private set; }
@@ -27,7 +28,13 @@ namespace DataAccess.Persistence
 
         public IBranchRepository Branches { get; private set; }
         public IEmployeeRepository Employees { get; private set; }
-
+        public IUserAccountRepository UserAccounts { get; private set; }
+        public IUserRoleRepository UserRoles { get; private set; }
+        public ILogRepository Logs { get; private set; }
+        public IModuleRepository Modules { get; private set; }
+        public IPrivilegeRepository Privileges { get; private set; }
+        public ISystemRepository SystemDetails { get; private set; }
+        public IPersonRepository Persons { get; private set; }
 
         #endregion
 
@@ -111,6 +118,7 @@ namespace DataAccess.Persistence
             Discounts = new DiscountRepository(this._context);
 
             //CSB
+            TableVersions = new TableVersionRepository(this._context);
             Counters = new CounterRepository(this._context);
             InvoiceCustomers = new InvoiceCustomerRepository(this._context);
             InvoiceDealDiscounts = new InvoiceDealDiscountRepository(this._context);
@@ -127,7 +135,7 @@ namespace DataAccess.Persistence
             SubCategories = new SubCategoryRepository(this._context);
             Sections = new SectionRepository(this._context);
             Racks = new RackRepository(this._context);
-            
+
             //Kavi
             Customers = new CustomerRepository(this._context);
             Credits = new CreditRepository(this._context);

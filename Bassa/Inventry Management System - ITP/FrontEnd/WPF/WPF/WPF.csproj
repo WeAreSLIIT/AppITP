@@ -82,6 +82,9 @@
     <Compile Include="Views\ApplicationContent\InvoiceContents\SearchProductContent.xaml.cs">
       <DependentUpon>SearchProductContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ApplicationContent\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginContentView.xaml.cs">
       <DependentUpon>LoginContentView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
     <Page Include="Views\ApplicationContent\InvoiceContents\SearchProductContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationContent\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LoginContentView.xaml">
       <SubType>Designer</SubType>

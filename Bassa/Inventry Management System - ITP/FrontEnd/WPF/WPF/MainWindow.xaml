@@ -22,7 +22,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid Background="{StaticResource LeftNav-Background-SolidColorBrush}" Opacity="0.7" />
 
             <Grid>

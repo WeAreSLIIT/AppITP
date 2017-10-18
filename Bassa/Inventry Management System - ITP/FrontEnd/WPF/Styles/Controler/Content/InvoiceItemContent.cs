@@ -13,7 +13,7 @@ namespace Styles.Controler
     public class InvoiceItemContent : ContentControl
     {
         static InvoiceItemContent() { }
-        
+
         public bool AllSettedUp
         {
             get { return (bool)GetValue(AllSettedUpProperty); }
@@ -23,16 +23,16 @@ namespace Styles.Controler
                 this.CalculateTotalPrice();
             }
         }
-        
+
         public static readonly DependencyProperty AllSettedUpProperty =
             DependencyProperty.Register("AllSettedUp", typeof(bool), typeof(InvoiceItemContent), new PropertyMetadata(false));
-        
+
         public ProductType ItemType
         {
             get { return (ProductType)GetValue(ItemTypeProperty); }
             set { SetValue(ItemTypeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ItemTypeProperty =
             DependencyProperty.Register("ItemType", typeof(ProductType), typeof(InvoiceItemContent), new PropertyMetadata(ProductType.Measurable));
 
@@ -73,7 +73,7 @@ namespace Styles.Controler
 
         public static readonly DependencyProperty ItemPriceProperty =
             DependencyProperty.Register("ItemPrice", typeof(string), typeof(InvoiceItemContent), new PropertyMetadata("0.00"));
-        
+
 
         public string Discount
         {
@@ -83,7 +83,7 @@ namespace Styles.Controler
 
         public static readonly DependencyProperty DiscountProperty =
             DependencyProperty.Register("Discount", typeof(string), typeof(InvoiceItemContent), new PropertyMetadata("0.00"));
-        
+
 
         public string TotalPrice
         {
@@ -131,7 +131,7 @@ namespace Styles.Controler
             get { return (bool)GetValue(IsNotifyProperty); }
             set { SetValue(IsNotifyProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsNotifyProperty =
             DependencyProperty.Register("IsNotify", typeof(bool), typeof(InvoiceItemContent), new PropertyMetadata(false));
 

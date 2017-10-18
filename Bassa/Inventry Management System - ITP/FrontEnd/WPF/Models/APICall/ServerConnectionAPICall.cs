@@ -8,13 +8,6 @@ namespace Models.APICall
 {
     public class ServerConnectionAPICall : BaseHttpAPICall
     {
-        private Counter _counter;
-
-        public ServerConnectionAPICall()
-        {
-            this._counter = InventryMangementSystemDbContext.CounterWorking;
-        }
-
         public async Task<bool> CheckServerStatus()
         {
             try
@@ -65,6 +58,7 @@ namespace Models.APICall
             catch
             {
                 InventryMangementSystemDbContext.ConnectionToServer = false;
+                Debug.WriteLine("Redda");
                 return false;
             }
         }

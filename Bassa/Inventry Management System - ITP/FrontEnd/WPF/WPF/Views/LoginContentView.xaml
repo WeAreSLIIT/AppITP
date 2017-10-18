@@ -30,7 +30,7 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </UserControl.Resources>
-    
+
     <Grid Background="#f7f7f7">
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Width="500" Height="auto">
@@ -49,12 +49,12 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    
+
                     <Separator Grid.Column="0" Grid.Row="0" Margin="0 0 50 0" />
                     <TextBlock Grid.Column="1" Grid.Row="0" Foreground="#73879b" FontSize="30"
                                HorizontalAlignment="Center" VerticalAlignment="Center" Text="Login Form" FontFamily="Tahoma" />
                     <Separator Grid.Column="2" Grid.Row="0" Margin="50 0 0 0"/>
-                    
+
                     <TextBox Grid.ColumnSpan="3" Grid.Row="1" Margin="0 20 0 10" FontSize="16" Padding="3"
                              Controls:TextBoxHelper.Watermark="Username" Controls:TextBoxHelper.WatermarkAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"/>
                     <PasswordBox Grid.ColumnSpan="3" Grid.Row="2" Margin="0 10 0 20" FontSize="16" Padding="3"
