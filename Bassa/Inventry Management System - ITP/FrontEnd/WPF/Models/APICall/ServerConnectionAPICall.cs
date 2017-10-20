@@ -1,5 +1,6 @@
 ﻿using Models.Core;
 using Models.Persistence;
+using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -55,10 +56,10 @@ namespace Models.APICall
 
                 return false;
             }
-            catch
+            catch (Exception ex)
             {
                 InventryMangementSystemDbContext.ConnectionToServer = false;
-                Debug.WriteLine("Redda");
+                Debug.WriteLine($"CheckServerStatus() -> {ex.ToString()}");
                 return false;
             }
         }

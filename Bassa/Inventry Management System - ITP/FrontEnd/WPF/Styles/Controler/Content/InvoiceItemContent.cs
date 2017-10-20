@@ -112,12 +112,12 @@ namespace Styles.Controler
                             if (Sender.ItemType == ProductType.Unit)
                             {
                                 int i = 0;
-                                Sender.IsContentWrong = !int.TryParse(Sender.Quantity, out i) || (i == 0);
+                                Sender.IsContentWrong = !int.TryParse(Sender.Quantity, out i) || (i <= 0);
                             }
                             else if (Sender.ItemType == ProductType.Measurable)
                             {
                                 float f = 0F;
-                                Sender.IsContentWrong = !float.TryParse(Sender.Quantity, out f) || (f == 0F);
+                                Sender.IsContentWrong = !float.TryParse(Sender.Quantity, out f) || (f <= 0F);
                             }
 
                             Sender.CalculateTotalPrice();

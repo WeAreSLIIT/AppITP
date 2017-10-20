@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,9 @@ namespace WPF.Views
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            InventryMangementSystemDbContext.EmployeeWorking.ID = 1;
+            InventryMangementSystemDbContext.EmployeeWorking.Name = "Chathuranga Basnayake";
+
             MainWindow CurrentWindow = (MainWindow)Window.GetWindow(this);
             CurrentWindow.ApplicationPage = ApplicationPage.LoggedIn;
         }

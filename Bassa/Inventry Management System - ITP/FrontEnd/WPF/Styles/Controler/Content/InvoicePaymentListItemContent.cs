@@ -33,7 +33,7 @@ namespace Styles.Controler
                         InvoicePaymentListItemContent Sender = sender as InvoicePaymentListItemContent;
 
                         float f;
-                        if (float.TryParse(Sender.PaymentAmount, out f))
+                        if (float.TryParse(Sender.PaymentAmount, out f) && (f >= 0F))
                             Sender.IsContentWrong = false;
                         else
                             Sender.IsContentWrong = true;

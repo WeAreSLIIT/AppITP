@@ -6,7 +6,7 @@ namespace Models.Core
     {
         public string InvoiceId { get; set; }
 
-        public long? Time { get; set; }
+        public long Time { get; set; }
         
         public float FullPayment { get; set; }
         public float Discount { get; set; }

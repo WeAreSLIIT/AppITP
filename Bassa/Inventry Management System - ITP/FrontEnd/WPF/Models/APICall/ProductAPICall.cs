@@ -1,6 +1,7 @@
 ﻿using Models.APICall.Resources;
 using Models.Core;
 using Models.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
@@ -39,17 +40,22 @@ namespace Models.APICall
                             });
                         }
 
-                        Debug.WriteLine("WPF -> ProductData Received");
+                        Debug.WriteLine("CheckNewProducts() -> ProductData Received");
                         return Products;
                     }
                     else
+                    {
+                        Debug.WriteLine($"CheckNewProducts() -> ProductData Not Received {base._response.StatusCode}");
                         return null;
+                    }
                 }
 
+                Debug.WriteLine($"CheckNewProducts() -> ProductData Not Received, No first time connections.");
                 return null;
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine($"CheckNewProducts() -> {ex.ToString()}");
                 return null;
             }
         }

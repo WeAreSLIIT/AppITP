@@ -92,6 +92,7 @@
     <Compile Include="APICall\ServerConnectionAPICall.cs" />
     <Compile Include="APICall\TableVersionAPICall.cs" />
     <Compile Include="Core\Counter.cs" />
+    <Compile Include="Core\Employee.cs" />
     <Compile Include="Core\Invoice.cs" />
     <Compile Include="Core\InvoicePaymentMethod.cs" />
     <Compile Include="Core\InvoiceProduct.cs" />

@@ -14,7 +14,7 @@ namespace Models.APICall
             {
                 if (InventryMangementSystemDbContext.ConnectionCheckFirstTime)
                 {
-                    base._response = await this._httpClient.GetAsync($"api/invoices/products?App={base._appID}");
+                    base._response = await this._httpClient.GetAsync($"api/PaymentMethods");
 
                     if (base._response.IsSuccessStatusCode)
                     {

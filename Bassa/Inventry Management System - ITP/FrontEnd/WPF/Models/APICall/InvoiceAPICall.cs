@@ -1,4 +1,5 @@
 ﻿using Models.APICall.Resources;
+using Models.Core;
 using Models.Persistence;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ namespace Models.APICall
 {
     public class InvoiceAPICall : BaseHttpAPICall
     {
-        public async Task<bool> SendInvoice(CreateInvoiceResource Invoice)
+        public async Task<bool> SendInvoice(Invoice Invoice)
         {
             try
             {
