@@ -1,6 +1,13 @@
-﻿using Styles.Controler;
+﻿using Models.ADO;
+using Models.APICall.Resources;
+using Models.Core;
+using Models.Persistence;
+using Styles.Controler;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace WPF.ModelView.ApplicationContent
 {
@@ -20,6 +27,23 @@ namespace WPF.ModelView.ApplicationContent
 
         #region Properties of Invoice
 
+        private bool IsInvoiceProcessing;
+
+        private bool _isInvoiceValid;
+
+        public bool IsInvoiceValid
+        {
+            get { return this._isInvoiceValid; }
+            set
+            {
+                if (IsInvoiceValid != value && IsInvoiceProcessing == false)
+                {
+                    this._isInvoiceValid = value;
+                    this.NotifyPropertyChanged("IsInvoiceValid");
+                }
+            }
+        }
+
         private string _grossTotal;
 
         public string GrossTotal
@@ -27,8 +51,11 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._grossTotal; }
             set
             {
-                this._grossTotal = value;
-                this.NotifyPropertyChanged("GrossTotal");
+                if (GrossTotal == null || !GrossTotal.Equals(value))
+                {
+                    this._grossTotal = value;
+                    this.NotifyPropertyChanged("GrossTotal");
+                }
             }
         }
 
@@ -39,8 +66,11 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._discount; }
             set
             {
-                this._discount = value;
-                this.NotifyPropertyChanged("Discount");
+                if (Discount == null || !Discount.Equals(value))
+                {
+                    this._discount = value;
+                    this.NotifyPropertyChanged("Discount");
+                }
             }
         }
 
@@ -51,8 +81,11 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._netTotal; }
             set
             {
-                this._netTotal = value;
-                this.NotifyPropertyChanged("NetTotal");
+                if (NetTotal == null || !NetTotal.Equals(value))
+                {
+                    this._netTotal = value;
+                    this.NotifyPropertyChanged("NetTotal");
+                }
             }
         }
 
@@ -63,10 +96,13 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._selectedInvoiceItem; }
             set
             {
-                this._selectedInvoiceItem = value;
-                this.NotifyPropertyChanged("SelectedInvoiceItem");
+                if (SelectedInvoiceItem != value)
+                {
+                    this._selectedInvoiceItem = value;
+                    this.NotifyPropertyChanged("SelectedInvoiceItem");
 
-                this.RemoveInvoiceItemButtonVisible = (value != -1) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    this.RemoveInvoiceItemButtonVisible = (value != -1) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                }
             }
         }
 
@@ -77,8 +113,11 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._changeBalance; }
             set
             {
-                this._changeBalance = value;
-                this.NotifyPropertyChanged("ChangeBalance");
+                if (ChangeBalance == null || !ChangeBalance.Equals(value))
+                {
+                    this._changeBalance = value;
+                    this.NotifyPropertyChanged("ChangeBalance");
+                }
             }
         }
 
@@ -95,10 +134,13 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._selectedInvoicePaymentMethod; }
             set
             {
-                this._selectedInvoicePaymentMethod = value;
-                this.NotifyPropertyChanged("SelectedInvoicePaymentMethod");
+                if (SelectedInvoicePaymentMethod != value)
+                {
+                    this._selectedInvoicePaymentMethod = value;
+                    this.NotifyPropertyChanged("SelectedInvoicePaymentMethod");
 
-                this.RemoveInvoicePaymentMethodButtonVisible = (value != -1) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                    this.RemoveInvoicePaymentMethodButtonVisible = (value != -1) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                }
             }
         }
 
@@ -109,8 +151,11 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._removeInvoicePaymentMethodButtonVisible; }
             private set
             {
-                this._removeInvoicePaymentMethodButtonVisible = value;
-                this.NotifyPropertyChanged("RemoveInvoicePaymentMethodButtonVisible");
+                if (RemoveInvoicePaymentMethodButtonVisible != value)
+                {
+                    this._removeInvoicePaymentMethodButtonVisible = value;
+                    this.NotifyPropertyChanged("RemoveInvoicePaymentMethodButtonVisible");
+                }
             }
         }
 
@@ -121,8 +166,11 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._invoicePaymentMethodNotFound; }
             private set
             {
-                this._invoicePaymentMethodNotFound = value;
-                this.NotifyPropertyChanged("InvoicePaymentMethodNotFound");
+                if (InvoicePaymentMethodNotFound != value)
+                {
+                    this._invoicePaymentMethodNotFound = value;
+                    this.NotifyPropertyChanged("InvoicePaymentMethodNotFound");
+                }
             }
         }
 
@@ -156,8 +204,11 @@ namespace WPF.ModelView.ApplicationContent
             get { return this._removeInvoiceItemButtonVisible; }
             private set
             {
-                this._removeInvoiceItemButtonVisible = value;
-                this.NotifyPropertyChanged("RemoveInvoiceItemButtonVisible");
+                if (RemoveInvoiceItemButtonVisible != value)
+                {
+                    this._removeInvoiceItemButtonVisible = value;
+                    this.NotifyPropertyChanged("RemoveInvoiceItemButtonVisible");
+                }
             }
         }
 
@@ -177,6 +228,8 @@ namespace WPF.ModelView.ApplicationContent
 
         public InvoiceContent()
         {
+            this.IsInvoiceProcessing = false;
+
             this.ProductsList = new ObservableCollection<InvoiceItemContent>();
             this._grossTotal = "--.--";
             this._discount = "--.--";
@@ -189,5 +242,93 @@ namespace WPF.ModelView.ApplicationContent
         }
 
         #endregion
+
+        #region Submit Invoice
+
+        public async Task<bool> SubmitInvoice()
+        {
+            try
+            {
+                if (this.IsInvoiceValid)
+                {
+                    this.IsInvoiceValid = false;
+                    this.IsInvoiceProcessing = true;
+
+                    await Task.Run(() => Thread.Sleep(200));
+
+                    return await Task.Run(
+                        () =>
+                        {
+
+                            string newInvoiceID = TimeConverterMethods.GetCurrentTimeInDateTime().ToString("yyMMdd") + "-" +
+                                        InventryMangementSystemDbContext.CounterWorking.BranchID.ToString("00") + "-" +
+                                        InventryMangementSystemDbContext.CounterWorking.CouterNo.ToString("00") + "-" +
+                                        //InventryMangementSystemDbContext.EmployeeWorking.ID.ToString("0000") + "-" +
+                                        (DBConnection.GetRowCount(DatabaseTable.Invoice) + 1).ToString("00");
+                            
+                            Invoice NewInvoice = new Invoice()
+                            {
+                                InvoiceId = newInvoiceID,
+                                Time = TimeConverterMethods.GetCurrentTimeInLong(),
+                                Balance = float.Parse(this.ChangeBalance),
+                                Counter = InventryMangementSystemDbContext.CounterWorking,
+                                Discount = float.Parse(this.Discount),
+                                FullPayment = float.Parse(this.GrossTotal),
+                                Payed = float.Parse(this.NetTotal),
+                                IssuedBy = InventryMangementSystemDbContext.EmployeeWorking.ID
+                            };
+
+                            NewInvoice.InvoiceDeal = null;
+                            NewInvoice.PurchasedBy = null;
+
+                            foreach (InvoiceItemContent Product in this.ProductsList)
+                            {
+                                Product.Dispatcher.Invoke(
+                                    () =>
+                                    {
+                                        NewInvoice.Products.Add(new InvoiceProduct()
+                                        {
+                                            ID = Product.ProductID,
+                                            Quantity = float.Parse(Product.Quantity)
+                                        });
+                                    });
+                            }
+
+                            foreach (InvoicePaymentListItemContent Payment in this.PaymentMethodsList)
+                            {
+                                Payment.Dispatcher.Invoke(
+                                    () =>
+                                    {
+                                        NewInvoice.Payments.Add(new InvoicePaymentMethod()
+                                        {
+                                            Method = Payment.PaymentMethodName,
+                                            Amount = float.Parse(Payment.PaymentAmount)
+                                        });
+                                    });
+                            }
+                            
+                            return InventryMangementSystemDbContext.AddNewInvoice(NewInvoice);
+                        });
+                }
+                else
+                    return false;
+            }
+            finally
+            {
+                this.IsInvoiceProcessing = false;
+            }
+
+
+        }
+
+        #endregion
+
+    }
+
+    public enum InvoiceSubmitError : byte
+    {
+        None = 0,
+        NoProduct,
+        NoPaymentMethod
     }
 }

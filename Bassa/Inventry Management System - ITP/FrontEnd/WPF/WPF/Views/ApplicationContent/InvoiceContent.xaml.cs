@@ -3,9 +3,6 @@ using Models.APICall.Resources;
 using Models.Core;
 using Styles.Controler;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Timers;
@@ -23,19 +20,7 @@ namespace WPF.Views.ApplicationContent
     /// </summary>
     public partial class InvoiceContent : UserControl
     {
-        #region Notify Property Changed
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //public void NotifyPropertyChanged(string propName)
-        //{
-        //    if (this.PropertyChanged != null)
-        //        this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        //}
-
-        #endregion
-
-        //
+        //Parent Instance
         private ApplicationContentView _applicationContentView;
 
         //Primary Content Page
@@ -158,7 +143,7 @@ namespace WPF.Views.ApplicationContent
                 {
                     Source = this._invoiceData,
                     Path = new PropertyPath("GrossTotal"),
-                    Delay = 500
+                    Delay = 100
                 });
 
             InvoiceDiscountTextBlock.SetBinding(TextBlock.TextProperty,
@@ -166,7 +151,7 @@ namespace WPF.Views.ApplicationContent
                 {
                     Source = this._invoiceData,
                     Path = new PropertyPath("Discount"),
-                    Delay = 500
+                    Delay = 100
                 });
 
             NetTotalTextBlock.SetBinding(TextBlock.TextProperty,
@@ -174,7 +159,7 @@ namespace WPF.Views.ApplicationContent
                 {
                     Source = this._invoiceData,
                     Path = new PropertyPath("NetTotal"),
-                    Delay = 500
+                    Delay = 100
                 });
 
             ChangeBalanceTextBlock.SetBinding(TextBlock.TextProperty,
@@ -182,7 +167,7 @@ namespace WPF.Views.ApplicationContent
                 {
                     Source = this._invoiceData,
                     Path = new PropertyPath("ChangeBalance"),
-                    Delay = 500
+                    Delay = 100
                 });
 
             //payment method realated data bindings
@@ -212,13 +197,33 @@ namespace WPF.Views.ApplicationContent
                     Mode = BindingMode.OneWayToSource
                 });
 
+            //Invoice Submit Button
+            CompleteInvoice.SetBinding(Button.IsEnabledProperty,
+                new Binding()
+                {
+                    Source = this._invoiceData,
+                    Path = new PropertyPath("IsInvoiceValid"),
+                    Mode = BindingMode.OneWay
+                });
+
             #endregion
 
             #region Timer Initializations
 
             this._checkQuantityIsCorrectTimer = new Timer();
-            this._checkQuantityIsCorrectTimer.Elapsed += (s, e) => { try { this.RefreshQuantityInInvoice(); } catch (Exception ez) { Debug.WriteLine("Redda" + ez.ToString()); } };
-            this._checkQuantityIsCorrectTimer.Interval = 0.5 * 1000;
+            this._checkQuantityIsCorrectTimer.Elapsed +=
+                (s, e) =>
+                {
+                    try
+                    {
+                        this.RefreshQuantityInInvoice();
+                    }
+                    catch (Exception ez)
+                    {
+                        Debug.WriteLine("InvoiceContent.xaml.cs line 226 -> " + ez.ToString());
+                    }
+                };
+            this._checkQuantityIsCorrectTimer.Interval = 0.1 * 1000;
             this._checkQuantityIsCorrectTimer.Enabled = true;
 
             #endregion
@@ -258,7 +263,6 @@ namespace WPF.Views.ApplicationContent
                     if (!isAllOk)
                         break;
                 }
-                Debug.WriteLine("P");
 
                 Dispatcher.Invoke(() =>
                 {
@@ -290,29 +294,28 @@ namespace WPF.Views.ApplicationContent
 
                         if (payedOK)
                         {
+                            if (payed - (tot - dis) >= 0)
+                                this._invoiceData.IsInvoiceValid = true;
+                            else
+                                this._invoiceData.IsInvoiceValid = false;
 
-                            //will change
-                            //Dispatcher.Invoke(() => { CompleteInvoice.IsEnabled = true; });
                             this._invoiceData.ChangeBalance = string.Format("{0:0.00}", payed - (tot - dis));
                             return true;
                         }
                         else
                         {
-
-                            //will change
-                            //Dispatcher.Invoke(() => { CompleteInvoice.IsEnabled = false; });
+                            this._invoiceData.IsInvoiceValid = false;
                             this._invoiceData.ChangeBalance = "--.--";
                             return false;
                         }
                     }
                     else
                     {
+                        this._invoiceData.IsInvoiceValid = false;
                         this._invoiceData.NetTotal = "--.--";
                         this._invoiceData.GrossTotal = "--.--";
                         this._invoiceData.Discount = "--.--";
                         this._invoiceData.ChangeBalance = "--.--";
-
-                        //Dispatcher.Invoke(() => { CompleteInvoice.IsEnabled = false; });
 
                         return false;
                     }
@@ -324,12 +327,12 @@ namespace WPF.Views.ApplicationContent
             {
                 Dispatcher.Invoke(() =>
                 {
+                    this._invoiceData.IsInvoiceValid = false;
+
                     this._invoiceData.NetTotal = "--.--";
                     this._invoiceData.GrossTotal = "--.--";
                     this._invoiceData.Discount = "--.--";
                     this._invoiceData.ChangeBalance = "--.--";
-
-                    CompleteInvoice.IsEnabled = false;
                 });
 
                 return false;
@@ -472,8 +475,10 @@ namespace WPF.Views.ApplicationContent
 
         private async void CompleteInvoice_Click(object sender, RoutedEventArgs e)
         {
-            CreateInvoiceResource Invoice = new CreateInvoiceResource();
-            await new InvoiceAPICall().SendInvoice(Invoice);
+            this._applicationContentView.ProgressBarVisibity(true, "Submitting...");
+            await this._invoiceData.SubmitInvoice();
+            this._applicationContentView.ProgressBarVisibity(false);
+
             this._applicationContentView.ResetContentPanel();
         }
     }

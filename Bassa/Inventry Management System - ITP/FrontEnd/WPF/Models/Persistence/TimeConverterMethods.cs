@@ -16,5 +16,17 @@ namespace Models.Persistence
         {
             return _initialStartDate.AddSeconds(TimeConverterMethods.GetCurrentTimeInLong());
         }
+
+        public static long GetCurrentDateInLong()
+        {
+            DateTime NowDate = TimeConverterMethods.GetCurrentTimeInDateTime();
+            return TimeConverterMethods.GetCustomTimeInLong(NowDate);
+        }
+
+        private static long GetCustomTimeInLong(DateTime CustomDateTime)
+        {
+            return (long)new DateTime(CustomDateTime.Year, CustomDateTime.Month, CustomDateTime.Day, 0, 0, 0)
+                .Subtract(_initialStartDate).TotalSeconds;
+        }
     }
 }

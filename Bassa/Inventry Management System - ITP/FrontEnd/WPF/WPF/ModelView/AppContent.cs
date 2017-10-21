@@ -139,14 +139,22 @@ namespace WPF.ModelView
             SetCurrentProgress(Active, "");
         }
 
-        public void SetCurrentProgress(bool Active, string Message)
+        public void SetCurrentProgress(bool Active, string Message = "")
         {
-            this.CurrentProgressText = Message;
+            if (!(Active && CheckIsInProgress()))
+            {
+                this.CurrentProgressText = Message;
 
-            if (Active)
-                CurrentProgressGridVisibility = System.Windows.Visibility.Visible;
-            else
-                CurrentProgressGridVisibility = System.Windows.Visibility.Collapsed;
+                if (Active)
+                    CurrentProgressGridVisibility = System.Windows.Visibility.Visible;
+                else
+                    CurrentProgressGridVisibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        public bool CheckIsInProgress()
+        {
+            return (CurrentProgressGridVisibility == System.Windows.Visibility.Visible);
         }
 
         public AppContent()

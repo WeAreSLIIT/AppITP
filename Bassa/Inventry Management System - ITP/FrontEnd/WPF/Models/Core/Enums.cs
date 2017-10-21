@@ -15,6 +15,7 @@ namespace Models.Core
     public enum DatabaseTable : byte
     {
         Product = 1,
-        PaymentMethod
+        PaymentMethod = 2,
+        Invoice = 3
     }
 }

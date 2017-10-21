@@ -30,7 +30,7 @@
                             <Grid Grid.Column="0" Height="42">
                                 <TextBlock FontSize="{TemplateBinding FontSize}" 
                                            VerticalAlignment="Center" HorizontalAlignment="Center"
-                                           Text="{Binding ItemNo, RelativeSource={RelativeSource TemplatedParent}, Delay=1000}"/>
+                                           Text="{Binding ItemNo, RelativeSource={RelativeSource TemplatedParent}, Delay=500}"/>
                             </Grid>
 
                             <StackPanel Grid.Column="1" Margin="5 4 0 5" VerticalAlignment="Center" Height="42">
@@ -57,7 +57,7 @@
                                 <TextBox Name="txtQuantity" FontSize="{TemplateBinding FontSize}" 
                                          VerticalAlignment="Center" MinWidth="50" MaxWidth="125" TextAlignment="Center" 
                                          Background="White"
-                                         Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Quantity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=100}"/>
+                                         Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Quantity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay=50}"/>
                             </Grid>
 
                             <TextBlock Grid.Column="5" FontSize="{TemplateBinding FontSize}" 

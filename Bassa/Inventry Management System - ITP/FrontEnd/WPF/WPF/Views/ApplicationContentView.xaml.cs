@@ -105,8 +105,6 @@ namespace WPF.Views
             RefreshTimer.Enabled = true;
 
             RefreshTimer_Elapsed(null, null);
-
-
         }
 
         private void RefreshTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -120,6 +118,7 @@ namespace WPF.Views
                     this._appContent.CurrentDate = CurrentDateTime.ToString("yyyy / MM / dd");
 
                     this._appContent.ConnectionToServer = InventryMangementSystemDbContext.ConnectionToServer;
+                    InventryMangementSystemDbContext.UploadUnsyncInvoicesToServer(ProgressBarVisibity);
                 });
             }
             catch { }
@@ -139,6 +138,20 @@ namespace WPF.Views
                 this._invoiceContent = new InvoiceContent(this);
                 ApplicationCurrentContent = ApplicationCurrentView.Invoices;
             }
+        }
+
+        public void ProgressBarVisibity(bool Visible, string ProgressText = "")
+        {
+            Dispatcher.Invoke(
+                () =>
+                {
+                    this._appContent.SetCurrentProgress(Visible, ProgressText);
+                });
+        }
+
+        public bool CheckIsInProgress()
+        {
+            return this._appContent.CheckIsInProgress();
         }
     }
 

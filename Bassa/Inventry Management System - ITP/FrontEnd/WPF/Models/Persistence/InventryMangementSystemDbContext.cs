@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace Models.Persistence
 {
@@ -25,6 +26,13 @@ namespace Models.Persistence
         public static ServerData ServerDateTime;
         public static SystemInfo SystemInformation;
         public static Counter CounterWorking;
+        public static Employee EmployeeWorking;
+
+        //Invoice Syncing related variables
+        private static bool UploadUnsyncInvoicesInProgress = false;
+        public static bool IsThereUnsyncInvoices = false;
+        private static bool FirstCheckUnsyncInvoices = false;
+
 
         static InventryMangementSystemDbContext()
         {
@@ -34,6 +42,7 @@ namespace Models.Persistence
             ServerDateTime = new ServerData();
             SystemInformation = new SystemInfo();
             CounterWorking = new Counter();
+            EmployeeWorking = new Employee();
 
             ConnectionToServer = false;
             BaseAddressToServer = @"http://localhost:5556/";
@@ -69,13 +78,6 @@ namespace Models.Persistence
                         #endregion
                     });
 
-                    #region Tempory Code until DB Connection
-
-                    CounterWorking.BranchID = 1;
-                    CounterWorking.CouterNo = 1;
-
-                    #endregion
-
 
                     return true;
                 }
@@ -94,45 +96,47 @@ namespace Models.Persistence
 
             if (ServerCheck)
             {
-                ICollection<TableVersion> TableVersions = new List<TableVersion>();
-                TableVersions = await new TableVersionAPICall().GetTableVersionData();
+                InventryMangementSystemDbContext.TableVersions.Clear();
+                InventryMangementSystemDbContext.TableVersions = await new TableVersionAPICall().GetTableVersionData();
 
-                DoUpdatesRequired(TableVersions);
+                await DoUpdatesRequired();
 
-                //ICollection<Product> TempProducts = DBConnection.GetProducts();
+                await Task.Run(
+                    () =>
+                    {
+                        ICollection<Product> TempProducts = DBConnection.GetProducts();
 
-                //if (!(TempProducts == null || TempProducts.Count == 0))
-                //{
-                //    Products.Clear();
+                        InventryMangementSystemDbContext.Products.Clear();
+                        if (!(TempProducts == null || TempProducts.Count == 0))
+                        {
+                            InventryMangementSystemDbContext.Products = TempProducts;
+                        }
 
-                //    foreach (Product TempProduct in TempProducts)
-                //    {
-                //        Products.Add(TempProduct);
-                //    }
-                //}
+                        ICollection<PaymentMethod> TempPaymentMethods = DBConnection.GetPaymentMethods();
 
-                //ICollection<PaymentMethod> TempPaymentMethods = DBConnection.GetPaymentMethods();
-
-                //if (!(TempPaymentMethods == null || TempPaymentMethods.Count == 0))
-                //{
-                //    PaymentMethods.Clear();
-
-                //    PaymentMethods = TempPaymentMethods;
-                //}
+                        InventryMangementSystemDbContext.PaymentMethods.Clear();
+                        if (!(TempPaymentMethods == null || TempPaymentMethods.Count == 0))
+                        {
+                            InventryMangementSystemDbContext.PaymentMethods = TempPaymentMethods;
+                        }
+                    });
             }
 
             return ServerCheck;
         }
 
-        public async static void DoUpdatesRequired(ICollection<TableVersion> NewTableVersions)
+        public async static Task DoUpdatesRequired()
         {
-            if (!(TableVersions == null || TableVersions.Count == 0))
-            {
-                ICollection<TableVersion> TableVersions = DBConnection.GetTableVersions();
+            Debug.WriteLine("DoUpdatesRequired() called line 129");
 
-                foreach (TableVersion TableVersion in TableVersions)
+            if (!(InventryMangementSystemDbContext.TableVersions == null ||
+                InventryMangementSystemDbContext.TableVersions.Count == 0))
+            {
+                ICollection<TableVersion> TblVersions = DBConnection.GetTableVersions();
+
+                foreach (TableVersion TableVersion in TblVersions)
                 {
-                    TableVersion NewTableVersion = NewTableVersions.FirstOrDefault(tv => tv.TableID == TableVersion.TableID);
+                    TableVersion NewTableVersion = InventryMangementSystemDbContext.TableVersions.FirstOrDefault(tv => tv.TableID == TableVersion.TableID);
 
                     if (NewTableVersion.Time > TableVersion.Time)
                     {
@@ -140,23 +144,112 @@ namespace Models.Persistence
                         {
                             ICollection<Product> Products = new List<Product>();
                             Products = await new ProductAPICall().CheckNewProducts();
-                            Debug.WriteLine("WPF -> Products");
 
                             DBConnection.UpdateProducts(Products);
+                            Debug.WriteLine("DoUpdatesRequired() -> Products Table updated");
                         }
                         else if (NewTableVersion.Table == DatabaseTable.PaymentMethod)
                         {
                             ICollection<PaymentMethod> PaymentMethods = new List<PaymentMethod>();
                             PaymentMethods = await new PaymentMethodAPICall().CheckNewPaymentMethods();
-                            Debug.WriteLine("WPF -> Products");
 
                             DBConnection.UpdatePaymentMethods(PaymentMethods);
+                            Debug.WriteLine("DoUpdatesRequired() -> PaymentMethods Table updated");
                         }
 
-                        DBConnection.UpdateTableVersions(TableVersion.TableID, TableVersion.Time);
+                        DBConnection.UpdateTableVersions(NewTableVersion.TableID, NewTableVersion.Time);
                     }
                 }
             }
+        }
+
+        public async static Task<bool> AddNewInvoice(Invoice invoice)
+        {
+            return await Task.Run(
+                () =>
+                {
+                    return DBConnection.AddNewInvoice(invoice);
+                });
+        }
+
+        public static void UploadUnsyncInvoicesToServer(Action<bool, string> ProgressBarVisibity)
+        {
+            if (!FirstCheckUnsyncInvoices)
+            {
+                ICollection<Invoice> UnsyncInvoices = DBConnection.GetInvoices();
+                if (UnsyncInvoices == null || UnsyncInvoices.Count == 0)
+                {
+                    IsThereUnsyncInvoices = false;
+                }
+                else
+                {
+                    IsThereUnsyncInvoices = true;
+                }
+                FirstCheckUnsyncInvoices = true;
+            }
+
+            if (ConnectionToServer && !UploadUnsyncInvoicesInProgress && IsThereUnsyncInvoices)
+            {
+                UploadUnsyncInvoicesInProgress = true;
+                ProgressBarVisibity(true, "Uploading...");
+
+                Thread UploadInvoicesToServerThread = new Thread(
+                    async () =>
+                    {
+                        await UploadInvoicesToServer();
+
+                        ProgressBarVisibity(false, "");
+                        UploadUnsyncInvoicesInProgress = false;
+                    });
+
+                UploadInvoicesToServerThread.Start();                
+            }
+        }
+
+        public async static Task<bool> UploadInvoicesToServer()
+        {
+            bool process = true;
+            ICollection<Invoice> UnsyncInvoices = DBConnection.GetInvoices();
+
+            if (!(UnsyncInvoices == null || UnsyncInvoices.Count == 0))
+            {
+                foreach (Invoice UnsyncInvoice in UnsyncInvoices)
+                {
+                    process = await UploadInvoiceToServer(UnsyncInvoice);
+
+                    if (!process)
+                        break;
+                }
+            }
+
+            if (process)
+                IsThereUnsyncInvoices = false;
+
+            return process;
+        }
+
+        public async static Task<bool> UploadInvoiceToServer(Invoice invoice)
+        {
+            if (InventryMangementSystemDbContext.ConnectionToServer)
+            {
+                bool uploaded = await new InvoiceAPICall().SendInvoice(invoice);
+
+                if (uploaded)
+                {
+                    await Task.Run(
+                        () =>
+                        {
+                            if (uploaded)
+                            {
+                                DBConnection.DeleteInvoice(invoice.InvoiceId);
+                            }
+                        });
+                }
+
+                return uploaded;
+            }
+            else
+                return false;
         }
     }
 }
