@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             if (Employees == null || Employees.Count == 0)
                 return Content(HttpStatusCode.NotFound, "No Employees found!");
 
-            return Content(HttpStatusCode.Found, Employees);
+            return Content(HttpStatusCode.OK, Employees);
         }
 
 

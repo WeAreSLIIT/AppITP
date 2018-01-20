@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             if (Logs == null || Logs.Count == 0)
                 return Content(HttpStatusCode.NotFound, "No Logs found!");
 
-            return Content(HttpStatusCode.Found, Logs);
+            return Content(HttpStatusCode.OK, Logs);
         }
 
 
