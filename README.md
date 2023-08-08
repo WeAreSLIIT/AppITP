@@ -30,4 +30,4 @@ TEAM MEMEBERS
 * IT16225916    Rajapakshe R.W.D.K.P	  kaveendrarajapakshe@gmail.com
 * IT16130562    H.S.K.Wijesekara	      harinwijesekara@gmail.com
 * IT16161566    U.S.O.Vindula	          ovinud99@gmail.com
-* IT16133914    L.L.K.S.Lokuge	        kawee@live.co.uk
+* IT16133914    L.L.K.S.Lokuge	        kaweelenaduwa@gmail.com
